@@ -4,6 +4,7 @@ package user;
 option go_package = ".";
 
 service UserService {
+    // Authentication and Security
     rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
     rpc TokenRefresh(TokenRefreshRequest) returns (TokenRefreshResponse);
@@ -13,13 +14,20 @@ service UserService {
     rpc SetTwoFactorAuth(SetTwoFactorAuthRequest) returns (SetTwoFactorAuthResponse);
     rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);
     rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+
+    // User Management
     rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
     rpc UpdateProfileImage(UpdateProfileImageRequest) returns (UpdateProfileImageResponse);
     rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
+    rpc CheckBanStatus(CheckBanStatusRequest) returns (CheckBanStatusResponse);
+
+    // Social Features
     rpc FollowUser(FollowUserRequest) returns (FollowUserResponse);
     rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse);
     rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
     rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
+
+    // Admin Operations
     rpc CreateUserAdmin(CreateUserAdminRequest) returns (CreateUserAdminResponse);
     rpc UpdateUserAdmin(UpdateUserAdminRequest) returns (UpdateUserAdminResponse);
     rpc BlockUser(BlockUserRequest) returns (BlockUserResponse);
@@ -27,9 +35,10 @@ service UserService {
     rpc VerifyAdminUser(VerifyAdminUserRequest) returns (VerifyAdminUserResponse);
     rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
     rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
+    rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
 
-// Request and response messages for authentication and user management
+// Authentication and Security Messages
 message RegisterUserRequest {
     string firstName = 1;
     string lastName = 2;
@@ -122,6 +131,7 @@ message ChangePasswordResponse {
     string message = 1;
 }
 
+// User Management Messages
 message UpdateProfileRequest {
     string userID = 1;
     string firstName = 2;
@@ -160,6 +170,18 @@ message GetUserProfileResponse {
     Socials socials = 6;
 }
 
+message CheckBanStatusRequest {
+    string userID = 1;
+}
+
+message CheckBanStatusResponse {
+    bool isBanned = 1;
+    string reason = 2;
+    int64 banExpiration = 3;
+    string message = 4;
+}
+
+// Social Features Messages
 message FollowUserRequest {
     string userID = 1;
 }
@@ -192,6 +214,7 @@ message GetFollowersResponse {
     repeated UserProfile data = 1;
 }
 
+// Admin Operations Messages
 message CreateUserAdminRequest {
     string firstName = 1;
     string lastName = 2;
@@ -270,6 +293,20 @@ message SoftDeleteUserAdminResponse {
     string message = 1;
 }
 
+message GetAllUsersRequest {
+    int32 page = 1;
+    int32 limit = 2;
+    string roleFilter = 3; 
+    string statusFilter = 4; 
+}
+
+message GetAllUsersResponse {
+    repeated UserProfile users = 1;
+    int32 totalCount = 2;
+    string message = 3;
+}
+
+// Common Messages
 message Socials {
     string github = 1;
     string twitter = 2;
