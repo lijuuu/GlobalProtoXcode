@@ -28,6 +28,21 @@ Before using the Makefile, ensure you have the following installed:
 
    This should output the path you set (e.g., `/home/yourusername/go`).
 
+## Adding the Submodule
+
+To include the `CentralisedFoodbuddyMicroserviceProto` repository as a submodule in your project, run the following command in your project directory:
+
+```bash
+git submodule add https://github.com/liju-github/CentralisedFoodbuddyMicroserviceProto
+```
+
+After adding the submodule, initialize and update it:
+
+```bash
+git submodule init
+git submodule update
+```
+
 ## Usage
 
 To initialize the environment, install necessary tools, and generate gRPC code, run the following command in the project directory:

@@ -1,4 +1,4 @@
-module xcode
+module github.com/lijuuu/GlobalProtoXcode
 
 go 1.22.11
 
