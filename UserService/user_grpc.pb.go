@@ -31,6 +31,7 @@ const (
 	UserService_UpdateProfile_FullMethodName       = "/user.UserService/UpdateProfile"
 	UserService_UpdateProfileImage_FullMethodName  = "/user.UserService/UpdateProfileImage"
 	UserService_GetUserProfile_FullMethodName      = "/user.UserService/GetUserProfile"
+	UserService_CheckBanStatus_FullMethodName      = "/user.UserService/CheckBanStatus"
 	UserService_FollowUser_FullMethodName          = "/user.UserService/FollowUser"
 	UserService_UnfollowUser_FullMethodName        = "/user.UserService/UnfollowUser"
 	UserService_GetFollowing_FullMethodName        = "/user.UserService/GetFollowing"
@@ -42,12 +43,14 @@ const (
 	UserService_VerifyAdminUser_FullMethodName     = "/user.UserService/VerifyAdminUser"
 	UserService_UnverifyUser_FullMethodName        = "/user.UserService/UnverifyUser"
 	UserService_SoftDeleteUserAdmin_FullMethodName = "/user.UserService/SoftDeleteUserAdmin"
+	UserService_GetAllUsers_FullMethodName         = "/user.UserService/GetAllUsers"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
+	// Authentication and Security
 	RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error)
 	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
 	TokenRefresh(ctx context.Context, in *TokenRefreshRequest, opts ...grpc.CallOption) (*TokenRefreshResponse, error)
@@ -57,13 +60,17 @@ type UserServiceClient interface {
 	SetTwoFactorAuth(ctx context.Context, in *SetTwoFactorAuthRequest, opts ...grpc.CallOption) (*SetTwoFactorAuthResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
+	// User Management
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
 	UpdateProfileImage(ctx context.Context, in *UpdateProfileImageRequest, opts ...grpc.CallOption) (*UpdateProfileImageResponse, error)
 	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
+	CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error)
+	// Social Features
 	FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error)
 	UnfollowUser(ctx context.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error)
 	GetFollowing(ctx context.Context, in *GetFollowingRequest, opts ...grpc.CallOption) (*GetFollowingResponse, error)
 	GetFollowers(ctx context.Context, in *GetFollowersRequest, opts ...grpc.CallOption) (*GetFollowersResponse, error)
+	// Admin Operations
 	CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error)
 	UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error)
 	BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error)
@@ -71,6 +78,7 @@ type UserServiceClient interface {
 	VerifyAdminUser(ctx context.Context, in *VerifyAdminUserRequest, opts ...grpc.CallOption) (*VerifyAdminUserResponse, error)
 	UnverifyUser(ctx context.Context, in *UnverifyUserAdminRequest, opts ...grpc.CallOption) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(ctx context.Context, in *SoftDeleteUserAdminRequest, opts ...grpc.CallOption) (*SoftDeleteUserAdminResponse, error)
+	GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error)
 }
 
 type userServiceClient struct {
@@ -201,6 +209,16 @@ func (c *userServiceClient) GetUserProfile(ctx context.Context, in *GetUserProfi
 	return out, nil
 }
 
+func (c *userServiceClient) CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckBanStatusResponse)
+	err := c.cc.Invoke(ctx, UserService_CheckBanStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(FollowUserResponse)
@@ -311,10 +329,21 @@ func (c *userServiceClient) SoftDeleteUserAdmin(ctx context.Context, in *SoftDel
 	return out, nil
 }
 
+func (c *userServiceClient) GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAllUsersResponse)
+	err := c.cc.Invoke(ctx, UserService_GetAllUsers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
+	// Authentication and Security
 	RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error)
 	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
 	TokenRefresh(context.Context, *TokenRefreshRequest) (*TokenRefreshResponse, error)
@@ -324,13 +353,17 @@ type UserServiceServer interface {
 	SetTwoFactorAuth(context.Context, *SetTwoFactorAuthRequest) (*SetTwoFactorAuthResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
+	// User Management
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	UpdateProfileImage(context.Context, *UpdateProfileImageRequest) (*UpdateProfileImageResponse, error)
 	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
+	CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error)
+	// Social Features
 	FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error)
 	UnfollowUser(context.Context, *UnfollowUserRequest) (*UnfollowUserResponse, error)
 	GetFollowing(context.Context, *GetFollowingRequest) (*GetFollowingResponse, error)
 	GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error)
+	// Admin Operations
 	CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error)
 	UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error)
 	BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error)
@@ -338,6 +371,7 @@ type UserServiceServer interface {
 	VerifyAdminUser(context.Context, *VerifyAdminUserRequest) (*VerifyAdminUserResponse, error)
 	UnverifyUser(context.Context, *UnverifyUserAdminRequest) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error)
+	GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -384,6 +418,9 @@ func (UnimplementedUserServiceServer) UpdateProfileImage(context.Context, *Updat
 func (UnimplementedUserServiceServer) GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserProfile not implemented")
 }
+func (UnimplementedUserServiceServer) CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckBanStatus not implemented")
+}
 func (UnimplementedUserServiceServer) FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FollowUser not implemented")
 }
@@ -416,6 +453,9 @@ func (UnimplementedUserServiceServer) UnverifyUser(context.Context, *UnverifyUse
 }
 func (UnimplementedUserServiceServer) SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SoftDeleteUserAdmin not implemented")
+}
+func (UnimplementedUserServiceServer) GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllUsers not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -654,6 +694,24 @@ func _UserService_GetUserProfile_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_CheckBanStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckBanStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CheckBanStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CheckBanStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CheckBanStatus(ctx, req.(*CheckBanStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_FollowUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FollowUserRequest)
 	if err := dec(in); err != nil {
@@ -852,6 +910,24 @@ func _UserService_SoftDeleteUserAdmin_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetAllUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllUsersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetAllUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetAllUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetAllUsers(ctx, req.(*GetAllUsersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -908,6 +984,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_GetUserProfile_Handler,
 		},
 		{
+			MethodName: "CheckBanStatus",
+			Handler:    _UserService_CheckBanStatus_Handler,
+		},
+		{
 			MethodName: "FollowUser",
 			Handler:    _UserService_FollowUser_Handler,
 		},
@@ -950,6 +1030,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SoftDeleteUserAdmin",
 			Handler:    _UserService_SoftDeleteUserAdmin_Handler,
+		},
+		{
+			MethodName: "GetAllUsers",
+			Handler:    _UserService_GetAllUsers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

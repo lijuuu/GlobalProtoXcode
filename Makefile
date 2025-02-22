@@ -4,6 +4,7 @@ PROTO_DIRS := UserService
 
 init:
 	@echo "Initializing environment..."
+	@export PATH=$PATH:$HOME/go/bin
 	@if [ -z "$(GO_MODULE)" ]; then \
 		echo "GO_MODULE is not set. Please set your GOPATH."; \
 		exit 1; \
