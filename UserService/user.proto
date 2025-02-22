@@ -1,0 +1,287 @@
+syntax = "proto3";
+
+package user;
+option go_package = ".";
+
+service UserService {
+    rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+    rpc TokenRefresh(TokenRefreshRequest) returns (TokenRefreshResponse);
+    rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
+    rpc ResendOTP(ResendOTPRequest) returns (ResendOTPResponse);
+    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
+    rpc SetTwoFactorAuth(SetTwoFactorAuthRequest) returns (SetTwoFactorAuthResponse);
+    rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);
+    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+    rpc UpdateProfileImage(UpdateProfileImageRequest) returns (UpdateProfileImageResponse);
+    rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
+    rpc FollowUser(FollowUserRequest) returns (FollowUserResponse);
+    rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse);
+    rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
+    rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
+    rpc CreateUserAdmin(CreateUserAdminRequest) returns (CreateUserAdminResponse);
+    rpc UpdateUserAdmin(UpdateUserAdminRequest) returns (UpdateUserAdminResponse);
+    rpc BlockUser(BlockUserRequest) returns (BlockUserResponse);
+    rpc UnblockUser(UnblockUserAdminRequest) returns (UnblockUserAdminResponse);
+    rpc VerifyAdminUser(VerifyAdminUserRequest) returns (VerifyAdminUserResponse);
+    rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
+    rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
+}
+
+// Request and response messages for authentication and user management
+message RegisterUserRequest {
+    string firstName = 1;
+    string lastName = 2;
+    string country = 3;
+    string role = 4;
+    string primaryLanguageID = 5;
+    repeated string secondaryLanguageID = 6;
+    string email = 7;
+    string authType = 8;
+    string password = 9;
+    string confirmPassword = 10;
+    bool muteNotifications = 11;
+    Socials socials = 12;
+}
+
+message RegisterUserResponse {
+    string userID = 1;
+    string message = 2;
+}
+
+message LoginUserRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginUserResponse {
+    string refreshToken = 1;
+    int32 expiresIn = 2;
+    string userID = 3;
+}
+
+message TokenRefreshRequest {
+    string refreshToken = 1;
+}
+
+message TokenRefreshResponse {
+    string accessToken = 1;
+    int32 expiresIn = 2;
+    string userID = 3;
+}
+
+message LogoutRequest {
+    string userID = 1;
+}
+
+message LogoutResponse {
+    string message = 1;
+}
+
+message ResendOTPRequest {
+    string userID = 1;
+}
+
+message ResendOTPResponse {
+    string message = 1;
+}
+
+message VerifyUserRequest {
+    string token = 1;
+    string email = 2;
+}
+
+message VerifyUserResponse {
+    string message = 1;
+}
+
+message SetTwoFactorAuthRequest {
+    string userID = 1;
+    bool enable = 2;
+}
+
+message SetTwoFactorAuthResponse {
+    string message = 1;
+}
+
+message ForgotPasswordRequest {
+    string email = 1;
+}
+
+message ForgotPasswordResponse {
+    string message = 1;
+}
+
+message ChangePasswordRequest {
+    string userID = 1;
+    string newPassword = 2;
+}
+
+message ChangePasswordResponse {
+    string message = 1;
+}
+
+message UpdateProfileRequest {
+    string userID = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string country = 4;
+    string primaryLanguageID = 5;
+    repeated string secondaryLanguageID = 6;
+    bool muteNotifications = 7;
+    Socials socials = 8;
+}
+
+message UpdateProfileResponse {
+    string message = 1;
+}
+
+message UpdateProfileImageRequest {
+    string userID = 1;
+    string avatarData = 2;
+}
+
+message UpdateProfileImageResponse {
+    string message = 1;
+    string avatarData = 2;
+}
+
+message GetUserProfileRequest {
+    string userID = 1;
+}
+
+message GetUserProfileResponse {
+    string firstName = 1;
+    string lastName = 2;
+    string country = 3;
+    string email = 4;
+    string role = 5;
+    Socials socials = 6;
+}
+
+message FollowUserRequest {
+    string userID = 1;
+}
+
+message FollowUserResponse {
+    string message = 1;
+}
+
+message UnfollowUserRequest {
+    string userID = 1;
+}
+
+message UnfollowUserResponse {
+    string message = 1;
+}
+
+message GetFollowingRequest {
+    string userID = 1;
+}
+
+message GetFollowingResponse {
+    repeated UserProfile data = 1;
+}
+
+message GetFollowersRequest {
+    string userID = 1;
+}
+
+message GetFollowersResponse {
+    repeated UserProfile data = 1;
+}
+
+message CreateUserAdminRequest {
+    string firstName = 1;
+    string lastName = 2;
+    string country = 3;
+    string role = 4;
+    string primaryLanguageID = 5;
+    repeated string secondaryLanguageID = 6;
+    string email = 7;
+    string authType = 8;
+    string password = 9;
+    string confirmPassword = 10;
+    bool muteNotifications = 11;
+    Socials socials = 12;
+}
+
+message CreateUserAdminResponse {
+    string userID = 1;
+    string message = 2;
+}
+
+message UpdateUserAdminRequest {
+    string userID = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string country = 4;
+    string role = 5;
+    string email = 6;
+    string password = 7;
+    string primaryLanguageID = 8;
+    repeated string secondaryLanguageID = 9;
+    bool muteNotifications = 10;
+    Socials socials = 11;
+}
+
+message UpdateUserAdminResponse {
+    string message = 1;
+}
+
+message BlockUserRequest {
+    string userID = 1;
+}
+
+message BlockUserResponse {
+    string message = 1;
+}
+
+message UnblockUserAdminRequest {
+    string userID = 1;
+}
+
+message UnblockUserAdminResponse {
+    string message = 1;
+}
+
+message VerifyAdminUserRequest {
+    string userID = 1;
+}
+
+message VerifyAdminUserResponse {
+    string message = 1;
+}
+
+message UnverifyUserAdminRequest {
+    string userID = 1;
+}
+
+message UnverifyUserAdminResponse {
+    string message = 1;
+}
+
+message SoftDeleteUserAdminRequest {
+    string userID = 1;
+}
+
+message SoftDeleteUserAdminResponse {
+    string message = 1;
+}
+
+message Socials {
+    string github = 1;
+    string twitter = 2;
+    string linkedin = 3;
+}
+
+message UserProfile {
+    string userID = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string role = 5;
+    string status = 6;
+    Socials socials = 7;
+}
