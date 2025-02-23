@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 option go_package = ".";
 
-service UserService {
+service authuseradmin {
     // Authentication and Security
     rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
@@ -14,6 +14,9 @@ service UserService {
     rpc SetTwoFactorAuth(SetTwoFactorAuthRequest) returns (SetTwoFactorAuthResponse);
     rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);
     rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+
+    //Authentication Admin
+    rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
 
     // User Management
     rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
@@ -68,6 +71,7 @@ message LoginUserResponse {
     string refreshToken = 1;
     int32 expiresIn = 2;
     string userID = 3;
+    string message = 4;
 }
 
 message TokenRefreshRequest {
@@ -321,4 +325,16 @@ message UserProfile {
     string role = 5;
     string status = 6;
     Socials socials = 7;
+}
+
+message LoginAdminRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginAdminResponse {
+    string refreshToken = 1;
+    int32 expiresIn = 2;
+    string adminID = 3;
+    string message = 4;
 }
