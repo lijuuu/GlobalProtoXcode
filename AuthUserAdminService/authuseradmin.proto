@@ -102,7 +102,7 @@ message ResendOTPResponse {
 
 message VerifyUserRequest {
     string token = 1;
-    string userID = 2;
+    string email = 2;
 }
 
 message VerifyUserResponse {
