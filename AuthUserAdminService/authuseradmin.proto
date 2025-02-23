@@ -153,12 +153,12 @@ message UpdateProfileResponse {
 
 message UpdateProfileImageRequest {
     string userID = 1;
-    string avatarData = 2;
+    string avatarURL = 2;
 }
 
 message UpdateProfileImageResponse {
     string message = 1;
-    string avatarData = 2;
+    string avatarURL = 2;
 }
 
 message GetUserProfileRequest {
