@@ -1,6 +1,6 @@
 # Install necessary tools for protobuf compilation
 GO_MODULE ?= $(shell go env GOPATH)
-PROTO_DIRS := UserService
+PROTO_DIRS := AuthUserAdminService
 
 init:
 	@echo "Initializing environment..."
@@ -9,8 +9,7 @@ init:
 		echo "GO_MODULE is not set. Please set your GOPATH."; \
 		exit 1; \
 	fi
-	@export GOPATH=$$HOME/go; \
-	export PATH=$$PATH:$$GOPATH/bin
+	@export GOPATH=$$HOME/go; 
 
 install-tools:
 	@echo "Installing necessary tools..."
