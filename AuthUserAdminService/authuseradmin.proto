@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 option go_package = ".";
 
-service authuseradmin {
+service AuthUserAdminService {  // Renamed from "authuseradmin" to match Go conventions and consistency
     // Authentication and Security
     rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
@@ -12,10 +12,11 @@ service authuseradmin {
     rpc ResendOTP(ResendOTPRequest) returns (ResendOTPResponse);
     rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
     rpc SetTwoFactorAuth(SetTwoFactorAuthRequest) returns (SetTwoFactorAuthResponse);
-    rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);
-    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+    rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  // Initiate password reset
+    rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);  // Complete password reset
+    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);  // Standalone password change for authenticated users
 
-    //Authentication Admin
+    // Authentication Admin
     rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
 
     // User Management
@@ -101,8 +102,8 @@ message ResendOTPResponse {
 }
 
 message VerifyUserRequest {
-    string token = 1;
-    string email = 2;
+    string userID = 1;  // Updated to use userID instead of email for consistency
+    string token = 2;
 }
 
 message VerifyUserResponse {
@@ -124,11 +125,25 @@ message ForgotPasswordRequest {
 
 message ForgotPasswordResponse {
     string message = 1;
+    string token = 2;  // Added token for the reset link
+}
+
+message FinishForgotPasswordRequest {
+    string userID = 1;
+    string token = 2;
+    string newPassword = 3;
+    string confirmPassword = 4;
+}
+
+message FinishForgotPasswordResponse {
+    string message = 1;
 }
 
 message ChangePasswordRequest {
-    string userID = 1;
-    string newPassword = 2;
+    string userID = 1;  // For authenticated users
+    string oldPassword = 2;  // Require old password for security
+    string newPassword = 3;
+    string confirmPassword = 4;
 }
 
 message ChangePasswordResponse {
@@ -300,8 +315,8 @@ message SoftDeleteUserAdminResponse {
 message GetAllUsersRequest {
     int32 page = 1;
     int32 limit = 2;
-    string roleFilter = 3; 
-    string statusFilter = 4; 
+    string roleFilter = 3;
+    string statusFilter = 4;
 }
 
 message GetAllUsersResponse {

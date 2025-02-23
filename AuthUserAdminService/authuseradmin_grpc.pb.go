@@ -19,38 +19,39 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Authuseradmin_RegisterUser_FullMethodName        = "/user.authuseradmin/RegisterUser"
-	Authuseradmin_LoginUser_FullMethodName           = "/user.authuseradmin/LoginUser"
-	Authuseradmin_TokenRefresh_FullMethodName        = "/user.authuseradmin/TokenRefresh"
-	Authuseradmin_LogoutUser_FullMethodName          = "/user.authuseradmin/LogoutUser"
-	Authuseradmin_ResendOTP_FullMethodName           = "/user.authuseradmin/ResendOTP"
-	Authuseradmin_VerifyUser_FullMethodName          = "/user.authuseradmin/VerifyUser"
-	Authuseradmin_SetTwoFactorAuth_FullMethodName    = "/user.authuseradmin/SetTwoFactorAuth"
-	Authuseradmin_ForgotPassword_FullMethodName      = "/user.authuseradmin/ForgotPassword"
-	Authuseradmin_ChangePassword_FullMethodName      = "/user.authuseradmin/ChangePassword"
-	Authuseradmin_LoginAdmin_FullMethodName          = "/user.authuseradmin/LoginAdmin"
-	Authuseradmin_UpdateProfile_FullMethodName       = "/user.authuseradmin/UpdateProfile"
-	Authuseradmin_UpdateProfileImage_FullMethodName  = "/user.authuseradmin/UpdateProfileImage"
-	Authuseradmin_GetUserProfile_FullMethodName      = "/user.authuseradmin/GetUserProfile"
-	Authuseradmin_CheckBanStatus_FullMethodName      = "/user.authuseradmin/CheckBanStatus"
-	Authuseradmin_FollowUser_FullMethodName          = "/user.authuseradmin/FollowUser"
-	Authuseradmin_UnfollowUser_FullMethodName        = "/user.authuseradmin/UnfollowUser"
-	Authuseradmin_GetFollowing_FullMethodName        = "/user.authuseradmin/GetFollowing"
-	Authuseradmin_GetFollowers_FullMethodName        = "/user.authuseradmin/GetFollowers"
-	Authuseradmin_CreateUserAdmin_FullMethodName     = "/user.authuseradmin/CreateUserAdmin"
-	Authuseradmin_UpdateUserAdmin_FullMethodName     = "/user.authuseradmin/UpdateUserAdmin"
-	Authuseradmin_BlockUser_FullMethodName           = "/user.authuseradmin/BlockUser"
-	Authuseradmin_UnblockUser_FullMethodName         = "/user.authuseradmin/UnblockUser"
-	Authuseradmin_VerifyAdminUser_FullMethodName     = "/user.authuseradmin/VerifyAdminUser"
-	Authuseradmin_UnverifyUser_FullMethodName        = "/user.authuseradmin/UnverifyUser"
-	Authuseradmin_SoftDeleteUserAdmin_FullMethodName = "/user.authuseradmin/SoftDeleteUserAdmin"
-	Authuseradmin_GetAllUsers_FullMethodName         = "/user.authuseradmin/GetAllUsers"
+	AuthUserAdminService_RegisterUser_FullMethodName         = "/user.AuthUserAdminService/RegisterUser"
+	AuthUserAdminService_LoginUser_FullMethodName            = "/user.AuthUserAdminService/LoginUser"
+	AuthUserAdminService_TokenRefresh_FullMethodName         = "/user.AuthUserAdminService/TokenRefresh"
+	AuthUserAdminService_LogoutUser_FullMethodName           = "/user.AuthUserAdminService/LogoutUser"
+	AuthUserAdminService_ResendOTP_FullMethodName            = "/user.AuthUserAdminService/ResendOTP"
+	AuthUserAdminService_VerifyUser_FullMethodName           = "/user.AuthUserAdminService/VerifyUser"
+	AuthUserAdminService_SetTwoFactorAuth_FullMethodName     = "/user.AuthUserAdminService/SetTwoFactorAuth"
+	AuthUserAdminService_ForgotPassword_FullMethodName       = "/user.AuthUserAdminService/ForgotPassword"
+	AuthUserAdminService_FinishForgotPassword_FullMethodName = "/user.AuthUserAdminService/FinishForgotPassword"
+	AuthUserAdminService_ChangePassword_FullMethodName       = "/user.AuthUserAdminService/ChangePassword"
+	AuthUserAdminService_LoginAdmin_FullMethodName           = "/user.AuthUserAdminService/LoginAdmin"
+	AuthUserAdminService_UpdateProfile_FullMethodName        = "/user.AuthUserAdminService/UpdateProfile"
+	AuthUserAdminService_UpdateProfileImage_FullMethodName   = "/user.AuthUserAdminService/UpdateProfileImage"
+	AuthUserAdminService_GetUserProfile_FullMethodName       = "/user.AuthUserAdminService/GetUserProfile"
+	AuthUserAdminService_CheckBanStatus_FullMethodName       = "/user.AuthUserAdminService/CheckBanStatus"
+	AuthUserAdminService_FollowUser_FullMethodName           = "/user.AuthUserAdminService/FollowUser"
+	AuthUserAdminService_UnfollowUser_FullMethodName         = "/user.AuthUserAdminService/UnfollowUser"
+	AuthUserAdminService_GetFollowing_FullMethodName         = "/user.AuthUserAdminService/GetFollowing"
+	AuthUserAdminService_GetFollowers_FullMethodName         = "/user.AuthUserAdminService/GetFollowers"
+	AuthUserAdminService_CreateUserAdmin_FullMethodName      = "/user.AuthUserAdminService/CreateUserAdmin"
+	AuthUserAdminService_UpdateUserAdmin_FullMethodName      = "/user.AuthUserAdminService/UpdateUserAdmin"
+	AuthUserAdminService_BlockUser_FullMethodName            = "/user.AuthUserAdminService/BlockUser"
+	AuthUserAdminService_UnblockUser_FullMethodName          = "/user.AuthUserAdminService/UnblockUser"
+	AuthUserAdminService_VerifyAdminUser_FullMethodName      = "/user.AuthUserAdminService/VerifyAdminUser"
+	AuthUserAdminService_UnverifyUser_FullMethodName         = "/user.AuthUserAdminService/UnverifyUser"
+	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName  = "/user.AuthUserAdminService/SoftDeleteUserAdmin"
+	AuthUserAdminService_GetAllUsers_FullMethodName          = "/user.AuthUserAdminService/GetAllUsers"
 )
 
-// AuthuseradminClient is the client API for Authuseradmin service.
+// AuthUserAdminServiceClient is the client API for AuthUserAdminService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AuthuseradminClient interface {
+type AuthUserAdminServiceClient interface {
 	// Authentication and Security
 	RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error)
 	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
@@ -60,6 +61,7 @@ type AuthuseradminClient interface {
 	VerifyUser(ctx context.Context, in *VerifyUserRequest, opts ...grpc.CallOption) (*VerifyUserResponse, error)
 	SetTwoFactorAuth(ctx context.Context, in *SetTwoFactorAuthRequest, opts ...grpc.CallOption) (*SetTwoFactorAuthResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
+	FinishForgotPassword(ctx context.Context, in *FinishForgotPasswordRequest, opts ...grpc.CallOption) (*FinishForgotPasswordResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	// Authentication Admin
 	LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error)
@@ -84,278 +86,288 @@ type AuthuseradminClient interface {
 	GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error)
 }
 
-type authuseradminClient struct {
+type authUserAdminServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAuthuseradminClient(cc grpc.ClientConnInterface) AuthuseradminClient {
-	return &authuseradminClient{cc}
+func NewAuthUserAdminServiceClient(cc grpc.ClientConnInterface) AuthUserAdminServiceClient {
+	return &authUserAdminServiceClient{cc}
 }
 
-func (c *authuseradminClient) RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error) {
+func (c *authUserAdminServiceClient) RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RegisterUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_RegisterUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_RegisterUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error) {
+func (c *authUserAdminServiceClient) LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_LoginUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_LoginUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) TokenRefresh(ctx context.Context, in *TokenRefreshRequest, opts ...grpc.CallOption) (*TokenRefreshResponse, error) {
+func (c *authUserAdminServiceClient) TokenRefresh(ctx context.Context, in *TokenRefreshRequest, opts ...grpc.CallOption) (*TokenRefreshResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TokenRefreshResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_TokenRefresh_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_TokenRefresh_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) LogoutUser(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error) {
+func (c *authUserAdminServiceClient) LogoutUser(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LogoutResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_LogoutUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_LogoutUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) ResendOTP(ctx context.Context, in *ResendOTPRequest, opts ...grpc.CallOption) (*ResendOTPResponse, error) {
+func (c *authUserAdminServiceClient) ResendOTP(ctx context.Context, in *ResendOTPRequest, opts ...grpc.CallOption) (*ResendOTPResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ResendOTPResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_ResendOTP_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_ResendOTP_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) VerifyUser(ctx context.Context, in *VerifyUserRequest, opts ...grpc.CallOption) (*VerifyUserResponse, error) {
+func (c *authUserAdminServiceClient) VerifyUser(ctx context.Context, in *VerifyUserRequest, opts ...grpc.CallOption) (*VerifyUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_VerifyUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_VerifyUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) SetTwoFactorAuth(ctx context.Context, in *SetTwoFactorAuthRequest, opts ...grpc.CallOption) (*SetTwoFactorAuthResponse, error) {
+func (c *authUserAdminServiceClient) SetTwoFactorAuth(ctx context.Context, in *SetTwoFactorAuthRequest, opts ...grpc.CallOption) (*SetTwoFactorAuthResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetTwoFactorAuthResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_SetTwoFactorAuth_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_SetTwoFactorAuth_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
+func (c *authUserAdminServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ForgotPasswordResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_ForgotPassword_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_ForgotPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
+func (c *authUserAdminServiceClient) FinishForgotPassword(ctx context.Context, in *FinishForgotPasswordRequest, opts ...grpc.CallOption) (*FinishForgotPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FinishForgotPasswordResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_FinishForgotPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authUserAdminServiceClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangePasswordResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_ChangePassword_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_ChangePassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error) {
+func (c *authUserAdminServiceClient) LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginAdminResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_LoginAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_LoginAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error) {
+func (c *authUserAdminServiceClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateProfileResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_UpdateProfile_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UpdateProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) UpdateProfileImage(ctx context.Context, in *UpdateProfileImageRequest, opts ...grpc.CallOption) (*UpdateProfileImageResponse, error) {
+func (c *authUserAdminServiceClient) UpdateProfileImage(ctx context.Context, in *UpdateProfileImageRequest, opts ...grpc.CallOption) (*UpdateProfileImageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateProfileImageResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_UpdateProfileImage_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UpdateProfileImage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error) {
+func (c *authUserAdminServiceClient) GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserProfileResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_GetUserProfile_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_GetUserProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error) {
+func (c *authUserAdminServiceClient) CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CheckBanStatusResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_CheckBanStatus_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_CheckBanStatus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error) {
+func (c *authUserAdminServiceClient) FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(FollowUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_FollowUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_FollowUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) UnfollowUser(ctx context.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error) {
+func (c *authUserAdminServiceClient) UnfollowUser(ctx context.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UnfollowUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_UnfollowUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UnfollowUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) GetFollowing(ctx context.Context, in *GetFollowingRequest, opts ...grpc.CallOption) (*GetFollowingResponse, error) {
+func (c *authUserAdminServiceClient) GetFollowing(ctx context.Context, in *GetFollowingRequest, opts ...grpc.CallOption) (*GetFollowingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetFollowingResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_GetFollowing_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_GetFollowing_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) GetFollowers(ctx context.Context, in *GetFollowersRequest, opts ...grpc.CallOption) (*GetFollowersResponse, error) {
+func (c *authUserAdminServiceClient) GetFollowers(ctx context.Context, in *GetFollowersRequest, opts ...grpc.CallOption) (*GetFollowersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetFollowersResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_GetFollowers_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_GetFollowers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error) {
+func (c *authUserAdminServiceClient) CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateUserAdminResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_CreateUserAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_CreateUserAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error) {
+func (c *authUserAdminServiceClient) UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateUserAdminResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_UpdateUserAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UpdateUserAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error) {
+func (c *authUserAdminServiceClient) BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(BlockUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_BlockUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_BlockUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) UnblockUser(ctx context.Context, in *UnblockUserAdminRequest, opts ...grpc.CallOption) (*UnblockUserAdminResponse, error) {
+func (c *authUserAdminServiceClient) UnblockUser(ctx context.Context, in *UnblockUserAdminRequest, opts ...grpc.CallOption) (*UnblockUserAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UnblockUserAdminResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_UnblockUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UnblockUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) VerifyAdminUser(ctx context.Context, in *VerifyAdminUserRequest, opts ...grpc.CallOption) (*VerifyAdminUserResponse, error) {
+func (c *authUserAdminServiceClient) VerifyAdminUser(ctx context.Context, in *VerifyAdminUserRequest, opts ...grpc.CallOption) (*VerifyAdminUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyAdminUserResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_VerifyAdminUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_VerifyAdminUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) UnverifyUser(ctx context.Context, in *UnverifyUserAdminRequest, opts ...grpc.CallOption) (*UnverifyUserAdminResponse, error) {
+func (c *authUserAdminServiceClient) UnverifyUser(ctx context.Context, in *UnverifyUserAdminRequest, opts ...grpc.CallOption) (*UnverifyUserAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UnverifyUserAdminResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_UnverifyUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UnverifyUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) SoftDeleteUserAdmin(ctx context.Context, in *SoftDeleteUserAdminRequest, opts ...grpc.CallOption) (*SoftDeleteUserAdminResponse, error) {
+func (c *authUserAdminServiceClient) SoftDeleteUserAdmin(ctx context.Context, in *SoftDeleteUserAdminRequest, opts ...grpc.CallOption) (*SoftDeleteUserAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SoftDeleteUserAdminResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_SoftDeleteUserAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authuseradminClient) GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error) {
+func (c *authUserAdminServiceClient) GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAllUsersResponse)
-	err := c.cc.Invoke(ctx, Authuseradmin_GetAllUsers_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_GetAllUsers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AuthuseradminServer is the server API for Authuseradmin service.
-// All implementations must embed UnimplementedAuthuseradminServer
+// AuthUserAdminServiceServer is the server API for AuthUserAdminService service.
+// All implementations must embed UnimplementedAuthUserAdminServiceServer
 // for forward compatibility.
-type AuthuseradminServer interface {
+type AuthUserAdminServiceServer interface {
 	// Authentication and Security
 	RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error)
 	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
@@ -365,6 +377,7 @@ type AuthuseradminServer interface {
 	VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error)
 	SetTwoFactorAuth(context.Context, *SetTwoFactorAuthRequest) (*SetTwoFactorAuthResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
+	FinishForgotPassword(context.Context, *FinishForgotPasswordRequest) (*FinishForgotPasswordResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	// Authentication Admin
 	LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error)
@@ -387,693 +400,718 @@ type AuthuseradminServer interface {
 	UnverifyUser(context.Context, *UnverifyUserAdminRequest) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error)
 	GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error)
-	mustEmbedUnimplementedAuthuseradminServer()
+	mustEmbedUnimplementedAuthUserAdminServiceServer()
 }
 
-// UnimplementedAuthuseradminServer must be embedded to have
+// UnimplementedAuthUserAdminServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAuthuseradminServer struct{}
+type UnimplementedAuthUserAdminServiceServer struct{}
 
-func (UnimplementedAuthuseradminServer) RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) TokenRefresh(context.Context, *TokenRefreshRequest) (*TokenRefreshResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) TokenRefresh(context.Context, *TokenRefreshRequest) (*TokenRefreshResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TokenRefresh not implemented")
 }
-func (UnimplementedAuthuseradminServer) LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogoutUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) ResendOTP(context.Context, *ResendOTPRequest) (*ResendOTPResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) ResendOTP(context.Context, *ResendOTPRequest) (*ResendOTPResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResendOTP not implemented")
 }
-func (UnimplementedAuthuseradminServer) VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) SetTwoFactorAuth(context.Context, *SetTwoFactorAuthRequest) (*SetTwoFactorAuthResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) SetTwoFactorAuth(context.Context, *SetTwoFactorAuthRequest) (*SetTwoFactorAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetTwoFactorAuth not implemented")
 }
-func (UnimplementedAuthuseradminServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
-func (UnimplementedAuthuseradminServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) FinishForgotPassword(context.Context, *FinishForgotPasswordRequest) (*FinishForgotPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinishForgotPassword not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
 }
-func (UnimplementedAuthuseradminServer) LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginAdmin not implemented")
 }
-func (UnimplementedAuthuseradminServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
 }
-func (UnimplementedAuthuseradminServer) UpdateProfileImage(context.Context, *UpdateProfileImageRequest) (*UpdateProfileImageResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) UpdateProfileImage(context.Context, *UpdateProfileImageRequest) (*UpdateProfileImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfileImage not implemented")
 }
-func (UnimplementedAuthuseradminServer) GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserProfile not implemented")
 }
-func (UnimplementedAuthuseradminServer) CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckBanStatus not implemented")
 }
-func (UnimplementedAuthuseradminServer) FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FollowUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) UnfollowUser(context.Context, *UnfollowUserRequest) (*UnfollowUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) UnfollowUser(context.Context, *UnfollowUserRequest) (*UnfollowUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnfollowUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) GetFollowing(context.Context, *GetFollowingRequest) (*GetFollowingResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) GetFollowing(context.Context, *GetFollowingRequest) (*GetFollowingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFollowing not implemented")
 }
-func (UnimplementedAuthuseradminServer) GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFollowers not implemented")
 }
-func (UnimplementedAuthuseradminServer) CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserAdmin not implemented")
 }
-func (UnimplementedAuthuseradminServer) UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserAdmin not implemented")
 }
-func (UnimplementedAuthuseradminServer) BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BlockUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) UnblockUser(context.Context, *UnblockUserAdminRequest) (*UnblockUserAdminResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) UnblockUser(context.Context, *UnblockUserAdminRequest) (*UnblockUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnblockUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) VerifyAdminUser(context.Context, *VerifyAdminUserRequest) (*VerifyAdminUserResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) VerifyAdminUser(context.Context, *VerifyAdminUserRequest) (*VerifyAdminUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyAdminUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) UnverifyUser(context.Context, *UnverifyUserAdminRequest) (*UnverifyUserAdminResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) UnverifyUser(context.Context, *UnverifyUserAdminRequest) (*UnverifyUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnverifyUser not implemented")
 }
-func (UnimplementedAuthuseradminServer) SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SoftDeleteUserAdmin not implemented")
 }
-func (UnimplementedAuthuseradminServer) GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error) {
+func (UnimplementedAuthUserAdminServiceServer) GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllUsers not implemented")
 }
-func (UnimplementedAuthuseradminServer) mustEmbedUnimplementedAuthuseradminServer() {}
-func (UnimplementedAuthuseradminServer) testEmbeddedByValue()                       {}
+func (UnimplementedAuthUserAdminServiceServer) mustEmbedUnimplementedAuthUserAdminServiceServer() {}
+func (UnimplementedAuthUserAdminServiceServer) testEmbeddedByValue()                              {}
 
-// UnsafeAuthuseradminServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AuthuseradminServer will
+// UnsafeAuthUserAdminServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthUserAdminServiceServer will
 // result in compilation errors.
-type UnsafeAuthuseradminServer interface {
-	mustEmbedUnimplementedAuthuseradminServer()
+type UnsafeAuthUserAdminServiceServer interface {
+	mustEmbedUnimplementedAuthUserAdminServiceServer()
 }
 
-func RegisterAuthuseradminServer(s grpc.ServiceRegistrar, srv AuthuseradminServer) {
-	// If the following call pancis, it indicates UnimplementedAuthuseradminServer was
+func RegisterAuthUserAdminServiceServer(s grpc.ServiceRegistrar, srv AuthUserAdminServiceServer) {
+	// If the following call pancis, it indicates UnimplementedAuthUserAdminServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Authuseradmin_ServiceDesc, srv)
+	s.RegisterService(&AuthUserAdminService_ServiceDesc, srv)
 }
 
-func _Authuseradmin_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).RegisterUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).RegisterUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_RegisterUser_FullMethodName,
+		FullMethod: AuthUserAdminService_RegisterUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).RegisterUser(ctx, req.(*RegisterUserRequest))
+		return srv.(AuthUserAdminServiceServer).RegisterUser(ctx, req.(*RegisterUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_LoginUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_LoginUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LoginUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).LoginUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).LoginUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_LoginUser_FullMethodName,
+		FullMethod: AuthUserAdminService_LoginUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).LoginUser(ctx, req.(*LoginUserRequest))
+		return srv.(AuthUserAdminServiceServer).LoginUser(ctx, req.(*LoginUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_TokenRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_TokenRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TokenRefreshRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).TokenRefresh(ctx, in)
+		return srv.(AuthUserAdminServiceServer).TokenRefresh(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_TokenRefresh_FullMethodName,
+		FullMethod: AuthUserAdminService_TokenRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).TokenRefresh(ctx, req.(*TokenRefreshRequest))
+		return srv.(AuthUserAdminServiceServer).TokenRefresh(ctx, req.(*TokenRefreshRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_LogoutUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_LogoutUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LogoutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).LogoutUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).LogoutUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_LogoutUser_FullMethodName,
+		FullMethod: AuthUserAdminService_LogoutUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).LogoutUser(ctx, req.(*LogoutRequest))
+		return srv.(AuthUserAdminServiceServer).LogoutUser(ctx, req.(*LogoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_ResendOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_ResendOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResendOTPRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).ResendOTP(ctx, in)
+		return srv.(AuthUserAdminServiceServer).ResendOTP(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_ResendOTP_FullMethodName,
+		FullMethod: AuthUserAdminService_ResendOTP_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).ResendOTP(ctx, req.(*ResendOTPRequest))
+		return srv.(AuthUserAdminServiceServer).ResendOTP(ctx, req.(*ResendOTPRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_VerifyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_VerifyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).VerifyUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).VerifyUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_VerifyUser_FullMethodName,
+		FullMethod: AuthUserAdminService_VerifyUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).VerifyUser(ctx, req.(*VerifyUserRequest))
+		return srv.(AuthUserAdminServiceServer).VerifyUser(ctx, req.(*VerifyUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_SetTwoFactorAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_SetTwoFactorAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetTwoFactorAuthRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).SetTwoFactorAuth(ctx, in)
+		return srv.(AuthUserAdminServiceServer).SetTwoFactorAuth(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_SetTwoFactorAuth_FullMethodName,
+		FullMethod: AuthUserAdminService_SetTwoFactorAuth_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).SetTwoFactorAuth(ctx, req.(*SetTwoFactorAuthRequest))
+		return srv.(AuthUserAdminServiceServer).SetTwoFactorAuth(ctx, req.(*SetTwoFactorAuthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ForgotPasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).ForgotPassword(ctx, in)
+		return srv.(AuthUserAdminServiceServer).ForgotPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_ForgotPassword_FullMethodName,
+		FullMethod: AuthUserAdminService_ForgotPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).ForgotPassword(ctx, req.(*ForgotPasswordRequest))
+		return srv.(AuthUserAdminServiceServer).ForgotPassword(ctx, req.(*ForgotPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_FinishForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinishForgotPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).FinishForgotPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_FinishForgotPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).FinishForgotPassword(ctx, req.(*FinishForgotPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthUserAdminService_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangePasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).ChangePassword(ctx, in)
+		return srv.(AuthUserAdminServiceServer).ChangePassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_ChangePassword_FullMethodName,
+		FullMethod: AuthUserAdminService_ChangePassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
+		return srv.(AuthUserAdminServiceServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_LoginAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_LoginAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LoginAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).LoginAdmin(ctx, in)
+		return srv.(AuthUserAdminServiceServer).LoginAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_LoginAdmin_FullMethodName,
+		FullMethod: AuthUserAdminService_LoginAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).LoginAdmin(ctx, req.(*LoginAdminRequest))
+		return srv.(AuthUserAdminServiceServer).LoginAdmin(ctx, req.(*LoginAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).UpdateProfile(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UpdateProfile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_UpdateProfile_FullMethodName,
+		FullMethod: AuthUserAdminService_UpdateProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).UpdateProfile(ctx, req.(*UpdateProfileRequest))
+		return srv.(AuthUserAdminServiceServer).UpdateProfile(ctx, req.(*UpdateProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_UpdateProfileImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_UpdateProfileImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateProfileImageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).UpdateProfileImage(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UpdateProfileImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_UpdateProfileImage_FullMethodName,
+		FullMethod: AuthUserAdminService_UpdateProfileImage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).UpdateProfileImage(ctx, req.(*UpdateProfileImageRequest))
+		return srv.(AuthUserAdminServiceServer).UpdateProfileImage(ctx, req.(*UpdateProfileImageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_GetUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_GetUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).GetUserProfile(ctx, in)
+		return srv.(AuthUserAdminServiceServer).GetUserProfile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_GetUserProfile_FullMethodName,
+		FullMethod: AuthUserAdminService_GetUserProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).GetUserProfile(ctx, req.(*GetUserProfileRequest))
+		return srv.(AuthUserAdminServiceServer).GetUserProfile(ctx, req.(*GetUserProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_CheckBanStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_CheckBanStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckBanStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).CheckBanStatus(ctx, in)
+		return srv.(AuthUserAdminServiceServer).CheckBanStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_CheckBanStatus_FullMethodName,
+		FullMethod: AuthUserAdminService_CheckBanStatus_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).CheckBanStatus(ctx, req.(*CheckBanStatusRequest))
+		return srv.(AuthUserAdminServiceServer).CheckBanStatus(ctx, req.(*CheckBanStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_FollowUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_FollowUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FollowUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).FollowUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).FollowUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_FollowUser_FullMethodName,
+		FullMethod: AuthUserAdminService_FollowUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).FollowUser(ctx, req.(*FollowUserRequest))
+		return srv.(AuthUserAdminServiceServer).FollowUser(ctx, req.(*FollowUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_UnfollowUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_UnfollowUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnfollowUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).UnfollowUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UnfollowUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_UnfollowUser_FullMethodName,
+		FullMethod: AuthUserAdminService_UnfollowUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).UnfollowUser(ctx, req.(*UnfollowUserRequest))
+		return srv.(AuthUserAdminServiceServer).UnfollowUser(ctx, req.(*UnfollowUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_GetFollowing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_GetFollowing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFollowingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).GetFollowing(ctx, in)
+		return srv.(AuthUserAdminServiceServer).GetFollowing(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_GetFollowing_FullMethodName,
+		FullMethod: AuthUserAdminService_GetFollowing_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).GetFollowing(ctx, req.(*GetFollowingRequest))
+		return srv.(AuthUserAdminServiceServer).GetFollowing(ctx, req.(*GetFollowingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_GetFollowers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_GetFollowers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFollowersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).GetFollowers(ctx, in)
+		return srv.(AuthUserAdminServiceServer).GetFollowers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_GetFollowers_FullMethodName,
+		FullMethod: AuthUserAdminService_GetFollowers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).GetFollowers(ctx, req.(*GetFollowersRequest))
+		return srv.(AuthUserAdminServiceServer).GetFollowers(ctx, req.(*GetFollowersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_CreateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_CreateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).CreateUserAdmin(ctx, in)
+		return srv.(AuthUserAdminServiceServer).CreateUserAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_CreateUserAdmin_FullMethodName,
+		FullMethod: AuthUserAdminService_CreateUserAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).CreateUserAdmin(ctx, req.(*CreateUserAdminRequest))
+		return srv.(AuthUserAdminServiceServer).CreateUserAdmin(ctx, req.(*CreateUserAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_UpdateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_UpdateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateUserAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).UpdateUserAdmin(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UpdateUserAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_UpdateUserAdmin_FullMethodName,
+		FullMethod: AuthUserAdminService_UpdateUserAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).UpdateUserAdmin(ctx, req.(*UpdateUserAdminRequest))
+		return srv.(AuthUserAdminServiceServer).UpdateUserAdmin(ctx, req.(*UpdateUserAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_BlockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_BlockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BlockUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).BlockUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).BlockUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_BlockUser_FullMethodName,
+		FullMethod: AuthUserAdminService_BlockUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).BlockUser(ctx, req.(*BlockUserRequest))
+		return srv.(AuthUserAdminServiceServer).BlockUser(ctx, req.(*BlockUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_UnblockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_UnblockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnblockUserAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).UnblockUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UnblockUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_UnblockUser_FullMethodName,
+		FullMethod: AuthUserAdminService_UnblockUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).UnblockUser(ctx, req.(*UnblockUserAdminRequest))
+		return srv.(AuthUserAdminServiceServer).UnblockUser(ctx, req.(*UnblockUserAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_VerifyAdminUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_VerifyAdminUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyAdminUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).VerifyAdminUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).VerifyAdminUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_VerifyAdminUser_FullMethodName,
+		FullMethod: AuthUserAdminService_VerifyAdminUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).VerifyAdminUser(ctx, req.(*VerifyAdminUserRequest))
+		return srv.(AuthUserAdminServiceServer).VerifyAdminUser(ctx, req.(*VerifyAdminUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_UnverifyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_UnverifyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnverifyUserAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).UnverifyUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UnverifyUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_UnverifyUser_FullMethodName,
+		FullMethod: AuthUserAdminService_UnverifyUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).UnverifyUser(ctx, req.(*UnverifyUserAdminRequest))
+		return srv.(AuthUserAdminServiceServer).UnverifyUser(ctx, req.(*UnverifyUserAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_SoftDeleteUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_SoftDeleteUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SoftDeleteUserAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).SoftDeleteUserAdmin(ctx, in)
+		return srv.(AuthUserAdminServiceServer).SoftDeleteUserAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_SoftDeleteUserAdmin_FullMethodName,
+		FullMethod: AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).SoftDeleteUserAdmin(ctx, req.(*SoftDeleteUserAdminRequest))
+		return srv.(AuthUserAdminServiceServer).SoftDeleteUserAdmin(ctx, req.(*SoftDeleteUserAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authuseradmin_GetAllUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthUserAdminService_GetAllUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetAllUsersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthuseradminServer).GetAllUsers(ctx, in)
+		return srv.(AuthUserAdminServiceServer).GetAllUsers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Authuseradmin_GetAllUsers_FullMethodName,
+		FullMethod: AuthUserAdminService_GetAllUsers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthuseradminServer).GetAllUsers(ctx, req.(*GetAllUsersRequest))
+		return srv.(AuthUserAdminServiceServer).GetAllUsers(ctx, req.(*GetAllUsersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Authuseradmin_ServiceDesc is the grpc.ServiceDesc for Authuseradmin service.
+// AuthUserAdminService_ServiceDesc is the grpc.ServiceDesc for AuthUserAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Authuseradmin_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.authuseradmin",
-	HandlerType: (*AuthuseradminServer)(nil),
+var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "user.AuthUserAdminService",
+	HandlerType: (*AuthUserAdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "RegisterUser",
-			Handler:    _Authuseradmin_RegisterUser_Handler,
+			Handler:    _AuthUserAdminService_RegisterUser_Handler,
 		},
 		{
 			MethodName: "LoginUser",
-			Handler:    _Authuseradmin_LoginUser_Handler,
+			Handler:    _AuthUserAdminService_LoginUser_Handler,
 		},
 		{
 			MethodName: "TokenRefresh",
-			Handler:    _Authuseradmin_TokenRefresh_Handler,
+			Handler:    _AuthUserAdminService_TokenRefresh_Handler,
 		},
 		{
 			MethodName: "LogoutUser",
-			Handler:    _Authuseradmin_LogoutUser_Handler,
+			Handler:    _AuthUserAdminService_LogoutUser_Handler,
 		},
 		{
 			MethodName: "ResendOTP",
-			Handler:    _Authuseradmin_ResendOTP_Handler,
+			Handler:    _AuthUserAdminService_ResendOTP_Handler,
 		},
 		{
 			MethodName: "VerifyUser",
-			Handler:    _Authuseradmin_VerifyUser_Handler,
+			Handler:    _AuthUserAdminService_VerifyUser_Handler,
 		},
 		{
 			MethodName: "SetTwoFactorAuth",
-			Handler:    _Authuseradmin_SetTwoFactorAuth_Handler,
+			Handler:    _AuthUserAdminService_SetTwoFactorAuth_Handler,
 		},
 		{
 			MethodName: "ForgotPassword",
-			Handler:    _Authuseradmin_ForgotPassword_Handler,
+			Handler:    _AuthUserAdminService_ForgotPassword_Handler,
+		},
+		{
+			MethodName: "FinishForgotPassword",
+			Handler:    _AuthUserAdminService_FinishForgotPassword_Handler,
 		},
 		{
 			MethodName: "ChangePassword",
-			Handler:    _Authuseradmin_ChangePassword_Handler,
+			Handler:    _AuthUserAdminService_ChangePassword_Handler,
 		},
 		{
 			MethodName: "LoginAdmin",
-			Handler:    _Authuseradmin_LoginAdmin_Handler,
+			Handler:    _AuthUserAdminService_LoginAdmin_Handler,
 		},
 		{
 			MethodName: "UpdateProfile",
-			Handler:    _Authuseradmin_UpdateProfile_Handler,
+			Handler:    _AuthUserAdminService_UpdateProfile_Handler,
 		},
 		{
 			MethodName: "UpdateProfileImage",
-			Handler:    _Authuseradmin_UpdateProfileImage_Handler,
+			Handler:    _AuthUserAdminService_UpdateProfileImage_Handler,
 		},
 		{
 			MethodName: "GetUserProfile",
-			Handler:    _Authuseradmin_GetUserProfile_Handler,
+			Handler:    _AuthUserAdminService_GetUserProfile_Handler,
 		},
 		{
 			MethodName: "CheckBanStatus",
-			Handler:    _Authuseradmin_CheckBanStatus_Handler,
+			Handler:    _AuthUserAdminService_CheckBanStatus_Handler,
 		},
 		{
 			MethodName: "FollowUser",
-			Handler:    _Authuseradmin_FollowUser_Handler,
+			Handler:    _AuthUserAdminService_FollowUser_Handler,
 		},
 		{
 			MethodName: "UnfollowUser",
-			Handler:    _Authuseradmin_UnfollowUser_Handler,
+			Handler:    _AuthUserAdminService_UnfollowUser_Handler,
 		},
 		{
 			MethodName: "GetFollowing",
-			Handler:    _Authuseradmin_GetFollowing_Handler,
+			Handler:    _AuthUserAdminService_GetFollowing_Handler,
 		},
 		{
 			MethodName: "GetFollowers",
-			Handler:    _Authuseradmin_GetFollowers_Handler,
+			Handler:    _AuthUserAdminService_GetFollowers_Handler,
 		},
 		{
 			MethodName: "CreateUserAdmin",
-			Handler:    _Authuseradmin_CreateUserAdmin_Handler,
+			Handler:    _AuthUserAdminService_CreateUserAdmin_Handler,
 		},
 		{
 			MethodName: "UpdateUserAdmin",
-			Handler:    _Authuseradmin_UpdateUserAdmin_Handler,
+			Handler:    _AuthUserAdminService_UpdateUserAdmin_Handler,
 		},
 		{
 			MethodName: "BlockUser",
-			Handler:    _Authuseradmin_BlockUser_Handler,
+			Handler:    _AuthUserAdminService_BlockUser_Handler,
 		},
 		{
 			MethodName: "UnblockUser",
-			Handler:    _Authuseradmin_UnblockUser_Handler,
+			Handler:    _AuthUserAdminService_UnblockUser_Handler,
 		},
 		{
 			MethodName: "VerifyAdminUser",
-			Handler:    _Authuseradmin_VerifyAdminUser_Handler,
+			Handler:    _AuthUserAdminService_VerifyAdminUser_Handler,
 		},
 		{
 			MethodName: "UnverifyUser",
-			Handler:    _Authuseradmin_UnverifyUser_Handler,
+			Handler:    _AuthUserAdminService_UnverifyUser_Handler,
 		},
 		{
 			MethodName: "SoftDeleteUserAdmin",
-			Handler:    _Authuseradmin_SoftDeleteUserAdmin_Handler,
+			Handler:    _AuthUserAdminService_SoftDeleteUserAdmin_Handler,
 		},
 		{
 			MethodName: "GetAllUsers",
-			Handler:    _Authuseradmin_GetAllUsers_Handler,
+			Handler:    _AuthUserAdminService_GetAllUsers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
