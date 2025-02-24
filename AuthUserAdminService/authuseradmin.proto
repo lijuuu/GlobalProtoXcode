@@ -102,7 +102,7 @@ message ResendOTPResponse {
 }
 
 message VerifyUserRequest {
-    string userID = 1;  // Updated to use userID instead of email for consistency
+    string email = 1; 
     string token = 2;
 }
 
@@ -125,7 +125,7 @@ message ForgotPasswordRequest {
 
 message ForgotPasswordResponse {
     string message = 1;
-    string token = 2;  // Added token for the reset link
+    string token = 2;  
 }
 
 message FinishForgotPasswordRequest {
@@ -140,8 +140,8 @@ message FinishForgotPasswordResponse {
 }
 
 message ChangePasswordRequest {
-    string userID = 1;  // For authenticated users
-    string oldPassword = 2;  // Require old password for security
+    string userID = 1;  
+    string oldPassword = 2; 
     string newPassword = 3;
     string confirmPassword = 4;
 }
