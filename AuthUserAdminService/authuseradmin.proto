@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 option go_package = ".";
 
-service AuthUserAdminService {  // Renamed from "authuseradmin" to match Go conventions and consistency
+service AuthUserAdminService {  
     // Authentication and Security
     rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
@@ -11,10 +11,10 @@ service AuthUserAdminService {  // Renamed from "authuseradmin" to match Go conv
     rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
     rpc ResendOTP(ResendOTPRequest) returns (ResendOTPResponse);
     rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
-    rpc SetTwoFactorAuth(SetTwoFactorAuthRequest) returns (SetTwoFactorAuthResponse);
-    rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  // Initiate password reset
-    rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);  // Complete password reset
-    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);  // Standalone password change for authenticated users
+    rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
+    rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  
+    rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);  
+    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
 
     // Authentication Admin
     rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
@@ -42,7 +42,6 @@ service AuthUserAdminService {  // Renamed from "authuseradmin" to match Go conv
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
 
-// Authentication and Security Messages
 message RegisterUserRequest {
     string firstName = 1;
     string lastName = 2;
@@ -56,6 +55,7 @@ message RegisterUserRequest {
     string confirmPassword = 10;
     bool muteNotifications = 11;
     Socials socials = 12;
+    bool twoFactorAuth = 13;
 }
 
 message RegisterUserResponse {
@@ -110,12 +110,13 @@ message VerifyUserResponse {
     string message = 1;
 }
 
-message SetTwoFactorAuthRequest {
+message ToggleTwoFactorAuthRequest {
     string userID = 1;
-    bool enable = 2;
+    string password =2;
+    bool twoFactorAuth = 3;
 }
 
-message SetTwoFactorAuthResponse {
+message ToggleTwoFactorAuthResponse {
     string message = 1;
 }
 
