@@ -34,6 +34,7 @@ const (
 	AuthUserAdminService_UpdateProfileImage_FullMethodName   = "/user.AuthUserAdminService/UpdateProfileImage"
 	AuthUserAdminService_GetUserProfile_FullMethodName       = "/user.AuthUserAdminService/GetUserProfile"
 	AuthUserAdminService_CheckBanStatus_FullMethodName       = "/user.AuthUserAdminService/CheckBanStatus"
+	AuthUserAdminService_SearchUsers_FullMethodName          = "/user.AuthUserAdminService/SearchUsers"
 	AuthUserAdminService_FollowUser_FullMethodName           = "/user.AuthUserAdminService/FollowUser"
 	AuthUserAdminService_UnfollowUser_FullMethodName         = "/user.AuthUserAdminService/UnfollowUser"
 	AuthUserAdminService_GetFollowing_FullMethodName         = "/user.AuthUserAdminService/GetFollowing"
@@ -71,6 +72,7 @@ type AuthUserAdminServiceClient interface {
 	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
 	CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error)
 	// Social Features
+	SearchUsers(ctx context.Context, in *SearchUsersRequest, opts ...grpc.CallOption) (*SearchUsersResponse, error)
 	FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error)
 	UnfollowUser(ctx context.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error)
 	GetFollowing(ctx context.Context, in *GetFollowingRequest, opts ...grpc.CallOption) (*GetFollowingResponse, error)
@@ -244,6 +246,16 @@ func (c *authUserAdminServiceClient) CheckBanStatus(ctx context.Context, in *Che
 	return out, nil
 }
 
+func (c *authUserAdminServiceClient) SearchUsers(ctx context.Context, in *SearchUsersRequest, opts ...grpc.CallOption) (*SearchUsersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchUsersResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_SearchUsers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authUserAdminServiceClient) FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(FollowUserResponse)
@@ -387,6 +399,7 @@ type AuthUserAdminServiceServer interface {
 	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
 	CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error)
 	// Social Features
+	SearchUsers(context.Context, *SearchUsersRequest) (*SearchUsersResponse, error)
 	FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error)
 	UnfollowUser(context.Context, *UnfollowUserRequest) (*UnfollowUserResponse, error)
 	GetFollowing(context.Context, *GetFollowingRequest) (*GetFollowingResponse, error)
@@ -454,6 +467,9 @@ func (UnimplementedAuthUserAdminServiceServer) GetUserProfile(context.Context, *
 }
 func (UnimplementedAuthUserAdminServiceServer) CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckBanStatus not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) SearchUsers(context.Context, *SearchUsersRequest) (*SearchUsersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchUsers not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FollowUser not implemented")
@@ -782,6 +798,24 @@ func _AuthUserAdminService_CheckBanStatus_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthUserAdminService_SearchUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchUsersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).SearchUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_SearchUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).SearchUsers(ctx, req.(*SearchUsersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthUserAdminService_FollowUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FollowUserRequest)
 	if err := dec(in); err != nil {
@@ -1064,6 +1098,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckBanStatus",
 			Handler:    _AuthUserAdminService_CheckBanStatus_Handler,
+		},
+		{
+			MethodName: "SearchUsers",
+			Handler:    _AuthUserAdminService_SearchUsers_Handler,
 		},
 		{
 			MethodName: "FollowUser",

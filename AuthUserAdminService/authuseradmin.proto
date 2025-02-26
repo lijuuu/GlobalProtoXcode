@@ -26,6 +26,7 @@ service AuthUserAdminService {
     rpc CheckBanStatus(CheckBanStatusRequest) returns (CheckBanStatusResponse);
 
     // Social Features
+    rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse);
     rpc FollowUser(FollowUserRequest) returns (FollowUserResponse);
     rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse);
     rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
@@ -48,7 +49,6 @@ message RegisterUserRequest {
     string country = 3;
     string role = 4;
     string primaryLanguageID = 5;
-    repeated string secondaryLanguageID = 6;
     string email = 7;
     string authType = 8;
     string password = 9;
@@ -60,7 +60,11 @@ message RegisterUserRequest {
 
 message RegisterUserResponse {
     string userID = 1;
-    string message = 2;
+    string accessToken = 2;
+    string refreshToken = 3;
+    int32 expiresIn = 4;
+    UserProfile userProfile = 5;
+    string message = 6;
 }
 
 message LoginUserRequest {
@@ -69,10 +73,12 @@ message LoginUserRequest {
 }
 
 message LoginUserResponse {
-    string refreshToken = 1;
-    int32 expiresIn = 2;
-    string userID = 3;
-    string message = 4;
+    string accessToken = 1;
+    string refreshToken = 2;
+    int32 expiresIn = 3;
+    string userID = 4;
+    UserProfile userProfile = 5;
+    string message = 6;
 }
 
 message TokenRefreshRequest {
@@ -83,6 +89,7 @@ message TokenRefreshResponse {
     string accessToken = 1;
     int32 expiresIn = 2;
     string userID = 3;
+    string message = 4;
 }
 
 message LogoutRequest {
@@ -107,12 +114,13 @@ message VerifyUserRequest {
 }
 
 message VerifyUserResponse {
-    string message = 1;
+    string userID = 1;
+    string message = 2;
 }
 
 message ToggleTwoFactorAuthRequest {
     string userID = 1;
-    string password =2;
+    string password = 2;
     bool twoFactorAuth = 3;
 }
 
@@ -154,17 +162,18 @@ message ChangePasswordResponse {
 // User Management Messages
 message UpdateProfileRequest {
     string userID = 1;
-    string firstName = 2;
-    string lastName = 3;
-    string country = 4;
-    string primaryLanguageID = 5;
-    repeated string secondaryLanguageID = 6;
+    string userName = 2;
+    string firstName = 3;
+    string lastName = 4;
+    string country = 5;
+    string primaryLanguageID = 6;
     bool muteNotifications = 7;
     Socials socials = 8;
 }
 
 message UpdateProfileResponse {
     string message = 1;
+    UserProfile userProfile = 2;
 }
 
 message UpdateProfileImageRequest {
@@ -182,12 +191,8 @@ message GetUserProfileRequest {
 }
 
 message GetUserProfileResponse {
-    string firstName = 1;
-    string lastName = 2;
-    string country = 3;
-    string email = 4;
-    string role = 5;
-    Socials socials = 6;
+    UserProfile userProfile = 1;
+    string message = 2;
 }
 
 message CheckBanStatusRequest {
@@ -203,7 +208,8 @@ message CheckBanStatusResponse {
 
 // Social Features Messages
 message FollowUserRequest {
-    string userID = 1;
+    string followerID = 1; // Who is following
+    string followeeID = 2; // Who is being followed
 }
 
 message FollowUserResponse {
@@ -211,7 +217,8 @@ message FollowUserResponse {
 }
 
 message UnfollowUserRequest {
-    string userID = 1;
+    string followerID = 1;
+    string followeeID = 2;
 }
 
 message UnfollowUserResponse {
@@ -220,18 +227,28 @@ message UnfollowUserResponse {
 
 message GetFollowingRequest {
     string userID = 1;
+    int32 page = 2;
+    int32 limit = 3;
 }
 
 message GetFollowingResponse {
-    repeated UserProfile data = 1;
+    repeated UserProfile users = 1;
+    int32 totalCount = 2;
+    string nextPageToken = 3;
+    string message = 4;
 }
 
 message GetFollowersRequest {
     string userID = 1;
+    int32 page = 2;
+    int32 limit = 3;
 }
 
 message GetFollowersResponse {
-    repeated UserProfile data = 1;
+    repeated UserProfile users = 1;
+    int32 totalCount = 2;
+    string nextPageToken = 3;
+    string message = 4;
 }
 
 // Admin Operations Messages
@@ -241,13 +258,12 @@ message CreateUserAdminRequest {
     string country = 3;
     string role = 4;
     string primaryLanguageID = 5;
-    repeated string secondaryLanguageID = 6;
-    string email = 7;
-    string authType = 8;
-    string password = 9;
-    string confirmPassword = 10;
-    bool muteNotifications = 11;
-    Socials socials = 12;
+    string email = 6;
+    string authType = 7;
+    string password = 8;
+    string confirmPassword = 9;
+    bool muteNotifications = 10;
+    Socials socials = 11;
 }
 
 message CreateUserAdminResponse {
@@ -264,17 +280,19 @@ message UpdateUserAdminRequest {
     string email = 6;
     string password = 7;
     string primaryLanguageID = 8;
-    repeated string secondaryLanguageID = 9;
-    bool muteNotifications = 10;
-    Socials socials = 11;
+    bool muteNotifications = 9;
+    Socials socials = 10;
 }
 
 message UpdateUserAdminResponse {
     string message = 1;
+    UserProfile userProfile = 2;
 }
 
 message BlockUserRequest {
     string userID = 1;
+    string reason = 2;
+    int64 banDuration = 3; 
 }
 
 message BlockUserResponse {
@@ -318,12 +336,17 @@ message GetAllUsersRequest {
     int32 limit = 2;
     string roleFilter = 3;
     string statusFilter = 4;
+    string nameFilter = 5; 
+    string emailFilter = 6; 
+    string fromDateFilter = 7; // e.g., "2023-01-01"
+    string toDateFilter = 8; // e.g., "2023-01-01"
 }
 
 message GetAllUsersResponse {
     repeated UserProfile users = 1;
     int32 totalCount = 2;
     string message = 3;
+    string nextPageToken = 4;
 }
 
 // Common Messages
@@ -335,12 +358,17 @@ message Socials {
 
 message UserProfile {
     string userID = 1;
-    string firstName = 2;
-    string lastName = 3;
-    string email = 4;
-    string role = 5;
-    string status = 6;
-    Socials socials = 7;
+    string userName = 2;
+    string firstName = 3;
+    string lastName = 4;
+    string avatarURL = 5;
+    string email = 6;
+    string role = 7;
+    string status = 8;
+    string primaryLanguageID = 9;
+    bool muteNotifications = 10;
+    Socials socials = 11;
+    int64 createdAt = 12; // Unix timestamp (seconds)
 }
 
 message LoginAdminRequest {
@@ -349,8 +377,22 @@ message LoginAdminRequest {
 }
 
 message LoginAdminResponse {
-    string refreshToken = 1;
-    int32 expiresIn = 2;
-    string adminID = 3;
-    string message = 4;
+    string accessToken = 1;
+    string refreshToken = 2;
+    int32 expiresIn = 3;
+    string adminID = 4;
+    string message = 5;
+}
+
+message SearchUsersRequest {
+    string query = 1;
+    int32 page = 2;
+    int32 limit = 3;
+}
+
+message SearchUsersResponse {
+    repeated UserProfile users = 1;
+    int32 totalCount = 2;
+    string message = 3;
+    string nextPageToken = 4;
 }
