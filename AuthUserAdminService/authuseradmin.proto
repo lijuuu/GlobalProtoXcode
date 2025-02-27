@@ -384,10 +384,11 @@ message BanHistoryResponse {
 }
 
 message BanHistory {
-    string userID = 1;
-    string banReason = 2;
-    int64 banExpiry = 3;
-    int64 createdAt = 4;
+    string id = 1;
+    string userID = 2;
+    string banReason = 3;
+    int64 banExpiry = 4;
+    int64 createdAt = 5;
 }
 
 message LoginAdminRequest {
