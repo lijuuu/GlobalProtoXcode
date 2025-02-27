@@ -30,10 +30,10 @@ Before using the Makefile, ensure you have the following installed:
 
 ## Adding the Submodule
 
-To include the `CentralisedFoodbuddyMicroserviceProto` repository as a submodule in your project, run the following command in your project directory:
+To include the `GlobalProtoXcode` repository as a submodule in your project, run the following command in your project directory:
 
 ```bash
-git submodule add https://github.com/liju-github/CentralisedFoodbuddyMicroserviceProto
+git submodule add https://github.com/lijuuu/GlobalProtoXcode
 ```
 
 After adding the submodule, initialize and update it:

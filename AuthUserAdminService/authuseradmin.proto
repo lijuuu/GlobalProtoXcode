@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package user;
-option go_package = ".";
+package authuseradmin;
+option go_package = "."; 
 
 service AuthUserAdminService {  
     // Authentication and Security
@@ -24,6 +24,7 @@ service AuthUserAdminService {
     rpc UpdateProfileImage(UpdateProfileImageRequest) returns (UpdateProfileImageResponse);
     rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
     rpc CheckBanStatus(CheckBanStatusRequest) returns (CheckBanStatusResponse);
+    rpc BanHistory(BanHistoryRequest) returns (BanHistoryResponse);
 
     // Social Features
     rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse);
@@ -202,14 +203,14 @@ message CheckBanStatusRequest {
 message CheckBanStatusResponse {
     bool isBanned = 1;
     string reason = 2;
-    int64 banExpiration = 3;
+    int64 banExpiration = 3; 
     string message = 4;
 }
 
 // Social Features Messages
 message FollowUserRequest {
-    string followerID = 1; // Who is following
-    string followeeID = 2; // Who is being followed
+    string followerID = 1;
+    string followeeID = 2;
 }
 
 message FollowUserResponse {
@@ -227,7 +228,7 @@ message UnfollowUserResponse {
 
 message GetFollowingRequest {
     string userID = 1;
-    int32 page = 2;
+    string pageToken = 2; 
     int32 limit = 3;
 }
 
@@ -240,7 +241,7 @@ message GetFollowingResponse {
 
 message GetFollowersRequest {
     string userID = 1;
-    int32 page = 2;
+    string pageToken = 2; 
     int32 limit = 3;
 }
 
@@ -292,7 +293,7 @@ message UpdateUserAdminResponse {
 message BlockUserRequest {
     string userID = 1;
     string reason = 2;
-    int64 banDuration = 3; 
+    int64 banDuration = 3;
 }
 
 message BlockUserResponse {
@@ -332,14 +333,14 @@ message SoftDeleteUserAdminResponse {
 }
 
 message GetAllUsersRequest {
-    int32 page = 1;
+    string pageToken = 1;
     int32 limit = 2;
     string roleFilter = 3;
     string statusFilter = 4;
     string nameFilter = 5; 
     string emailFilter = 6; 
-    string fromDateFilter = 7; // e.g., "2023-01-01"
-    string toDateFilter = 8; // e.g., "2023-01-01"
+    int64 fromDateFilter = 7;
+    int64 toDateFilter = 8;  
 }
 
 message GetAllUsersResponse {
@@ -365,10 +366,28 @@ message UserProfile {
     string email = 6;
     string role = 7;
     string status = 8;
-    string primaryLanguageID = 9;
-    bool muteNotifications = 10;
-    Socials socials = 11;
-    int64 createdAt = 12; // Unix timestamp (seconds)
+    string country = 9;
+    bool isBanned = 10;
+    string primaryLanguageID = 11;
+    bool muteNotifications = 12;
+    Socials socials = 13;
+    int64 createdAt = 14;
+}
+
+message BanHistoryRequest {
+    string userID = 1;
+}
+
+message BanHistoryResponse {
+    repeated BanHistory bans = 1;
+    string message = 2;
+}
+
+message BanHistory {
+    string userID = 1;
+    string banReason = 2;
+    int64 banExpiry = 3;
+    int64 createdAt = 4;
 }
 
 message LoginAdminRequest {
@@ -386,7 +405,7 @@ message LoginAdminResponse {
 
 message SearchUsersRequest {
     string query = 1;
-    int32 page = 2;
+    string pageToken = 2; 
     int32 limit = 3;
 }
 

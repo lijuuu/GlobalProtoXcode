@@ -19,34 +19,35 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthUserAdminService_RegisterUser_FullMethodName         = "/user.AuthUserAdminService/RegisterUser"
-	AuthUserAdminService_LoginUser_FullMethodName            = "/user.AuthUserAdminService/LoginUser"
-	AuthUserAdminService_TokenRefresh_FullMethodName         = "/user.AuthUserAdminService/TokenRefresh"
-	AuthUserAdminService_LogoutUser_FullMethodName           = "/user.AuthUserAdminService/LogoutUser"
-	AuthUserAdminService_ResendOTP_FullMethodName            = "/user.AuthUserAdminService/ResendOTP"
-	AuthUserAdminService_VerifyUser_FullMethodName           = "/user.AuthUserAdminService/VerifyUser"
-	AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName  = "/user.AuthUserAdminService/ToggleTwoFactorAuth"
-	AuthUserAdminService_ForgotPassword_FullMethodName       = "/user.AuthUserAdminService/ForgotPassword"
-	AuthUserAdminService_FinishForgotPassword_FullMethodName = "/user.AuthUserAdminService/FinishForgotPassword"
-	AuthUserAdminService_ChangePassword_FullMethodName       = "/user.AuthUserAdminService/ChangePassword"
-	AuthUserAdminService_LoginAdmin_FullMethodName           = "/user.AuthUserAdminService/LoginAdmin"
-	AuthUserAdminService_UpdateProfile_FullMethodName        = "/user.AuthUserAdminService/UpdateProfile"
-	AuthUserAdminService_UpdateProfileImage_FullMethodName   = "/user.AuthUserAdminService/UpdateProfileImage"
-	AuthUserAdminService_GetUserProfile_FullMethodName       = "/user.AuthUserAdminService/GetUserProfile"
-	AuthUserAdminService_CheckBanStatus_FullMethodName       = "/user.AuthUserAdminService/CheckBanStatus"
-	AuthUserAdminService_SearchUsers_FullMethodName          = "/user.AuthUserAdminService/SearchUsers"
-	AuthUserAdminService_FollowUser_FullMethodName           = "/user.AuthUserAdminService/FollowUser"
-	AuthUserAdminService_UnfollowUser_FullMethodName         = "/user.AuthUserAdminService/UnfollowUser"
-	AuthUserAdminService_GetFollowing_FullMethodName         = "/user.AuthUserAdminService/GetFollowing"
-	AuthUserAdminService_GetFollowers_FullMethodName         = "/user.AuthUserAdminService/GetFollowers"
-	AuthUserAdminService_CreateUserAdmin_FullMethodName      = "/user.AuthUserAdminService/CreateUserAdmin"
-	AuthUserAdminService_UpdateUserAdmin_FullMethodName      = "/user.AuthUserAdminService/UpdateUserAdmin"
-	AuthUserAdminService_BlockUser_FullMethodName            = "/user.AuthUserAdminService/BlockUser"
-	AuthUserAdminService_UnblockUser_FullMethodName          = "/user.AuthUserAdminService/UnblockUser"
-	AuthUserAdminService_VerifyAdminUser_FullMethodName      = "/user.AuthUserAdminService/VerifyAdminUser"
-	AuthUserAdminService_UnverifyUser_FullMethodName         = "/user.AuthUserAdminService/UnverifyUser"
-	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName  = "/user.AuthUserAdminService/SoftDeleteUserAdmin"
-	AuthUserAdminService_GetAllUsers_FullMethodName          = "/user.AuthUserAdminService/GetAllUsers"
+	AuthUserAdminService_RegisterUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/RegisterUser"
+	AuthUserAdminService_LoginUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/LoginUser"
+	AuthUserAdminService_TokenRefresh_FullMethodName         = "/authuseradmin.AuthUserAdminService/TokenRefresh"
+	AuthUserAdminService_LogoutUser_FullMethodName           = "/authuseradmin.AuthUserAdminService/LogoutUser"
+	AuthUserAdminService_ResendOTP_FullMethodName            = "/authuseradmin.AuthUserAdminService/ResendOTP"
+	AuthUserAdminService_VerifyUser_FullMethodName           = "/authuseradmin.AuthUserAdminService/VerifyUser"
+	AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName  = "/authuseradmin.AuthUserAdminService/ToggleTwoFactorAuth"
+	AuthUserAdminService_ForgotPassword_FullMethodName       = "/authuseradmin.AuthUserAdminService/ForgotPassword"
+	AuthUserAdminService_FinishForgotPassword_FullMethodName = "/authuseradmin.AuthUserAdminService/FinishForgotPassword"
+	AuthUserAdminService_ChangePassword_FullMethodName       = "/authuseradmin.AuthUserAdminService/ChangePassword"
+	AuthUserAdminService_LoginAdmin_FullMethodName           = "/authuseradmin.AuthUserAdminService/LoginAdmin"
+	AuthUserAdminService_UpdateProfile_FullMethodName        = "/authuseradmin.AuthUserAdminService/UpdateProfile"
+	AuthUserAdminService_UpdateProfileImage_FullMethodName   = "/authuseradmin.AuthUserAdminService/UpdateProfileImage"
+	AuthUserAdminService_GetUserProfile_FullMethodName       = "/authuseradmin.AuthUserAdminService/GetUserProfile"
+	AuthUserAdminService_CheckBanStatus_FullMethodName       = "/authuseradmin.AuthUserAdminService/CheckBanStatus"
+	AuthUserAdminService_BanHistory_FullMethodName           = "/authuseradmin.AuthUserAdminService/BanHistory"
+	AuthUserAdminService_SearchUsers_FullMethodName          = "/authuseradmin.AuthUserAdminService/SearchUsers"
+	AuthUserAdminService_FollowUser_FullMethodName           = "/authuseradmin.AuthUserAdminService/FollowUser"
+	AuthUserAdminService_UnfollowUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/UnfollowUser"
+	AuthUserAdminService_GetFollowing_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowing"
+	AuthUserAdminService_GetFollowers_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowers"
+	AuthUserAdminService_CreateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/CreateUserAdmin"
+	AuthUserAdminService_UpdateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/UpdateUserAdmin"
+	AuthUserAdminService_BlockUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/BlockUser"
+	AuthUserAdminService_UnblockUser_FullMethodName          = "/authuseradmin.AuthUserAdminService/UnblockUser"
+	AuthUserAdminService_VerifyAdminUser_FullMethodName      = "/authuseradmin.AuthUserAdminService/VerifyAdminUser"
+	AuthUserAdminService_UnverifyUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/UnverifyUser"
+	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName  = "/authuseradmin.AuthUserAdminService/SoftDeleteUserAdmin"
+	AuthUserAdminService_GetAllUsers_FullMethodName          = "/authuseradmin.AuthUserAdminService/GetAllUsers"
 )
 
 // AuthUserAdminServiceClient is the client API for AuthUserAdminService service.
@@ -71,6 +72,7 @@ type AuthUserAdminServiceClient interface {
 	UpdateProfileImage(ctx context.Context, in *UpdateProfileImageRequest, opts ...grpc.CallOption) (*UpdateProfileImageResponse, error)
 	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
 	CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error)
+	BanHistory(ctx context.Context, in *BanHistoryRequest, opts ...grpc.CallOption) (*BanHistoryResponse, error)
 	// Social Features
 	SearchUsers(ctx context.Context, in *SearchUsersRequest, opts ...grpc.CallOption) (*SearchUsersResponse, error)
 	FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error)
@@ -246,6 +248,16 @@ func (c *authUserAdminServiceClient) CheckBanStatus(ctx context.Context, in *Che
 	return out, nil
 }
 
+func (c *authUserAdminServiceClient) BanHistory(ctx context.Context, in *BanHistoryRequest, opts ...grpc.CallOption) (*BanHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BanHistoryResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_BanHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authUserAdminServiceClient) SearchUsers(ctx context.Context, in *SearchUsersRequest, opts ...grpc.CallOption) (*SearchUsersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SearchUsersResponse)
@@ -398,6 +410,7 @@ type AuthUserAdminServiceServer interface {
 	UpdateProfileImage(context.Context, *UpdateProfileImageRequest) (*UpdateProfileImageResponse, error)
 	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
 	CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error)
+	BanHistory(context.Context, *BanHistoryRequest) (*BanHistoryResponse, error)
 	// Social Features
 	SearchUsers(context.Context, *SearchUsersRequest) (*SearchUsersResponse, error)
 	FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error)
@@ -467,6 +480,9 @@ func (UnimplementedAuthUserAdminServiceServer) GetUserProfile(context.Context, *
 }
 func (UnimplementedAuthUserAdminServiceServer) CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckBanStatus not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) BanHistory(context.Context, *BanHistoryRequest) (*BanHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BanHistory not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) SearchUsers(context.Context, *SearchUsersRequest) (*SearchUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchUsers not implemented")
@@ -798,6 +814,24 @@ func _AuthUserAdminService_CheckBanStatus_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthUserAdminService_BanHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BanHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).BanHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_BanHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).BanHistory(ctx, req.(*BanHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthUserAdminService_SearchUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchUsersRequest)
 	if err := dec(in); err != nil {
@@ -1036,7 +1070,7 @@ func _AuthUserAdminService_GetAllUsers_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.AuthUserAdminService",
+	ServiceName: "authuseradmin.AuthUserAdminService",
 	HandlerType: (*AuthUserAdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1098,6 +1132,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckBanStatus",
 			Handler:    _AuthUserAdminService_CheckBanStatus_Handler,
+		},
+		{
+			MethodName: "BanHistory",
+			Handler:    _AuthUserAdminService_BanHistory_Handler,
 		},
 		{
 			MethodName: "SearchUsers",
