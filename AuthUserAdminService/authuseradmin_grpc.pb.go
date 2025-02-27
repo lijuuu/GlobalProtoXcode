@@ -40,6 +40,8 @@ const (
 	AuthUserAdminService_UnfollowUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/UnfollowUser"
 	AuthUserAdminService_GetFollowing_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowing"
 	AuthUserAdminService_GetFollowers_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowers"
+	AuthUserAdminService_AdminLogin_FullMethodName           = "/authuseradmin.AuthUserAdminService/AdminLogin"
+	AuthUserAdminService_AdminProfile_FullMethodName         = "/authuseradmin.AuthUserAdminService/AdminProfile"
 	AuthUserAdminService_CreateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/CreateUserAdmin"
 	AuthUserAdminService_UpdateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/UpdateUserAdmin"
 	AuthUserAdminService_BanUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/BanUser"
@@ -80,6 +82,8 @@ type AuthUserAdminServiceClient interface {
 	GetFollowing(ctx context.Context, in *GetFollowingRequest, opts ...grpc.CallOption) (*GetFollowingResponse, error)
 	GetFollowers(ctx context.Context, in *GetFollowersRequest, opts ...grpc.CallOption) (*GetFollowersResponse, error)
 	// Admin Operations
+	AdminLogin(ctx context.Context, in *AdminLoginRequest, opts ...grpc.CallOption) (*AdminLoginResponse, error)
+	AdminProfile(ctx context.Context, in *AdminProfileRequest, opts ...grpc.CallOption) (*AdminProfileResponse, error)
 	CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error)
 	UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error)
 	BanUser(ctx context.Context, in *BanUserRequest, opts ...grpc.CallOption) (*BanUserResponse, error)
@@ -308,6 +312,26 @@ func (c *authUserAdminServiceClient) GetFollowers(ctx context.Context, in *GetFo
 	return out, nil
 }
 
+func (c *authUserAdminServiceClient) AdminLogin(ctx context.Context, in *AdminLoginRequest, opts ...grpc.CallOption) (*AdminLoginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminLoginResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_AdminLogin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authUserAdminServiceClient) AdminProfile(ctx context.Context, in *AdminProfileRequest, opts ...grpc.CallOption) (*AdminProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminProfileResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_AdminProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authUserAdminServiceClient) CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateUserAdminResponse)
@@ -418,6 +442,8 @@ type AuthUserAdminServiceServer interface {
 	GetFollowing(context.Context, *GetFollowingRequest) (*GetFollowingResponse, error)
 	GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error)
 	// Admin Operations
+	AdminLogin(context.Context, *AdminLoginRequest) (*AdminLoginResponse, error)
+	AdminProfile(context.Context, *AdminProfileRequest) (*AdminProfileResponse, error)
 	CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error)
 	UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error)
 	BanUser(context.Context, *BanUserRequest) (*BanUserResponse, error)
@@ -498,6 +524,12 @@ func (UnimplementedAuthUserAdminServiceServer) GetFollowing(context.Context, *Ge
 }
 func (UnimplementedAuthUserAdminServiceServer) GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFollowers not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) AdminLogin(context.Context, *AdminLoginRequest) (*AdminLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminLogin not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) AdminProfile(context.Context, *AdminProfileRequest) (*AdminProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminProfile not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserAdmin not implemented")
@@ -922,6 +954,42 @@ func _AuthUserAdminService_GetFollowers_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthUserAdminService_AdminLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).AdminLogin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_AdminLogin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).AdminLogin(ctx, req.(*AdminLoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthUserAdminService_AdminProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).AdminProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_AdminProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).AdminProfile(ctx, req.(*AdminProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthUserAdminService_CreateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserAdminRequest)
 	if err := dec(in); err != nil {
@@ -1156,6 +1224,14 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFollowers",
 			Handler:    _AuthUserAdminService_GetFollowers_Handler,
+		},
+		{
+			MethodName: "AdminLogin",
+			Handler:    _AuthUserAdminService_AdminLogin_Handler,
+		},
+		{
+			MethodName: "AdminProfile",
+			Handler:    _AuthUserAdminService_AdminProfile_Handler,
 		},
 		{
 			MethodName: "CreateUserAdmin",

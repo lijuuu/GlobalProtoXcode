@@ -34,6 +34,8 @@ service AuthUserAdminService {
     rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
 
     // Admin Operations
+    rpc AdminLogin(AdminLoginRequest) returns (AdminLoginResponse);
+    rpc AdminProfile(AdminProfileRequest) returns (AdminProfileResponse);
     rpc CreateUserAdmin(CreateUserAdminRequest) returns (CreateUserAdminResponse);
     rpc UpdateUserAdmin(UpdateUserAdminRequest) returns (UpdateUserAdminResponse);
     rpc BanUser(BanUserRequest) returns (BanUserResponse);
@@ -420,4 +422,35 @@ message SearchUsersResponse {
     int32 totalCount = 2;
     string message = 3;
     string nextPageToken = 4;
+}
+
+message AdminLoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message AdminLoginResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+    int32 expiresIn = 3;
+    string adminID = 4;
+    string message = 5;
+}
+
+
+message AdminProfile {
+    string adminID = 1;
+    string email = 2;
+    string firstName = 3;
+    string lastName = 4;
+    string avatarURL = 5;
+}
+
+message AdminProfileRequest {
+    string adminID = 1;
+}
+
+message AdminProfileResponse {
+    string message = 1;
+    AdminProfile adminProfile = 2;
 }
