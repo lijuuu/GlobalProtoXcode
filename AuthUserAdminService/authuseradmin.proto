@@ -390,7 +390,7 @@ message BanHistoryResponse {
 message BanHistory {
     string id = 1;
     string userID = 2;
-    string bannedAt = 3;
+    int64 bannedAt = 3;
     string banType = 4;
     string banReason = 5;
     int64 banExpiry = 6;
