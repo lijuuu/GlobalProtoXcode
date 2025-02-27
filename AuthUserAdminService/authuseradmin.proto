@@ -36,8 +36,8 @@ service AuthUserAdminService {
     // Admin Operations
     rpc CreateUserAdmin(CreateUserAdminRequest) returns (CreateUserAdminResponse);
     rpc UpdateUserAdmin(UpdateUserAdminRequest) returns (UpdateUserAdminResponse);
-    rpc BlockUser(BlockUserRequest) returns (BlockUserResponse);
-    rpc UnblockUser(UnblockUserAdminRequest) returns (UnblockUserAdminResponse);
+    rpc BanUser(BanUserRequest) returns (BanUserResponse);
+    rpc UnbanUser(UnbanUserRequest) returns (UnbanUserResponse);
     rpc VerifyAdminUser(VerifyAdminUserRequest) returns (VerifyAdminUserResponse);
     rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
     rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
@@ -59,7 +59,7 @@ message RegisterUserRequest {
     bool twoFactorAuth = 13;
 }
 
-message RegisterUserResponse {
+message RegisterUserResponse {  
     string userID = 1;
     string accessToken = 2;
     string refreshToken = 3;
@@ -290,21 +290,25 @@ message UpdateUserAdminResponse {
     UserProfile userProfile = 2;
 }
 
-message BlockUserRequest {
+message BanUserRequest {
     string userID = 1;
     string reason = 2;
-    int64 banDuration = 3;
+    string banType = 3;
+    string banReason = 4;
+    int64 bannedAt = 5;
+    int64 banExpiry = 6;  
 }
 
-message BlockUserResponse {
+
+message BanUserResponse {
     string message = 1;
 }
 
-message UnblockUserAdminRequest {
+message UnbanUserRequest {
     string userID = 1;
 }
 
-message UnblockUserAdminResponse {
+message UnbanUserResponse {
     string message = 1;
 }
 
@@ -389,8 +393,7 @@ message BanHistory {
     string bannedAt = 3;
     string banType = 4;
     string banReason = 5;
-    string banExpiry = 6;
-    string createdAt = 7;
+    int64 banExpiry = 6;
 }
 
 message LoginAdminRequest {

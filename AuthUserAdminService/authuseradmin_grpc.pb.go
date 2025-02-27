@@ -42,8 +42,8 @@ const (
 	AuthUserAdminService_GetFollowers_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowers"
 	AuthUserAdminService_CreateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/CreateUserAdmin"
 	AuthUserAdminService_UpdateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/UpdateUserAdmin"
-	AuthUserAdminService_BlockUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/BlockUser"
-	AuthUserAdminService_UnblockUser_FullMethodName          = "/authuseradmin.AuthUserAdminService/UnblockUser"
+	AuthUserAdminService_BanUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/BanUser"
+	AuthUserAdminService_UnbanUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnbanUser"
 	AuthUserAdminService_VerifyAdminUser_FullMethodName      = "/authuseradmin.AuthUserAdminService/VerifyAdminUser"
 	AuthUserAdminService_UnverifyUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/UnverifyUser"
 	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName  = "/authuseradmin.AuthUserAdminService/SoftDeleteUserAdmin"
@@ -82,8 +82,8 @@ type AuthUserAdminServiceClient interface {
 	// Admin Operations
 	CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error)
 	UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error)
-	BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error)
-	UnblockUser(ctx context.Context, in *UnblockUserAdminRequest, opts ...grpc.CallOption) (*UnblockUserAdminResponse, error)
+	BanUser(ctx context.Context, in *BanUserRequest, opts ...grpc.CallOption) (*BanUserResponse, error)
+	UnbanUser(ctx context.Context, in *UnbanUserRequest, opts ...grpc.CallOption) (*UnbanUserResponse, error)
 	VerifyAdminUser(ctx context.Context, in *VerifyAdminUserRequest, opts ...grpc.CallOption) (*VerifyAdminUserResponse, error)
 	UnverifyUser(ctx context.Context, in *UnverifyUserAdminRequest, opts ...grpc.CallOption) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(ctx context.Context, in *SoftDeleteUserAdminRequest, opts ...grpc.CallOption) (*SoftDeleteUserAdminResponse, error)
@@ -328,20 +328,20 @@ func (c *authUserAdminServiceClient) UpdateUserAdmin(ctx context.Context, in *Up
 	return out, nil
 }
 
-func (c *authUserAdminServiceClient) BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error) {
+func (c *authUserAdminServiceClient) BanUser(ctx context.Context, in *BanUserRequest, opts ...grpc.CallOption) (*BanUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BlockUserResponse)
-	err := c.cc.Invoke(ctx, AuthUserAdminService_BlockUser_FullMethodName, in, out, cOpts...)
+	out := new(BanUserResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_BanUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authUserAdminServiceClient) UnblockUser(ctx context.Context, in *UnblockUserAdminRequest, opts ...grpc.CallOption) (*UnblockUserAdminResponse, error) {
+func (c *authUserAdminServiceClient) UnbanUser(ctx context.Context, in *UnbanUserRequest, opts ...grpc.CallOption) (*UnbanUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UnblockUserAdminResponse)
-	err := c.cc.Invoke(ctx, AuthUserAdminService_UnblockUser_FullMethodName, in, out, cOpts...)
+	out := new(UnbanUserResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UnbanUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -420,8 +420,8 @@ type AuthUserAdminServiceServer interface {
 	// Admin Operations
 	CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error)
 	UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error)
-	BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error)
-	UnblockUser(context.Context, *UnblockUserAdminRequest) (*UnblockUserAdminResponse, error)
+	BanUser(context.Context, *BanUserRequest) (*BanUserResponse, error)
+	UnbanUser(context.Context, *UnbanUserRequest) (*UnbanUserResponse, error)
 	VerifyAdminUser(context.Context, *VerifyAdminUserRequest) (*VerifyAdminUserResponse, error)
 	UnverifyUser(context.Context, *UnverifyUserAdminRequest) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error)
@@ -505,11 +505,11 @@ func (UnimplementedAuthUserAdminServiceServer) CreateUserAdmin(context.Context, 
 func (UnimplementedAuthUserAdminServiceServer) UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserAdmin not implemented")
 }
-func (UnimplementedAuthUserAdminServiceServer) BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BlockUser not implemented")
+func (UnimplementedAuthUserAdminServiceServer) BanUser(context.Context, *BanUserRequest) (*BanUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BanUser not implemented")
 }
-func (UnimplementedAuthUserAdminServiceServer) UnblockUser(context.Context, *UnblockUserAdminRequest) (*UnblockUserAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnblockUser not implemented")
+func (UnimplementedAuthUserAdminServiceServer) UnbanUser(context.Context, *UnbanUserRequest) (*UnbanUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnbanUser not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) VerifyAdminUser(context.Context, *VerifyAdminUserRequest) (*VerifyAdminUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyAdminUser not implemented")
@@ -958,38 +958,38 @@ func _AuthUserAdminService_UpdateUserAdmin_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthUserAdminService_BlockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlockUserRequest)
+func _AuthUserAdminService_BanUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BanUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthUserAdminServiceServer).BlockUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).BanUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthUserAdminService_BlockUser_FullMethodName,
+		FullMethod: AuthUserAdminService_BanUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthUserAdminServiceServer).BlockUser(ctx, req.(*BlockUserRequest))
+		return srv.(AuthUserAdminServiceServer).BanUser(ctx, req.(*BanUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthUserAdminService_UnblockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnblockUserAdminRequest)
+func _AuthUserAdminService_UnbanUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnbanUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthUserAdminServiceServer).UnblockUser(ctx, in)
+		return srv.(AuthUserAdminServiceServer).UnbanUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthUserAdminService_UnblockUser_FullMethodName,
+		FullMethod: AuthUserAdminService_UnbanUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthUserAdminServiceServer).UnblockUser(ctx, req.(*UnblockUserAdminRequest))
+		return srv.(AuthUserAdminServiceServer).UnbanUser(ctx, req.(*UnbanUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1166,12 +1166,12 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthUserAdminService_UpdateUserAdmin_Handler,
 		},
 		{
-			MethodName: "BlockUser",
-			Handler:    _AuthUserAdminService_BlockUser_Handler,
+			MethodName: "BanUser",
+			Handler:    _AuthUserAdminService_BanUser_Handler,
 		},
 		{
-			MethodName: "UnblockUser",
-			Handler:    _AuthUserAdminService_UnblockUser_Handler,
+			MethodName: "UnbanUser",
+			Handler:    _AuthUserAdminService_UnbanUser_Handler,
 		},
 		{
 			MethodName: "VerifyAdminUser",
