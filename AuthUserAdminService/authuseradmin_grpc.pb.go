@@ -19,37 +19,37 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthUserAdminService_RegisterUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/RegisterUser"
-	AuthUserAdminService_LoginUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/LoginUser"
-	AuthUserAdminService_TokenRefresh_FullMethodName         = "/authuseradmin.AuthUserAdminService/TokenRefresh"
-	AuthUserAdminService_LogoutUser_FullMethodName           = "/authuseradmin.AuthUserAdminService/LogoutUser"
-	AuthUserAdminService_ResendOTP_FullMethodName            = "/authuseradmin.AuthUserAdminService/ResendOTP"
-	AuthUserAdminService_VerifyUser_FullMethodName           = "/authuseradmin.AuthUserAdminService/VerifyUser"
-	AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName  = "/authuseradmin.AuthUserAdminService/ToggleTwoFactorAuth"
-	AuthUserAdminService_ForgotPassword_FullMethodName       = "/authuseradmin.AuthUserAdminService/ForgotPassword"
-	AuthUserAdminService_FinishForgotPassword_FullMethodName = "/authuseradmin.AuthUserAdminService/FinishForgotPassword"
-	AuthUserAdminService_ChangePassword_FullMethodName       = "/authuseradmin.AuthUserAdminService/ChangePassword"
-	AuthUserAdminService_LoginAdmin_FullMethodName           = "/authuseradmin.AuthUserAdminService/LoginAdmin"
-	AuthUserAdminService_UpdateProfile_FullMethodName        = "/authuseradmin.AuthUserAdminService/UpdateProfile"
-	AuthUserAdminService_UpdateProfileImage_FullMethodName   = "/authuseradmin.AuthUserAdminService/UpdateProfileImage"
-	AuthUserAdminService_GetUserProfile_FullMethodName       = "/authuseradmin.AuthUserAdminService/GetUserProfile"
-	AuthUserAdminService_CheckBanStatus_FullMethodName       = "/authuseradmin.AuthUserAdminService/CheckBanStatus"
-	AuthUserAdminService_BanHistory_FullMethodName           = "/authuseradmin.AuthUserAdminService/BanHistory"
-	AuthUserAdminService_SearchUsers_FullMethodName          = "/authuseradmin.AuthUserAdminService/SearchUsers"
-	AuthUserAdminService_FollowUser_FullMethodName           = "/authuseradmin.AuthUserAdminService/FollowUser"
-	AuthUserAdminService_UnfollowUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/UnfollowUser"
-	AuthUserAdminService_GetFollowing_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowing"
-	AuthUserAdminService_GetFollowers_FullMethodName         = "/authuseradmin.AuthUserAdminService/GetFollowers"
-	AuthUserAdminService_AdminLogin_FullMethodName           = "/authuseradmin.AuthUserAdminService/AdminLogin"
-	AuthUserAdminService_AdminProfile_FullMethodName         = "/authuseradmin.AuthUserAdminService/AdminProfile"
-	AuthUserAdminService_CreateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/CreateUserAdmin"
-	AuthUserAdminService_UpdateUserAdmin_FullMethodName      = "/authuseradmin.AuthUserAdminService/UpdateUserAdmin"
-	AuthUserAdminService_BanUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/BanUser"
-	AuthUserAdminService_UnbanUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnbanUser"
-	AuthUserAdminService_VerifyAdminUser_FullMethodName      = "/authuseradmin.AuthUserAdminService/VerifyAdminUser"
-	AuthUserAdminService_UnverifyUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/UnverifyUser"
-	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName  = "/authuseradmin.AuthUserAdminService/SoftDeleteUserAdmin"
-	AuthUserAdminService_GetAllUsers_FullMethodName          = "/authuseradmin.AuthUserAdminService/GetAllUsers"
+	AuthUserAdminService_RegisterUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/RegisterUser"
+	AuthUserAdminService_LoginUser_FullMethodName               = "/authuseradmin.AuthUserAdminService/LoginUser"
+	AuthUserAdminService_TokenRefresh_FullMethodName            = "/authuseradmin.AuthUserAdminService/TokenRefresh"
+	AuthUserAdminService_LogoutUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/LogoutUser"
+	AuthUserAdminService_ResendEmailVerification_FullMethodName = "/authuseradmin.AuthUserAdminService/ResendEmailVerification"
+	AuthUserAdminService_VerifyUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/VerifyUser"
+	AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName     = "/authuseradmin.AuthUserAdminService/ToggleTwoFactorAuth"
+	AuthUserAdminService_ForgotPassword_FullMethodName          = "/authuseradmin.AuthUserAdminService/ForgotPassword"
+	AuthUserAdminService_FinishForgotPassword_FullMethodName    = "/authuseradmin.AuthUserAdminService/FinishForgotPassword"
+	AuthUserAdminService_ChangePassword_FullMethodName          = "/authuseradmin.AuthUserAdminService/ChangePassword"
+	AuthUserAdminService_LoginAdmin_FullMethodName              = "/authuseradmin.AuthUserAdminService/LoginAdmin"
+	AuthUserAdminService_UpdateProfile_FullMethodName           = "/authuseradmin.AuthUserAdminService/UpdateProfile"
+	AuthUserAdminService_UpdateProfileImage_FullMethodName      = "/authuseradmin.AuthUserAdminService/UpdateProfileImage"
+	AuthUserAdminService_GetUserProfile_FullMethodName          = "/authuseradmin.AuthUserAdminService/GetUserProfile"
+	AuthUserAdminService_CheckBanStatus_FullMethodName          = "/authuseradmin.AuthUserAdminService/CheckBanStatus"
+	AuthUserAdminService_BanHistory_FullMethodName              = "/authuseradmin.AuthUserAdminService/BanHistory"
+	AuthUserAdminService_SearchUsers_FullMethodName             = "/authuseradmin.AuthUserAdminService/SearchUsers"
+	AuthUserAdminService_FollowUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/FollowUser"
+	AuthUserAdminService_UnfollowUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnfollowUser"
+	AuthUserAdminService_GetFollowing_FullMethodName            = "/authuseradmin.AuthUserAdminService/GetFollowing"
+	AuthUserAdminService_GetFollowers_FullMethodName            = "/authuseradmin.AuthUserAdminService/GetFollowers"
+	AuthUserAdminService_AdminLogin_FullMethodName              = "/authuseradmin.AuthUserAdminService/AdminLogin"
+	AuthUserAdminService_AdminProfile_FullMethodName            = "/authuseradmin.AuthUserAdminService/AdminProfile"
+	AuthUserAdminService_CreateUserAdmin_FullMethodName         = "/authuseradmin.AuthUserAdminService/CreateUserAdmin"
+	AuthUserAdminService_UpdateUserAdmin_FullMethodName         = "/authuseradmin.AuthUserAdminService/UpdateUserAdmin"
+	AuthUserAdminService_BanUser_FullMethodName                 = "/authuseradmin.AuthUserAdminService/BanUser"
+	AuthUserAdminService_UnbanUser_FullMethodName               = "/authuseradmin.AuthUserAdminService/UnbanUser"
+	AuthUserAdminService_VerifyAdminUser_FullMethodName         = "/authuseradmin.AuthUserAdminService/VerifyAdminUser"
+	AuthUserAdminService_UnverifyUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnverifyUser"
+	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName     = "/authuseradmin.AuthUserAdminService/SoftDeleteUserAdmin"
+	AuthUserAdminService_GetAllUsers_FullMethodName             = "/authuseradmin.AuthUserAdminService/GetAllUsers"
 )
 
 // AuthUserAdminServiceClient is the client API for AuthUserAdminService service.
@@ -61,7 +61,7 @@ type AuthUserAdminServiceClient interface {
 	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
 	TokenRefresh(ctx context.Context, in *TokenRefreshRequest, opts ...grpc.CallOption) (*TokenRefreshResponse, error)
 	LogoutUser(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
-	ResendOTP(ctx context.Context, in *ResendOTPRequest, opts ...grpc.CallOption) (*ResendOTPResponse, error)
+	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error)
 	VerifyUser(ctx context.Context, in *VerifyUserRequest, opts ...grpc.CallOption) (*VerifyUserResponse, error)
 	ToggleTwoFactorAuth(ctx context.Context, in *ToggleTwoFactorAuthRequest, opts ...grpc.CallOption) (*ToggleTwoFactorAuthResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
@@ -142,10 +142,10 @@ func (c *authUserAdminServiceClient) LogoutUser(ctx context.Context, in *LogoutR
 	return out, nil
 }
 
-func (c *authUserAdminServiceClient) ResendOTP(ctx context.Context, in *ResendOTPRequest, opts ...grpc.CallOption) (*ResendOTPResponse, error) {
+func (c *authUserAdminServiceClient) ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResendOTPResponse)
-	err := c.cc.Invoke(ctx, AuthUserAdminService_ResendOTP_FullMethodName, in, out, cOpts...)
+	out := new(ResendEmailVerificationResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_ResendEmailVerification_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -421,7 +421,7 @@ type AuthUserAdminServiceServer interface {
 	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
 	TokenRefresh(context.Context, *TokenRefreshRequest) (*TokenRefreshResponse, error)
 	LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error)
-	ResendOTP(context.Context, *ResendOTPRequest) (*ResendOTPResponse, error)
+	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error)
 	VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error)
 	ToggleTwoFactorAuth(context.Context, *ToggleTwoFactorAuthRequest) (*ToggleTwoFactorAuthResponse, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
@@ -474,8 +474,8 @@ func (UnimplementedAuthUserAdminServiceServer) TokenRefresh(context.Context, *To
 func (UnimplementedAuthUserAdminServiceServer) LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogoutUser not implemented")
 }
-func (UnimplementedAuthUserAdminServiceServer) ResendOTP(context.Context, *ResendOTPRequest) (*ResendOTPResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ResendOTP not implemented")
+func (UnimplementedAuthUserAdminServiceServer) ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResendEmailVerification not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyUser not implemented")
@@ -648,20 +648,20 @@ func _AuthUserAdminService_LogoutUser_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthUserAdminService_ResendOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResendOTPRequest)
+func _AuthUserAdminService_ResendEmailVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResendEmailVerificationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthUserAdminServiceServer).ResendOTP(ctx, in)
+		return srv.(AuthUserAdminServiceServer).ResendEmailVerification(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthUserAdminService_ResendOTP_FullMethodName,
+		FullMethod: AuthUserAdminService_ResendEmailVerification_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthUserAdminServiceServer).ResendOTP(ctx, req.(*ResendOTPRequest))
+		return srv.(AuthUserAdminServiceServer).ResendEmailVerification(ctx, req.(*ResendEmailVerificationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1158,8 +1158,8 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthUserAdminService_LogoutUser_Handler,
 		},
 		{
-			MethodName: "ResendOTP",
-			Handler:    _AuthUserAdminService_ResendOTP_Handler,
+			MethodName: "ResendEmailVerification",
+			Handler:    _AuthUserAdminService_ResendEmailVerification_Handler,
 		},
 		{
 			MethodName: "VerifyUser",

@@ -9,7 +9,7 @@ service AuthUserAdminService {
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
     rpc TokenRefresh(TokenRefreshRequest) returns (TokenRefreshResponse);
     rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
-    rpc ResendOTP(ResendOTPRequest) returns (ResendOTPResponse);
+    rpc ResendEmailVerification(ResendEmailVerificationRequest) returns (ResendEmailVerificationResponse);
     rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
     rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
     rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  
@@ -103,11 +103,11 @@ message LogoutResponse {
     string message = 1;
 }
 
-message ResendOTPRequest {
-    string userID = 1;
+message ResendEmailVerificationRequest {
+    string email = 1;
 }
 
-message ResendOTPResponse {
+message ResendEmailVerificationResponse {
     string message = 1;
 }
 
