@@ -371,13 +371,13 @@ message UserProfile {
     string avatarURL = 5;
     string email = 6;
     string role = 7;
-    string status = 8;
-    string country = 9;
-    bool isBanned = 10;
+    string country = 8;
+    bool isBanned = 9;
+    bool isVerified = 10;
     string primaryLanguageID = 11;
     bool muteNotifications = 12;
     Socials socials = 13;
-    int64 createdAt = 14;
+    int64 createdAt = 15;
 }
 
 message BanHistoryRequest {
