@@ -368,16 +368,20 @@ message UserProfile {
     string userName = 2;
     string firstName = 3;
     string lastName = 4;
-    string avatarURL = 5;
-    string email = 6;
-    string role = 7;
-    string country = 8;
-    bool isBanned = 9;
-    bool isVerified = 10;
-    string primaryLanguageID = 11;
-    bool muteNotifications = 12;
-    Socials socials = 13;
-    int64 createdAt = 15;
+    string country = 5;
+    string role = 6;
+    string primaryLanguageID = 7;
+    string email = 8;
+    string authType = 9;
+    string avatarData = 10;
+    bool muteNotifications = 11;
+    bool isBanned = 12;
+    string banReason = 13;
+    int64 banExpiration = 14;
+    bool twoFactorEnabled = 15;
+    bool isVerified = 16;
+    int64 createdAt = 17;
+    int64 updatedAt = 18;
 }
 
 message BanHistoryRequest {
