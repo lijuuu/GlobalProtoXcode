@@ -382,6 +382,7 @@ message UserProfile {
     bool isVerified = 16;
     int64 createdAt = 17;
     int64 updatedAt = 18;
+    Socials socials = 19;
 }
 
 message BanHistoryRequest {
