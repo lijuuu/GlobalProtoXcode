@@ -109,6 +109,7 @@ message ResendEmailVerificationRequest {
 
 message ResendEmailVerificationResponse {
     string message = 1;
+    int64 expiryAt = 2;
 }
 
 message VerifyUserRequest {
