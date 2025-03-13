@@ -58,6 +58,7 @@ message SetUpTwoFactorAuthResponse {
     string image = 1;
     string secret = 2;
     string message = 3;
+    string error_type = 4;
 }
 
 message DisableTwoFactorAuthRequest {
@@ -67,6 +68,7 @@ message DisableTwoFactorAuthRequest {
 
 message DisableTwoFactorAuthResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message GetTwoFactorAuthStatusRequest {
@@ -76,6 +78,7 @@ message GetTwoFactorAuthStatusRequest {
 message GetTwoFactorAuthStatusResponse {
     bool isEnabled = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 
@@ -101,6 +104,7 @@ message RegisterUserResponse {
     int32 expiresIn = 4;
     UserProfile userProfile = 5;
     string message = 6;
+    string error_type = 7;
 }
 
 message LoginUserRequest {
@@ -117,6 +121,7 @@ message TwoFactorAuthRequest {
 
 message TwoFactorAuthResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 
@@ -127,6 +132,7 @@ message LoginUserResponse {
     string userID = 4;
     UserProfile userProfile = 5;
     string message = 6;
+    string error_type = 7;
 }
 
 message TokenRefreshRequest {
@@ -138,6 +144,7 @@ message TokenRefreshResponse {
     int32 expiresIn = 2;
     string userID = 3;
     string message = 4;
+    string error_type = 5;
 }
 
 message LogoutRequest {
@@ -146,6 +153,7 @@ message LogoutRequest {
 
 message LogoutResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message ResendEmailVerificationRequest {
@@ -155,6 +163,7 @@ message ResendEmailVerificationRequest {
 message ResendEmailVerificationResponse {
     string message = 1;
     int64 expiryAt = 2;
+    string error_type = 3;
 }
 
 message VerifyUserRequest {
@@ -165,6 +174,7 @@ message VerifyUserRequest {
 message VerifyUserResponse {
     string userID = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message ToggleTwoFactorAuthRequest {
@@ -175,6 +185,7 @@ message ToggleTwoFactorAuthRequest {
 
 message ToggleTwoFactorAuthResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message ForgotPasswordRequest {
@@ -183,7 +194,8 @@ message ForgotPasswordRequest {
 
 message ForgotPasswordResponse {
     string message = 1;
-    string token = 2;  
+    string token = 2;
+    string error_type = 3;  
 }
 
 message FinishForgotPasswordRequest {
@@ -195,6 +207,7 @@ message FinishForgotPasswordRequest {
 
 message FinishForgotPasswordResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message ChangePasswordRequest {
@@ -206,6 +219,7 @@ message ChangePasswordRequest {
 
 message ChangePasswordResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 // User Management Messages
@@ -223,6 +237,7 @@ message UpdateProfileRequest {
 message UpdateProfileResponse {
     string message = 1;
     UserProfile userProfile = 2;
+    string error_type = 3;
 }
 
 message UpdateProfileImageRequest {
@@ -233,6 +248,7 @@ message UpdateProfileImageRequest {
 message UpdateProfileImageResponse {
     string message = 1;
     string avatarURL = 2;
+    string error_type = 3;
 }
 
 message GetUserProfileRequest {
@@ -242,6 +258,7 @@ message GetUserProfileRequest {
 message GetUserProfileResponse {
     UserProfile userProfile = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message CheckBanStatusRequest {
@@ -253,6 +270,7 @@ message CheckBanStatusResponse {
     string reason = 2;
     int64 banExpiration = 3; 
     string message = 4;
+    string error_type = 5;
 }
 
 // Social Features Messages
@@ -263,6 +281,7 @@ message FollowUserRequest {
 
 message FollowUserResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message UnfollowUserRequest {
@@ -272,6 +291,7 @@ message UnfollowUserRequest {
 
 message UnfollowUserResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message GetFollowingRequest {
@@ -285,6 +305,7 @@ message GetFollowingResponse {
     int32 totalCount = 2;
     string nextPageToken = 3;
     string message = 4;
+    string error_type = 5;
 }
 
 message GetFollowersRequest {
@@ -298,6 +319,7 @@ message GetFollowersResponse {
     int32 totalCount = 2;
     string nextPageToken = 3;
     string message = 4;
+    string error_type = 5;
 }
 
 // Admin Operations Messages
@@ -318,6 +340,7 @@ message CreateUserAdminRequest {
 message CreateUserAdminResponse {
     string userID = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message UpdateUserAdminRequest {
@@ -336,6 +359,7 @@ message UpdateUserAdminRequest {
 message UpdateUserAdminResponse {
     string message = 1;
     UserProfile userProfile = 2;
+    string error_type = 3;
 }
 
 message BanUserRequest {
@@ -350,6 +374,7 @@ message BanUserRequest {
 
 message BanUserResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message UnbanUserRequest {
@@ -358,6 +383,7 @@ message UnbanUserRequest {
 
 message UnbanUserResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message VerifyAdminUserRequest {
@@ -366,6 +392,7 @@ message VerifyAdminUserRequest {
 
 message VerifyAdminUserResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message UnverifyUserAdminRequest {
@@ -374,6 +401,7 @@ message UnverifyUserAdminRequest {
 
 message UnverifyUserAdminResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message SoftDeleteUserAdminRequest {
@@ -382,6 +410,7 @@ message SoftDeleteUserAdminRequest {
 
 message SoftDeleteUserAdminResponse {
     string message = 1;
+    string error_type = 2;
 }
 
 message GetAllUsersRequest {
@@ -400,6 +429,7 @@ message GetAllUsersResponse {
     int32 totalCount = 2;
     string message = 3;
     string nextPageToken = 4;
+    string error_type = 5;
 }
 
 // Common Messages
@@ -438,6 +468,7 @@ message BanHistoryRequest {
 message BanHistoryResponse {
     repeated BanHistory bans = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message BanHistory {
@@ -460,6 +491,7 @@ message LoginAdminResponse {
     int32 expiresIn = 3;
     string adminID = 4;
     string message = 5;
+    string error_type = 6;
 }
 
 message SearchUsersRequest {
@@ -473,6 +505,7 @@ message SearchUsersResponse {
     int32 totalCount = 2;
     string message = 3;
     string nextPageToken = 4;
+    string error_type = 5;
 }
 
 message AdminLoginRequest {
@@ -486,6 +519,7 @@ message AdminLoginResponse {
     int32 expiresIn = 3;
     string adminID = 4;
     string message = 5;
+    string error_type = 6;
 }
 
 
@@ -504,4 +538,5 @@ message AdminProfileRequest {
 message AdminProfileResponse {
     string message = 1;
     AdminProfile adminProfile = 2;
+    string error_type = 3;
 }

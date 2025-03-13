@@ -2,6 +2,10 @@
 GO_MODULE ?= $(shell go env GOPATH)
 PROTO_DIRS := AuthUserAdminService
 
+# export GOENV_ROOT="$HOME/.goenv"
+# export PATH="$GOENV_ROOT/bin:$PATH"
+# eval "$(goenv init -)"
+
 init:
 	@echo "Initializing environment..."
 	@export PATH=$PATH:$HOME/go/bin
