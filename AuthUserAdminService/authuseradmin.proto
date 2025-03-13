@@ -15,6 +15,9 @@ service AuthUserAdminService {
     rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  
     rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);  
     rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+    rpc SetUpTwoFactorAuth(SetUpTwoFactorAuthRequest) returns (SetUpTwoFactorAuthResponse);
+    rpc DisableTwoFactorAuth(DisableTwoFactorAuthRequest) returns (DisableTwoFactorAuthResponse);
+    rpc GetTwoFactorAuthStatus(GetTwoFactorAuthStatusRequest) returns (GetTwoFactorAuthStatusResponse);
 
     // Authentication Admin
     rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
@@ -46,6 +49,35 @@ service AuthUserAdminService {
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
 
+message SetUpTwoFactorAuthRequest {
+    string userID = 1;
+    string password = 2;
+}
+
+message SetUpTwoFactorAuthResponse {
+    string image = 1;
+    string message = 2;
+}
+
+message DisableTwoFactorAuthRequest {
+    string userID = 1;
+    string password = 2;
+}
+
+message DisableTwoFactorAuthResponse {
+    string message = 1;
+}
+
+message GetTwoFactorAuthStatusRequest {
+    string userID = 1;
+}   
+
+message GetTwoFactorAuthStatusResponse {
+    bool isEnabled = 1;
+    string message = 2;
+}
+
+
 message RegisterUserRequest {
     string firstName = 1;
     string lastName = 2;
@@ -73,7 +105,19 @@ message RegisterUserResponse {
 message LoginUserRequest {
     string email = 1;
     string password = 2;
+    string twoFactorCode = 3;
 }
+
+
+message TwoFactorAuthRequest {
+    string userID = 1;
+    string twoFactorCode = 2;
+}
+
+message TwoFactorAuthResponse {
+    string message = 1;
+}
+
 
 message LoginUserResponse {
     string accessToken = 1;
