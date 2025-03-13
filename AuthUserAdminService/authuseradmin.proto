@@ -56,7 +56,8 @@ message SetUpTwoFactorAuthRequest {
 
 message SetUpTwoFactorAuthResponse {
     string image = 1;
-    string message = 2;
+    string secret = 2;
+    string message = 3;
 }
 
 message DisableTwoFactorAuthRequest {
