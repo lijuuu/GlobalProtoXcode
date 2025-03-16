@@ -141,20 +141,24 @@ message CreateProblemResponse {
     string problem_id = 1;
     bool success = 2;
     string message = 3;
+    string error_type = 4;
 }
 
 message UpdateProblemResponse {
     bool success = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message DeleteProblemResponse {
     bool success = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message GetProblemResponse {
     Problem problem = 1;
+    string error_type = 2;
 }
 
 message ListProblemsResponse {
@@ -162,31 +166,37 @@ message ListProblemsResponse {
     int32 total_count = 2;
     int32 page = 3;
     int32 page_size = 4;
+    string error_type = 5;
 }
 
 message AddTestCasesResponse {
     bool success = 1;
     string message = 2;
     int32 added_count = 3;
+    string error_type = 4;
 }
 
 message RemoveTestCasesResponse {
     bool success = 1;
     string message = 2;
     int32 removed_count = 3;
+    string error_type = 4;
 }
 
 message AddLanguageSupportResponse {
     bool success = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message UpdateLanguageSupportResponse {
     bool success = 1;
     string message = 2;
+    string error_type = 3;
 }
 
 message RemoveLanguageSupportResponse {
     bool success = 1;
     string message = 2;
+    string error_type = 3;
 }
