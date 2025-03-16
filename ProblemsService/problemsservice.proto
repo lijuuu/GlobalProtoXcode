@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+package problems;
+
+option go_package = "./proto";
+
+service ProblemsService {
+    // Problem CRUD Operations
+    rpc CreateProblem(CreateProblemRequest) returns (CreateProblemResponse);
+    rpc UpdateProblem(UpdateProblemRequest) returns (UpdateProblemResponse);
+    rpc DeleteProblem(DeleteProblemRequest) returns (DeleteProblemResponse);
+    rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
+    rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
+
+    // Test Case Operations
+    rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
+    rpc RemoveTestCases(RemoveTestCasesRequest) returns (RemoveTestCasesResponse);
+
+    // Language Support Operations
+    rpc AddLanguageSupport(AddLanguageSupportRequest) returns (AddLanguageSupportResponse);
+    rpc UpdateLanguageSupport(UpdateLanguageSupportRequest) returns (UpdateLanguageSupportResponse);
+    rpc RemoveLanguageSupport(RemoveLanguageSupportRequest) returns (RemoveLanguageSupportResponse);
+
+    //Full Validation
+    rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
+}
+
+message FullValidationByProblemIDRequest{
+    string problem_id = 1;
+}
+
+message FullValidationByProblemIDResponse{
+    bool success = 1;
+    string message = 2;
+    string error_type = 3;
+}
+
+// Common timestamp message
+message Timestamp {
+    int64 seconds = 1;
+    int32 nanos = 2;
+}
+
+// Test case structure
+message TestCase {
+    string input = 1;
+    string expected = 2;
+}
+
+message TestCases {
+    repeated TestCase run = 1;
+    repeated TestCase submit = 2;
+}
+
+// Language-specific validation code
+message ValidationCode {
+    string placeholder = 1;
+    string code = 2;
+}
+
+// Request Messages for Problem CRUD
+message CreateProblemRequest {
+    string title = 1;
+    string description = 2;
+    repeated string tags = 3;
+    string difficulty = 4;
+}
+
+message UpdateProblemRequest {
+    string problem_id = 1;
+    optional string title = 2;
+    optional string description = 3;
+    repeated string tags = 4;
+    optional string difficulty = 5;
+}
+
+message DeleteProblemRequest {
+    string problem_id = 1;
+}
+
+message GetProblemRequest {
+    string problem_id = 1;
+}
+
+message ListProblemsRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+    repeated string tags = 3;
+    string difficulty = 4;
+    string search_query = 5;
+}
+
+// Request Messages for Test Cases
+message AddTestCasesRequest {
+    string problem_id = 1;
+    TestCases testcases = 2;
+}
+
+message RemoveTestCasesRequest {
+    string problem_id = 1;
+    repeated int32 run_indices = 2;
+    repeated int32 submit_indices = 3;
+}
+
+// Request Messages for Language Support
+message AddLanguageSupportRequest {
+    string problem_id = 1;
+    string language = 2;
+    ValidationCode validation_code = 3;
+}
+
+message UpdateLanguageSupportRequest {
+    string problem_id = 1;
+    string language = 2;
+    ValidationCode validate  =3;
+}
+
+message RemoveLanguageSupportRequest {
+    string problem_id = 1;
+    string language = 2;
+}
+
+// Response Messages
+message Problem {
+    string problem_id = 1;
+    Timestamp created_at = 2;
+    Timestamp updated_at = 3;
+    optional Timestamp deleted_at = 4;
+    string title = 5;
+    string description = 6;
+    repeated string tags = 7;
+    TestCases testcases = 8;
+    string difficulty = 9;
+    repeated string supported_languages = 10;
+    map<string, ValidationCode> validate_code = 11;
+    bool validated = 12;
+    Timestamp validated_at = 13;
+}
+
+message CreateProblemResponse {
+    string problem_id = 1;
+    bool success = 2;
+    string message = 3;
+}
+
+message UpdateProblemResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message DeleteProblemResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message GetProblemResponse {
+    Problem problem = 1;
+}
+
+message ListProblemsResponse {
+    repeated Problem problems = 1;
+    int32 total_count = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+}
+
+message AddTestCasesResponse {
+    bool success = 1;
+    string message = 2;
+    int32 added_count = 3;
+}
+
+message RemoveTestCasesResponse {
+    bool success = 1;
+    string message = 2;
+    int32 removed_count = 3;
+}
+
+message AddLanguageSupportResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message UpdateLanguageSupportResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message RemoveLanguageSupportResponse {
+    bool success = 1;
+    string message = 2;
+}

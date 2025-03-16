@@ -1,22 +1,10 @@
 # Install necessary tools for protobuf compilation
 GO_MODULE ?= $(shell go env GOPATH)
-PROTO_DIRS := AuthUserAdminService Compiler
-
-# export GOENV_ROOT="$HOME/.goenv"
-# export PATH="$GOENV_ROOT/bin:$PATH"
-# eval "$(goenv init -)"
+PROTO_DIRS := AuthUserAdminService ProblemsService
 
 init:
 	@echo "Initializing environment..."
-	@if [ ! -d "$$HOME/go" ]; then \
-		mkdir -p "$$HOME/go"; \
-	fi
-	@export GOPATH="$$HOME/go"
-	@export PATH="$$PATH:$$GOPATH/bin"
-	@if ! command -v go >/dev/null 2>&1; then \
-		echo "Go is not installed. Please install Go first."; \
-		exit 1; \
-	fi
+	@export PATH=$PATH:$HOME/go/bin
 
 install-tools:
 	@echo "Installing necessary tools..."
@@ -28,9 +16,13 @@ generate-proto:
 	@echo "Generating gRPC code from proto files..."
 	@for dir in $(PROTO_DIRS); do \
 		protoc -I=. \
-			--go_out=$$dir \
-			--go-grpc_out=$$dir \
+			--go_out=. \
+			--go_opt=paths=source_relative \
+			--go-grpc_out=. \
+			--go-grpc_opt=paths=source_relative \
 			$$dir/*.proto; \
+		mv *.pb.go $$dir/ 2>/dev/null || true; \
+		mv *_grpc.pb.go $$dir/ 2>/dev/null || true; \
 		echo "Generated proto for $$dir service"; \
 	done
 
