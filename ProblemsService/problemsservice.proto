@@ -17,6 +17,7 @@ service ProblemsService {
     rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
 
     // Language Support Operations
+    rpc GetLanguageSupports(GetLanguageSupportsRequest) returns (GetLanguageSupportsResponse);
     rpc AddLanguageSupport(AddLanguageSupportRequest) returns (AddLanguageSupportResponse);
     rpc UpdateLanguageSupport(UpdateLanguageSupportRequest) returns (UpdateLanguageSupportResponse);
     rpc RemoveLanguageSupport(RemoveLanguageSupportRequest) returns (RemoveLanguageSupportResponse);
@@ -206,4 +207,15 @@ message DeleteTestCaseRequest {
   message DeleteTestCaseResponse {
     bool success = 1;
     string message = 2;
+  }
+
+  message GetLanguageSupportsRequest {
+    string problem_id = 1;
+  }
+  
+  message GetLanguageSupportsResponse {
+    bool success = 1;
+    string message = 2;
+    repeated string supported_languages = 3;
+    map<string, ValidationCode> validate_code = 4;
   }
