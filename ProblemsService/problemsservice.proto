@@ -14,7 +14,7 @@ service ProblemsService {
 
     // Test Case Operations
     rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
-    rpc RemoveTestCases(RemoveTestCasesRequest) returns (RemoveTestCasesResponse);
+    rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
 
     // Language Support Operations
     rpc AddLanguageSupport(AddLanguageSupportRequest) returns (AddLanguageSupportResponse);
@@ -43,8 +43,9 @@ message Timestamp {
 
 // Test case structure
 message TestCase {
-    string input = 1;
-    string expected = 2;
+    string id =1;
+    string input = 2;
+    string expected = 3;
 }
 
 message TestCases {
@@ -96,11 +97,6 @@ message AddTestCasesRequest {
     TestCases testcases = 2;
 }
 
-message RemoveTestCasesRequest {
-    string problem_id = 1;
-    repeated int32 run_indices = 2;
-    repeated int32 submit_indices = 3;
-}
 
 // Request Messages for Language Support
 message AddLanguageSupportRequest {
@@ -200,3 +196,14 @@ message RemoveLanguageSupportResponse {
     string message = 2;
     string error_type = 3;
 }
+
+message DeleteTestCaseRequest {
+    string problem_id = 1;
+    string testcase_id = 2;
+    bool is_run_testcase = 3;  
+  }
+  
+  message DeleteTestCaseResponse {
+    bool success = 1;
+    string message = 2;
+  }

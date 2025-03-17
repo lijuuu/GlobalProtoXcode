@@ -25,7 +25,7 @@ const (
 	ProblemsService_GetProblem_FullMethodName                = "/problems.ProblemsService/GetProblem"
 	ProblemsService_ListProblems_FullMethodName              = "/problems.ProblemsService/ListProblems"
 	ProblemsService_AddTestCases_FullMethodName              = "/problems.ProblemsService/AddTestCases"
-	ProblemsService_RemoveTestCases_FullMethodName           = "/problems.ProblemsService/RemoveTestCases"
+	ProblemsService_DeleteTestCase_FullMethodName            = "/problems.ProblemsService/DeleteTestCase"
 	ProblemsService_AddLanguageSupport_FullMethodName        = "/problems.ProblemsService/AddLanguageSupport"
 	ProblemsService_UpdateLanguageSupport_FullMethodName     = "/problems.ProblemsService/UpdateLanguageSupport"
 	ProblemsService_RemoveLanguageSupport_FullMethodName     = "/problems.ProblemsService/RemoveLanguageSupport"
@@ -44,7 +44,7 @@ type ProblemsServiceClient interface {
 	ListProblems(ctx context.Context, in *ListProblemsRequest, opts ...grpc.CallOption) (*ListProblemsResponse, error)
 	// Test Case Operations
 	AddTestCases(ctx context.Context, in *AddTestCasesRequest, opts ...grpc.CallOption) (*AddTestCasesResponse, error)
-	RemoveTestCases(ctx context.Context, in *RemoveTestCasesRequest, opts ...grpc.CallOption) (*RemoveTestCasesResponse, error)
+	DeleteTestCase(ctx context.Context, in *DeleteTestCaseRequest, opts ...grpc.CallOption) (*DeleteTestCaseResponse, error)
 	// Language Support Operations
 	AddLanguageSupport(ctx context.Context, in *AddLanguageSupportRequest, opts ...grpc.CallOption) (*AddLanguageSupportResponse, error)
 	UpdateLanguageSupport(ctx context.Context, in *UpdateLanguageSupportRequest, opts ...grpc.CallOption) (*UpdateLanguageSupportResponse, error)
@@ -121,10 +121,10 @@ func (c *problemsServiceClient) AddTestCases(ctx context.Context, in *AddTestCas
 	return out, nil
 }
 
-func (c *problemsServiceClient) RemoveTestCases(ctx context.Context, in *RemoveTestCasesRequest, opts ...grpc.CallOption) (*RemoveTestCasesResponse, error) {
+func (c *problemsServiceClient) DeleteTestCase(ctx context.Context, in *DeleteTestCaseRequest, opts ...grpc.CallOption) (*DeleteTestCaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RemoveTestCasesResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_RemoveTestCases_FullMethodName, in, out, cOpts...)
+	out := new(DeleteTestCaseResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_DeleteTestCase_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -183,7 +183,7 @@ type ProblemsServiceServer interface {
 	ListProblems(context.Context, *ListProblemsRequest) (*ListProblemsResponse, error)
 	// Test Case Operations
 	AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error)
-	RemoveTestCases(context.Context, *RemoveTestCasesRequest) (*RemoveTestCasesResponse, error)
+	DeleteTestCase(context.Context, *DeleteTestCaseRequest) (*DeleteTestCaseResponse, error)
 	// Language Support Operations
 	AddLanguageSupport(context.Context, *AddLanguageSupportRequest) (*AddLanguageSupportResponse, error)
 	UpdateLanguageSupport(context.Context, *UpdateLanguageSupportRequest) (*UpdateLanguageSupportResponse, error)
@@ -218,8 +218,8 @@ func (UnimplementedProblemsServiceServer) ListProblems(context.Context, *ListPro
 func (UnimplementedProblemsServiceServer) AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTestCases not implemented")
 }
-func (UnimplementedProblemsServiceServer) RemoveTestCases(context.Context, *RemoveTestCasesRequest) (*RemoveTestCasesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveTestCases not implemented")
+func (UnimplementedProblemsServiceServer) DeleteTestCase(context.Context, *DeleteTestCaseRequest) (*DeleteTestCaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTestCase not implemented")
 }
 func (UnimplementedProblemsServiceServer) AddLanguageSupport(context.Context, *AddLanguageSupportRequest) (*AddLanguageSupportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddLanguageSupport not implemented")
@@ -362,20 +362,20 @@ func _ProblemsService_AddTestCases_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_RemoveTestCases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveTestCasesRequest)
+func _ProblemsService_DeleteTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTestCaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).RemoveTestCases(ctx, in)
+		return srv.(ProblemsServiceServer).DeleteTestCase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_RemoveTestCases_FullMethodName,
+		FullMethod: ProblemsService_DeleteTestCase_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).RemoveTestCases(ctx, req.(*RemoveTestCasesRequest))
+		return srv.(ProblemsServiceServer).DeleteTestCase(ctx, req.(*DeleteTestCaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -484,8 +484,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_AddTestCases_Handler,
 		},
 		{
-			MethodName: "RemoveTestCases",
-			Handler:    _ProblemsService_RemoveTestCases_Handler,
+			MethodName: "DeleteTestCase",
+			Handler:    _ProblemsService_DeleteTestCase_Handler,
 		},
 		{
 			MethodName: "AddLanguageSupport",
