@@ -109,7 +109,7 @@ message AddLanguageSupportRequest {
 message UpdateLanguageSupportRequest {
     string problem_id = 1;
     string language = 2;
-    ValidationCode validate  =3;
+    ValidationCode validate_code  =3;
 }
 
 message RemoveLanguageSupportRequest {
