@@ -24,7 +24,53 @@ service ProblemsService {
 
     //Full Validation
     rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
+
+    //Run Problem
+    rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
+
+
+    //Get submissions
+    rpc GetSubmissions(GetSubmissionsRequest) returns (GetSubmissionsResponse);
 }
+
+message Submission{
+    string problem_id = 1;
+    bool success = 2;
+    string execution_error_type = 3;
+    string langauge = 4;
+}
+
+message GetSubmissionsRequest{
+    string problem_id = 1;
+    string user_id = 2;
+}
+message GetSubmissionsResponse{
+    string problems_id = 1;
+    repeated Submission submissions = 2;
+    bool success = 3;
+    string message = 4;
+    string error_type = 5;
+    string user_code = 6;
+}
+
+
+
+message RunProblemRequest{
+    string problem_id = 1;
+    string user_code = 2;
+    string langauge = 3;
+    bool is_run_testcase = 4;
+}
+
+message RunProblemResponse{ 
+    string problem_id = 1;
+    string langauge = 2;
+    bool is_run_testcase = 3;
+    bool success = 4;
+    string message = 5;
+    string error_type = 6;
+}
+
 
 message FullValidationByProblemIDRequest{
     string problem_id = 1;

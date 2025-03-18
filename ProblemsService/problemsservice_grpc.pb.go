@@ -31,6 +31,8 @@ const (
 	ProblemsService_UpdateLanguageSupport_FullMethodName     = "/problems.ProblemsService/UpdateLanguageSupport"
 	ProblemsService_RemoveLanguageSupport_FullMethodName     = "/problems.ProblemsService/RemoveLanguageSupport"
 	ProblemsService_FullValidationByProblemID_FullMethodName = "/problems.ProblemsService/FullValidationByProblemID"
+	ProblemsService_RunUserCodeProblem_FullMethodName        = "/problems.ProblemsService/RunUserCodeProblem"
+	ProblemsService_GetSubmissions_FullMethodName            = "/problems.ProblemsService/GetSubmissions"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -53,6 +55,10 @@ type ProblemsServiceClient interface {
 	RemoveLanguageSupport(ctx context.Context, in *RemoveLanguageSupportRequest, opts ...grpc.CallOption) (*RemoveLanguageSupportResponse, error)
 	// Full Validation
 	FullValidationByProblemID(ctx context.Context, in *FullValidationByProblemIDRequest, opts ...grpc.CallOption) (*FullValidationByProblemIDResponse, error)
+	// Run Problem
+	RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error)
+	// Get submissions
+	GetSubmissions(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -183,6 +189,26 @@ func (c *problemsServiceClient) FullValidationByProblemID(ctx context.Context, i
 	return out, nil
 }
 
+func (c *problemsServiceClient) RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RunProblemResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_RunUserCodeProblem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetSubmissions(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSubmissionsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -203,6 +229,10 @@ type ProblemsServiceServer interface {
 	RemoveLanguageSupport(context.Context, *RemoveLanguageSupportRequest) (*RemoveLanguageSupportResponse, error)
 	// Full Validation
 	FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error)
+	// Run Problem
+	RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error)
+	// Get submissions
+	GetSubmissions(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -248,6 +278,12 @@ func (UnimplementedProblemsServiceServer) RemoveLanguageSupport(context.Context,
 }
 func (UnimplementedProblemsServiceServer) FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FullValidationByProblemID not implemented")
+}
+func (UnimplementedProblemsServiceServer) RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunUserCodeProblem not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetSubmissions(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissions not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -486,6 +522,42 @@ func _ProblemsService_FullValidationByProblemID_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_RunUserCodeProblem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunProblemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).RunUserCodeProblem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_RunUserCodeProblem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).RunUserCodeProblem(ctx, req.(*RunProblemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetSubmissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubmissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetSubmissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetSubmissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetSubmissions(ctx, req.(*GetSubmissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -540,6 +612,14 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FullValidationByProblemID",
 			Handler:    _ProblemsService_FullValidationByProblemID_Handler,
+		},
+		{
+			MethodName: "RunUserCodeProblem",
+			Handler:    _ProblemsService_RunUserCodeProblem_Handler,
+		},
+		{
+			MethodName: "GetSubmissions",
+			Handler:    _ProblemsService_GetSubmissions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
