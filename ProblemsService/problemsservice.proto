@@ -100,10 +100,15 @@ message TestCases {
     repeated TestCase submit = 2;
 }
 
+message TestCaseRunOnly {
+    repeated TestCase run = 1;
+}
+
 // Language-specific validation code
 message ValidationCode {
     string placeholder = 1;
     string code = 2;
+    string template = 3;
 }
 
 // Request Messages for Problem CRUD
@@ -178,6 +183,17 @@ message Problem {
     map<string, ValidationCode> validate_code = 11;
     bool validated = 12;
     Timestamp validated_at = 13;
+}
+
+message ProblemMetadata {
+    string problem_id = 1;
+    string title = 5;
+    string description = 6;
+    repeated string tags = 7;
+    TestCaseRunOnly testcase_run = 8;
+    string difficulty = 9;
+    repeated string supported_languages = 10;
+    bool validated = 12;
 }
 
 message CreateProblemResponse {
@@ -265,3 +281,24 @@ message DeleteTestCaseRequest {
     repeated string supported_languages = 3;
     map<string, ValidationCode> validate_code = 4;
   }
+
+
+  message GetProblemsPlaylistRequest{
+    
+  }
+
+  message ExecuteUserCodeProblemIDRequest{
+    string problem_id = 1;
+    string user_code = 2;
+    string langauges = 3;
+  }
+
+  message ExecuteUserCodeProblemIDResponse{
+    string problem_id = 1;
+    
+  }
+
+message ProblemExecutionResult{
+    string problem_id = 1;
+    
+}
