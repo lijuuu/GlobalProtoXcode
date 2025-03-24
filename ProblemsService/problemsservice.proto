@@ -12,6 +12,11 @@ service ProblemsService {
     rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
     rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
 
+
+    //metdata
+    rpc GetProblemByIDSlug(GetProblemByIdSlugListRequest) returns(GetProblemByIdSlugResponse);
+    rpc GetProblemByIDSlugList(GetProblemByIdSlugListRequest) returns (GetProblemByIdSlugListRequest);
+
     // Test Case Operations
     rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
     rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
@@ -33,6 +38,28 @@ service ProblemsService {
     rpc GetSubmissions(GetSubmissionsRequest) returns (GetSubmissionsResponse);
 }
 
+message  GetProblemByIdSlugRequest{
+    string problem_id  = 1;
+    optional string slug  = 2; 
+}
+message GetProblemByIdSlugResponse{
+    ProblemMetadata problemmetdata = 1;
+    string message = 2;
+}
+
+
+message  GetProblemByIdSlugListRequest{
+    int32 page = 1;
+    int32 page_size = 2;
+    repeated string tags = 3;
+    string difficulty = 4;
+    string search_query = 5;
+}
+message GetProblemByIdSlugListResponse{
+    repeated ProblemMetadata problemmetdata = 1;
+    string message = 2;
+}
+
 message Submission{
     string problem_id = 1;
     bool success = 2;
@@ -45,7 +72,7 @@ message GetSubmissionsRequest{
     string user_id = 2;
 }
 message GetSubmissionsResponse{
-    string problems_id = 1;
+    string problem_id = 1;
     repeated Submission submissions = 2;
     bool success = 3;
     string message = 4;
@@ -290,7 +317,7 @@ message DeleteTestCaseRequest {
   message ExecuteUserCodeProblemIDRequest{
     string problem_id = 1;
     string user_code = 2;
-    string langauges = 3;
+    string languages = 3;
   }
 
   message ExecuteUserCodeProblemIDResponse{

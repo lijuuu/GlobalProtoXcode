@@ -24,6 +24,8 @@ const (
 	ProblemsService_DeleteProblem_FullMethodName             = "/problems.ProblemsService/DeleteProblem"
 	ProblemsService_GetProblem_FullMethodName                = "/problems.ProblemsService/GetProblem"
 	ProblemsService_ListProblems_FullMethodName              = "/problems.ProblemsService/ListProblems"
+	ProblemsService_GetProblemByIDSlug_FullMethodName        = "/problems.ProblemsService/GetProblemByIDSlug"
+	ProblemsService_GetProblemByIDSlugList_FullMethodName    = "/problems.ProblemsService/GetProblemByIDSlugList"
 	ProblemsService_AddTestCases_FullMethodName              = "/problems.ProblemsService/AddTestCases"
 	ProblemsService_DeleteTestCase_FullMethodName            = "/problems.ProblemsService/DeleteTestCase"
 	ProblemsService_GetLanguageSupports_FullMethodName       = "/problems.ProblemsService/GetLanguageSupports"
@@ -45,6 +47,9 @@ type ProblemsServiceClient interface {
 	DeleteProblem(ctx context.Context, in *DeleteProblemRequest, opts ...grpc.CallOption) (*DeleteProblemResponse, error)
 	GetProblem(ctx context.Context, in *GetProblemRequest, opts ...grpc.CallOption) (*GetProblemResponse, error)
 	ListProblems(ctx context.Context, in *ListProblemsRequest, opts ...grpc.CallOption) (*ListProblemsResponse, error)
+	// metdata
+	GetProblemByIDSlug(ctx context.Context, in *GetProblemByIdSlugListRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error)
+	GetProblemByIDSlugList(ctx context.Context, in *GetProblemByIdSlugListRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugListRequest, error)
 	// Test Case Operations
 	AddTestCases(ctx context.Context, in *AddTestCasesRequest, opts ...grpc.CallOption) (*AddTestCasesResponse, error)
 	DeleteTestCase(ctx context.Context, in *DeleteTestCaseRequest, opts ...grpc.CallOption) (*DeleteTestCaseResponse, error)
@@ -113,6 +118,26 @@ func (c *problemsServiceClient) ListProblems(ctx context.Context, in *ListProble
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListProblemsResponse)
 	err := c.cc.Invoke(ctx, ProblemsService_ListProblems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetProblemByIDSlug(ctx context.Context, in *GetProblemByIdSlugListRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProblemByIdSlugResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetProblemByIDSlug_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetProblemByIDSlugList(ctx context.Context, in *GetProblemByIdSlugListRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugListRequest, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProblemByIdSlugListRequest)
+	err := c.cc.Invoke(ctx, ProblemsService_GetProblemByIDSlugList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -219,6 +244,9 @@ type ProblemsServiceServer interface {
 	DeleteProblem(context.Context, *DeleteProblemRequest) (*DeleteProblemResponse, error)
 	GetProblem(context.Context, *GetProblemRequest) (*GetProblemResponse, error)
 	ListProblems(context.Context, *ListProblemsRequest) (*ListProblemsResponse, error)
+	// metdata
+	GetProblemByIDSlug(context.Context, *GetProblemByIdSlugListRequest) (*GetProblemByIdSlugResponse, error)
+	GetProblemByIDSlugList(context.Context, *GetProblemByIdSlugListRequest) (*GetProblemByIdSlugListRequest, error)
 	// Test Case Operations
 	AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error)
 	DeleteTestCase(context.Context, *DeleteTestCaseRequest) (*DeleteTestCaseResponse, error)
@@ -257,6 +285,12 @@ func (UnimplementedProblemsServiceServer) GetProblem(context.Context, *GetProble
 }
 func (UnimplementedProblemsServiceServer) ListProblems(context.Context, *ListProblemsRequest) (*ListProblemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProblems not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetProblemByIDSlug(context.Context, *GetProblemByIdSlugListRequest) (*GetProblemByIdSlugResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIDSlug not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetProblemByIDSlugList(context.Context, *GetProblemByIdSlugListRequest) (*GetProblemByIdSlugListRequest, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIDSlugList not implemented")
 }
 func (UnimplementedProblemsServiceServer) AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTestCases not implemented")
@@ -392,6 +426,42 @@ func _ProblemsService_ListProblems_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProblemsServiceServer).ListProblems(ctx, req.(*ListProblemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetProblemByIDSlug_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProblemByIdSlugListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetProblemByIDSlug(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetProblemByIDSlug_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetProblemByIDSlug(ctx, req.(*GetProblemByIdSlugListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetProblemByIDSlugList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProblemByIdSlugListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetProblemByIDSlugList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetProblemByIDSlugList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetProblemByIDSlugList(ctx, req.(*GetProblemByIdSlugListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -584,6 +654,14 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListProblems",
 			Handler:    _ProblemsService_ListProblems_Handler,
+		},
+		{
+			MethodName: "GetProblemByIDSlug",
+			Handler:    _ProblemsService_GetProblemByIDSlug_Handler,
+		},
+		{
+			MethodName: "GetProblemByIDSlugList",
+			Handler:    _ProblemsService_GetProblemByIDSlugList_Handler,
 		},
 		{
 			MethodName: "AddTestCases",

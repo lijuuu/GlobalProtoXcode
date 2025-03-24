@@ -64,6 +64,7 @@ message SetUpTwoFactorAuthResponse {
 message DisableTwoFactorAuthRequest {
     string userID = 1;
     string password = 2;
+    string otp = 3;
 }
 
 message DisableTwoFactorAuthResponse {
