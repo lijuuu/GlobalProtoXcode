@@ -5,119 +5,31 @@ package problems;
 option go_package = "./proto";
 
 service ProblemsService {
-    // Problem CRUD Operations
     rpc CreateProblem(CreateProblemRequest) returns (CreateProblemResponse);
     rpc UpdateProblem(UpdateProblemRequest) returns (UpdateProblemResponse);
     rpc DeleteProblem(DeleteProblemRequest) returns (DeleteProblemResponse);
     rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
     rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
-
-
-    //metdata
-    rpc GetProblemByIDSlug(GetProblemByIdSlugListRequest) returns(GetProblemByIdSlugResponse);
-    rpc GetProblemByIDSlugList(GetProblemByIdSlugListRequest) returns (GetProblemByIdSlugListRequest);
-
-    // Test Case Operations
+    rpc GetProblemByIDSlug(GetProblemByIdSlugRequest) returns (GetProblemByIdSlugResponse);
+    rpc GetProblemByIDSlugList(GetProblemByIdSlugListRequest) returns (GetProblemByIdSlugListResponse);
     rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
     rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
-
-    // Language Support Operations
     rpc GetLanguageSupports(GetLanguageSupportsRequest) returns (GetLanguageSupportsResponse);
     rpc AddLanguageSupport(AddLanguageSupportRequest) returns (AddLanguageSupportResponse);
     rpc UpdateLanguageSupport(UpdateLanguageSupportRequest) returns (UpdateLanguageSupportResponse);
     rpc RemoveLanguageSupport(RemoveLanguageSupportRequest) returns (RemoveLanguageSupportResponse);
-
-    //Full Validation
     rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
-
-    //Run Problem
     rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
-
-
-    //Get submissions
     rpc GetSubmissions(GetSubmissionsRequest) returns (GetSubmissionsResponse);
 }
 
-message  GetProblemByIdSlugRequest{
-    string problem_id  = 1;
-    optional string slug  = 2; 
-}
-message GetProblemByIdSlugResponse{
-    ProblemMetadata problemmetdata = 1;
-    string message = 2;
-}
-
-
-message  GetProblemByIdSlugListRequest{
-    int32 page = 1;
-    int32 page_size = 2;
-    repeated string tags = 3;
-    string difficulty = 4;
-    string search_query = 5;
-}
-message GetProblemByIdSlugListResponse{
-    repeated ProblemMetadata problemmetdata = 1;
-    string message = 2;
-}
-
-message Submission{
-    string problem_id = 1;
-    bool success = 2;
-    string execution_error_type = 3;
-    string langauge = 4;
-}
-
-message GetSubmissionsRequest{
-    string problem_id = 1;
-    string user_id = 2;
-}
-message GetSubmissionsResponse{
-    string problem_id = 1;
-    repeated Submission submissions = 2;
-    bool success = 3;
-    string message = 4;
-    string error_type = 5;
-    string user_code = 6;
-}
-
-
-
-message RunProblemRequest{
-    string problem_id = 1;
-    string user_code = 2;
-    string langauge = 3;
-    bool is_run_testcase = 4;
-}
-
-message RunProblemResponse{ 
-    string problem_id = 1;
-    string langauge = 2;
-    bool is_run_testcase = 3;
-    bool success = 4;
-    string message = 5;
-    string error_type = 6;
-}
-
-
-message FullValidationByProblemIDRequest{
-    string problem_id = 1;
-}
-
-message FullValidationByProblemIDResponse{
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
-}
-
-// Common timestamp message
 message Timestamp {
     int64 seconds = 1;
     int32 nanos = 2;
 }
 
-// Test case structure
 message TestCase {
-    string id =1;
+    string id = 1;
     string input = 2;
     string expected = 3;
 }
@@ -131,14 +43,12 @@ message TestCaseRunOnly {
     repeated TestCase run = 1;
 }
 
-// Language-specific validation code
 message ValidationCode {
     string placeholder = 1;
     string code = 2;
     string template = 3;
 }
 
-// Request Messages for Problem CRUD
 message CreateProblemRequest {
     string title = 1;
     string description = 2;
@@ -170,14 +80,11 @@ message ListProblemsRequest {
     string search_query = 5;
 }
 
-// Request Messages for Test Cases
 message AddTestCasesRequest {
     string problem_id = 1;
     TestCases testcases = 2;
 }
 
-
-// Request Messages for Language Support
 message AddLanguageSupportRequest {
     string problem_id = 1;
     string language = 2;
@@ -187,7 +94,7 @@ message AddLanguageSupportRequest {
 message UpdateLanguageSupportRequest {
     string problem_id = 1;
     string language = 2;
-    ValidationCode validation_code  =3;
+    ValidationCode validation_code = 3;
 }
 
 message RemoveLanguageSupportRequest {
@@ -195,7 +102,6 @@ message RemoveLanguageSupportRequest {
     string language = 2;
 }
 
-// Response Messages
 message Problem {
     string problem_id = 1;
     Timestamp created_at = 2;
@@ -214,13 +120,13 @@ message Problem {
 
 message ProblemMetadata {
     string problem_id = 1;
-    string title = 5;
-    string description = 6;
-    repeated string tags = 7;
-    TestCaseRunOnly testcase_run = 8;
-    string difficulty = 9;
-    repeated string supported_languages = 10;
-    bool validated = 12;
+    string title = 2;
+    string description = 3;
+    repeated string tags = 4;
+    TestCaseRunOnly testcase_run = 5;
+    string difficulty = 6;
+    repeated string supported_languages = 7;
+    bool validated = 8;
 }
 
 message CreateProblemResponse {
@@ -262,13 +168,6 @@ message AddTestCasesResponse {
     string error_type = 4;
 }
 
-message RemoveTestCasesResponse {
-    bool success = 1;
-    string message = 2;
-    int32 removed_count = 3;
-    string error_type = 4;
-}
-
 message AddLanguageSupportResponse {
     bool success = 1;
     string message = 2;
@@ -290,42 +189,91 @@ message RemoveLanguageSupportResponse {
 message DeleteTestCaseRequest {
     string problem_id = 1;
     string testcase_id = 2;
-    bool is_run_testcase = 3;  
-  }
-  
-  message DeleteTestCaseResponse {
+    bool is_run_testcase = 3;
+}
+
+message DeleteTestCaseResponse {
     bool success = 1;
     string message = 2;
-  }
+    string error_type = 3;
+}
 
-  message GetLanguageSupportsRequest {
+message GetLanguageSupportsRequest {
     string problem_id = 1;
-  }
-  
-  message GetLanguageSupportsResponse {
+}
+
+message GetLanguageSupportsResponse {
     bool success = 1;
     string message = 2;
     repeated string supported_languages = 3;
     map<string, ValidationCode> validate_code = 4;
-  }
+}
 
+message FullValidationByProblemIDRequest {
+    string problem_id = 1;
+}
 
-  message GetProblemsPlaylistRequest{
-    
-  }
+message FullValidationByProblemIDResponse {
+    bool success = 1;
+    string message = 2;
+    string error_type = 3;
+}
 
-  message ExecuteUserCodeProblemIDRequest{
+message RunProblemRequest {
     string problem_id = 1;
     string user_code = 2;
-    string languages = 3;
-  }
+    string langauge = 3;
+    bool is_run_testcase = 4;
+}
 
-  message ExecuteUserCodeProblemIDResponse{
+message RunProblemResponse {
     string problem_id = 1;
-    
-  }
+    string langauge = 2;
+    bool is_run_testcase = 3;
+    bool success = 4;
+    string message = 5;
+    string error_type = 6;
+}
 
-message ProblemExecutionResult{
+message Submission {
     string problem_id = 1;
-    
+    bool success = 2;
+    string execution_error_type = 3;
+    string langauge = 4;
+}
+
+message GetSubmissionsRequest {
+    string problem_id = 1;
+    string user_id = 2;
+}
+
+message GetSubmissionsResponse {
+    string problem_id = 1;
+    repeated Submission submissions = 2;
+    bool success = 3;
+    string message = 4;
+    string error_type = 5;
+}
+
+message GetProblemByIdSlugRequest {
+    string problem_id = 1;
+    optional string slug = 2;
+}
+
+message GetProblemByIdSlugResponse {
+    ProblemMetadata problemmetdata = 1;
+    string message = 2;
+}
+
+message GetProblemByIdSlugListRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+    repeated string tags = 3;
+    string difficulty = 4;
+    string search_query = 5;
+}
+
+message GetProblemByIdSlugListResponse {
+    repeated ProblemMetadata problemmetdata = 1;
+    string message = 2;
 }
