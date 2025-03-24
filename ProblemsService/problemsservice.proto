@@ -207,6 +207,7 @@ message GetLanguageSupportsResponse {
     string message = 2;
     repeated string supported_languages = 3;
     map<string, ValidationCode> validate_code = 4;
+    string error_type = 5;
 }
 
 message FullValidationByProblemIDRequest {
