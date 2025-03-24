@@ -262,7 +262,7 @@ message GetProblemByIdSlugRequest {
 }
 
 message GetProblemByIdSlugResponse {
-    ProblemMetadata problemmetdata = 1;
+    ProblemMetadataLite problemmetdata = 1;
     string message = 2;
 }
 
@@ -275,6 +275,17 @@ message GetProblemByIdSlugListRequest {
 }
 
 message GetProblemByIdSlugListResponse {
-    repeated ProblemMetadata problemmetdata = 1;
+    repeated ProblemMetadataLite problemmetdata = 1;
     string message = 2;
+}
+message ProblemMetadataLite {
+    string problem_id = 1;
+    string title = 2;
+    string description = 3;
+    repeated string tags = 4;
+    TestCaseRunOnly testcase_run = 5;
+    string difficulty = 6;
+    repeated string supported_languages = 7;
+    bool validated = 8;
+    map<string, string> placeholder_maps = 9; 
 }
