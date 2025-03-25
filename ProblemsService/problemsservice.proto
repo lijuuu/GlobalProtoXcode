@@ -223,13 +223,13 @@ message FullValidationByProblemIDResponse {
 message RunProblemRequest {
     string problem_id = 1;
     string user_code = 2;
-    string langauge = 3;
+    string language = 3;
     bool is_run_testcase = 4;
 }
 
 message RunProblemResponse {
     string problem_id = 1;
-    string langauge = 2;
+    string language = 2;
     bool is_run_testcase = 3;
     bool success = 4;
     string message = 5;
@@ -240,7 +240,7 @@ message Submission {
     string problem_id = 1;
     bool success = 2;
     string execution_error_type = 3;
-    string langauge = 4;
+    string language = 4;
 }
 
 message GetSubmissionsRequest {
