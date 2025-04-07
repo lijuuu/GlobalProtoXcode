@@ -19,22 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProblemsService_CreateProblem_FullMethodName             = "/problems.ProblemsService/CreateProblem"
-	ProblemsService_UpdateProblem_FullMethodName             = "/problems.ProblemsService/UpdateProblem"
-	ProblemsService_DeleteProblem_FullMethodName             = "/problems.ProblemsService/DeleteProblem"
-	ProblemsService_GetProblem_FullMethodName                = "/problems.ProblemsService/GetProblem"
-	ProblemsService_ListProblems_FullMethodName              = "/problems.ProblemsService/ListProblems"
-	ProblemsService_GetProblemByIDSlug_FullMethodName        = "/problems.ProblemsService/GetProblemByIDSlug"
-	ProblemsService_GetProblemByIDSlugList_FullMethodName    = "/problems.ProblemsService/GetProblemByIDSlugList"
-	ProblemsService_AddTestCases_FullMethodName              = "/problems.ProblemsService/AddTestCases"
-	ProblemsService_DeleteTestCase_FullMethodName            = "/problems.ProblemsService/DeleteTestCase"
-	ProblemsService_GetLanguageSupports_FullMethodName       = "/problems.ProblemsService/GetLanguageSupports"
-	ProblemsService_AddLanguageSupport_FullMethodName        = "/problems.ProblemsService/AddLanguageSupport"
-	ProblemsService_UpdateLanguageSupport_FullMethodName     = "/problems.ProblemsService/UpdateLanguageSupport"
-	ProblemsService_RemoveLanguageSupport_FullMethodName     = "/problems.ProblemsService/RemoveLanguageSupport"
-	ProblemsService_FullValidationByProblemID_FullMethodName = "/problems.ProblemsService/FullValidationByProblemID"
-	ProblemsService_RunUserCodeProblem_FullMethodName        = "/problems.ProblemsService/RunUserCodeProblem"
-	ProblemsService_GetSubmissions_FullMethodName            = "/problems.ProblemsService/GetSubmissions"
+	ProblemsService_CreateProblem_FullMethodName                     = "/problems.ProblemsService/CreateProblem"
+	ProblemsService_UpdateProblem_FullMethodName                     = "/problems.ProblemsService/UpdateProblem"
+	ProblemsService_DeleteProblem_FullMethodName                     = "/problems.ProblemsService/DeleteProblem"
+	ProblemsService_GetProblem_FullMethodName                        = "/problems.ProblemsService/GetProblem"
+	ProblemsService_ListProblems_FullMethodName                      = "/problems.ProblemsService/ListProblems"
+	ProblemsService_GetProblemByIDSlug_FullMethodName                = "/problems.ProblemsService/GetProblemByIDSlug"
+	ProblemsService_GetProblemByIDList_FullMethodName                = "/problems.ProblemsService/GetProblemByIDList"
+	ProblemsService_AddTestCases_FullMethodName                      = "/problems.ProblemsService/AddTestCases"
+	ProblemsService_DeleteTestCase_FullMethodName                    = "/problems.ProblemsService/DeleteTestCase"
+	ProblemsService_GetLanguageSupports_FullMethodName               = "/problems.ProblemsService/GetLanguageSupports"
+	ProblemsService_AddLanguageSupport_FullMethodName                = "/problems.ProblemsService/AddLanguageSupport"
+	ProblemsService_UpdateLanguageSupport_FullMethodName             = "/problems.ProblemsService/UpdateLanguageSupport"
+	ProblemsService_RemoveLanguageSupport_FullMethodName             = "/problems.ProblemsService/RemoveLanguageSupport"
+	ProblemsService_FullValidationByProblemID_FullMethodName         = "/problems.ProblemsService/FullValidationByProblemID"
+	ProblemsService_RunUserCodeProblem_FullMethodName                = "/problems.ProblemsService/RunUserCodeProblem"
+	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -47,7 +47,7 @@ type ProblemsServiceClient interface {
 	GetProblem(ctx context.Context, in *GetProblemRequest, opts ...grpc.CallOption) (*GetProblemResponse, error)
 	ListProblems(ctx context.Context, in *ListProblemsRequest, opts ...grpc.CallOption) (*ListProblemsResponse, error)
 	GetProblemByIDSlug(ctx context.Context, in *GetProblemByIdSlugRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error)
-	GetProblemByIDSlugList(ctx context.Context, in *GetProblemByIdSlugListRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugListResponse, error)
+	GetProblemByIDList(ctx context.Context, in *GetProblemByIdListRequest, opts ...grpc.CallOption) (*GetProblemByIdListResponse, error)
 	AddTestCases(ctx context.Context, in *AddTestCasesRequest, opts ...grpc.CallOption) (*AddTestCasesResponse, error)
 	DeleteTestCase(ctx context.Context, in *DeleteTestCaseRequest, opts ...grpc.CallOption) (*DeleteTestCaseResponse, error)
 	GetLanguageSupports(ctx context.Context, in *GetLanguageSupportsRequest, opts ...grpc.CallOption) (*GetLanguageSupportsResponse, error)
@@ -56,7 +56,7 @@ type ProblemsServiceClient interface {
 	RemoveLanguageSupport(ctx context.Context, in *RemoveLanguageSupportRequest, opts ...grpc.CallOption) (*RemoveLanguageSupportResponse, error)
 	FullValidationByProblemID(ctx context.Context, in *FullValidationByProblemIDRequest, opts ...grpc.CallOption) (*FullValidationByProblemIDResponse, error)
 	RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error)
-	GetSubmissions(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
+	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -127,10 +127,10 @@ func (c *problemsServiceClient) GetProblemByIDSlug(ctx context.Context, in *GetP
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetProblemByIDSlugList(ctx context.Context, in *GetProblemByIdSlugListRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugListResponse, error) {
+func (c *problemsServiceClient) GetProblemByIDList(ctx context.Context, in *GetProblemByIdListRequest, opts ...grpc.CallOption) (*GetProblemByIdListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetProblemByIdSlugListResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetProblemByIDSlugList_FullMethodName, in, out, cOpts...)
+	out := new(GetProblemByIdListResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetProblemByIDList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -217,10 +217,10 @@ func (c *problemsServiceClient) RunUserCodeProblem(ctx context.Context, in *RunP
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetSubmissions(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error) {
+func (c *problemsServiceClient) GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSubmissionsResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissions_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -237,7 +237,7 @@ type ProblemsServiceServer interface {
 	GetProblem(context.Context, *GetProblemRequest) (*GetProblemResponse, error)
 	ListProblems(context.Context, *ListProblemsRequest) (*ListProblemsResponse, error)
 	GetProblemByIDSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error)
-	GetProblemByIDSlugList(context.Context, *GetProblemByIdSlugListRequest) (*GetProblemByIdSlugListResponse, error)
+	GetProblemByIDList(context.Context, *GetProblemByIdListRequest) (*GetProblemByIdListResponse, error)
 	AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error)
 	DeleteTestCase(context.Context, *DeleteTestCaseRequest) (*DeleteTestCaseResponse, error)
 	GetLanguageSupports(context.Context, *GetLanguageSupportsRequest) (*GetLanguageSupportsResponse, error)
@@ -246,7 +246,7 @@ type ProblemsServiceServer interface {
 	RemoveLanguageSupport(context.Context, *RemoveLanguageSupportRequest) (*RemoveLanguageSupportResponse, error)
 	FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error)
 	RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error)
-	GetSubmissions(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
+	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -275,8 +275,8 @@ func (UnimplementedProblemsServiceServer) ListProblems(context.Context, *ListPro
 func (UnimplementedProblemsServiceServer) GetProblemByIDSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIDSlug not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetProblemByIDSlugList(context.Context, *GetProblemByIdSlugListRequest) (*GetProblemByIdSlugListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIDSlugList not implemented")
+func (UnimplementedProblemsServiceServer) GetProblemByIDList(context.Context, *GetProblemByIdListRequest) (*GetProblemByIdListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIDList not implemented")
 }
 func (UnimplementedProblemsServiceServer) AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTestCases not implemented")
@@ -302,8 +302,8 @@ func (UnimplementedProblemsServiceServer) FullValidationByProblemID(context.Cont
 func (UnimplementedProblemsServiceServer) RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunUserCodeProblem not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetSubmissions(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissions not implemented")
+func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByOptionalProblemID not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -434,20 +434,20 @@ func _ProblemsService_GetProblemByIDSlug_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetProblemByIDSlugList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProblemByIdSlugListRequest)
+func _ProblemsService_GetProblemByIDList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProblemByIdListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetProblemByIDSlugList(ctx, in)
+		return srv.(ProblemsServiceServer).GetProblemByIDList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetProblemByIDSlugList_FullMethodName,
+		FullMethod: ProblemsService_GetProblemByIDList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetProblemByIDSlugList(ctx, req.(*GetProblemByIdSlugListRequest))
+		return srv.(ProblemsServiceServer).GetProblemByIDList(ctx, req.(*GetProblemByIdListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -596,20 +596,20 @@ func _ProblemsService_RunUserCodeProblem_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetSubmissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProblemsService_GetSubmissionsByOptionalProblemID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSubmissionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetSubmissions(ctx, in)
+		return srv.(ProblemsServiceServer).GetSubmissionsByOptionalProblemID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetSubmissions_FullMethodName,
+		FullMethod: ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetSubmissions(ctx, req.(*GetSubmissionsRequest))
+		return srv.(ProblemsServiceServer).GetSubmissionsByOptionalProblemID(ctx, req.(*GetSubmissionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -646,8 +646,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_GetProblemByIDSlug_Handler,
 		},
 		{
-			MethodName: "GetProblemByIDSlugList",
-			Handler:    _ProblemsService_GetProblemByIDSlugList_Handler,
+			MethodName: "GetProblemByIDList",
+			Handler:    _ProblemsService_GetProblemByIDList_Handler,
 		},
 		{
 			MethodName: "AddTestCases",
@@ -682,8 +682,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_RunUserCodeProblem_Handler,
 		},
 		{
-			MethodName: "GetSubmissions",
-			Handler:    _ProblemsService_GetSubmissions_Handler,
+			MethodName: "GetSubmissionsByOptionalProblemID",
+			Handler:    _ProblemsService_GetSubmissionsByOptionalProblemID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

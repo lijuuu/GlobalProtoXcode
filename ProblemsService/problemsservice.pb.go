@@ -2122,13 +2122,19 @@ func (x *RunProblemResponse) GetErrorType() string {
 }
 
 type Submission struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	ProblemId          string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
-	Success            bool                   `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
-	ExecutionErrorType string                 `protobuf:"bytes,3,opt,name=execution_error_type,json=executionErrorType,proto3" json:"execution_error_type,omitempty"`
-	Language           string                 `protobuf:"bytes,4,opt,name=language,proto3" json:"language,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProblemId      string                 `protobuf:"bytes,2,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
+	UserId         string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SubmissionDate *Timestamp             `protobuf:"bytes,4,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
+	Status         string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	Output         string                 `protobuf:"bytes,6,opt,name=output,proto3" json:"output,omitempty"`
+	Language       string                 `protobuf:"bytes,7,opt,name=language,proto3" json:"language,omitempty"`
+	ExecutionTime  float32                `protobuf:"fixed32,8,opt,name=execution_time,json=executionTime,proto3" json:"execution_time,omitempty"`
+	Difficulty     string                 `protobuf:"bytes,9,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
+	IsFirst        bool                   `protobuf:"varint,10,opt,name=is_first,json=isFirst,proto3" json:"is_first,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Submission) Reset() {
@@ -2161,6 +2167,13 @@ func (*Submission) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{33}
 }
 
+func (x *Submission) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
 func (x *Submission) GetProblemId() string {
 	if x != nil {
 		return x.ProblemId
@@ -2168,16 +2181,30 @@ func (x *Submission) GetProblemId() string {
 	return ""
 }
 
-func (x *Submission) GetSuccess() bool {
+func (x *Submission) GetUserId() string {
 	if x != nil {
-		return x.Success
+		return x.UserId
 	}
-	return false
+	return ""
 }
 
-func (x *Submission) GetExecutionErrorType() string {
+func (x *Submission) GetSubmissionDate() *Timestamp {
 	if x != nil {
-		return x.ExecutionErrorType
+		return x.SubmissionDate
+	}
+	return nil
+}
+
+func (x *Submission) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Submission) GetOutput() string {
+	if x != nil {
+		return x.Output
 	}
 	return ""
 }
@@ -2189,17 +2216,132 @@ func (x *Submission) GetLanguage() string {
 	return ""
 }
 
+func (x *Submission) GetExecutionTime() float32 {
+	if x != nil {
+		return x.ExecutionTime
+	}
+	return 0
+}
+
+func (x *Submission) GetDifficulty() string {
+	if x != nil {
+		return x.Difficulty
+	}
+	return ""
+}
+
+func (x *Submission) GetIsFirst() bool {
+	if x != nil {
+		return x.IsFirst
+	}
+	return false
+}
+
+type SubmissionLeaderboardMetadata struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	SubmissionDate *Timestamp             `protobuf:"bytes,2,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
+	ProblemId      string                 `protobuf:"bytes,3,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
+	UserId         string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Score          int32                  `protobuf:"varint,5,opt,name=score,proto3" json:"score,omitempty"`
+	Difficulty     string                 `protobuf:"bytes,6,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
+	ExecutionTime  float32                `protobuf:"fixed32,7,opt,name=execution_time,json=executionTime,proto3" json:"execution_time,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SubmissionLeaderboardMetadata) Reset() {
+	*x = SubmissionLeaderboardMetadata{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SubmissionLeaderboardMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubmissionLeaderboardMetadata) ProtoMessage() {}
+
+func (x *SubmissionLeaderboardMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubmissionLeaderboardMetadata.ProtoReflect.Descriptor instead.
+func (*SubmissionLeaderboardMetadata) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *SubmissionLeaderboardMetadata) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *SubmissionLeaderboardMetadata) GetSubmissionDate() *Timestamp {
+	if x != nil {
+		return x.SubmissionDate
+	}
+	return nil
+}
+
+func (x *SubmissionLeaderboardMetadata) GetProblemId() string {
+	if x != nil {
+		return x.ProblemId
+	}
+	return ""
+}
+
+func (x *SubmissionLeaderboardMetadata) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SubmissionLeaderboardMetadata) GetScore() int32 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
+func (x *SubmissionLeaderboardMetadata) GetDifficulty() string {
+	if x != nil {
+		return x.Difficulty
+	}
+	return ""
+}
+
+func (x *SubmissionLeaderboardMetadata) GetExecutionTime() float32 {
+	if x != nil {
+		return x.ExecutionTime
+	}
+	return 0
+}
+
 type GetSubmissionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProblemId     *string                `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3,oneof" json:"problem_id,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetSubmissionsRequest) Reset() {
 	*x = GetSubmissionsRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2211,7 +2353,7 @@ func (x *GetSubmissionsRequest) String() string {
 func (*GetSubmissionsRequest) ProtoMessage() {}
 
 func (x *GetSubmissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2224,14 +2366,28 @@ func (x *GetSubmissionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubmissionsRequest.ProtoReflect.Descriptor instead.
 func (*GetSubmissionsRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{34}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *GetSubmissionsRequest) GetProblemId() string {
-	if x != nil {
-		return x.ProblemId
+	if x != nil && x.ProblemId != nil {
+		return *x.ProblemId
 	}
 	return ""
+}
+
+func (x *GetSubmissionsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetSubmissionsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
 }
 
 func (x *GetSubmissionsRequest) GetUserId() string {
@@ -2243,18 +2399,17 @@ func (x *GetSubmissionsRequest) GetUserId() string {
 
 type GetSubmissionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
-	Submissions   []*Submission          `protobuf:"bytes,2,rep,name=submissions,proto3" json:"submissions,omitempty"`
-	Success       bool                   `protobuf:"varint,3,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
-	ErrorType     string                 `protobuf:"bytes,5,opt,name=error_type,json=errorType,proto3" json:"error_type,omitempty"`
+	Submissions   []*Submission          `protobuf:"bytes,1,rep,name=submissions,proto3" json:"submissions,omitempty"`
+	Success       bool                   `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,4,opt,name=error_type,json=errorType,proto3" json:"error_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetSubmissionsResponse) Reset() {
 	*x = GetSubmissionsResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2266,7 +2421,7 @@ func (x *GetSubmissionsResponse) String() string {
 func (*GetSubmissionsResponse) ProtoMessage() {}
 
 func (x *GetSubmissionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2279,14 +2434,7 @@ func (x *GetSubmissionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubmissionsResponse.ProtoReflect.Descriptor instead.
 func (*GetSubmissionsResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{35}
-}
-
-func (x *GetSubmissionsResponse) GetProblemId() string {
-	if x != nil {
-		return x.ProblemId
-	}
-	return ""
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GetSubmissionsResponse) GetSubmissions() []*Submission {
@@ -2327,7 +2475,7 @@ type GetProblemByIdSlugRequest struct {
 
 func (x *GetProblemByIdSlugRequest) Reset() {
 	*x = GetProblemByIdSlugRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2339,7 +2487,7 @@ func (x *GetProblemByIdSlugRequest) String() string {
 func (*GetProblemByIdSlugRequest) ProtoMessage() {}
 
 func (x *GetProblemByIdSlugRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2352,7 +2500,7 @@ func (x *GetProblemByIdSlugRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemByIdSlugRequest.ProtoReflect.Descriptor instead.
 func (*GetProblemByIdSlugRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{36}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetProblemByIdSlugRequest) GetProblemId() string {
@@ -2379,7 +2527,7 @@ type GetProblemByIdSlugResponse struct {
 
 func (x *GetProblemByIdSlugResponse) Reset() {
 	*x = GetProblemByIdSlugResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2391,7 +2539,7 @@ func (x *GetProblemByIdSlugResponse) String() string {
 func (*GetProblemByIdSlugResponse) ProtoMessage() {}
 
 func (x *GetProblemByIdSlugResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2404,7 +2552,7 @@ func (x *GetProblemByIdSlugResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemByIdSlugResponse.ProtoReflect.Descriptor instead.
 func (*GetProblemByIdSlugResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{37}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *GetProblemByIdSlugResponse) GetProblemmetdata() *ProblemMetadataLite {
@@ -2421,7 +2569,7 @@ func (x *GetProblemByIdSlugResponse) GetMessage() string {
 	return ""
 }
 
-type GetProblemByIdSlugListRequest struct {
+type GetProblemByIdListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
@@ -2432,21 +2580,21 @@ type GetProblemByIdSlugListRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetProblemByIdSlugListRequest) Reset() {
-	*x = GetProblemByIdSlugListRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
+func (x *GetProblemByIdListRequest) Reset() {
+	*x = GetProblemByIdListRequest{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProblemByIdSlugListRequest) String() string {
+func (x *GetProblemByIdListRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProblemByIdSlugListRequest) ProtoMessage() {}
+func (*GetProblemByIdListRequest) ProtoMessage() {}
 
-func (x *GetProblemByIdSlugListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
+func (x *GetProblemByIdListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2457,47 +2605,47 @@ func (x *GetProblemByIdSlugListRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProblemByIdSlugListRequest.ProtoReflect.Descriptor instead.
-func (*GetProblemByIdSlugListRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{38}
+// Deprecated: Use GetProblemByIdListRequest.ProtoReflect.Descriptor instead.
+func (*GetProblemByIdListRequest) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{39}
 }
 
-func (x *GetProblemByIdSlugListRequest) GetPage() int32 {
+func (x *GetProblemByIdListRequest) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *GetProblemByIdSlugListRequest) GetPageSize() int32 {
+func (x *GetProblemByIdListRequest) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-func (x *GetProblemByIdSlugListRequest) GetTags() []string {
+func (x *GetProblemByIdListRequest) GetTags() []string {
 	if x != nil {
 		return x.Tags
 	}
 	return nil
 }
 
-func (x *GetProblemByIdSlugListRequest) GetDifficulty() string {
+func (x *GetProblemByIdListRequest) GetDifficulty() string {
 	if x != nil {
 		return x.Difficulty
 	}
 	return ""
 }
 
-func (x *GetProblemByIdSlugListRequest) GetSearchQuery() string {
+func (x *GetProblemByIdListRequest) GetSearchQuery() string {
 	if x != nil {
 		return x.SearchQuery
 	}
 	return ""
 }
 
-type GetProblemByIdSlugListResponse struct {
+type GetProblemByIdListResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Problemmetdata []*ProblemMetadataLite `protobuf:"bytes,1,rep,name=problemmetdata,proto3" json:"problemmetdata,omitempty"`
 	Message        string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -2505,21 +2653,21 @@ type GetProblemByIdSlugListResponse struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *GetProblemByIdSlugListResponse) Reset() {
-	*x = GetProblemByIdSlugListResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
+func (x *GetProblemByIdListResponse) Reset() {
+	*x = GetProblemByIdListResponse{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProblemByIdSlugListResponse) String() string {
+func (x *GetProblemByIdListResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProblemByIdSlugListResponse) ProtoMessage() {}
+func (*GetProblemByIdListResponse) ProtoMessage() {}
 
-func (x *GetProblemByIdSlugListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
+func (x *GetProblemByIdListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2530,19 +2678,19 @@ func (x *GetProblemByIdSlugListResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProblemByIdSlugListResponse.ProtoReflect.Descriptor instead.
-func (*GetProblemByIdSlugListResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{39}
+// Deprecated: Use GetProblemByIdListResponse.ProtoReflect.Descriptor instead.
+func (*GetProblemByIdListResponse) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{40}
 }
 
-func (x *GetProblemByIdSlugListResponse) GetProblemmetdata() []*ProblemMetadataLite {
+func (x *GetProblemByIdListResponse) GetProblemmetdata() []*ProblemMetadataLite {
 	if x != nil {
 		return x.Problemmetdata
 	}
 	return nil
 }
 
-func (x *GetProblemByIdSlugListResponse) GetMessage() string {
+func (x *GetProblemByIdListResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -2566,7 +2714,7 @@ type ProblemMetadataLite struct {
 
 func (x *ProblemMetadataLite) Reset() {
 	*x = ProblemMetadataLite{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2578,7 +2726,7 @@ func (x *ProblemMetadataLite) String() string {
 func (*ProblemMetadataLite) ProtoMessage() {}
 
 func (x *ProblemMetadataLite) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2591,7 +2739,7 @@ func (x *ProblemMetadataLite) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProblemMetadataLite.ProtoReflect.Descriptor instead.
 func (*ProblemMetadataLite) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{40}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *ProblemMetadataLite) GetProblemId() string {
@@ -2863,26 +3011,47 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\asuccess\x18\x04 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x06 \x01(\tR\terrorType\"\x93\x01\n" +
+	"error_type\x18\x06 \x01(\tR\terrorType\"\xc0\x02\n" +
 	"\n" +
-	"Submission\x12\x1d\n" +
+	"Submission\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +
-	"\asuccess\x18\x02 \x01(\bR\asuccess\x120\n" +
-	"\x14execution_error_type\x18\x03 \x01(\tR\x12executionErrorType\x12\x1a\n" +
-	"\blanguage\x18\x04 \x01(\tR\blanguage\"O\n" +
-	"\x15GetSubmissionsRequest\x12\x1d\n" +
+	"problem_id\x18\x02 \x01(\tR\tproblemId\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\x12<\n" +
+	"\x0fsubmission_date\x18\x04 \x01(\v2\x13.problems.TimestampR\x0esubmissionDate\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12\x16\n" +
+	"\x06output\x18\x06 \x01(\tR\x06output\x12\x1a\n" +
+	"\blanguage\x18\a \x01(\tR\blanguage\x12%\n" +
+	"\x0eexecution_time\x18\b \x01(\x02R\rexecutionTime\x12\x1e\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xc2\x01\n" +
-	"\x16GetSubmissionsResponse\x12\x1d\n" +
+	"difficulty\x18\t \x01(\tR\n" +
+	"difficulty\x12\x19\n" +
+	"\bis_first\x18\n" +
+	" \x01(\bR\aisFirst\"\x82\x02\n" +
+	"\x1dSubmissionLeaderboardMetadata\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12<\n" +
+	"\x0fsubmission_date\x18\x02 \x01(\v2\x13.problems.TimestampR\x0esubmissionDate\x12\x1d\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\x126\n" +
-	"\vsubmissions\x18\x02 \x03(\v2\x14.problems.SubmissionR\vsubmissions\x12\x18\n" +
-	"\asuccess\x18\x03 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x04 \x01(\tR\amessage\x12\x1d\n" +
+	"problem_id\x18\x03 \x01(\tR\tproblemId\x12\x17\n" +
+	"\auser_id\x18\x04 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05score\x18\x05 \x01(\x05R\x05score\x12\x1e\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"\\\n" +
+	"difficulty\x18\x06 \x01(\tR\n" +
+	"difficulty\x12%\n" +
+	"\x0eexecution_time\x18\a \x01(\x02R\rexecutionTime\"\x8d\x01\n" +
+	"\x15GetSubmissionsRequest\x12\"\n" +
+	"\n" +
+	"problem_id\x18\x01 \x01(\tH\x00R\tproblemId\x88\x01\x01\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x17\n" +
+	"\auser_id\x18\x04 \x01(\tR\x06userIdB\r\n" +
+	"\v_problem_id\"\xa3\x01\n" +
+	"\x16GetSubmissionsResponse\x126\n" +
+	"\vsubmissions\x18\x01 \x03(\v2\x14.problems.SubmissionR\vsubmissions\x12\x18\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\x12\x1d\n" +
+	"\n" +
+	"error_type\x18\x04 \x01(\tR\terrorType\"\\\n" +
 	"\x19GetProblemByIdSlugRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x17\n" +
@@ -2890,16 +3059,16 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x05_slug\"}\n" +
 	"\x1aGetProblemByIdSlugResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x01(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xa7\x01\n" +
-	"\x1dGetProblemByIdSlugListRequest\x12\x12\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xa3\x01\n" +
+	"\x19GetProblemByIdListRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tags\x12\x1e\n" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12!\n" +
-	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\"\x81\x01\n" +
-	"\x1eGetProblemByIdSlugListResponse\x12E\n" +
+	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\"}\n" +
+	"\x1aGetProblemByIdListResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x03(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xd0\x03\n" +
 	"\x13ProblemMetadataLite\x12\x1d\n" +
@@ -2917,7 +3086,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x10placeholder_maps\x18\t \x03(\v22.problems.ProblemMetadataLite.PlaceholderMapsEntryR\x0fplaceholderMaps\x1aB\n" +
 	"\x14PlaceholderMapsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xc6\v\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xcd\v\n" +
 	"\x0fProblemsService\x12P\n" +
 	"\rCreateProblem\x12\x1e.problems.CreateProblemRequest\x1a\x1f.problems.CreateProblemResponse\x12P\n" +
 	"\rUpdateProblem\x12\x1e.problems.UpdateProblemRequest\x1a\x1f.problems.UpdateProblemResponse\x12P\n" +
@@ -2925,8 +3094,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"GetProblem\x12\x1b.problems.GetProblemRequest\x1a\x1c.problems.GetProblemResponse\x12M\n" +
 	"\fListProblems\x12\x1d.problems.ListProblemsRequest\x1a\x1e.problems.ListProblemsResponse\x12_\n" +
-	"\x12GetProblemByIDSlug\x12#.problems.GetProblemByIdSlugRequest\x1a$.problems.GetProblemByIdSlugResponse\x12k\n" +
-	"\x16GetProblemByIDSlugList\x12'.problems.GetProblemByIdSlugListRequest\x1a(.problems.GetProblemByIdSlugListResponse\x12M\n" +
+	"\x12GetProblemByIDSlug\x12#.problems.GetProblemByIdSlugRequest\x1a$.problems.GetProblemByIdSlugResponse\x12_\n" +
+	"\x12GetProblemByIDList\x12#.problems.GetProblemByIdListRequest\x1a$.problems.GetProblemByIdListResponse\x12M\n" +
 	"\fAddTestCases\x12\x1d.problems.AddTestCasesRequest\x1a\x1e.problems.AddTestCasesResponse\x12S\n" +
 	"\x0eDeleteTestCase\x12\x1f.problems.DeleteTestCaseRequest\x1a .problems.DeleteTestCaseResponse\x12b\n" +
 	"\x13GetLanguageSupports\x12$.problems.GetLanguageSupportsRequest\x1a%.problems.GetLanguageSupportsResponse\x12_\n" +
@@ -2934,8 +3103,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x15UpdateLanguageSupport\x12&.problems.UpdateLanguageSupportRequest\x1a'.problems.UpdateLanguageSupportResponse\x12h\n" +
 	"\x15RemoveLanguageSupport\x12&.problems.RemoveLanguageSupportRequest\x1a'.problems.RemoveLanguageSupportResponse\x12t\n" +
 	"\x19FullValidationByProblemID\x12*.problems.FullValidationByProblemIDRequest\x1a+.problems.FullValidationByProblemIDResponse\x12O\n" +
-	"\x12RunUserCodeProblem\x12\x1b.problems.RunProblemRequest\x1a\x1c.problems.RunProblemResponse\x12S\n" +
-	"\x0eGetSubmissions\x12\x1f.problems.GetSubmissionsRequest\x1a .problems.GetSubmissionsResponseB\tZ\a./protob\x06proto3"
+	"\x12RunUserCodeProblem\x12\x1b.problems.RunProblemRequest\x1a\x1c.problems.RunProblemResponse\x12f\n" +
+	"!GetSubmissionsByOptionalProblemID\x12\x1f.problems.GetSubmissionsRequest\x1a .problems.GetSubmissionsResponseB\tZ\a./protob\x06proto3"
 
 var (
 	file_ProblemsService_problemsservice_proto_rawDescOnce sync.Once
@@ -2949,7 +3118,7 @@ func file_ProblemsService_problemsservice_proto_rawDescGZIP() []byte {
 	return file_ProblemsService_problemsservice_proto_rawDescData
 }
 
-var file_ProblemsService_problemsservice_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_ProblemsService_problemsservice_proto_msgTypes = make([]protoimpl.MessageInfo, 45)
 var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*Timestamp)(nil),                         // 0: problems.Timestamp
 	(*TestCase)(nil),                          // 1: problems.TestCase
@@ -2985,16 +3154,17 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*RunProblemRequest)(nil),                 // 31: problems.RunProblemRequest
 	(*RunProblemResponse)(nil),                // 32: problems.RunProblemResponse
 	(*Submission)(nil),                        // 33: problems.Submission
-	(*GetSubmissionsRequest)(nil),             // 34: problems.GetSubmissionsRequest
-	(*GetSubmissionsResponse)(nil),            // 35: problems.GetSubmissionsResponse
-	(*GetProblemByIdSlugRequest)(nil),         // 36: problems.GetProblemByIdSlugRequest
-	(*GetProblemByIdSlugResponse)(nil),        // 37: problems.GetProblemByIdSlugResponse
-	(*GetProblemByIdSlugListRequest)(nil),     // 38: problems.GetProblemByIdSlugListRequest
-	(*GetProblemByIdSlugListResponse)(nil),    // 39: problems.GetProblemByIdSlugListResponse
-	(*ProblemMetadataLite)(nil),               // 40: problems.ProblemMetadataLite
-	nil,                                       // 41: problems.Problem.ValidateCodeEntry
-	nil,                                       // 42: problems.GetLanguageSupportsResponse.ValidateCodeEntry
-	nil,                                       // 43: problems.ProblemMetadataLite.PlaceholderMapsEntry
+	(*SubmissionLeaderboardMetadata)(nil),     // 34: problems.SubmissionLeaderboardMetadata
+	(*GetSubmissionsRequest)(nil),             // 35: problems.GetSubmissionsRequest
+	(*GetSubmissionsResponse)(nil),            // 36: problems.GetSubmissionsResponse
+	(*GetProblemByIdSlugRequest)(nil),         // 37: problems.GetProblemByIdSlugRequest
+	(*GetProblemByIdSlugResponse)(nil),        // 38: problems.GetProblemByIdSlugResponse
+	(*GetProblemByIdListRequest)(nil),         // 39: problems.GetProblemByIdListRequest
+	(*GetProblemByIdListResponse)(nil),        // 40: problems.GetProblemByIdListResponse
+	(*ProblemMetadataLite)(nil),               // 41: problems.ProblemMetadataLite
+	nil,                                       // 42: problems.Problem.ValidateCodeEntry
+	nil,                                       // 43: problems.GetLanguageSupportsResponse.ValidateCodeEntry
+	nil,                                       // 44: problems.ProblemMetadataLite.PlaceholderMapsEntry
 }
 var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	1,  // 0: problems.TestCases.run:type_name -> problems.TestCase
@@ -3007,56 +3177,58 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	0,  // 7: problems.Problem.updated_at:type_name -> problems.Timestamp
 	0,  // 8: problems.Problem.deleted_at:type_name -> problems.Timestamp
 	2,  // 9: problems.Problem.testcases:type_name -> problems.TestCases
-	41, // 10: problems.Problem.validate_code:type_name -> problems.Problem.ValidateCodeEntry
+	42, // 10: problems.Problem.validate_code:type_name -> problems.Problem.ValidateCodeEntry
 	0,  // 11: problems.Problem.validated_at:type_name -> problems.Timestamp
 	3,  // 12: problems.ProblemMetadata.testcase_run:type_name -> problems.TestCaseRunOnly
 	14, // 13: problems.GetProblemResponse.problem:type_name -> problems.Problem
 	14, // 14: problems.ListProblemsResponse.problems:type_name -> problems.Problem
-	42, // 15: problems.GetLanguageSupportsResponse.validate_code:type_name -> problems.GetLanguageSupportsResponse.ValidateCodeEntry
-	33, // 16: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
-	40, // 17: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	40, // 18: problems.GetProblemByIdSlugListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	3,  // 19: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
-	43, // 20: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
-	4,  // 21: problems.Problem.ValidateCodeEntry.value:type_name -> problems.ValidationCode
-	4,  // 22: problems.GetLanguageSupportsResponse.ValidateCodeEntry.value:type_name -> problems.ValidationCode
-	5,  // 23: problems.ProblemsService.CreateProblem:input_type -> problems.CreateProblemRequest
-	6,  // 24: problems.ProblemsService.UpdateProblem:input_type -> problems.UpdateProblemRequest
-	7,  // 25: problems.ProblemsService.DeleteProblem:input_type -> problems.DeleteProblemRequest
-	8,  // 26: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
-	9,  // 27: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
-	36, // 28: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
-	38, // 29: problems.ProblemsService.GetProblemByIDSlugList:input_type -> problems.GetProblemByIdSlugListRequest
-	10, // 30: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
-	25, // 31: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
-	27, // 32: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
-	11, // 33: problems.ProblemsService.AddLanguageSupport:input_type -> problems.AddLanguageSupportRequest
-	12, // 34: problems.ProblemsService.UpdateLanguageSupport:input_type -> problems.UpdateLanguageSupportRequest
-	13, // 35: problems.ProblemsService.RemoveLanguageSupport:input_type -> problems.RemoveLanguageSupportRequest
-	29, // 36: problems.ProblemsService.FullValidationByProblemID:input_type -> problems.FullValidationByProblemIDRequest
-	31, // 37: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
-	34, // 38: problems.ProblemsService.GetSubmissions:input_type -> problems.GetSubmissionsRequest
-	16, // 39: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
-	17, // 40: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
-	18, // 41: problems.ProblemsService.DeleteProblem:output_type -> problems.DeleteProblemResponse
-	19, // 42: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
-	20, // 43: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
-	37, // 44: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
-	39, // 45: problems.ProblemsService.GetProblemByIDSlugList:output_type -> problems.GetProblemByIdSlugListResponse
-	21, // 46: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
-	26, // 47: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
-	28, // 48: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse
-	22, // 49: problems.ProblemsService.AddLanguageSupport:output_type -> problems.AddLanguageSupportResponse
-	23, // 50: problems.ProblemsService.UpdateLanguageSupport:output_type -> problems.UpdateLanguageSupportResponse
-	24, // 51: problems.ProblemsService.RemoveLanguageSupport:output_type -> problems.RemoveLanguageSupportResponse
-	30, // 52: problems.ProblemsService.FullValidationByProblemID:output_type -> problems.FullValidationByProblemIDResponse
-	32, // 53: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
-	35, // 54: problems.ProblemsService.GetSubmissions:output_type -> problems.GetSubmissionsResponse
-	39, // [39:55] is the sub-list for method output_type
-	23, // [23:39] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	43, // 15: problems.GetLanguageSupportsResponse.validate_code:type_name -> problems.GetLanguageSupportsResponse.ValidateCodeEntry
+	0,  // 16: problems.Submission.submission_date:type_name -> problems.Timestamp
+	0,  // 17: problems.SubmissionLeaderboardMetadata.submission_date:type_name -> problems.Timestamp
+	33, // 18: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
+	41, // 19: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	41, // 20: problems.GetProblemByIdListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	3,  // 21: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
+	44, // 22: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
+	4,  // 23: problems.Problem.ValidateCodeEntry.value:type_name -> problems.ValidationCode
+	4,  // 24: problems.GetLanguageSupportsResponse.ValidateCodeEntry.value:type_name -> problems.ValidationCode
+	5,  // 25: problems.ProblemsService.CreateProblem:input_type -> problems.CreateProblemRequest
+	6,  // 26: problems.ProblemsService.UpdateProblem:input_type -> problems.UpdateProblemRequest
+	7,  // 27: problems.ProblemsService.DeleteProblem:input_type -> problems.DeleteProblemRequest
+	8,  // 28: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
+	9,  // 29: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
+	37, // 30: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
+	39, // 31: problems.ProblemsService.GetProblemByIDList:input_type -> problems.GetProblemByIdListRequest
+	10, // 32: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
+	25, // 33: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
+	27, // 34: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
+	11, // 35: problems.ProblemsService.AddLanguageSupport:input_type -> problems.AddLanguageSupportRequest
+	12, // 36: problems.ProblemsService.UpdateLanguageSupport:input_type -> problems.UpdateLanguageSupportRequest
+	13, // 37: problems.ProblemsService.RemoveLanguageSupport:input_type -> problems.RemoveLanguageSupportRequest
+	29, // 38: problems.ProblemsService.FullValidationByProblemID:input_type -> problems.FullValidationByProblemIDRequest
+	31, // 39: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
+	35, // 40: problems.ProblemsService.GetSubmissionsByOptionalProblemID:input_type -> problems.GetSubmissionsRequest
+	16, // 41: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
+	17, // 42: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
+	18, // 43: problems.ProblemsService.DeleteProblem:output_type -> problems.DeleteProblemResponse
+	19, // 44: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
+	20, // 45: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
+	38, // 46: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
+	40, // 47: problems.ProblemsService.GetProblemByIDList:output_type -> problems.GetProblemByIdListResponse
+	21, // 48: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
+	26, // 49: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
+	28, // 50: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse
+	22, // 51: problems.ProblemsService.AddLanguageSupport:output_type -> problems.AddLanguageSupportResponse
+	23, // 52: problems.ProblemsService.UpdateLanguageSupport:output_type -> problems.UpdateLanguageSupportResponse
+	24, // 53: problems.ProblemsService.RemoveLanguageSupport:output_type -> problems.RemoveLanguageSupportResponse
+	30, // 54: problems.ProblemsService.FullValidationByProblemID:output_type -> problems.FullValidationByProblemIDResponse
+	32, // 55: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
+	36, // 56: problems.ProblemsService.GetSubmissionsByOptionalProblemID:output_type -> problems.GetSubmissionsResponse
+	41, // [41:57] is the sub-list for method output_type
+	25, // [25:41] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_ProblemsService_problemsservice_proto_init() }
@@ -3066,14 +3238,15 @@ func file_ProblemsService_problemsservice_proto_init() {
 	}
 	file_ProblemsService_problemsservice_proto_msgTypes[6].OneofWrappers = []any{}
 	file_ProblemsService_problemsservice_proto_msgTypes[14].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[36].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[35].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[37].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ProblemsService_problemsservice_proto_rawDesc), len(file_ProblemsService_problemsservice_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   44,
+			NumMessages:   45,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

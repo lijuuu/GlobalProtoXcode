@@ -11,7 +11,7 @@ service ProblemsService {
     rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
     rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
     rpc GetProblemByIDSlug(GetProblemByIdSlugRequest) returns (GetProblemByIdSlugResponse);
-    rpc GetProblemByIDSlugList(GetProblemByIdSlugListRequest) returns (GetProblemByIdSlugListResponse);
+    rpc GetProblemByIDList(GetProblemByIdListRequest) returns (GetProblemByIdListResponse);
     rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
     rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
     rpc GetLanguageSupports(GetLanguageSupportsRequest) returns (GetLanguageSupportsResponse);
@@ -20,7 +20,8 @@ service ProblemsService {
     rpc RemoveLanguageSupport(RemoveLanguageSupportRequest) returns (RemoveLanguageSupportResponse);
     rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
     rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
-    rpc GetSubmissions(GetSubmissionsRequest) returns (GetSubmissionsResponse);
+    rpc GetSubmissionsByOptionalProblemID(GetSubmissionsRequest) returns (GetSubmissionsResponse);
+    
 }
 
 message Timestamp {
@@ -237,23 +238,40 @@ message RunProblemResponse {
 }
 
 message Submission {
-    string problem_id = 1;
-    bool success = 2;
-    string execution_error_type = 3;
-    string language = 4;
+    string id = 1; 
+    string problem_id = 2; 
+    string user_id = 3; 
+    Timestamp submission_date = 4; 
+    string status = 5;
+    string output = 6;
+    string language = 7; 
+    float execution_time = 8; 
+    string difficulty = 9; 
+    bool is_first = 10; 
+}
+
+message SubmissionLeaderboardMetadata{
+    string id =1;
+    Timestamp submission_date =2;
+    string problem_id = 3; 
+    string user_id = 4;  
+    int32 score = 5;
+    string difficulty = 6;
+    float execution_time = 7;
 }
 
 message GetSubmissionsRequest {
-    string problem_id = 1;
-    string user_id = 2;
+    optional string problem_id = 1;
+    int32 page = 2;
+    int32 limit = 3;
+    string user_id = 4;
 }
 
 message GetSubmissionsResponse {
-    string problem_id = 1;
-    repeated Submission submissions = 2;
-    bool success = 3;
-    string message = 4;
-    string error_type = 5;
+    repeated Submission submissions = 1;
+    bool success = 2;
+    string message = 3;
+    string error_type = 4;
 }
 
 message GetProblemByIdSlugRequest {
@@ -266,7 +284,7 @@ message GetProblemByIdSlugResponse {
     string message = 2;
 }
 
-message GetProblemByIdSlugListRequest {
+message GetProblemByIdListRequest {
     int32 page = 1;
     int32 page_size = 2;
     repeated string tags = 3;
@@ -274,7 +292,7 @@ message GetProblemByIdSlugListRequest {
     string search_query = 5;
 }
 
-message GetProblemByIdSlugListResponse {
+message GetProblemByIdListResponse {
     repeated ProblemMetadataLite problemmetdata = 1;
     string message = 2;
 }
