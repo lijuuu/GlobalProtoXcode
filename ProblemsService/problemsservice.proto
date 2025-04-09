@@ -225,11 +225,12 @@ message FullValidationByProblemIDResponse {
 
 
 message RunProblemRequest {
-    string user_id = 1;
-    string problem_id = 2;
-    string user_code = 3;
-    string language = 4;
-    bool is_run_testcase = 5;
+    string problem_id = 1;
+    string user_code = 2;
+    string language = 3;
+    bool is_run_testcase = 4;
+    string user_id = 5;
+    optional string demo = 6;
 }
 
 message RunProblemResponse {
