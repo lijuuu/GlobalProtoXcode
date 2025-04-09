@@ -21,7 +21,9 @@ service ProblemsService {
     rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
     rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
     rpc GetSubmissionsByOptionalProblemID(GetSubmissionsRequest) returns (GetSubmissionsResponse);
-    
+
+    //leaderboard
+    //get leaderboard -req: page,limit resp
 }
 
 message Timestamp {
@@ -241,24 +243,17 @@ message Submission {
     string id = 1; 
     string problem_id = 2; 
     string user_id = 3; 
-    Timestamp submission_date = 4; 
-    string status = 5;
-    string output = 6;
-    string language = 7; 
-    float execution_time = 8; 
-    string difficulty = 9; 
-    bool is_first = 10; 
+    string challenge_id = 4;
+    Timestamp submitted_at = 5;
+    int32 score = 6; 
+    string status = 7;
+    string output = 8;
+    string language = 9; 
+    float execution_time = 10; 
+    string difficulty = 11; 
+    bool is_first = 12; 
 }
 
-message SubmissionLeaderboardMetadata{
-    string id =1;
-    Timestamp submission_date =2;
-    string problem_id = 3; 
-    string user_id = 4;  
-    int32 score = 5;
-    string difficulty = 6;
-    float execution_time = 7;
-}
 
 message GetSubmissionsRequest {
     optional string problem_id = 1;
