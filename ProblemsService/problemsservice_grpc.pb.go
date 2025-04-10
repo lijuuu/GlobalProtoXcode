@@ -36,7 +36,7 @@ const (
 	ProblemsService_RunUserCodeProblem_FullMethodName                = "/problems.ProblemsService/RunUserCodeProblem"
 	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
 	ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName     = "/problems.ProblemsService/GetLeaderBoardOptionalCountry"
-	ProblemsService_GetProblemsDoneStatitics_FullMethodName          = "/problems.ProblemsService/GetProblemsDoneStatitics"
+	ProblemsService_GetProblemsDoneStatistics_FullMethodName         = "/problems.ProblemsService/GetProblemsDoneStatistics"
 	ProblemsService_GetIndividualUserRank_FullMethodName             = "/problems.ProblemsService/GetIndividualUserRank"
 )
 
@@ -63,7 +63,7 @@ type ProblemsServiceClient interface {
 	// leaderboard
 	// get leaderboard -req: page,limit resp
 	GetLeaderBoardOptionalCountry(ctx context.Context, in *GetLeaderBoardOptionalCountryRequest, opts ...grpc.CallOption) (*GetLeaderBoardOptionalCountryResponse, error)
-	GetProblemsDoneStatitics(ctx context.Context, in *GetProblemsDoneStatiticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatiticsResponse, error)
+	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
 	GetIndividualUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
 }
 
@@ -245,10 +245,10 @@ func (c *problemsServiceClient) GetLeaderBoardOptionalCountry(ctx context.Contex
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetProblemsDoneStatitics(ctx context.Context, in *GetProblemsDoneStatiticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatiticsResponse, error) {
+func (c *problemsServiceClient) GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetProblemsDoneStatiticsResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetProblemsDoneStatitics_FullMethodName, in, out, cOpts...)
+	out := new(GetProblemsDoneStatisticsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetProblemsDoneStatistics_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -288,7 +288,7 @@ type ProblemsServiceServer interface {
 	// leaderboard
 	// get leaderboard -req: page,limit resp
 	GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error)
-	GetProblemsDoneStatitics(context.Context, *GetProblemsDoneStatiticsRequest) (*GetProblemsDoneStatiticsResponse, error)
+	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
 	GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
@@ -351,8 +351,8 @@ func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(cont
 func (UnimplementedProblemsServiceServer) GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLeaderBoardOptionalCountry not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetProblemsDoneStatitics(context.Context, *GetProblemsDoneStatiticsRequest) (*GetProblemsDoneStatiticsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatitics not implemented")
+func (UnimplementedProblemsServiceServer) GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatistics not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIndividualUserRank not implemented")
@@ -684,20 +684,20 @@ func _ProblemsService_GetLeaderBoardOptionalCountry_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetProblemsDoneStatitics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProblemsDoneStatiticsRequest)
+func _ProblemsService_GetProblemsDoneStatistics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProblemsDoneStatisticsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetProblemsDoneStatitics(ctx, in)
+		return srv.(ProblemsServiceServer).GetProblemsDoneStatistics(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetProblemsDoneStatitics_FullMethodName,
+		FullMethod: ProblemsService_GetProblemsDoneStatistics_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetProblemsDoneStatitics(ctx, req.(*GetProblemsDoneStatiticsRequest))
+		return srv.(ProblemsServiceServer).GetProblemsDoneStatistics(ctx, req.(*GetProblemsDoneStatisticsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -796,8 +796,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_GetLeaderBoardOptionalCountry_Handler,
 		},
 		{
-			MethodName: "GetProblemsDoneStatitics",
-			Handler:    _ProblemsService_GetProblemsDoneStatitics_Handler,
+			MethodName: "GetProblemsDoneStatistics",
+			Handler:    _ProblemsService_GetProblemsDoneStatistics_Handler,
 		},
 		{
 			MethodName: "GetIndividualUserRank",

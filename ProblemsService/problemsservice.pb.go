@@ -209,7 +209,7 @@ func (x *GetLeaderBoardOptionalCountryRequest) GetUserId() string {
 	return ""
 }
 
-type GetProblemsDoneStatiticsRequest struct {
+type GetProblemsDoneStatisticsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      *string                `protobuf:"bytes,1,opt,name=username,proto3,oneof" json:"username,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -217,20 +217,20 @@ type GetProblemsDoneStatiticsRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetProblemsDoneStatiticsRequest) Reset() {
-	*x = GetProblemsDoneStatiticsRequest{}
+func (x *GetProblemsDoneStatisticsRequest) Reset() {
+	*x = GetProblemsDoneStatisticsRequest{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProblemsDoneStatiticsRequest) String() string {
+func (x *GetProblemsDoneStatisticsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProblemsDoneStatiticsRequest) ProtoMessage() {}
+func (*GetProblemsDoneStatisticsRequest) ProtoMessage() {}
 
-func (x *GetProblemsDoneStatiticsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetProblemsDoneStatisticsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -242,19 +242,19 @@ func (x *GetProblemsDoneStatiticsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProblemsDoneStatiticsRequest.ProtoReflect.Descriptor instead.
-func (*GetProblemsDoneStatiticsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetProblemsDoneStatisticsRequest.ProtoReflect.Descriptor instead.
+func (*GetProblemsDoneStatisticsRequest) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetProblemsDoneStatiticsRequest) GetUsername() string {
+func (x *GetProblemsDoneStatisticsRequest) GetUsername() string {
 	if x != nil && x.Username != nil {
 		return *x.Username
 	}
 	return ""
 }
 
-func (x *GetProblemsDoneStatiticsRequest) GetUserId() string {
+func (x *GetProblemsDoneStatisticsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
@@ -313,27 +313,27 @@ func (x *GetUserRankRequest) GetUserId() string {
 	return ""
 }
 
-type GetProblemsDoneStatiticsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          *ProblemsDoneStatitics `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+type GetProblemsDoneStatisticsResponse struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Data          *ProblemsDoneStatistics `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetProblemsDoneStatiticsResponse) Reset() {
-	*x = GetProblemsDoneStatiticsResponse{}
+func (x *GetProblemsDoneStatisticsResponse) Reset() {
+	*x = GetProblemsDoneStatisticsResponse{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProblemsDoneStatiticsResponse) String() string {
+func (x *GetProblemsDoneStatisticsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProblemsDoneStatiticsResponse) ProtoMessage() {}
+func (*GetProblemsDoneStatisticsResponse) ProtoMessage() {}
 
-func (x *GetProblemsDoneStatiticsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetProblemsDoneStatisticsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -345,19 +345,19 @@ func (x *GetProblemsDoneStatiticsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProblemsDoneStatiticsResponse.ProtoReflect.Descriptor instead.
-func (*GetProblemsDoneStatiticsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetProblemsDoneStatisticsResponse.ProtoReflect.Descriptor instead.
+func (*GetProblemsDoneStatisticsResponse) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetProblemsDoneStatiticsResponse) GetData() *ProblemsDoneStatitics {
+func (x *GetProblemsDoneStatisticsResponse) GetData() *ProblemsDoneStatistics {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-type ProblemsDoneStatitics struct {
+type ProblemsDoneStatistics struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	MaxEasyCount    int32                  `protobuf:"varint,1,opt,name=max_easy_count,json=maxEasyCount,proto3" json:"max_easy_count,omitempty"`
 	DoneEasyCount   int32                  `protobuf:"varint,2,opt,name=done_easy_count,json=doneEasyCount,proto3" json:"done_easy_count,omitempty"`
@@ -369,20 +369,20 @@ type ProblemsDoneStatitics struct {
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *ProblemsDoneStatitics) Reset() {
-	*x = ProblemsDoneStatitics{}
+func (x *ProblemsDoneStatistics) Reset() {
+	*x = ProblemsDoneStatistics{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ProblemsDoneStatitics) String() string {
+func (x *ProblemsDoneStatistics) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ProblemsDoneStatitics) ProtoMessage() {}
+func (*ProblemsDoneStatistics) ProtoMessage() {}
 
-func (x *ProblemsDoneStatitics) ProtoReflect() protoreflect.Message {
+func (x *ProblemsDoneStatistics) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -394,47 +394,47 @@ func (x *ProblemsDoneStatitics) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ProblemsDoneStatitics.ProtoReflect.Descriptor instead.
-func (*ProblemsDoneStatitics) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProblemsDoneStatistics.ProtoReflect.Descriptor instead.
+func (*ProblemsDoneStatistics) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ProblemsDoneStatitics) GetMaxEasyCount() int32 {
+func (x *ProblemsDoneStatistics) GetMaxEasyCount() int32 {
 	if x != nil {
 		return x.MaxEasyCount
 	}
 	return 0
 }
 
-func (x *ProblemsDoneStatitics) GetDoneEasyCount() int32 {
+func (x *ProblemsDoneStatistics) GetDoneEasyCount() int32 {
 	if x != nil {
 		return x.DoneEasyCount
 	}
 	return 0
 }
 
-func (x *ProblemsDoneStatitics) GetMaxMediumCount() int32 {
+func (x *ProblemsDoneStatistics) GetMaxMediumCount() int32 {
 	if x != nil {
 		return x.MaxMediumCount
 	}
 	return 0
 }
 
-func (x *ProblemsDoneStatitics) GetDoneMediumCount() int32 {
+func (x *ProblemsDoneStatistics) GetDoneMediumCount() int32 {
 	if x != nil {
 		return x.DoneMediumCount
 	}
 	return 0
 }
 
-func (x *ProblemsDoneStatitics) GetMaxHardCount() int32 {
+func (x *ProblemsDoneStatistics) GetMaxHardCount() int32 {
 	if x != nil {
 		return x.MaxHardCount
 	}
 	return 0
 }
 
-func (x *ProblemsDoneStatitics) GetDoneHardCount() int32 {
+func (x *ProblemsDoneStatistics) GetDoneHardCount() int32 {
 	if x != nil {
 		return x.DoneHardCount
 	}
@@ -3265,18 +3265,18 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\auser_id\x18\x05 \x01(\tR\x06userIdB\n" +
 	"\n" +
 	"\b_countryB\v\n" +
-	"\t_username\"h\n" +
-	"\x1fGetProblemsDoneStatiticsRequest\x12\x1f\n" +
+	"\t_username\"i\n" +
+	" GetProblemsDoneStatisticsRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tH\x00R\busername\x88\x01\x01\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userIdB\v\n" +
 	"\t_username\"[\n" +
 	"\x12GetUserRankRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tH\x00R\busername\x88\x01\x01\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userIdB\v\n" +
-	"\t_username\"W\n" +
-	" GetProblemsDoneStatiticsResponse\x123\n" +
-	"\x04data\x18\x01 \x01(\v2\x1f.problems.ProblemsDoneStatiticsR\x04data\"\x89\x02\n" +
-	"\x15ProblemsDoneStatitics\x12$\n" +
+	"\t_username\"Y\n" +
+	"!GetProblemsDoneStatisticsResponse\x124\n" +
+	"\x04data\x18\x01 \x01(\v2 .problems.ProblemsDoneStatisticsR\x04data\"\x8a\x02\n" +
+	"\x16ProblemsDoneStatistics\x12$\n" +
 	"\x0emax_easy_count\x18\x01 \x01(\x05R\fmaxEasyCount\x12&\n" +
 	"\x0fdone_easy_count\x18\x02 \x01(\x05R\rdoneEasyCount\x12(\n" +
 	"\x10max_medium_count\x18\x03 \x01(\x05R\x0emaxMediumCount\x12*\n" +
@@ -3560,7 +3560,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x10placeholder_maps\x18\t \x03(\v22.problems.ProblemMetadataLite.PlaceholderMapsEntryR\x0fplaceholderMaps\x1aB\n" +
 	"\x14PlaceholderMapsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x99\x0e\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x9c\x0e\n" +
 	"\x0fProblemsService\x12P\n" +
 	"\rCreateProblem\x12\x1e.problems.CreateProblemRequest\x1a\x1f.problems.CreateProblemResponse\x12P\n" +
 	"\rUpdateProblem\x12\x1e.problems.UpdateProblemRequest\x1a\x1f.problems.UpdateProblemResponse\x12P\n" +
@@ -3579,8 +3579,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x19FullValidationByProblemID\x12*.problems.FullValidationByProblemIDRequest\x1a+.problems.FullValidationByProblemIDResponse\x12O\n" +
 	"\x12RunUserCodeProblem\x12\x1b.problems.RunProblemRequest\x1a\x1c.problems.RunProblemResponse\x12f\n" +
 	"!GetSubmissionsByOptionalProblemID\x12\x1f.problems.GetSubmissionsRequest\x1a .problems.GetSubmissionsResponse\x12\x80\x01\n" +
-	"\x1dGetLeaderBoardOptionalCountry\x12..problems.GetLeaderBoardOptionalCountryRequest\x1a/.problems.GetLeaderBoardOptionalCountryResponse\x12q\n" +
-	"\x18GetProblemsDoneStatitics\x12).problems.GetProblemsDoneStatiticsRequest\x1a*.problems.GetProblemsDoneStatiticsResponse\x12T\n" +
+	"\x1dGetLeaderBoardOptionalCountry\x12..problems.GetLeaderBoardOptionalCountryRequest\x1a/.problems.GetLeaderBoardOptionalCountryResponse\x12t\n" +
+	"\x19GetProblemsDoneStatistics\x12*.problems.GetProblemsDoneStatisticsRequest\x1a+.problems.GetProblemsDoneStatisticsResponse\x12T\n" +
 	"\x15GetIndividualUserRank\x12\x1c.problems.GetUserRankRequest\x1a\x1d.problems.GetUserRankResponseB\tZ\a./protob\x06proto3"
 
 var (
@@ -3600,10 +3600,10 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*GetLeaderBoardOptionalCountryResponse)(nil), // 0: problems.GetLeaderBoardOptionalCountryResponse
 	(*LeaderboardSingle)(nil),                     // 1: problems.LeaderboardSingle
 	(*GetLeaderBoardOptionalCountryRequest)(nil),  // 2: problems.GetLeaderBoardOptionalCountryRequest
-	(*GetProblemsDoneStatiticsRequest)(nil),       // 3: problems.GetProblemsDoneStatiticsRequest
+	(*GetProblemsDoneStatisticsRequest)(nil),      // 3: problems.GetProblemsDoneStatisticsRequest
 	(*GetUserRankRequest)(nil),                    // 4: problems.GetUserRankRequest
-	(*GetProblemsDoneStatiticsResponse)(nil),      // 5: problems.GetProblemsDoneStatiticsResponse
-	(*ProblemsDoneStatitics)(nil),                 // 6: problems.ProblemsDoneStatitics
+	(*GetProblemsDoneStatisticsResponse)(nil),     // 5: problems.GetProblemsDoneStatisticsResponse
+	(*ProblemsDoneStatistics)(nil),                // 6: problems.ProblemsDoneStatistics
 	(*GetUserRankResponse)(nil),                   // 7: problems.GetUserRankResponse
 	(*Timestamp)(nil),                             // 8: problems.Timestamp
 	(*TestCase)(nil),                              // 9: problems.TestCase
@@ -3652,7 +3652,7 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 }
 var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	1,  // 0: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
-	6,  // 1: problems.GetProblemsDoneStatiticsResponse.data:type_name -> problems.ProblemsDoneStatitics
+	6,  // 1: problems.GetProblemsDoneStatisticsResponse.data:type_name -> problems.ProblemsDoneStatistics
 	9,  // 2: problems.TestCases.run:type_name -> problems.TestCase
 	9,  // 3: problems.TestCases.submit:type_name -> problems.TestCase
 	9,  // 4: problems.TestCaseRunOnly.run:type_name -> problems.TestCase
@@ -3694,7 +3694,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	39, // 40: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
 	42, // 41: problems.ProblemsService.GetSubmissionsByOptionalProblemID:input_type -> problems.GetSubmissionsRequest
 	2,  // 42: problems.ProblemsService.GetLeaderBoardOptionalCountry:input_type -> problems.GetLeaderBoardOptionalCountryRequest
-	3,  // 43: problems.ProblemsService.GetProblemsDoneStatitics:input_type -> problems.GetProblemsDoneStatiticsRequest
+	3,  // 43: problems.ProblemsService.GetProblemsDoneStatistics:input_type -> problems.GetProblemsDoneStatisticsRequest
 	4,  // 44: problems.ProblemsService.GetIndividualUserRank:input_type -> problems.GetUserRankRequest
 	24, // 45: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
 	25, // 46: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
@@ -3713,7 +3713,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	40, // 59: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
 	43, // 60: problems.ProblemsService.GetSubmissionsByOptionalProblemID:output_type -> problems.GetSubmissionsResponse
 	0,  // 61: problems.ProblemsService.GetLeaderBoardOptionalCountry:output_type -> problems.GetLeaderBoardOptionalCountryResponse
-	5,  // 62: problems.ProblemsService.GetProblemsDoneStatitics:output_type -> problems.GetProblemsDoneStatiticsResponse
+	5,  // 62: problems.ProblemsService.GetProblemsDoneStatistics:output_type -> problems.GetProblemsDoneStatisticsResponse
 	7,  // 63: problems.ProblemsService.GetIndividualUserRank:output_type -> problems.GetUserRankResponse
 	45, // [45:64] is the sub-list for method output_type
 	26, // [26:45] is the sub-list for method input_type

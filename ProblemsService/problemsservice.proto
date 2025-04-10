@@ -25,7 +25,7 @@ service ProblemsService {
     //leaderboard
     //get leaderboard -req: page,limit resp
     rpc GetLeaderBoardOptionalCountry(GetLeaderBoardOptionalCountryRequest) returns (GetLeaderBoardOptionalCountryResponse);
-    rpc GetProblemsDoneStatitics(GetProblemsDoneStatiticsRequest) returns (GetProblemsDoneStatiticsResponse);
+    rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest) returns (GetProblemsDoneStatisticsResponse);
 
     rpc GetIndividualUserRank(GetUserRankRequest) returns (GetUserRankResponse);
 }
@@ -51,7 +51,7 @@ message GetLeaderBoardOptionalCountryRequest {
     string user_id = 5; 
 }
 
-message GetProblemsDoneStatiticsRequest {
+message GetProblemsDoneStatisticsRequest {
     optional string username = 1; 
     string user_id = 2; 
 }
@@ -61,11 +61,11 @@ message GetUserRankRequest {
     string user_id = 2; 
 }
 
-message GetProblemsDoneStatiticsResponse{
-    ProblemsDoneStatitics data = 1;
+message GetProblemsDoneStatisticsResponse{
+    ProblemsDoneStatistics data = 1;
 }
 
-message ProblemsDoneStatitics {
+message ProblemsDoneStatistics {
     int32 max_easy_count = 1; 
     int32 done_easy_count = 2; 
     int32 max_medium_count = 3; 
