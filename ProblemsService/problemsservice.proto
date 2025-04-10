@@ -242,6 +242,7 @@ message RunProblemResponse {
     string error_type = 6;
 }
 
+
 message Submission {
     string id = 1; 
     string problem_id = 2; 
@@ -255,6 +256,7 @@ message Submission {
     float execution_time = 10; 
     string difficulty = 11; 
     bool is_first = 12; 
+    string title = 13;
 }
 
 

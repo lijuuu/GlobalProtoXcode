@@ -2151,6 +2151,7 @@ type Submission struct {
 	ExecutionTime float32                `protobuf:"fixed32,10,opt,name=execution_time,json=executionTime,proto3" json:"execution_time,omitempty"`
 	Difficulty    string                 `protobuf:"bytes,11,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	IsFirst       bool                   `protobuf:"varint,12,opt,name=is_first,json=isFirst,proto3" json:"is_first,omitempty"`
+	Title         string                 `protobuf:"bytes,13,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2267,6 +2268,13 @@ func (x *Submission) GetIsFirst() bool {
 		return x.IsFirst
 	}
 	return false
+}
+
+func (x *Submission) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
 }
 
 type GetSubmissionsRequest struct {
@@ -2954,7 +2962,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\asuccess\x18\x04 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x06 \x01(\tR\terrorType\"\xf3\x02\n" +
+	"error_type\x18\x06 \x01(\tR\terrorType\"\x89\x03\n" +
 	"\n" +
 	"Submission\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
@@ -2972,7 +2980,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"difficulty\x18\v \x01(\tR\n" +
 	"difficulty\x12\x19\n" +
-	"\bis_first\x18\f \x01(\bR\aisFirst\"\x8d\x01\n" +
+	"\bis_first\x18\f \x01(\bR\aisFirst\x12\x14\n" +
+	"\x05title\x18\r \x01(\tR\x05title\"\x8d\x01\n" +
 	"\x15GetSubmissionsRequest\x12\"\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tH\x00R\tproblemId\x88\x01\x01\x12\x12\n" +
