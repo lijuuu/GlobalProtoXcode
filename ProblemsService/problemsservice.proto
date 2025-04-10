@@ -24,7 +24,62 @@ service ProblemsService {
 
     //leaderboard
     //get leaderboard -req: page,limit resp
+    rpc GetLeaderBoardOptionalCountry(GetLeaderBoardOptionalCountryRequest) returns (GetLeaderBoardOptionalCountryResponse);
+    rpc GetProblemsDoneStatitics(GetProblemsDoneStatiticsRequest) returns (GetProblemsDoneStatiticsResponse);
+
+    rpc GetIndividualUserRank(GetUserRankRequest) returns (GetUserRankResponse);
 }
+
+
+
+message GetLeaderBoardOptionalCountryResponse{
+    LeaderboardSingle data = 1;
+    optional string filter_type = 2; //country or global
+}
+
+message LeaderboardSingle{
+    string username = 1;
+    optional int64 country_rank = 2;
+    int64 global_rank = 3;
+}
+
+message GetLeaderBoardOptionalCountryRequest {
+    int64 page = 1;
+    int64 limit = 2;
+    optional string country = 3;
+    optional string username = 4; 
+    string user_id = 5; 
+}
+
+message GetProblemsDoneStatiticsRequest {
+    optional string username = 1; 
+    string user_id = 2; 
+}
+
+message GetUserRankRequest {
+    optional string username = 1; 
+    string user_id = 2; 
+}
+
+message GetProblemsDoneStatiticsResponse{
+    ProblemsDoneStatitics data = 1;
+}
+
+message ProblemsDoneStatitics {
+    int32 max_easy_count = 1; 
+    int32 done_easy_count = 2; 
+    int32 max_medium_count = 3; 
+    int32 done_medium_count = 4; 
+    int32 max_hard_count = 5; 
+    int32 done_hard_count = 6; 
+}
+
+message GetUserRankResponse{
+    string username = 1;
+    int64 country_rank = 2;
+    int64 global_rank = 3;
+}
+
 
 message Timestamp {
     int64 seconds = 1;

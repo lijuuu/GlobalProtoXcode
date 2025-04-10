@@ -35,6 +35,9 @@ const (
 	ProblemsService_FullValidationByProblemID_FullMethodName         = "/problems.ProblemsService/FullValidationByProblemID"
 	ProblemsService_RunUserCodeProblem_FullMethodName                = "/problems.ProblemsService/RunUserCodeProblem"
 	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
+	ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName     = "/problems.ProblemsService/GetLeaderBoardOptionalCountry"
+	ProblemsService_GetProblemsDoneStatitics_FullMethodName          = "/problems.ProblemsService/GetProblemsDoneStatitics"
+	ProblemsService_GetIndividualUserRank_FullMethodName             = "/problems.ProblemsService/GetIndividualUserRank"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -57,6 +60,11 @@ type ProblemsServiceClient interface {
 	FullValidationByProblemID(ctx context.Context, in *FullValidationByProblemIDRequest, opts ...grpc.CallOption) (*FullValidationByProblemIDResponse, error)
 	RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error)
 	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
+	// leaderboard
+	// get leaderboard -req: page,limit resp
+	GetLeaderBoardOptionalCountry(ctx context.Context, in *GetLeaderBoardOptionalCountryRequest, opts ...grpc.CallOption) (*GetLeaderBoardOptionalCountryResponse, error)
+	GetProblemsDoneStatitics(ctx context.Context, in *GetProblemsDoneStatiticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatiticsResponse, error)
+	GetIndividualUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -227,6 +235,36 @@ func (c *problemsServiceClient) GetSubmissionsByOptionalProblemID(ctx context.Co
 	return out, nil
 }
 
+func (c *problemsServiceClient) GetLeaderBoardOptionalCountry(ctx context.Context, in *GetLeaderBoardOptionalCountryRequest, opts ...grpc.CallOption) (*GetLeaderBoardOptionalCountryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLeaderBoardOptionalCountryResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetProblemsDoneStatitics(ctx context.Context, in *GetProblemsDoneStatiticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatiticsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProblemsDoneStatiticsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetProblemsDoneStatitics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetIndividualUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserRankResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetIndividualUserRank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -247,6 +285,11 @@ type ProblemsServiceServer interface {
 	FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error)
 	RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error)
 	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
+	// leaderboard
+	// get leaderboard -req: page,limit resp
+	GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error)
+	GetProblemsDoneStatitics(context.Context, *GetProblemsDoneStatiticsRequest) (*GetProblemsDoneStatiticsResponse, error)
+	GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -304,6 +347,15 @@ func (UnimplementedProblemsServiceServer) RunUserCodeProblem(context.Context, *R
 }
 func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByOptionalProblemID not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLeaderBoardOptionalCountry not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetProblemsDoneStatitics(context.Context, *GetProblemsDoneStatiticsRequest) (*GetProblemsDoneStatiticsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatitics not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIndividualUserRank not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -614,6 +666,60 @@ func _ProblemsService_GetSubmissionsByOptionalProblemID_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_GetLeaderBoardOptionalCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLeaderBoardOptionalCountryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetLeaderBoardOptionalCountry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetLeaderBoardOptionalCountry(ctx, req.(*GetLeaderBoardOptionalCountryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetProblemsDoneStatitics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProblemsDoneStatiticsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetProblemsDoneStatitics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetProblemsDoneStatitics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetProblemsDoneStatitics(ctx, req.(*GetProblemsDoneStatiticsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetIndividualUserRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetIndividualUserRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetIndividualUserRank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetIndividualUserRank(ctx, req.(*GetUserRankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -684,6 +790,18 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSubmissionsByOptionalProblemID",
 			Handler:    _ProblemsService_GetSubmissionsByOptionalProblemID_Handler,
+		},
+		{
+			MethodName: "GetLeaderBoardOptionalCountry",
+			Handler:    _ProblemsService_GetLeaderBoardOptionalCountry_Handler,
+		},
+		{
+			MethodName: "GetProblemsDoneStatitics",
+			Handler:    _ProblemsService_GetProblemsDoneStatitics_Handler,
+		},
+		{
+			MethodName: "GetIndividualUserRank",
+			Handler:    _ProblemsService_GetIndividualUserRank_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
