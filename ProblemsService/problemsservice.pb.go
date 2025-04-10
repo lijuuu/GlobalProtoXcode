@@ -2152,6 +2152,7 @@ type Submission struct {
 	Difficulty    string                 `protobuf:"bytes,11,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	IsFirst       bool                   `protobuf:"varint,12,opt,name=is_first,json=isFirst,proto3" json:"is_first,omitempty"`
 	Title         string                 `protobuf:"bytes,13,opt,name=title,proto3" json:"title,omitempty"`
+	UserCode      string                 `protobuf:"bytes,14,opt,name=user_code,json=userCode,proto3" json:"user_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2273,6 +2274,13 @@ func (x *Submission) GetIsFirst() bool {
 func (x *Submission) GetTitle() string {
 	if x != nil {
 		return x.Title
+	}
+	return ""
+}
+
+func (x *Submission) GetUserCode() string {
+	if x != nil {
+		return x.UserCode
 	}
 	return ""
 }
@@ -2962,7 +2970,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\asuccess\x18\x04 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x06 \x01(\tR\terrorType\"\x89\x03\n" +
+	"error_type\x18\x06 \x01(\tR\terrorType\"\xa6\x03\n" +
 	"\n" +
 	"Submission\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
@@ -2981,7 +2989,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x18\v \x01(\tR\n" +
 	"difficulty\x12\x19\n" +
 	"\bis_first\x18\f \x01(\bR\aisFirst\x12\x14\n" +
-	"\x05title\x18\r \x01(\tR\x05title\"\x8d\x01\n" +
+	"\x05title\x18\r \x01(\tR\x05title\x12\x1b\n" +
+	"\tuser_code\x18\x0e \x01(\tR\buserCode\"\x8d\x01\n" +
 	"\x15GetSubmissionsRequest\x12\"\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tH\x00R\tproblemId\x88\x01\x01\x12\x12\n" +

@@ -257,6 +257,7 @@ message Submission {
     string difficulty = 11; 
     bool is_first = 12; 
     string title = 13;
+    string user_code  = 14;
 }
 
 
