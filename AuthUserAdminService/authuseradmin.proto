@@ -12,11 +12,12 @@ service AuthUserAdminService {
     rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
     rpc ResendEmailVerification(ResendEmailVerificationRequest) returns (ResendEmailVerificationResponse);
     rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
-    rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
+    // rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
     rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  
     rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);  
     rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
     rpc SetUpTwoFactorAuth(SetUpTwoFactorAuthRequest) returns (SetUpTwoFactorAuthResponse);
+    rpc VerifyTwoFactorAuth(VerifyTwoFactorAuthRequest) returns (VerifyTwoFactorAuthResponse);
     rpc DisableTwoFactorAuth(DisableTwoFactorAuthRequest) returns (DisableTwoFactorAuthResponse);
     rpc GetTwoFactorAuthStatus(GetTwoFactorAuthStatusRequest) returns (GetTwoFactorAuthStatusResponse);
 
@@ -49,6 +50,13 @@ service AuthUserAdminService {
     rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
+
+message VerifyTwoFactorAuthRequest{
+    string userID =1;
+    string twoFactorCode = 2; 
+}
+
+message VerifyTwoFactorAuthResponse{}
 
 message GoogleLoginRequest {
     string id_token = 1;

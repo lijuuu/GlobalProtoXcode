@@ -26,11 +26,11 @@ const (
 	AuthUserAdminService_LogoutUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/LogoutUser"
 	AuthUserAdminService_ResendEmailVerification_FullMethodName = "/authuseradmin.AuthUserAdminService/ResendEmailVerification"
 	AuthUserAdminService_VerifyUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/VerifyUser"
-	AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName     = "/authuseradmin.AuthUserAdminService/ToggleTwoFactorAuth"
 	AuthUserAdminService_ForgotPassword_FullMethodName          = "/authuseradmin.AuthUserAdminService/ForgotPassword"
 	AuthUserAdminService_FinishForgotPassword_FullMethodName    = "/authuseradmin.AuthUserAdminService/FinishForgotPassword"
 	AuthUserAdminService_ChangePassword_FullMethodName          = "/authuseradmin.AuthUserAdminService/ChangePassword"
 	AuthUserAdminService_SetUpTwoFactorAuth_FullMethodName      = "/authuseradmin.AuthUserAdminService/SetUpTwoFactorAuth"
+	AuthUserAdminService_VerifyTwoFactorAuth_FullMethodName     = "/authuseradmin.AuthUserAdminService/VerifyTwoFactorAuth"
 	AuthUserAdminService_DisableTwoFactorAuth_FullMethodName    = "/authuseradmin.AuthUserAdminService/DisableTwoFactorAuth"
 	AuthUserAdminService_GetTwoFactorAuthStatus_FullMethodName  = "/authuseradmin.AuthUserAdminService/GetTwoFactorAuthStatus"
 	AuthUserAdminService_LoginAdmin_FullMethodName              = "/authuseradmin.AuthUserAdminService/LoginAdmin"
@@ -68,11 +68,12 @@ type AuthUserAdminServiceClient interface {
 	LogoutUser(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error)
 	VerifyUser(ctx context.Context, in *VerifyUserRequest, opts ...grpc.CallOption) (*VerifyUserResponse, error)
-	ToggleTwoFactorAuth(ctx context.Context, in *ToggleTwoFactorAuthRequest, opts ...grpc.CallOption) (*ToggleTwoFactorAuthResponse, error)
+	// rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
 	FinishForgotPassword(ctx context.Context, in *FinishForgotPasswordRequest, opts ...grpc.CallOption) (*FinishForgotPasswordResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	SetUpTwoFactorAuth(ctx context.Context, in *SetUpTwoFactorAuthRequest, opts ...grpc.CallOption) (*SetUpTwoFactorAuthResponse, error)
+	VerifyTwoFactorAuth(ctx context.Context, in *VerifyTwoFactorAuthRequest, opts ...grpc.CallOption) (*VerifyTwoFactorAuthResponse, error)
 	DisableTwoFactorAuth(ctx context.Context, in *DisableTwoFactorAuthRequest, opts ...grpc.CallOption) (*DisableTwoFactorAuthResponse, error)
 	GetTwoFactorAuthStatus(ctx context.Context, in *GetTwoFactorAuthStatusRequest, opts ...grpc.CallOption) (*GetTwoFactorAuthStatusResponse, error)
 	// Authentication Admin
@@ -180,16 +181,6 @@ func (c *authUserAdminServiceClient) VerifyUser(ctx context.Context, in *VerifyU
 	return out, nil
 }
 
-func (c *authUserAdminServiceClient) ToggleTwoFactorAuth(ctx context.Context, in *ToggleTwoFactorAuthRequest, opts ...grpc.CallOption) (*ToggleTwoFactorAuthResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ToggleTwoFactorAuthResponse)
-	err := c.cc.Invoke(ctx, AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *authUserAdminServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ForgotPasswordResponse)
@@ -224,6 +215,16 @@ func (c *authUserAdminServiceClient) SetUpTwoFactorAuth(ctx context.Context, in 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetUpTwoFactorAuthResponse)
 	err := c.cc.Invoke(ctx, AuthUserAdminService_SetUpTwoFactorAuth_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authUserAdminServiceClient) VerifyTwoFactorAuth(ctx context.Context, in *VerifyTwoFactorAuthRequest, opts ...grpc.CallOption) (*VerifyTwoFactorAuthResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerifyTwoFactorAuthResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_VerifyTwoFactorAuth_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -472,11 +473,12 @@ type AuthUserAdminServiceServer interface {
 	LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error)
 	VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error)
-	ToggleTwoFactorAuth(context.Context, *ToggleTwoFactorAuthRequest) (*ToggleTwoFactorAuthResponse, error)
+	// rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	FinishForgotPassword(context.Context, *FinishForgotPasswordRequest) (*FinishForgotPasswordResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	SetUpTwoFactorAuth(context.Context, *SetUpTwoFactorAuthRequest) (*SetUpTwoFactorAuthResponse, error)
+	VerifyTwoFactorAuth(context.Context, *VerifyTwoFactorAuthRequest) (*VerifyTwoFactorAuthResponse, error)
 	DisableTwoFactorAuth(context.Context, *DisableTwoFactorAuthRequest) (*DisableTwoFactorAuthResponse, error)
 	GetTwoFactorAuthStatus(context.Context, *GetTwoFactorAuthStatusRequest) (*GetTwoFactorAuthStatusResponse, error)
 	// Authentication Admin
@@ -535,9 +537,6 @@ func (UnimplementedAuthUserAdminServiceServer) ResendEmailVerification(context.C
 func (UnimplementedAuthUserAdminServiceServer) VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyUser not implemented")
 }
-func (UnimplementedAuthUserAdminServiceServer) ToggleTwoFactorAuth(context.Context, *ToggleTwoFactorAuthRequest) (*ToggleTwoFactorAuthResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ToggleTwoFactorAuth not implemented")
-}
 func (UnimplementedAuthUserAdminServiceServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
@@ -549,6 +548,9 @@ func (UnimplementedAuthUserAdminServiceServer) ChangePassword(context.Context, *
 }
 func (UnimplementedAuthUserAdminServiceServer) SetUpTwoFactorAuth(context.Context, *SetUpTwoFactorAuthRequest) (*SetUpTwoFactorAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetUpTwoFactorAuth not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) VerifyTwoFactorAuth(context.Context, *VerifyTwoFactorAuthRequest) (*VerifyTwoFactorAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyTwoFactorAuth not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) DisableTwoFactorAuth(context.Context, *DisableTwoFactorAuthRequest) (*DisableTwoFactorAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DisableTwoFactorAuth not implemented")
@@ -766,24 +768,6 @@ func _AuthUserAdminService_VerifyUser_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthUserAdminService_ToggleTwoFactorAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ToggleTwoFactorAuthRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthUserAdminServiceServer).ToggleTwoFactorAuth(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AuthUserAdminService_ToggleTwoFactorAuth_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthUserAdminServiceServer).ToggleTwoFactorAuth(ctx, req.(*ToggleTwoFactorAuthRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _AuthUserAdminService_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ForgotPasswordRequest)
 	if err := dec(in); err != nil {
@@ -852,6 +836,24 @@ func _AuthUserAdminService_SetUpTwoFactorAuth_Handler(srv interface{}, ctx conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthUserAdminServiceServer).SetUpTwoFactorAuth(ctx, req.(*SetUpTwoFactorAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthUserAdminService_VerifyTwoFactorAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyTwoFactorAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).VerifyTwoFactorAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_VerifyTwoFactorAuth_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).VerifyTwoFactorAuth(ctx, req.(*VerifyTwoFactorAuthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1306,10 +1308,6 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthUserAdminService_VerifyUser_Handler,
 		},
 		{
-			MethodName: "ToggleTwoFactorAuth",
-			Handler:    _AuthUserAdminService_ToggleTwoFactorAuth_Handler,
-		},
-		{
 			MethodName: "ForgotPassword",
 			Handler:    _AuthUserAdminService_ForgotPassword_Handler,
 		},
@@ -1324,6 +1322,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetUpTwoFactorAuth",
 			Handler:    _AuthUserAdminService_SetUpTwoFactorAuth_Handler,
+		},
+		{
+			MethodName: "VerifyTwoFactorAuth",
+			Handler:    _AuthUserAdminService_VerifyTwoFactorAuth_Handler,
 		},
 		{
 			MethodName: "DisableTwoFactorAuth",
