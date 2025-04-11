@@ -75,6 +75,8 @@ func (x *VerifyTwoFactorAuthRequest) GetTwoFactorCode() string {
 
 type VerifyTwoFactorAuthResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Verified      bool                   `protobuf:"varint,2,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -107,6 +109,20 @@ func (x *VerifyTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use VerifyTwoFactorAuthResponse.ProtoReflect.Descriptor instead.
 func (*VerifyTwoFactorAuthResponse) Descriptor() ([]byte, []int) {
 	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *VerifyTwoFactorAuthResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *VerifyTwoFactorAuthResponse) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
 }
 
 type GoogleLoginRequest struct {
@@ -4924,8 +4940,10 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"Z\n" +
 	"\x1aVerifyTwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12$\n" +
-	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\"\x1d\n" +
-	"\x1bVerifyTwoFactorAuthResponse\"/\n" +
+	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\"S\n" +
+	"\x1bVerifyTwoFactorAuthResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1a\n" +
+	"\bverified\x18\x02 \x01(\bR\bverified\"/\n" +
 	"\x12GoogleLoginRequest\x12\x19\n" +
 	"\bid_token\x18\x01 \x01(\tR\aidToken\"O\n" +
 	"\x19SetUpTwoFactorAuthRequest\x12\x16\n" +
