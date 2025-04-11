@@ -30,8 +30,6 @@ service ProblemsService {
     rpc GetIndividualUserRank(GetUserRankRequest) returns (GetUserRankResponse);
 }
 
-
-
 message GetLeaderBoardOptionalCountryResponse{
     LeaderboardSingle data = 1;
     optional string filter_type = 2; //country or global

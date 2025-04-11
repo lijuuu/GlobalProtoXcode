@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	AuthUserAdminService_RegisterUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/RegisterUser"
 	AuthUserAdminService_LoginUser_FullMethodName               = "/authuseradmin.AuthUserAdminService/LoginUser"
+	AuthUserAdminService_LoginWithGoogle_FullMethodName         = "/authuseradmin.AuthUserAdminService/LoginWithGoogle"
 	AuthUserAdminService_TokenRefresh_FullMethodName            = "/authuseradmin.AuthUserAdminService/TokenRefresh"
 	AuthUserAdminService_LogoutUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/LogoutUser"
 	AuthUserAdminService_ResendEmailVerification_FullMethodName = "/authuseradmin.AuthUserAdminService/ResendEmailVerification"
@@ -62,6 +63,7 @@ type AuthUserAdminServiceClient interface {
 	// Authentication and Security
 	RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error)
 	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
+	LoginWithGoogle(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
 	TokenRefresh(ctx context.Context, in *TokenRefreshRequest, opts ...grpc.CallOption) (*TokenRefreshResponse, error)
 	LogoutUser(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error)
@@ -122,6 +124,16 @@ func (c *authUserAdminServiceClient) LoginUser(ctx context.Context, in *LoginUse
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginUserResponse)
 	err := c.cc.Invoke(ctx, AuthUserAdminService_LoginUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authUserAdminServiceClient) LoginWithGoogle(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*LoginUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginUserResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_LoginWithGoogle_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -455,6 +467,7 @@ type AuthUserAdminServiceServer interface {
 	// Authentication and Security
 	RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error)
 	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
+	LoginWithGoogle(context.Context, *GoogleLoginRequest) (*LoginUserResponse, error)
 	TokenRefresh(context.Context, *TokenRefreshRequest) (*TokenRefreshResponse, error)
 	LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error)
@@ -506,6 +519,9 @@ func (UnimplementedAuthUserAdminServiceServer) RegisterUser(context.Context, *Re
 }
 func (UnimplementedAuthUserAdminServiceServer) LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) LoginWithGoogle(context.Context, *GoogleLoginRequest) (*LoginUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginWithGoogle not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) TokenRefresh(context.Context, *TokenRefreshRequest) (*TokenRefreshResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TokenRefresh not implemented")
@@ -656,6 +672,24 @@ func _AuthUserAdminService_LoginUser_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthUserAdminServiceServer).LoginUser(ctx, req.(*LoginUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthUserAdminService_LoginWithGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoogleLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).LoginWithGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_LoginWithGoogle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).LoginWithGoogle(ctx, req.(*GoogleLoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1250,6 +1284,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginUser",
 			Handler:    _AuthUserAdminService_LoginUser_Handler,
+		},
+		{
+			MethodName: "LoginWithGoogle",
+			Handler:    _AuthUserAdminService_LoginWithGoogle_Handler,
 		},
 		{
 			MethodName: "TokenRefresh",

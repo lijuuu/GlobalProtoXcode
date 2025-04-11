@@ -7,6 +7,7 @@ service AuthUserAdminService {
     // Authentication and Security
     rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+    rpc LoginWithGoogle(GoogleLoginRequest) returns (LoginUserResponse);
     rpc TokenRefresh(TokenRefreshRequest) returns (TokenRefreshResponse);
     rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
     rpc ResendEmailVerification(ResendEmailVerificationRequest) returns (ResendEmailVerificationResponse);
@@ -48,6 +49,11 @@ service AuthUserAdminService {
     rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
+
+message GoogleLoginRequest {
+    string id_token = 1;
+  }
+
 
 message SetUpTwoFactorAuthRequest {
     string userID = 1;
