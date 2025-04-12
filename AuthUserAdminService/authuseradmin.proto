@@ -31,6 +31,8 @@ service AuthUserAdminService {
     rpc CheckBanStatus(CheckBanStatusRequest) returns (CheckBanStatusResponse);
     rpc BanHistory(BanHistoryRequest) returns (BanHistoryResponse);
 
+    rpc UsernameAvailable(UsernameAvailableRequest) returns (UsernameAvailableResponse);
+
     // Social Features
     rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse);
     rpc FollowUser(FollowUserRequest) returns (FollowUserResponse);
@@ -49,6 +51,14 @@ service AuthUserAdminService {
     rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
     rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
+}
+
+message UsernameAvailableRequest{
+    string username = 1;
+}
+
+message UsernameAvailableResponse{
+    bool status = 1;
 }
 
 message VerifyTwoFactorAuthRequest{

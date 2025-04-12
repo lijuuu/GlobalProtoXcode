@@ -39,6 +39,7 @@ const (
 	AuthUserAdminService_GetUserProfile_FullMethodName          = "/authuseradmin.AuthUserAdminService/GetUserProfile"
 	AuthUserAdminService_CheckBanStatus_FullMethodName          = "/authuseradmin.AuthUserAdminService/CheckBanStatus"
 	AuthUserAdminService_BanHistory_FullMethodName              = "/authuseradmin.AuthUserAdminService/BanHistory"
+	AuthUserAdminService_UsernameAvailable_FullMethodName       = "/authuseradmin.AuthUserAdminService/UsernameAvailable"
 	AuthUserAdminService_SearchUsers_FullMethodName             = "/authuseradmin.AuthUserAdminService/SearchUsers"
 	AuthUserAdminService_FollowUser_FullMethodName              = "/authuseradmin.AuthUserAdminService/FollowUser"
 	AuthUserAdminService_UnfollowUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnfollowUser"
@@ -84,6 +85,7 @@ type AuthUserAdminServiceClient interface {
 	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
 	CheckBanStatus(ctx context.Context, in *CheckBanStatusRequest, opts ...grpc.CallOption) (*CheckBanStatusResponse, error)
 	BanHistory(ctx context.Context, in *BanHistoryRequest, opts ...grpc.CallOption) (*BanHistoryResponse, error)
+	UsernameAvailable(ctx context.Context, in *UsernameAvailableRequest, opts ...grpc.CallOption) (*UsernameAvailableResponse, error)
 	// Social Features
 	SearchUsers(ctx context.Context, in *SearchUsersRequest, opts ...grpc.CallOption) (*SearchUsersResponse, error)
 	FollowUser(ctx context.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error)
@@ -311,6 +313,16 @@ func (c *authUserAdminServiceClient) BanHistory(ctx context.Context, in *BanHist
 	return out, nil
 }
 
+func (c *authUserAdminServiceClient) UsernameAvailable(ctx context.Context, in *UsernameAvailableRequest, opts ...grpc.CallOption) (*UsernameAvailableResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UsernameAvailableResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_UsernameAvailable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authUserAdminServiceClient) SearchUsers(ctx context.Context, in *SearchUsersRequest, opts ...grpc.CallOption) (*SearchUsersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SearchUsersResponse)
@@ -489,6 +501,7 @@ type AuthUserAdminServiceServer interface {
 	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
 	CheckBanStatus(context.Context, *CheckBanStatusRequest) (*CheckBanStatusResponse, error)
 	BanHistory(context.Context, *BanHistoryRequest) (*BanHistoryResponse, error)
+	UsernameAvailable(context.Context, *UsernameAvailableRequest) (*UsernameAvailableResponse, error)
 	// Social Features
 	SearchUsers(context.Context, *SearchUsersRequest) (*SearchUsersResponse, error)
 	FollowUser(context.Context, *FollowUserRequest) (*FollowUserResponse, error)
@@ -575,6 +588,9 @@ func (UnimplementedAuthUserAdminServiceServer) CheckBanStatus(context.Context, *
 }
 func (UnimplementedAuthUserAdminServiceServer) BanHistory(context.Context, *BanHistoryRequest) (*BanHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BanHistory not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) UsernameAvailable(context.Context, *UsernameAvailableRequest) (*UsernameAvailableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsernameAvailable not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) SearchUsers(context.Context, *SearchUsersRequest) (*SearchUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchUsers not implemented")
@@ -1002,6 +1018,24 @@ func _AuthUserAdminService_BanHistory_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthUserAdminService_UsernameAvailable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsernameAvailableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).UsernameAvailable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_UsernameAvailable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).UsernameAvailable(ctx, req.(*UsernameAvailableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthUserAdminService_SearchUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchUsersRequest)
 	if err := dec(in); err != nil {
@@ -1358,6 +1392,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BanHistory",
 			Handler:    _AuthUserAdminService_BanHistory_Handler,
+		},
+		{
+			MethodName: "UsernameAvailable",
+			Handler:    _AuthUserAdminService_UsernameAvailable_Handler,
 		},
 		{
 			MethodName: "SearchUsers",

@@ -21,6 +21,94 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type UsernameAvailableRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UsernameAvailableRequest) Reset() {
+	*x = UsernameAvailableRequest{}
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UsernameAvailableRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UsernameAvailableRequest) ProtoMessage() {}
+
+func (x *UsernameAvailableRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UsernameAvailableRequest.ProtoReflect.Descriptor instead.
+func (*UsernameAvailableRequest) Descriptor() ([]byte, []int) {
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *UsernameAvailableRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+type UsernameAvailableResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Status        bool                   `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UsernameAvailableResponse) Reset() {
+	*x = UsernameAvailableResponse{}
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UsernameAvailableResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UsernameAvailableResponse) ProtoMessage() {}
+
+func (x *UsernameAvailableResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UsernameAvailableResponse.ProtoReflect.Descriptor instead.
+func (*UsernameAvailableResponse) Descriptor() ([]byte, []int) {
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UsernameAvailableResponse) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
 type VerifyTwoFactorAuthRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
@@ -31,7 +119,7 @@ type VerifyTwoFactorAuthRequest struct {
 
 func (x *VerifyTwoFactorAuthRequest) Reset() {
 	*x = VerifyTwoFactorAuthRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[0]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +131,7 @@ func (x *VerifyTwoFactorAuthRequest) String() string {
 func (*VerifyTwoFactorAuthRequest) ProtoMessage() {}
 
 func (x *VerifyTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[0]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +144,7 @@ func (x *VerifyTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyTwoFactorAuthRequest.ProtoReflect.Descriptor instead.
 func (*VerifyTwoFactorAuthRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{0}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *VerifyTwoFactorAuthRequest) GetUserID() string {
@@ -83,7 +171,7 @@ type VerifyTwoFactorAuthResponse struct {
 
 func (x *VerifyTwoFactorAuthResponse) Reset() {
 	*x = VerifyTwoFactorAuthResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[1]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +183,7 @@ func (x *VerifyTwoFactorAuthResponse) String() string {
 func (*VerifyTwoFactorAuthResponse) ProtoMessage() {}
 
 func (x *VerifyTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[1]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +196,7 @@ func (x *VerifyTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyTwoFactorAuthResponse.ProtoReflect.Descriptor instead.
 func (*VerifyTwoFactorAuthResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{1}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *VerifyTwoFactorAuthResponse) GetMessage() string {
@@ -134,7 +222,7 @@ type GoogleLoginRequest struct {
 
 func (x *GoogleLoginRequest) Reset() {
 	*x = GoogleLoginRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[2]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -146,7 +234,7 @@ func (x *GoogleLoginRequest) String() string {
 func (*GoogleLoginRequest) ProtoMessage() {}
 
 func (x *GoogleLoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[2]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -159,7 +247,7 @@ func (x *GoogleLoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleLoginRequest.ProtoReflect.Descriptor instead.
 func (*GoogleLoginRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{2}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GoogleLoginRequest) GetIdToken() string {
@@ -179,7 +267,7 @@ type SetUpTwoFactorAuthRequest struct {
 
 func (x *SetUpTwoFactorAuthRequest) Reset() {
 	*x = SetUpTwoFactorAuthRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[3]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -191,7 +279,7 @@ func (x *SetUpTwoFactorAuthRequest) String() string {
 func (*SetUpTwoFactorAuthRequest) ProtoMessage() {}
 
 func (x *SetUpTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[3]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -204,7 +292,7 @@ func (x *SetUpTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetUpTwoFactorAuthRequest.ProtoReflect.Descriptor instead.
 func (*SetUpTwoFactorAuthRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{3}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SetUpTwoFactorAuthRequest) GetUserID() string {
@@ -233,7 +321,7 @@ type SetUpTwoFactorAuthResponse struct {
 
 func (x *SetUpTwoFactorAuthResponse) Reset() {
 	*x = SetUpTwoFactorAuthResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[4]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -245,7 +333,7 @@ func (x *SetUpTwoFactorAuthResponse) String() string {
 func (*SetUpTwoFactorAuthResponse) ProtoMessage() {}
 
 func (x *SetUpTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[4]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +346,7 @@ func (x *SetUpTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetUpTwoFactorAuthResponse.ProtoReflect.Descriptor instead.
 func (*SetUpTwoFactorAuthResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{4}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SetUpTwoFactorAuthResponse) GetImage() string {
@@ -300,7 +388,7 @@ type DisableTwoFactorAuthRequest struct {
 
 func (x *DisableTwoFactorAuthRequest) Reset() {
 	*x = DisableTwoFactorAuthRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[5]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -312,7 +400,7 @@ func (x *DisableTwoFactorAuthRequest) String() string {
 func (*DisableTwoFactorAuthRequest) ProtoMessage() {}
 
 func (x *DisableTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[5]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -325,7 +413,7 @@ func (x *DisableTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableTwoFactorAuthRequest.ProtoReflect.Descriptor instead.
 func (*DisableTwoFactorAuthRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{5}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DisableTwoFactorAuthRequest) GetUserID() string {
@@ -359,7 +447,7 @@ type DisableTwoFactorAuthResponse struct {
 
 func (x *DisableTwoFactorAuthResponse) Reset() {
 	*x = DisableTwoFactorAuthResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[6]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -371,7 +459,7 @@ func (x *DisableTwoFactorAuthResponse) String() string {
 func (*DisableTwoFactorAuthResponse) ProtoMessage() {}
 
 func (x *DisableTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[6]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -384,7 +472,7 @@ func (x *DisableTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableTwoFactorAuthResponse.ProtoReflect.Descriptor instead.
 func (*DisableTwoFactorAuthResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{6}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DisableTwoFactorAuthResponse) GetMessage() string {
@@ -410,7 +498,7 @@ type GetTwoFactorAuthStatusRequest struct {
 
 func (x *GetTwoFactorAuthStatusRequest) Reset() {
 	*x = GetTwoFactorAuthStatusRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[7]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -422,7 +510,7 @@ func (x *GetTwoFactorAuthStatusRequest) String() string {
 func (*GetTwoFactorAuthStatusRequest) ProtoMessage() {}
 
 func (x *GetTwoFactorAuthStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[7]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -435,7 +523,7 @@ func (x *GetTwoFactorAuthStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTwoFactorAuthStatusRequest.ProtoReflect.Descriptor instead.
 func (*GetTwoFactorAuthStatusRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{7}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetTwoFactorAuthStatusRequest) GetEmail() string {
@@ -456,7 +544,7 @@ type GetTwoFactorAuthStatusResponse struct {
 
 func (x *GetTwoFactorAuthStatusResponse) Reset() {
 	*x = GetTwoFactorAuthStatusResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[8]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +556,7 @@ func (x *GetTwoFactorAuthStatusResponse) String() string {
 func (*GetTwoFactorAuthStatusResponse) ProtoMessage() {}
 
 func (x *GetTwoFactorAuthStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[8]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +569,7 @@ func (x *GetTwoFactorAuthStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTwoFactorAuthStatusResponse.ProtoReflect.Descriptor instead.
 func (*GetTwoFactorAuthStatusResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{8}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetTwoFactorAuthStatusResponse) GetIsEnabled() bool {
@@ -525,7 +613,7 @@ type RegisterUserRequest struct {
 
 func (x *RegisterUserRequest) Reset() {
 	*x = RegisterUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[9]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -537,7 +625,7 @@ func (x *RegisterUserRequest) String() string {
 func (*RegisterUserRequest) ProtoMessage() {}
 
 func (x *RegisterUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[9]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -550,7 +638,7 @@ func (x *RegisterUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterUserRequest.ProtoReflect.Descriptor instead.
 func (*RegisterUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{9}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *RegisterUserRequest) GetFirstName() string {
@@ -652,7 +740,7 @@ type RegisterUserResponse struct {
 
 func (x *RegisterUserResponse) Reset() {
 	*x = RegisterUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[10]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -664,7 +752,7 @@ func (x *RegisterUserResponse) String() string {
 func (*RegisterUserResponse) ProtoMessage() {}
 
 func (x *RegisterUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[10]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -677,7 +765,7 @@ func (x *RegisterUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterUserResponse.ProtoReflect.Descriptor instead.
 func (*RegisterUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{10}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RegisterUserResponse) GetUserID() string {
@@ -740,7 +828,7 @@ type LoginUserRequest struct {
 
 func (x *LoginUserRequest) Reset() {
 	*x = LoginUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[11]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -752,7 +840,7 @@ func (x *LoginUserRequest) String() string {
 func (*LoginUserRequest) ProtoMessage() {}
 
 func (x *LoginUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[11]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -765,7 +853,7 @@ func (x *LoginUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginUserRequest.ProtoReflect.Descriptor instead.
 func (*LoginUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{11}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *LoginUserRequest) GetEmail() string {
@@ -799,7 +887,7 @@ type TwoFactorAuthRequest struct {
 
 func (x *TwoFactorAuthRequest) Reset() {
 	*x = TwoFactorAuthRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[12]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -811,7 +899,7 @@ func (x *TwoFactorAuthRequest) String() string {
 func (*TwoFactorAuthRequest) ProtoMessage() {}
 
 func (x *TwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[12]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -824,7 +912,7 @@ func (x *TwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TwoFactorAuthRequest.ProtoReflect.Descriptor instead.
 func (*TwoFactorAuthRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{12}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *TwoFactorAuthRequest) GetUserID() string {
@@ -851,7 +939,7 @@ type TwoFactorAuthResponse struct {
 
 func (x *TwoFactorAuthResponse) Reset() {
 	*x = TwoFactorAuthResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[13]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -863,7 +951,7 @@ func (x *TwoFactorAuthResponse) String() string {
 func (*TwoFactorAuthResponse) ProtoMessage() {}
 
 func (x *TwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[13]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -876,7 +964,7 @@ func (x *TwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TwoFactorAuthResponse.ProtoReflect.Descriptor instead.
 func (*TwoFactorAuthResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{13}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *TwoFactorAuthResponse) GetMessage() string {
@@ -908,7 +996,7 @@ type LoginUserResponse struct {
 
 func (x *LoginUserResponse) Reset() {
 	*x = LoginUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[14]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -920,7 +1008,7 @@ func (x *LoginUserResponse) String() string {
 func (*LoginUserResponse) ProtoMessage() {}
 
 func (x *LoginUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[14]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -933,7 +1021,7 @@ func (x *LoginUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginUserResponse.ProtoReflect.Descriptor instead.
 func (*LoginUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{14}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *LoginUserResponse) GetAccessToken() string {
@@ -994,7 +1082,7 @@ type TokenRefreshRequest struct {
 
 func (x *TokenRefreshRequest) Reset() {
 	*x = TokenRefreshRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[15]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1006,7 +1094,7 @@ func (x *TokenRefreshRequest) String() string {
 func (*TokenRefreshRequest) ProtoMessage() {}
 
 func (x *TokenRefreshRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[15]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1019,7 +1107,7 @@ func (x *TokenRefreshRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenRefreshRequest.ProtoReflect.Descriptor instead.
 func (*TokenRefreshRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{15}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *TokenRefreshRequest) GetRefreshToken() string {
@@ -1042,7 +1130,7 @@ type TokenRefreshResponse struct {
 
 func (x *TokenRefreshResponse) Reset() {
 	*x = TokenRefreshResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[16]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1054,7 +1142,7 @@ func (x *TokenRefreshResponse) String() string {
 func (*TokenRefreshResponse) ProtoMessage() {}
 
 func (x *TokenRefreshResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[16]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1067,7 +1155,7 @@ func (x *TokenRefreshResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenRefreshResponse.ProtoReflect.Descriptor instead.
 func (*TokenRefreshResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{16}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *TokenRefreshResponse) GetAccessToken() string {
@@ -1114,7 +1202,7 @@ type LogoutRequest struct {
 
 func (x *LogoutRequest) Reset() {
 	*x = LogoutRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[17]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1126,7 +1214,7 @@ func (x *LogoutRequest) String() string {
 func (*LogoutRequest) ProtoMessage() {}
 
 func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[17]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1139,7 +1227,7 @@ func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
 func (*LogoutRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{17}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *LogoutRequest) GetUserID() string {
@@ -1159,7 +1247,7 @@ type LogoutResponse struct {
 
 func (x *LogoutResponse) Reset() {
 	*x = LogoutResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[18]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1171,7 +1259,7 @@ func (x *LogoutResponse) String() string {
 func (*LogoutResponse) ProtoMessage() {}
 
 func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[18]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1184,7 +1272,7 @@ func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutResponse.ProtoReflect.Descriptor instead.
 func (*LogoutResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{18}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *LogoutResponse) GetMessage() string {
@@ -1210,7 +1298,7 @@ type ResendEmailVerificationRequest struct {
 
 func (x *ResendEmailVerificationRequest) Reset() {
 	*x = ResendEmailVerificationRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[19]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1222,7 +1310,7 @@ func (x *ResendEmailVerificationRequest) String() string {
 func (*ResendEmailVerificationRequest) ProtoMessage() {}
 
 func (x *ResendEmailVerificationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[19]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1235,7 +1323,7 @@ func (x *ResendEmailVerificationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResendEmailVerificationRequest.ProtoReflect.Descriptor instead.
 func (*ResendEmailVerificationRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{19}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ResendEmailVerificationRequest) GetEmail() string {
@@ -1256,7 +1344,7 @@ type ResendEmailVerificationResponse struct {
 
 func (x *ResendEmailVerificationResponse) Reset() {
 	*x = ResendEmailVerificationResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[20]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1268,7 +1356,7 @@ func (x *ResendEmailVerificationResponse) String() string {
 func (*ResendEmailVerificationResponse) ProtoMessage() {}
 
 func (x *ResendEmailVerificationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[20]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1281,7 +1369,7 @@ func (x *ResendEmailVerificationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResendEmailVerificationResponse.ProtoReflect.Descriptor instead.
 func (*ResendEmailVerificationResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{20}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ResendEmailVerificationResponse) GetMessage() string {
@@ -1315,7 +1403,7 @@ type VerifyUserRequest struct {
 
 func (x *VerifyUserRequest) Reset() {
 	*x = VerifyUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[21]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1327,7 +1415,7 @@ func (x *VerifyUserRequest) String() string {
 func (*VerifyUserRequest) ProtoMessage() {}
 
 func (x *VerifyUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[21]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1340,7 +1428,7 @@ func (x *VerifyUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyUserRequest.ProtoReflect.Descriptor instead.
 func (*VerifyUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{21}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *VerifyUserRequest) GetEmail() string {
@@ -1368,7 +1456,7 @@ type VerifyUserResponse struct {
 
 func (x *VerifyUserResponse) Reset() {
 	*x = VerifyUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[22]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1380,7 +1468,7 @@ func (x *VerifyUserResponse) String() string {
 func (*VerifyUserResponse) ProtoMessage() {}
 
 func (x *VerifyUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[22]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1393,7 +1481,7 @@ func (x *VerifyUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyUserResponse.ProtoReflect.Descriptor instead.
 func (*VerifyUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{22}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *VerifyUserResponse) GetUserID() string {
@@ -1428,7 +1516,7 @@ type ToggleTwoFactorAuthRequest struct {
 
 func (x *ToggleTwoFactorAuthRequest) Reset() {
 	*x = ToggleTwoFactorAuthRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[23]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1440,7 +1528,7 @@ func (x *ToggleTwoFactorAuthRequest) String() string {
 func (*ToggleTwoFactorAuthRequest) ProtoMessage() {}
 
 func (x *ToggleTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[23]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1453,7 +1541,7 @@ func (x *ToggleTwoFactorAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ToggleTwoFactorAuthRequest.ProtoReflect.Descriptor instead.
 func (*ToggleTwoFactorAuthRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{23}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ToggleTwoFactorAuthRequest) GetUserID() string {
@@ -1487,7 +1575,7 @@ type ToggleTwoFactorAuthResponse struct {
 
 func (x *ToggleTwoFactorAuthResponse) Reset() {
 	*x = ToggleTwoFactorAuthResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[24]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1499,7 +1587,7 @@ func (x *ToggleTwoFactorAuthResponse) String() string {
 func (*ToggleTwoFactorAuthResponse) ProtoMessage() {}
 
 func (x *ToggleTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[24]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1512,7 +1600,7 @@ func (x *ToggleTwoFactorAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ToggleTwoFactorAuthResponse.ProtoReflect.Descriptor instead.
 func (*ToggleTwoFactorAuthResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{24}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ToggleTwoFactorAuthResponse) GetMessage() string {
@@ -1538,7 +1626,7 @@ type ForgotPasswordRequest struct {
 
 func (x *ForgotPasswordRequest) Reset() {
 	*x = ForgotPasswordRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[25]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1550,7 +1638,7 @@ func (x *ForgotPasswordRequest) String() string {
 func (*ForgotPasswordRequest) ProtoMessage() {}
 
 func (x *ForgotPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[25]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1563,7 +1651,7 @@ func (x *ForgotPasswordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ForgotPasswordRequest.ProtoReflect.Descriptor instead.
 func (*ForgotPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{25}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ForgotPasswordRequest) GetEmail() string {
@@ -1584,7 +1672,7 @@ type ForgotPasswordResponse struct {
 
 func (x *ForgotPasswordResponse) Reset() {
 	*x = ForgotPasswordResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[26]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1596,7 +1684,7 @@ func (x *ForgotPasswordResponse) String() string {
 func (*ForgotPasswordResponse) ProtoMessage() {}
 
 func (x *ForgotPasswordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[26]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1609,7 +1697,7 @@ func (x *ForgotPasswordResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ForgotPasswordResponse.ProtoReflect.Descriptor instead.
 func (*ForgotPasswordResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{26}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ForgotPasswordResponse) GetMessage() string {
@@ -1645,7 +1733,7 @@ type FinishForgotPasswordRequest struct {
 
 func (x *FinishForgotPasswordRequest) Reset() {
 	*x = FinishForgotPasswordRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[27]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1657,7 +1745,7 @@ func (x *FinishForgotPasswordRequest) String() string {
 func (*FinishForgotPasswordRequest) ProtoMessage() {}
 
 func (x *FinishForgotPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[27]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1670,7 +1758,7 @@ func (x *FinishForgotPasswordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FinishForgotPasswordRequest.ProtoReflect.Descriptor instead.
 func (*FinishForgotPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{27}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *FinishForgotPasswordRequest) GetEmail() string {
@@ -1711,7 +1799,7 @@ type FinishForgotPasswordResponse struct {
 
 func (x *FinishForgotPasswordResponse) Reset() {
 	*x = FinishForgotPasswordResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[28]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1723,7 +1811,7 @@ func (x *FinishForgotPasswordResponse) String() string {
 func (*FinishForgotPasswordResponse) ProtoMessage() {}
 
 func (x *FinishForgotPasswordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[28]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1736,7 +1824,7 @@ func (x *FinishForgotPasswordResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FinishForgotPasswordResponse.ProtoReflect.Descriptor instead.
 func (*FinishForgotPasswordResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{28}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *FinishForgotPasswordResponse) GetMessage() string {
@@ -1765,7 +1853,7 @@ type ChangePasswordRequest struct {
 
 func (x *ChangePasswordRequest) Reset() {
 	*x = ChangePasswordRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[29]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1777,7 +1865,7 @@ func (x *ChangePasswordRequest) String() string {
 func (*ChangePasswordRequest) ProtoMessage() {}
 
 func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[29]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1790,7 +1878,7 @@ func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangePasswordRequest.ProtoReflect.Descriptor instead.
 func (*ChangePasswordRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{29}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ChangePasswordRequest) GetUserID() string {
@@ -1831,7 +1919,7 @@ type ChangePasswordResponse struct {
 
 func (x *ChangePasswordResponse) Reset() {
 	*x = ChangePasswordResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[30]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1843,7 +1931,7 @@ func (x *ChangePasswordResponse) String() string {
 func (*ChangePasswordResponse) ProtoMessage() {}
 
 func (x *ChangePasswordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[30]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1856,7 +1944,7 @@ func (x *ChangePasswordResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangePasswordResponse.ProtoReflect.Descriptor instead.
 func (*ChangePasswordResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{30}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *ChangePasswordResponse) GetMessage() string {
@@ -1890,7 +1978,7 @@ type UpdateProfileRequest struct {
 
 func (x *UpdateProfileRequest) Reset() {
 	*x = UpdateProfileRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[31]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1902,7 +1990,7 @@ func (x *UpdateProfileRequest) String() string {
 func (*UpdateProfileRequest) ProtoMessage() {}
 
 func (x *UpdateProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[31]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1915,7 +2003,7 @@ func (x *UpdateProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProfileRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProfileRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{31}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *UpdateProfileRequest) GetUserID() string {
@@ -1985,7 +2073,7 @@ type UpdateProfileResponse struct {
 
 func (x *UpdateProfileResponse) Reset() {
 	*x = UpdateProfileResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[32]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1997,7 +2085,7 @@ func (x *UpdateProfileResponse) String() string {
 func (*UpdateProfileResponse) ProtoMessage() {}
 
 func (x *UpdateProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[32]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2010,7 +2098,7 @@ func (x *UpdateProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProfileResponse.ProtoReflect.Descriptor instead.
 func (*UpdateProfileResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{32}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *UpdateProfileResponse) GetMessage() string {
@@ -2044,7 +2132,7 @@ type UpdateProfileImageRequest struct {
 
 func (x *UpdateProfileImageRequest) Reset() {
 	*x = UpdateProfileImageRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[33]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2056,7 +2144,7 @@ func (x *UpdateProfileImageRequest) String() string {
 func (*UpdateProfileImageRequest) ProtoMessage() {}
 
 func (x *UpdateProfileImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[33]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2069,7 +2157,7 @@ func (x *UpdateProfileImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProfileImageRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProfileImageRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{33}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *UpdateProfileImageRequest) GetUserID() string {
@@ -2097,7 +2185,7 @@ type UpdateProfileImageResponse struct {
 
 func (x *UpdateProfileImageResponse) Reset() {
 	*x = UpdateProfileImageResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[34]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2109,7 +2197,7 @@ func (x *UpdateProfileImageResponse) String() string {
 func (*UpdateProfileImageResponse) ProtoMessage() {}
 
 func (x *UpdateProfileImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[34]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2122,7 +2210,7 @@ func (x *UpdateProfileImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProfileImageResponse.ProtoReflect.Descriptor instead.
 func (*UpdateProfileImageResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{34}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *UpdateProfileImageResponse) GetMessage() string {
@@ -2155,7 +2243,7 @@ type GetUserProfileRequest struct {
 
 func (x *GetUserProfileRequest) Reset() {
 	*x = GetUserProfileRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[35]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2167,7 +2255,7 @@ func (x *GetUserProfileRequest) String() string {
 func (*GetUserProfileRequest) ProtoMessage() {}
 
 func (x *GetUserProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[35]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2180,7 +2268,7 @@ func (x *GetUserProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserProfileRequest.ProtoReflect.Descriptor instead.
 func (*GetUserProfileRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{35}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetUserProfileRequest) GetUserID() string {
@@ -2201,7 +2289,7 @@ type GetUserProfileResponse struct {
 
 func (x *GetUserProfileResponse) Reset() {
 	*x = GetUserProfileResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[36]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2213,7 +2301,7 @@ func (x *GetUserProfileResponse) String() string {
 func (*GetUserProfileResponse) ProtoMessage() {}
 
 func (x *GetUserProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[36]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2226,7 +2314,7 @@ func (x *GetUserProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserProfileResponse.ProtoReflect.Descriptor instead.
 func (*GetUserProfileResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{36}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *GetUserProfileResponse) GetUserProfile() *UserProfile {
@@ -2259,7 +2347,7 @@ type CheckBanStatusRequest struct {
 
 func (x *CheckBanStatusRequest) Reset() {
 	*x = CheckBanStatusRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[37]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2271,7 +2359,7 @@ func (x *CheckBanStatusRequest) String() string {
 func (*CheckBanStatusRequest) ProtoMessage() {}
 
 func (x *CheckBanStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[37]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2284,7 +2372,7 @@ func (x *CheckBanStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckBanStatusRequest.ProtoReflect.Descriptor instead.
 func (*CheckBanStatusRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{37}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *CheckBanStatusRequest) GetUserID() string {
@@ -2307,7 +2395,7 @@ type CheckBanStatusResponse struct {
 
 func (x *CheckBanStatusResponse) Reset() {
 	*x = CheckBanStatusResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[38]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2319,7 +2407,7 @@ func (x *CheckBanStatusResponse) String() string {
 func (*CheckBanStatusResponse) ProtoMessage() {}
 
 func (x *CheckBanStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[38]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2332,7 +2420,7 @@ func (x *CheckBanStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckBanStatusResponse.ProtoReflect.Descriptor instead.
 func (*CheckBanStatusResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{38}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *CheckBanStatusResponse) GetIsBanned() bool {
@@ -2381,7 +2469,7 @@ type FollowUserRequest struct {
 
 func (x *FollowUserRequest) Reset() {
 	*x = FollowUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[39]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2393,7 +2481,7 @@ func (x *FollowUserRequest) String() string {
 func (*FollowUserRequest) ProtoMessage() {}
 
 func (x *FollowUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[39]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2406,7 +2494,7 @@ func (x *FollowUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowUserRequest.ProtoReflect.Descriptor instead.
 func (*FollowUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{39}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *FollowUserRequest) GetFollowerID() string {
@@ -2433,7 +2521,7 @@ type FollowUserResponse struct {
 
 func (x *FollowUserResponse) Reset() {
 	*x = FollowUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[40]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2445,7 +2533,7 @@ func (x *FollowUserResponse) String() string {
 func (*FollowUserResponse) ProtoMessage() {}
 
 func (x *FollowUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[40]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2458,7 +2546,7 @@ func (x *FollowUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowUserResponse.ProtoReflect.Descriptor instead.
 func (*FollowUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{40}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *FollowUserResponse) GetMessage() string {
@@ -2485,7 +2573,7 @@ type UnfollowUserRequest struct {
 
 func (x *UnfollowUserRequest) Reset() {
 	*x = UnfollowUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[41]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2497,7 +2585,7 @@ func (x *UnfollowUserRequest) String() string {
 func (*UnfollowUserRequest) ProtoMessage() {}
 
 func (x *UnfollowUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[41]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2510,7 +2598,7 @@ func (x *UnfollowUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnfollowUserRequest.ProtoReflect.Descriptor instead.
 func (*UnfollowUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{41}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *UnfollowUserRequest) GetFollowerID() string {
@@ -2537,7 +2625,7 @@ type UnfollowUserResponse struct {
 
 func (x *UnfollowUserResponse) Reset() {
 	*x = UnfollowUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[42]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2549,7 +2637,7 @@ func (x *UnfollowUserResponse) String() string {
 func (*UnfollowUserResponse) ProtoMessage() {}
 
 func (x *UnfollowUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[42]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2562,7 +2650,7 @@ func (x *UnfollowUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnfollowUserResponse.ProtoReflect.Descriptor instead.
 func (*UnfollowUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{42}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *UnfollowUserResponse) GetMessage() string {
@@ -2590,7 +2678,7 @@ type GetFollowingRequest struct {
 
 func (x *GetFollowingRequest) Reset() {
 	*x = GetFollowingRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[43]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2602,7 +2690,7 @@ func (x *GetFollowingRequest) String() string {
 func (*GetFollowingRequest) ProtoMessage() {}
 
 func (x *GetFollowingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[43]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2615,7 +2703,7 @@ func (x *GetFollowingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowingRequest.ProtoReflect.Descriptor instead.
 func (*GetFollowingRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{43}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *GetFollowingRequest) GetUserID() string {
@@ -2652,7 +2740,7 @@ type GetFollowingResponse struct {
 
 func (x *GetFollowingResponse) Reset() {
 	*x = GetFollowingResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[44]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2664,7 +2752,7 @@ func (x *GetFollowingResponse) String() string {
 func (*GetFollowingResponse) ProtoMessage() {}
 
 func (x *GetFollowingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[44]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2677,7 +2765,7 @@ func (x *GetFollowingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowingResponse.ProtoReflect.Descriptor instead.
 func (*GetFollowingResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{44}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GetFollowingResponse) GetUsers() []*UserProfile {
@@ -2726,7 +2814,7 @@ type GetFollowersRequest struct {
 
 func (x *GetFollowersRequest) Reset() {
 	*x = GetFollowersRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[45]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2738,7 +2826,7 @@ func (x *GetFollowersRequest) String() string {
 func (*GetFollowersRequest) ProtoMessage() {}
 
 func (x *GetFollowersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[45]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2751,7 +2839,7 @@ func (x *GetFollowersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowersRequest.ProtoReflect.Descriptor instead.
 func (*GetFollowersRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{45}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *GetFollowersRequest) GetUserID() string {
@@ -2788,7 +2876,7 @@ type GetFollowersResponse struct {
 
 func (x *GetFollowersResponse) Reset() {
 	*x = GetFollowersResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[46]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2800,7 +2888,7 @@ func (x *GetFollowersResponse) String() string {
 func (*GetFollowersResponse) ProtoMessage() {}
 
 func (x *GetFollowersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[46]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2813,7 +2901,7 @@ func (x *GetFollowersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowersResponse.ProtoReflect.Descriptor instead.
 func (*GetFollowersResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{46}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *GetFollowersResponse) GetUsers() []*UserProfile {
@@ -2871,7 +2959,7 @@ type CreateUserAdminRequest struct {
 
 func (x *CreateUserAdminRequest) Reset() {
 	*x = CreateUserAdminRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[47]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2883,7 +2971,7 @@ func (x *CreateUserAdminRequest) String() string {
 func (*CreateUserAdminRequest) ProtoMessage() {}
 
 func (x *CreateUserAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[47]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2896,7 +2984,7 @@ func (x *CreateUserAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserAdminRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserAdminRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{47}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *CreateUserAdminRequest) GetFirstName() string {
@@ -2987,7 +3075,7 @@ type CreateUserAdminResponse struct {
 
 func (x *CreateUserAdminResponse) Reset() {
 	*x = CreateUserAdminResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[48]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2999,7 +3087,7 @@ func (x *CreateUserAdminResponse) String() string {
 func (*CreateUserAdminResponse) ProtoMessage() {}
 
 func (x *CreateUserAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[48]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3012,7 +3100,7 @@ func (x *CreateUserAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserAdminResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserAdminResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{48}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *CreateUserAdminResponse) GetUserID() string {
@@ -3054,7 +3142,7 @@ type UpdateUserAdminRequest struct {
 
 func (x *UpdateUserAdminRequest) Reset() {
 	*x = UpdateUserAdminRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[49]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3066,7 +3154,7 @@ func (x *UpdateUserAdminRequest) String() string {
 func (*UpdateUserAdminRequest) ProtoMessage() {}
 
 func (x *UpdateUserAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[49]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3079,7 +3167,7 @@ func (x *UpdateUserAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserAdminRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserAdminRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{49}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *UpdateUserAdminRequest) GetUserID() string {
@@ -3163,7 +3251,7 @@ type UpdateUserAdminResponse struct {
 
 func (x *UpdateUserAdminResponse) Reset() {
 	*x = UpdateUserAdminResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[50]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3175,7 +3263,7 @@ func (x *UpdateUserAdminResponse) String() string {
 func (*UpdateUserAdminResponse) ProtoMessage() {}
 
 func (x *UpdateUserAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[50]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3188,7 +3276,7 @@ func (x *UpdateUserAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserAdminResponse.ProtoReflect.Descriptor instead.
 func (*UpdateUserAdminResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{50}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *UpdateUserAdminResponse) GetMessage() string {
@@ -3226,7 +3314,7 @@ type BanUserRequest struct {
 
 func (x *BanUserRequest) Reset() {
 	*x = BanUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[51]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3238,7 +3326,7 @@ func (x *BanUserRequest) String() string {
 func (*BanUserRequest) ProtoMessage() {}
 
 func (x *BanUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[51]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3251,7 +3339,7 @@ func (x *BanUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BanUserRequest.ProtoReflect.Descriptor instead.
 func (*BanUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{51}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *BanUserRequest) GetUserID() string {
@@ -3306,7 +3394,7 @@ type BanUserResponse struct {
 
 func (x *BanUserResponse) Reset() {
 	*x = BanUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[52]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3318,7 +3406,7 @@ func (x *BanUserResponse) String() string {
 func (*BanUserResponse) ProtoMessage() {}
 
 func (x *BanUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[52]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3331,7 +3419,7 @@ func (x *BanUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BanUserResponse.ProtoReflect.Descriptor instead.
 func (*BanUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{52}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *BanUserResponse) GetMessage() string {
@@ -3357,7 +3445,7 @@ type UnbanUserRequest struct {
 
 func (x *UnbanUserRequest) Reset() {
 	*x = UnbanUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[53]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3369,7 +3457,7 @@ func (x *UnbanUserRequest) String() string {
 func (*UnbanUserRequest) ProtoMessage() {}
 
 func (x *UnbanUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[53]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3382,7 +3470,7 @@ func (x *UnbanUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnbanUserRequest.ProtoReflect.Descriptor instead.
 func (*UnbanUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{53}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *UnbanUserRequest) GetUserID() string {
@@ -3402,7 +3490,7 @@ type UnbanUserResponse struct {
 
 func (x *UnbanUserResponse) Reset() {
 	*x = UnbanUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[54]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3414,7 +3502,7 @@ func (x *UnbanUserResponse) String() string {
 func (*UnbanUserResponse) ProtoMessage() {}
 
 func (x *UnbanUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[54]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3427,7 +3515,7 @@ func (x *UnbanUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnbanUserResponse.ProtoReflect.Descriptor instead.
 func (*UnbanUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{54}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *UnbanUserResponse) GetMessage() string {
@@ -3453,7 +3541,7 @@ type VerifyAdminUserRequest struct {
 
 func (x *VerifyAdminUserRequest) Reset() {
 	*x = VerifyAdminUserRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[55]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3465,7 +3553,7 @@ func (x *VerifyAdminUserRequest) String() string {
 func (*VerifyAdminUserRequest) ProtoMessage() {}
 
 func (x *VerifyAdminUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[55]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3478,7 +3566,7 @@ func (x *VerifyAdminUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyAdminUserRequest.ProtoReflect.Descriptor instead.
 func (*VerifyAdminUserRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{55}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *VerifyAdminUserRequest) GetUserID() string {
@@ -3498,7 +3586,7 @@ type VerifyAdminUserResponse struct {
 
 func (x *VerifyAdminUserResponse) Reset() {
 	*x = VerifyAdminUserResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[56]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3510,7 +3598,7 @@ func (x *VerifyAdminUserResponse) String() string {
 func (*VerifyAdminUserResponse) ProtoMessage() {}
 
 func (x *VerifyAdminUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[56]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3523,7 +3611,7 @@ func (x *VerifyAdminUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyAdminUserResponse.ProtoReflect.Descriptor instead.
 func (*VerifyAdminUserResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{56}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *VerifyAdminUserResponse) GetMessage() string {
@@ -3549,7 +3637,7 @@ type UnverifyUserAdminRequest struct {
 
 func (x *UnverifyUserAdminRequest) Reset() {
 	*x = UnverifyUserAdminRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[57]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3561,7 +3649,7 @@ func (x *UnverifyUserAdminRequest) String() string {
 func (*UnverifyUserAdminRequest) ProtoMessage() {}
 
 func (x *UnverifyUserAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[57]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3574,7 +3662,7 @@ func (x *UnverifyUserAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnverifyUserAdminRequest.ProtoReflect.Descriptor instead.
 func (*UnverifyUserAdminRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{57}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UnverifyUserAdminRequest) GetUserID() string {
@@ -3594,7 +3682,7 @@ type UnverifyUserAdminResponse struct {
 
 func (x *UnverifyUserAdminResponse) Reset() {
 	*x = UnverifyUserAdminResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[58]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3606,7 +3694,7 @@ func (x *UnverifyUserAdminResponse) String() string {
 func (*UnverifyUserAdminResponse) ProtoMessage() {}
 
 func (x *UnverifyUserAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[58]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3619,7 +3707,7 @@ func (x *UnverifyUserAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnverifyUserAdminResponse.ProtoReflect.Descriptor instead.
 func (*UnverifyUserAdminResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{58}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *UnverifyUserAdminResponse) GetMessage() string {
@@ -3645,7 +3733,7 @@ type SoftDeleteUserAdminRequest struct {
 
 func (x *SoftDeleteUserAdminRequest) Reset() {
 	*x = SoftDeleteUserAdminRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[59]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3657,7 +3745,7 @@ func (x *SoftDeleteUserAdminRequest) String() string {
 func (*SoftDeleteUserAdminRequest) ProtoMessage() {}
 
 func (x *SoftDeleteUserAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[59]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3670,7 +3758,7 @@ func (x *SoftDeleteUserAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SoftDeleteUserAdminRequest.ProtoReflect.Descriptor instead.
 func (*SoftDeleteUserAdminRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{59}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *SoftDeleteUserAdminRequest) GetUserID() string {
@@ -3690,7 +3778,7 @@ type SoftDeleteUserAdminResponse struct {
 
 func (x *SoftDeleteUserAdminResponse) Reset() {
 	*x = SoftDeleteUserAdminResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[60]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3702,7 +3790,7 @@ func (x *SoftDeleteUserAdminResponse) String() string {
 func (*SoftDeleteUserAdminResponse) ProtoMessage() {}
 
 func (x *SoftDeleteUserAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[60]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3715,7 +3803,7 @@ func (x *SoftDeleteUserAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SoftDeleteUserAdminResponse.ProtoReflect.Descriptor instead.
 func (*SoftDeleteUserAdminResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{60}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *SoftDeleteUserAdminResponse) GetMessage() string {
@@ -3748,7 +3836,7 @@ type GetAllUsersRequest struct {
 
 func (x *GetAllUsersRequest) Reset() {
 	*x = GetAllUsersRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[61]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3760,7 +3848,7 @@ func (x *GetAllUsersRequest) String() string {
 func (*GetAllUsersRequest) ProtoMessage() {}
 
 func (x *GetAllUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[61]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3773,7 +3861,7 @@ func (x *GetAllUsersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllUsersRequest.ProtoReflect.Descriptor instead.
 func (*GetAllUsersRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{61}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *GetAllUsersRequest) GetPageToken() string {
@@ -3845,7 +3933,7 @@ type GetAllUsersResponse struct {
 
 func (x *GetAllUsersResponse) Reset() {
 	*x = GetAllUsersResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[62]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3857,7 +3945,7 @@ func (x *GetAllUsersResponse) String() string {
 func (*GetAllUsersResponse) ProtoMessage() {}
 
 func (x *GetAllUsersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[62]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3870,7 +3958,7 @@ func (x *GetAllUsersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllUsersResponse.ProtoReflect.Descriptor instead.
 func (*GetAllUsersResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{62}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *GetAllUsersResponse) GetUsers() []*UserProfile {
@@ -3920,7 +4008,7 @@ type Socials struct {
 
 func (x *Socials) Reset() {
 	*x = Socials{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[63]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3932,7 +4020,7 @@ func (x *Socials) String() string {
 func (*Socials) ProtoMessage() {}
 
 func (x *Socials) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[63]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3945,7 +4033,7 @@ func (x *Socials) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Socials.ProtoReflect.Descriptor instead.
 func (*Socials) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{63}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *Socials) GetGithub() string {
@@ -3996,7 +4084,7 @@ type UserProfile struct {
 
 func (x *UserProfile) Reset() {
 	*x = UserProfile{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[64]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4008,7 +4096,7 @@ func (x *UserProfile) String() string {
 func (*UserProfile) ProtoMessage() {}
 
 func (x *UserProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[64]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4021,7 +4109,7 @@ func (x *UserProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProfile.ProtoReflect.Descriptor instead.
 func (*UserProfile) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{64}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *UserProfile) GetUserID() string {
@@ -4166,7 +4254,7 @@ type BanHistoryRequest struct {
 
 func (x *BanHistoryRequest) Reset() {
 	*x = BanHistoryRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[65]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4178,7 +4266,7 @@ func (x *BanHistoryRequest) String() string {
 func (*BanHistoryRequest) ProtoMessage() {}
 
 func (x *BanHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[65]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4191,7 +4279,7 @@ func (x *BanHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BanHistoryRequest.ProtoReflect.Descriptor instead.
 func (*BanHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{65}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *BanHistoryRequest) GetUserID() string {
@@ -4212,7 +4300,7 @@ type BanHistoryResponse struct {
 
 func (x *BanHistoryResponse) Reset() {
 	*x = BanHistoryResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[66]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4224,7 +4312,7 @@ func (x *BanHistoryResponse) String() string {
 func (*BanHistoryResponse) ProtoMessage() {}
 
 func (x *BanHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[66]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4237,7 +4325,7 @@ func (x *BanHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BanHistoryResponse.ProtoReflect.Descriptor instead.
 func (*BanHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{66}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *BanHistoryResponse) GetBans() []*BanHistory {
@@ -4275,7 +4363,7 @@ type BanHistory struct {
 
 func (x *BanHistory) Reset() {
 	*x = BanHistory{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[67]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4287,7 +4375,7 @@ func (x *BanHistory) String() string {
 func (*BanHistory) ProtoMessage() {}
 
 func (x *BanHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[67]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4300,7 +4388,7 @@ func (x *BanHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BanHistory.ProtoReflect.Descriptor instead.
 func (*BanHistory) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{67}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *BanHistory) GetId() string {
@@ -4355,7 +4443,7 @@ type LoginAdminRequest struct {
 
 func (x *LoginAdminRequest) Reset() {
 	*x = LoginAdminRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[68]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4367,7 +4455,7 @@ func (x *LoginAdminRequest) String() string {
 func (*LoginAdminRequest) ProtoMessage() {}
 
 func (x *LoginAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[68]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4380,7 +4468,7 @@ func (x *LoginAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginAdminRequest.ProtoReflect.Descriptor instead.
 func (*LoginAdminRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{68}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *LoginAdminRequest) GetEmail() string {
@@ -4411,7 +4499,7 @@ type LoginAdminResponse struct {
 
 func (x *LoginAdminResponse) Reset() {
 	*x = LoginAdminResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[69]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4423,7 +4511,7 @@ func (x *LoginAdminResponse) String() string {
 func (*LoginAdminResponse) ProtoMessage() {}
 
 func (x *LoginAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[69]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4436,7 +4524,7 @@ func (x *LoginAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginAdminResponse.ProtoReflect.Descriptor instead.
 func (*LoginAdminResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{69}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *LoginAdminResponse) GetAccessToken() string {
@@ -4492,7 +4580,7 @@ type SearchUsersRequest struct {
 
 func (x *SearchUsersRequest) Reset() {
 	*x = SearchUsersRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[70]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4504,7 +4592,7 @@ func (x *SearchUsersRequest) String() string {
 func (*SearchUsersRequest) ProtoMessage() {}
 
 func (x *SearchUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[70]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4517,7 +4605,7 @@ func (x *SearchUsersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchUsersRequest.ProtoReflect.Descriptor instead.
 func (*SearchUsersRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{70}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *SearchUsersRequest) GetQuery() string {
@@ -4554,7 +4642,7 @@ type SearchUsersResponse struct {
 
 func (x *SearchUsersResponse) Reset() {
 	*x = SearchUsersResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[71]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4566,7 +4654,7 @@ func (x *SearchUsersResponse) String() string {
 func (*SearchUsersResponse) ProtoMessage() {}
 
 func (x *SearchUsersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[71]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4579,7 +4667,7 @@ func (x *SearchUsersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchUsersResponse.ProtoReflect.Descriptor instead.
 func (*SearchUsersResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{71}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *SearchUsersResponse) GetUsers() []*UserProfile {
@@ -4627,7 +4715,7 @@ type AdminLoginRequest struct {
 
 func (x *AdminLoginRequest) Reset() {
 	*x = AdminLoginRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[72]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4639,7 +4727,7 @@ func (x *AdminLoginRequest) String() string {
 func (*AdminLoginRequest) ProtoMessage() {}
 
 func (x *AdminLoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[72]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4652,7 +4740,7 @@ func (x *AdminLoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminLoginRequest.ProtoReflect.Descriptor instead.
 func (*AdminLoginRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{72}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *AdminLoginRequest) GetEmail() string {
@@ -4683,7 +4771,7 @@ type AdminLoginResponse struct {
 
 func (x *AdminLoginResponse) Reset() {
 	*x = AdminLoginResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[73]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4695,7 +4783,7 @@ func (x *AdminLoginResponse) String() string {
 func (*AdminLoginResponse) ProtoMessage() {}
 
 func (x *AdminLoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[73]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4708,7 +4796,7 @@ func (x *AdminLoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminLoginResponse.ProtoReflect.Descriptor instead.
 func (*AdminLoginResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{73}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *AdminLoginResponse) GetAccessToken() string {
@@ -4766,7 +4854,7 @@ type AdminProfile struct {
 
 func (x *AdminProfile) Reset() {
 	*x = AdminProfile{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[74]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4778,7 +4866,7 @@ func (x *AdminProfile) String() string {
 func (*AdminProfile) ProtoMessage() {}
 
 func (x *AdminProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[74]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4791,7 +4879,7 @@ func (x *AdminProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminProfile.ProtoReflect.Descriptor instead.
 func (*AdminProfile) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{74}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *AdminProfile) GetAdminID() string {
@@ -4838,7 +4926,7 @@ type AdminProfileRequest struct {
 
 func (x *AdminProfileRequest) Reset() {
 	*x = AdminProfileRequest{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[75]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4850,7 +4938,7 @@ func (x *AdminProfileRequest) String() string {
 func (*AdminProfileRequest) ProtoMessage() {}
 
 func (x *AdminProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[75]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4863,7 +4951,7 @@ func (x *AdminProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminProfileRequest.ProtoReflect.Descriptor instead.
 func (*AdminProfileRequest) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{75}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *AdminProfileRequest) GetAdminID() string {
@@ -4884,7 +4972,7 @@ type AdminProfileResponse struct {
 
 func (x *AdminProfileResponse) Reset() {
 	*x = AdminProfileResponse{}
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[76]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4896,7 +4984,7 @@ func (x *AdminProfileResponse) String() string {
 func (*AdminProfileResponse) ProtoMessage() {}
 
 func (x *AdminProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[76]
+	mi := &file_AuthUserAdminService_authuseradmin_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4909,7 +4997,7 @@ func (x *AdminProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminProfileResponse.ProtoReflect.Descriptor instead.
 func (*AdminProfileResponse) Descriptor() ([]byte, []int) {
-	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{76}
+	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *AdminProfileResponse) GetMessage() string {
@@ -4937,7 +5025,11 @@ var File_AuthUserAdminService_authuseradmin_proto protoreflect.FileDescriptor
 
 const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\n" +
-	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"Z\n" +
+	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"6\n" +
+	"\x18UsernameAvailableRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"3\n" +
+	"\x19UsernameAvailableResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\bR\x06status\"Z\n" +
 	"\x1aVerifyTwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12$\n" +
 	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\"S\n" +
@@ -5345,7 +5437,7 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12?\n" +
 	"\fadminProfile\x18\x02 \x01(\v2\x1b.authuseradmin.AdminProfileR\fadminProfile\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType2\xea\x19\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType2\xd2\x1a\n" +
 	"\x14AuthUserAdminService\x12W\n" +
 	"\fRegisterUser\x12\".authuseradmin.RegisterUserRequest\x1a#.authuseradmin.RegisterUserResponse\x12N\n" +
 	"\tLoginUser\x12\x1f.authuseradmin.LoginUserRequest\x1a .authuseradmin.LoginUserResponse\x12V\n" +
@@ -5370,7 +5462,8 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x0eGetUserProfile\x12$.authuseradmin.GetUserProfileRequest\x1a%.authuseradmin.GetUserProfileResponse\x12]\n" +
 	"\x0eCheckBanStatus\x12$.authuseradmin.CheckBanStatusRequest\x1a%.authuseradmin.CheckBanStatusResponse\x12Q\n" +
 	"\n" +
-	"BanHistory\x12 .authuseradmin.BanHistoryRequest\x1a!.authuseradmin.BanHistoryResponse\x12T\n" +
+	"BanHistory\x12 .authuseradmin.BanHistoryRequest\x1a!.authuseradmin.BanHistoryResponse\x12f\n" +
+	"\x11UsernameAvailable\x12'.authuseradmin.UsernameAvailableRequest\x1a(.authuseradmin.UsernameAvailableResponse\x12T\n" +
 	"\vSearchUsers\x12!.authuseradmin.SearchUsersRequest\x1a\".authuseradmin.SearchUsersResponse\x12Q\n" +
 	"\n" +
 	"FollowUser\x12 .authuseradmin.FollowUserRequest\x1a!.authuseradmin.FollowUserResponse\x12W\n" +
@@ -5401,175 +5494,179 @@ func file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP() []byte {
 	return file_AuthUserAdminService_authuseradmin_proto_rawDescData
 }
 
-var file_AuthUserAdminService_authuseradmin_proto_msgTypes = make([]protoimpl.MessageInfo, 77)
+var file_AuthUserAdminService_authuseradmin_proto_msgTypes = make([]protoimpl.MessageInfo, 79)
 var file_AuthUserAdminService_authuseradmin_proto_goTypes = []any{
-	(*VerifyTwoFactorAuthRequest)(nil),      // 0: authuseradmin.VerifyTwoFactorAuthRequest
-	(*VerifyTwoFactorAuthResponse)(nil),     // 1: authuseradmin.VerifyTwoFactorAuthResponse
-	(*GoogleLoginRequest)(nil),              // 2: authuseradmin.GoogleLoginRequest
-	(*SetUpTwoFactorAuthRequest)(nil),       // 3: authuseradmin.SetUpTwoFactorAuthRequest
-	(*SetUpTwoFactorAuthResponse)(nil),      // 4: authuseradmin.SetUpTwoFactorAuthResponse
-	(*DisableTwoFactorAuthRequest)(nil),     // 5: authuseradmin.DisableTwoFactorAuthRequest
-	(*DisableTwoFactorAuthResponse)(nil),    // 6: authuseradmin.DisableTwoFactorAuthResponse
-	(*GetTwoFactorAuthStatusRequest)(nil),   // 7: authuseradmin.GetTwoFactorAuthStatusRequest
-	(*GetTwoFactorAuthStatusResponse)(nil),  // 8: authuseradmin.GetTwoFactorAuthStatusResponse
-	(*RegisterUserRequest)(nil),             // 9: authuseradmin.RegisterUserRequest
-	(*RegisterUserResponse)(nil),            // 10: authuseradmin.RegisterUserResponse
-	(*LoginUserRequest)(nil),                // 11: authuseradmin.LoginUserRequest
-	(*TwoFactorAuthRequest)(nil),            // 12: authuseradmin.TwoFactorAuthRequest
-	(*TwoFactorAuthResponse)(nil),           // 13: authuseradmin.TwoFactorAuthResponse
-	(*LoginUserResponse)(nil),               // 14: authuseradmin.LoginUserResponse
-	(*TokenRefreshRequest)(nil),             // 15: authuseradmin.TokenRefreshRequest
-	(*TokenRefreshResponse)(nil),            // 16: authuseradmin.TokenRefreshResponse
-	(*LogoutRequest)(nil),                   // 17: authuseradmin.LogoutRequest
-	(*LogoutResponse)(nil),                  // 18: authuseradmin.LogoutResponse
-	(*ResendEmailVerificationRequest)(nil),  // 19: authuseradmin.ResendEmailVerificationRequest
-	(*ResendEmailVerificationResponse)(nil), // 20: authuseradmin.ResendEmailVerificationResponse
-	(*VerifyUserRequest)(nil),               // 21: authuseradmin.VerifyUserRequest
-	(*VerifyUserResponse)(nil),              // 22: authuseradmin.VerifyUserResponse
-	(*ToggleTwoFactorAuthRequest)(nil),      // 23: authuseradmin.ToggleTwoFactorAuthRequest
-	(*ToggleTwoFactorAuthResponse)(nil),     // 24: authuseradmin.ToggleTwoFactorAuthResponse
-	(*ForgotPasswordRequest)(nil),           // 25: authuseradmin.ForgotPasswordRequest
-	(*ForgotPasswordResponse)(nil),          // 26: authuseradmin.ForgotPasswordResponse
-	(*FinishForgotPasswordRequest)(nil),     // 27: authuseradmin.FinishForgotPasswordRequest
-	(*FinishForgotPasswordResponse)(nil),    // 28: authuseradmin.FinishForgotPasswordResponse
-	(*ChangePasswordRequest)(nil),           // 29: authuseradmin.ChangePasswordRequest
-	(*ChangePasswordResponse)(nil),          // 30: authuseradmin.ChangePasswordResponse
-	(*UpdateProfileRequest)(nil),            // 31: authuseradmin.UpdateProfileRequest
-	(*UpdateProfileResponse)(nil),           // 32: authuseradmin.UpdateProfileResponse
-	(*UpdateProfileImageRequest)(nil),       // 33: authuseradmin.UpdateProfileImageRequest
-	(*UpdateProfileImageResponse)(nil),      // 34: authuseradmin.UpdateProfileImageResponse
-	(*GetUserProfileRequest)(nil),           // 35: authuseradmin.GetUserProfileRequest
-	(*GetUserProfileResponse)(nil),          // 36: authuseradmin.GetUserProfileResponse
-	(*CheckBanStatusRequest)(nil),           // 37: authuseradmin.CheckBanStatusRequest
-	(*CheckBanStatusResponse)(nil),          // 38: authuseradmin.CheckBanStatusResponse
-	(*FollowUserRequest)(nil),               // 39: authuseradmin.FollowUserRequest
-	(*FollowUserResponse)(nil),              // 40: authuseradmin.FollowUserResponse
-	(*UnfollowUserRequest)(nil),             // 41: authuseradmin.UnfollowUserRequest
-	(*UnfollowUserResponse)(nil),            // 42: authuseradmin.UnfollowUserResponse
-	(*GetFollowingRequest)(nil),             // 43: authuseradmin.GetFollowingRequest
-	(*GetFollowingResponse)(nil),            // 44: authuseradmin.GetFollowingResponse
-	(*GetFollowersRequest)(nil),             // 45: authuseradmin.GetFollowersRequest
-	(*GetFollowersResponse)(nil),            // 46: authuseradmin.GetFollowersResponse
-	(*CreateUserAdminRequest)(nil),          // 47: authuseradmin.CreateUserAdminRequest
-	(*CreateUserAdminResponse)(nil),         // 48: authuseradmin.CreateUserAdminResponse
-	(*UpdateUserAdminRequest)(nil),          // 49: authuseradmin.UpdateUserAdminRequest
-	(*UpdateUserAdminResponse)(nil),         // 50: authuseradmin.UpdateUserAdminResponse
-	(*BanUserRequest)(nil),                  // 51: authuseradmin.BanUserRequest
-	(*BanUserResponse)(nil),                 // 52: authuseradmin.BanUserResponse
-	(*UnbanUserRequest)(nil),                // 53: authuseradmin.UnbanUserRequest
-	(*UnbanUserResponse)(nil),               // 54: authuseradmin.UnbanUserResponse
-	(*VerifyAdminUserRequest)(nil),          // 55: authuseradmin.VerifyAdminUserRequest
-	(*VerifyAdminUserResponse)(nil),         // 56: authuseradmin.VerifyAdminUserResponse
-	(*UnverifyUserAdminRequest)(nil),        // 57: authuseradmin.UnverifyUserAdminRequest
-	(*UnverifyUserAdminResponse)(nil),       // 58: authuseradmin.UnverifyUserAdminResponse
-	(*SoftDeleteUserAdminRequest)(nil),      // 59: authuseradmin.SoftDeleteUserAdminRequest
-	(*SoftDeleteUserAdminResponse)(nil),     // 60: authuseradmin.SoftDeleteUserAdminResponse
-	(*GetAllUsersRequest)(nil),              // 61: authuseradmin.GetAllUsersRequest
-	(*GetAllUsersResponse)(nil),             // 62: authuseradmin.GetAllUsersResponse
-	(*Socials)(nil),                         // 63: authuseradmin.Socials
-	(*UserProfile)(nil),                     // 64: authuseradmin.UserProfile
-	(*BanHistoryRequest)(nil),               // 65: authuseradmin.BanHistoryRequest
-	(*BanHistoryResponse)(nil),              // 66: authuseradmin.BanHistoryResponse
-	(*BanHistory)(nil),                      // 67: authuseradmin.BanHistory
-	(*LoginAdminRequest)(nil),               // 68: authuseradmin.LoginAdminRequest
-	(*LoginAdminResponse)(nil),              // 69: authuseradmin.LoginAdminResponse
-	(*SearchUsersRequest)(nil),              // 70: authuseradmin.SearchUsersRequest
-	(*SearchUsersResponse)(nil),             // 71: authuseradmin.SearchUsersResponse
-	(*AdminLoginRequest)(nil),               // 72: authuseradmin.AdminLoginRequest
-	(*AdminLoginResponse)(nil),              // 73: authuseradmin.AdminLoginResponse
-	(*AdminProfile)(nil),                    // 74: authuseradmin.AdminProfile
-	(*AdminProfileRequest)(nil),             // 75: authuseradmin.AdminProfileRequest
-	(*AdminProfileResponse)(nil),            // 76: authuseradmin.AdminProfileResponse
+	(*UsernameAvailableRequest)(nil),        // 0: authuseradmin.UsernameAvailableRequest
+	(*UsernameAvailableResponse)(nil),       // 1: authuseradmin.UsernameAvailableResponse
+	(*VerifyTwoFactorAuthRequest)(nil),      // 2: authuseradmin.VerifyTwoFactorAuthRequest
+	(*VerifyTwoFactorAuthResponse)(nil),     // 3: authuseradmin.VerifyTwoFactorAuthResponse
+	(*GoogleLoginRequest)(nil),              // 4: authuseradmin.GoogleLoginRequest
+	(*SetUpTwoFactorAuthRequest)(nil),       // 5: authuseradmin.SetUpTwoFactorAuthRequest
+	(*SetUpTwoFactorAuthResponse)(nil),      // 6: authuseradmin.SetUpTwoFactorAuthResponse
+	(*DisableTwoFactorAuthRequest)(nil),     // 7: authuseradmin.DisableTwoFactorAuthRequest
+	(*DisableTwoFactorAuthResponse)(nil),    // 8: authuseradmin.DisableTwoFactorAuthResponse
+	(*GetTwoFactorAuthStatusRequest)(nil),   // 9: authuseradmin.GetTwoFactorAuthStatusRequest
+	(*GetTwoFactorAuthStatusResponse)(nil),  // 10: authuseradmin.GetTwoFactorAuthStatusResponse
+	(*RegisterUserRequest)(nil),             // 11: authuseradmin.RegisterUserRequest
+	(*RegisterUserResponse)(nil),            // 12: authuseradmin.RegisterUserResponse
+	(*LoginUserRequest)(nil),                // 13: authuseradmin.LoginUserRequest
+	(*TwoFactorAuthRequest)(nil),            // 14: authuseradmin.TwoFactorAuthRequest
+	(*TwoFactorAuthResponse)(nil),           // 15: authuseradmin.TwoFactorAuthResponse
+	(*LoginUserResponse)(nil),               // 16: authuseradmin.LoginUserResponse
+	(*TokenRefreshRequest)(nil),             // 17: authuseradmin.TokenRefreshRequest
+	(*TokenRefreshResponse)(nil),            // 18: authuseradmin.TokenRefreshResponse
+	(*LogoutRequest)(nil),                   // 19: authuseradmin.LogoutRequest
+	(*LogoutResponse)(nil),                  // 20: authuseradmin.LogoutResponse
+	(*ResendEmailVerificationRequest)(nil),  // 21: authuseradmin.ResendEmailVerificationRequest
+	(*ResendEmailVerificationResponse)(nil), // 22: authuseradmin.ResendEmailVerificationResponse
+	(*VerifyUserRequest)(nil),               // 23: authuseradmin.VerifyUserRequest
+	(*VerifyUserResponse)(nil),              // 24: authuseradmin.VerifyUserResponse
+	(*ToggleTwoFactorAuthRequest)(nil),      // 25: authuseradmin.ToggleTwoFactorAuthRequest
+	(*ToggleTwoFactorAuthResponse)(nil),     // 26: authuseradmin.ToggleTwoFactorAuthResponse
+	(*ForgotPasswordRequest)(nil),           // 27: authuseradmin.ForgotPasswordRequest
+	(*ForgotPasswordResponse)(nil),          // 28: authuseradmin.ForgotPasswordResponse
+	(*FinishForgotPasswordRequest)(nil),     // 29: authuseradmin.FinishForgotPasswordRequest
+	(*FinishForgotPasswordResponse)(nil),    // 30: authuseradmin.FinishForgotPasswordResponse
+	(*ChangePasswordRequest)(nil),           // 31: authuseradmin.ChangePasswordRequest
+	(*ChangePasswordResponse)(nil),          // 32: authuseradmin.ChangePasswordResponse
+	(*UpdateProfileRequest)(nil),            // 33: authuseradmin.UpdateProfileRequest
+	(*UpdateProfileResponse)(nil),           // 34: authuseradmin.UpdateProfileResponse
+	(*UpdateProfileImageRequest)(nil),       // 35: authuseradmin.UpdateProfileImageRequest
+	(*UpdateProfileImageResponse)(nil),      // 36: authuseradmin.UpdateProfileImageResponse
+	(*GetUserProfileRequest)(nil),           // 37: authuseradmin.GetUserProfileRequest
+	(*GetUserProfileResponse)(nil),          // 38: authuseradmin.GetUserProfileResponse
+	(*CheckBanStatusRequest)(nil),           // 39: authuseradmin.CheckBanStatusRequest
+	(*CheckBanStatusResponse)(nil),          // 40: authuseradmin.CheckBanStatusResponse
+	(*FollowUserRequest)(nil),               // 41: authuseradmin.FollowUserRequest
+	(*FollowUserResponse)(nil),              // 42: authuseradmin.FollowUserResponse
+	(*UnfollowUserRequest)(nil),             // 43: authuseradmin.UnfollowUserRequest
+	(*UnfollowUserResponse)(nil),            // 44: authuseradmin.UnfollowUserResponse
+	(*GetFollowingRequest)(nil),             // 45: authuseradmin.GetFollowingRequest
+	(*GetFollowingResponse)(nil),            // 46: authuseradmin.GetFollowingResponse
+	(*GetFollowersRequest)(nil),             // 47: authuseradmin.GetFollowersRequest
+	(*GetFollowersResponse)(nil),            // 48: authuseradmin.GetFollowersResponse
+	(*CreateUserAdminRequest)(nil),          // 49: authuseradmin.CreateUserAdminRequest
+	(*CreateUserAdminResponse)(nil),         // 50: authuseradmin.CreateUserAdminResponse
+	(*UpdateUserAdminRequest)(nil),          // 51: authuseradmin.UpdateUserAdminRequest
+	(*UpdateUserAdminResponse)(nil),         // 52: authuseradmin.UpdateUserAdminResponse
+	(*BanUserRequest)(nil),                  // 53: authuseradmin.BanUserRequest
+	(*BanUserResponse)(nil),                 // 54: authuseradmin.BanUserResponse
+	(*UnbanUserRequest)(nil),                // 55: authuseradmin.UnbanUserRequest
+	(*UnbanUserResponse)(nil),               // 56: authuseradmin.UnbanUserResponse
+	(*VerifyAdminUserRequest)(nil),          // 57: authuseradmin.VerifyAdminUserRequest
+	(*VerifyAdminUserResponse)(nil),         // 58: authuseradmin.VerifyAdminUserResponse
+	(*UnverifyUserAdminRequest)(nil),        // 59: authuseradmin.UnverifyUserAdminRequest
+	(*UnverifyUserAdminResponse)(nil),       // 60: authuseradmin.UnverifyUserAdminResponse
+	(*SoftDeleteUserAdminRequest)(nil),      // 61: authuseradmin.SoftDeleteUserAdminRequest
+	(*SoftDeleteUserAdminResponse)(nil),     // 62: authuseradmin.SoftDeleteUserAdminResponse
+	(*GetAllUsersRequest)(nil),              // 63: authuseradmin.GetAllUsersRequest
+	(*GetAllUsersResponse)(nil),             // 64: authuseradmin.GetAllUsersResponse
+	(*Socials)(nil),                         // 65: authuseradmin.Socials
+	(*UserProfile)(nil),                     // 66: authuseradmin.UserProfile
+	(*BanHistoryRequest)(nil),               // 67: authuseradmin.BanHistoryRequest
+	(*BanHistoryResponse)(nil),              // 68: authuseradmin.BanHistoryResponse
+	(*BanHistory)(nil),                      // 69: authuseradmin.BanHistory
+	(*LoginAdminRequest)(nil),               // 70: authuseradmin.LoginAdminRequest
+	(*LoginAdminResponse)(nil),              // 71: authuseradmin.LoginAdminResponse
+	(*SearchUsersRequest)(nil),              // 72: authuseradmin.SearchUsersRequest
+	(*SearchUsersResponse)(nil),             // 73: authuseradmin.SearchUsersResponse
+	(*AdminLoginRequest)(nil),               // 74: authuseradmin.AdminLoginRequest
+	(*AdminLoginResponse)(nil),              // 75: authuseradmin.AdminLoginResponse
+	(*AdminProfile)(nil),                    // 76: authuseradmin.AdminProfile
+	(*AdminProfileRequest)(nil),             // 77: authuseradmin.AdminProfileRequest
+	(*AdminProfileResponse)(nil),            // 78: authuseradmin.AdminProfileResponse
 }
 var file_AuthUserAdminService_authuseradmin_proto_depIdxs = []int32{
-	63, // 0: authuseradmin.RegisterUserRequest.socials:type_name -> authuseradmin.Socials
-	64, // 1: authuseradmin.RegisterUserResponse.userProfile:type_name -> authuseradmin.UserProfile
-	64, // 2: authuseradmin.LoginUserResponse.userProfile:type_name -> authuseradmin.UserProfile
-	63, // 3: authuseradmin.UpdateProfileRequest.socials:type_name -> authuseradmin.Socials
-	64, // 4: authuseradmin.UpdateProfileResponse.userProfile:type_name -> authuseradmin.UserProfile
-	64, // 5: authuseradmin.GetUserProfileResponse.userProfile:type_name -> authuseradmin.UserProfile
-	64, // 6: authuseradmin.GetFollowingResponse.users:type_name -> authuseradmin.UserProfile
-	64, // 7: authuseradmin.GetFollowersResponse.users:type_name -> authuseradmin.UserProfile
-	63, // 8: authuseradmin.CreateUserAdminRequest.socials:type_name -> authuseradmin.Socials
-	63, // 9: authuseradmin.UpdateUserAdminRequest.socials:type_name -> authuseradmin.Socials
-	64, // 10: authuseradmin.UpdateUserAdminResponse.userProfile:type_name -> authuseradmin.UserProfile
-	64, // 11: authuseradmin.GetAllUsersResponse.users:type_name -> authuseradmin.UserProfile
-	63, // 12: authuseradmin.UserProfile.socials:type_name -> authuseradmin.Socials
-	67, // 13: authuseradmin.BanHistoryResponse.bans:type_name -> authuseradmin.BanHistory
-	64, // 14: authuseradmin.SearchUsersResponse.users:type_name -> authuseradmin.UserProfile
-	74, // 15: authuseradmin.AdminProfileResponse.adminProfile:type_name -> authuseradmin.AdminProfile
-	9,  // 16: authuseradmin.AuthUserAdminService.RegisterUser:input_type -> authuseradmin.RegisterUserRequest
-	11, // 17: authuseradmin.AuthUserAdminService.LoginUser:input_type -> authuseradmin.LoginUserRequest
-	2,  // 18: authuseradmin.AuthUserAdminService.LoginWithGoogle:input_type -> authuseradmin.GoogleLoginRequest
-	15, // 19: authuseradmin.AuthUserAdminService.TokenRefresh:input_type -> authuseradmin.TokenRefreshRequest
-	17, // 20: authuseradmin.AuthUserAdminService.LogoutUser:input_type -> authuseradmin.LogoutRequest
-	19, // 21: authuseradmin.AuthUserAdminService.ResendEmailVerification:input_type -> authuseradmin.ResendEmailVerificationRequest
-	21, // 22: authuseradmin.AuthUserAdminService.VerifyUser:input_type -> authuseradmin.VerifyUserRequest
-	25, // 23: authuseradmin.AuthUserAdminService.ForgotPassword:input_type -> authuseradmin.ForgotPasswordRequest
-	27, // 24: authuseradmin.AuthUserAdminService.FinishForgotPassword:input_type -> authuseradmin.FinishForgotPasswordRequest
-	29, // 25: authuseradmin.AuthUserAdminService.ChangePassword:input_type -> authuseradmin.ChangePasswordRequest
-	3,  // 26: authuseradmin.AuthUserAdminService.SetUpTwoFactorAuth:input_type -> authuseradmin.SetUpTwoFactorAuthRequest
-	0,  // 27: authuseradmin.AuthUserAdminService.VerifyTwoFactorAuth:input_type -> authuseradmin.VerifyTwoFactorAuthRequest
-	5,  // 28: authuseradmin.AuthUserAdminService.DisableTwoFactorAuth:input_type -> authuseradmin.DisableTwoFactorAuthRequest
-	7,  // 29: authuseradmin.AuthUserAdminService.GetTwoFactorAuthStatus:input_type -> authuseradmin.GetTwoFactorAuthStatusRequest
-	68, // 30: authuseradmin.AuthUserAdminService.LoginAdmin:input_type -> authuseradmin.LoginAdminRequest
-	31, // 31: authuseradmin.AuthUserAdminService.UpdateProfile:input_type -> authuseradmin.UpdateProfileRequest
-	33, // 32: authuseradmin.AuthUserAdminService.UpdateProfileImage:input_type -> authuseradmin.UpdateProfileImageRequest
-	35, // 33: authuseradmin.AuthUserAdminService.GetUserProfile:input_type -> authuseradmin.GetUserProfileRequest
-	37, // 34: authuseradmin.AuthUserAdminService.CheckBanStatus:input_type -> authuseradmin.CheckBanStatusRequest
-	65, // 35: authuseradmin.AuthUserAdminService.BanHistory:input_type -> authuseradmin.BanHistoryRequest
-	70, // 36: authuseradmin.AuthUserAdminService.SearchUsers:input_type -> authuseradmin.SearchUsersRequest
-	39, // 37: authuseradmin.AuthUserAdminService.FollowUser:input_type -> authuseradmin.FollowUserRequest
-	41, // 38: authuseradmin.AuthUserAdminService.UnfollowUser:input_type -> authuseradmin.UnfollowUserRequest
-	43, // 39: authuseradmin.AuthUserAdminService.GetFollowing:input_type -> authuseradmin.GetFollowingRequest
-	45, // 40: authuseradmin.AuthUserAdminService.GetFollowers:input_type -> authuseradmin.GetFollowersRequest
-	72, // 41: authuseradmin.AuthUserAdminService.AdminLogin:input_type -> authuseradmin.AdminLoginRequest
-	75, // 42: authuseradmin.AuthUserAdminService.AdminProfile:input_type -> authuseradmin.AdminProfileRequest
-	47, // 43: authuseradmin.AuthUserAdminService.CreateUserAdmin:input_type -> authuseradmin.CreateUserAdminRequest
-	49, // 44: authuseradmin.AuthUserAdminService.UpdateUserAdmin:input_type -> authuseradmin.UpdateUserAdminRequest
-	51, // 45: authuseradmin.AuthUserAdminService.BanUser:input_type -> authuseradmin.BanUserRequest
-	53, // 46: authuseradmin.AuthUserAdminService.UnbanUser:input_type -> authuseradmin.UnbanUserRequest
-	55, // 47: authuseradmin.AuthUserAdminService.VerifyAdminUser:input_type -> authuseradmin.VerifyAdminUserRequest
-	57, // 48: authuseradmin.AuthUserAdminService.UnverifyUser:input_type -> authuseradmin.UnverifyUserAdminRequest
-	59, // 49: authuseradmin.AuthUserAdminService.SoftDeleteUserAdmin:input_type -> authuseradmin.SoftDeleteUserAdminRequest
-	61, // 50: authuseradmin.AuthUserAdminService.GetAllUsers:input_type -> authuseradmin.GetAllUsersRequest
-	10, // 51: authuseradmin.AuthUserAdminService.RegisterUser:output_type -> authuseradmin.RegisterUserResponse
-	14, // 52: authuseradmin.AuthUserAdminService.LoginUser:output_type -> authuseradmin.LoginUserResponse
-	14, // 53: authuseradmin.AuthUserAdminService.LoginWithGoogle:output_type -> authuseradmin.LoginUserResponse
-	16, // 54: authuseradmin.AuthUserAdminService.TokenRefresh:output_type -> authuseradmin.TokenRefreshResponse
-	18, // 55: authuseradmin.AuthUserAdminService.LogoutUser:output_type -> authuseradmin.LogoutResponse
-	20, // 56: authuseradmin.AuthUserAdminService.ResendEmailVerification:output_type -> authuseradmin.ResendEmailVerificationResponse
-	22, // 57: authuseradmin.AuthUserAdminService.VerifyUser:output_type -> authuseradmin.VerifyUserResponse
-	26, // 58: authuseradmin.AuthUserAdminService.ForgotPassword:output_type -> authuseradmin.ForgotPasswordResponse
-	28, // 59: authuseradmin.AuthUserAdminService.FinishForgotPassword:output_type -> authuseradmin.FinishForgotPasswordResponse
-	30, // 60: authuseradmin.AuthUserAdminService.ChangePassword:output_type -> authuseradmin.ChangePasswordResponse
-	4,  // 61: authuseradmin.AuthUserAdminService.SetUpTwoFactorAuth:output_type -> authuseradmin.SetUpTwoFactorAuthResponse
-	1,  // 62: authuseradmin.AuthUserAdminService.VerifyTwoFactorAuth:output_type -> authuseradmin.VerifyTwoFactorAuthResponse
-	6,  // 63: authuseradmin.AuthUserAdminService.DisableTwoFactorAuth:output_type -> authuseradmin.DisableTwoFactorAuthResponse
-	8,  // 64: authuseradmin.AuthUserAdminService.GetTwoFactorAuthStatus:output_type -> authuseradmin.GetTwoFactorAuthStatusResponse
-	69, // 65: authuseradmin.AuthUserAdminService.LoginAdmin:output_type -> authuseradmin.LoginAdminResponse
-	32, // 66: authuseradmin.AuthUserAdminService.UpdateProfile:output_type -> authuseradmin.UpdateProfileResponse
-	34, // 67: authuseradmin.AuthUserAdminService.UpdateProfileImage:output_type -> authuseradmin.UpdateProfileImageResponse
-	36, // 68: authuseradmin.AuthUserAdminService.GetUserProfile:output_type -> authuseradmin.GetUserProfileResponse
-	38, // 69: authuseradmin.AuthUserAdminService.CheckBanStatus:output_type -> authuseradmin.CheckBanStatusResponse
-	66, // 70: authuseradmin.AuthUserAdminService.BanHistory:output_type -> authuseradmin.BanHistoryResponse
-	71, // 71: authuseradmin.AuthUserAdminService.SearchUsers:output_type -> authuseradmin.SearchUsersResponse
-	40, // 72: authuseradmin.AuthUserAdminService.FollowUser:output_type -> authuseradmin.FollowUserResponse
-	42, // 73: authuseradmin.AuthUserAdminService.UnfollowUser:output_type -> authuseradmin.UnfollowUserResponse
-	44, // 74: authuseradmin.AuthUserAdminService.GetFollowing:output_type -> authuseradmin.GetFollowingResponse
-	46, // 75: authuseradmin.AuthUserAdminService.GetFollowers:output_type -> authuseradmin.GetFollowersResponse
-	73, // 76: authuseradmin.AuthUserAdminService.AdminLogin:output_type -> authuseradmin.AdminLoginResponse
-	76, // 77: authuseradmin.AuthUserAdminService.AdminProfile:output_type -> authuseradmin.AdminProfileResponse
-	48, // 78: authuseradmin.AuthUserAdminService.CreateUserAdmin:output_type -> authuseradmin.CreateUserAdminResponse
-	50, // 79: authuseradmin.AuthUserAdminService.UpdateUserAdmin:output_type -> authuseradmin.UpdateUserAdminResponse
-	52, // 80: authuseradmin.AuthUserAdminService.BanUser:output_type -> authuseradmin.BanUserResponse
-	54, // 81: authuseradmin.AuthUserAdminService.UnbanUser:output_type -> authuseradmin.UnbanUserResponse
-	56, // 82: authuseradmin.AuthUserAdminService.VerifyAdminUser:output_type -> authuseradmin.VerifyAdminUserResponse
-	58, // 83: authuseradmin.AuthUserAdminService.UnverifyUser:output_type -> authuseradmin.UnverifyUserAdminResponse
-	60, // 84: authuseradmin.AuthUserAdminService.SoftDeleteUserAdmin:output_type -> authuseradmin.SoftDeleteUserAdminResponse
-	62, // 85: authuseradmin.AuthUserAdminService.GetAllUsers:output_type -> authuseradmin.GetAllUsersResponse
-	51, // [51:86] is the sub-list for method output_type
-	16, // [16:51] is the sub-list for method input_type
+	65, // 0: authuseradmin.RegisterUserRequest.socials:type_name -> authuseradmin.Socials
+	66, // 1: authuseradmin.RegisterUserResponse.userProfile:type_name -> authuseradmin.UserProfile
+	66, // 2: authuseradmin.LoginUserResponse.userProfile:type_name -> authuseradmin.UserProfile
+	65, // 3: authuseradmin.UpdateProfileRequest.socials:type_name -> authuseradmin.Socials
+	66, // 4: authuseradmin.UpdateProfileResponse.userProfile:type_name -> authuseradmin.UserProfile
+	66, // 5: authuseradmin.GetUserProfileResponse.userProfile:type_name -> authuseradmin.UserProfile
+	66, // 6: authuseradmin.GetFollowingResponse.users:type_name -> authuseradmin.UserProfile
+	66, // 7: authuseradmin.GetFollowersResponse.users:type_name -> authuseradmin.UserProfile
+	65, // 8: authuseradmin.CreateUserAdminRequest.socials:type_name -> authuseradmin.Socials
+	65, // 9: authuseradmin.UpdateUserAdminRequest.socials:type_name -> authuseradmin.Socials
+	66, // 10: authuseradmin.UpdateUserAdminResponse.userProfile:type_name -> authuseradmin.UserProfile
+	66, // 11: authuseradmin.GetAllUsersResponse.users:type_name -> authuseradmin.UserProfile
+	65, // 12: authuseradmin.UserProfile.socials:type_name -> authuseradmin.Socials
+	69, // 13: authuseradmin.BanHistoryResponse.bans:type_name -> authuseradmin.BanHistory
+	66, // 14: authuseradmin.SearchUsersResponse.users:type_name -> authuseradmin.UserProfile
+	76, // 15: authuseradmin.AdminProfileResponse.adminProfile:type_name -> authuseradmin.AdminProfile
+	11, // 16: authuseradmin.AuthUserAdminService.RegisterUser:input_type -> authuseradmin.RegisterUserRequest
+	13, // 17: authuseradmin.AuthUserAdminService.LoginUser:input_type -> authuseradmin.LoginUserRequest
+	4,  // 18: authuseradmin.AuthUserAdminService.LoginWithGoogle:input_type -> authuseradmin.GoogleLoginRequest
+	17, // 19: authuseradmin.AuthUserAdminService.TokenRefresh:input_type -> authuseradmin.TokenRefreshRequest
+	19, // 20: authuseradmin.AuthUserAdminService.LogoutUser:input_type -> authuseradmin.LogoutRequest
+	21, // 21: authuseradmin.AuthUserAdminService.ResendEmailVerification:input_type -> authuseradmin.ResendEmailVerificationRequest
+	23, // 22: authuseradmin.AuthUserAdminService.VerifyUser:input_type -> authuseradmin.VerifyUserRequest
+	27, // 23: authuseradmin.AuthUserAdminService.ForgotPassword:input_type -> authuseradmin.ForgotPasswordRequest
+	29, // 24: authuseradmin.AuthUserAdminService.FinishForgotPassword:input_type -> authuseradmin.FinishForgotPasswordRequest
+	31, // 25: authuseradmin.AuthUserAdminService.ChangePassword:input_type -> authuseradmin.ChangePasswordRequest
+	5,  // 26: authuseradmin.AuthUserAdminService.SetUpTwoFactorAuth:input_type -> authuseradmin.SetUpTwoFactorAuthRequest
+	2,  // 27: authuseradmin.AuthUserAdminService.VerifyTwoFactorAuth:input_type -> authuseradmin.VerifyTwoFactorAuthRequest
+	7,  // 28: authuseradmin.AuthUserAdminService.DisableTwoFactorAuth:input_type -> authuseradmin.DisableTwoFactorAuthRequest
+	9,  // 29: authuseradmin.AuthUserAdminService.GetTwoFactorAuthStatus:input_type -> authuseradmin.GetTwoFactorAuthStatusRequest
+	70, // 30: authuseradmin.AuthUserAdminService.LoginAdmin:input_type -> authuseradmin.LoginAdminRequest
+	33, // 31: authuseradmin.AuthUserAdminService.UpdateProfile:input_type -> authuseradmin.UpdateProfileRequest
+	35, // 32: authuseradmin.AuthUserAdminService.UpdateProfileImage:input_type -> authuseradmin.UpdateProfileImageRequest
+	37, // 33: authuseradmin.AuthUserAdminService.GetUserProfile:input_type -> authuseradmin.GetUserProfileRequest
+	39, // 34: authuseradmin.AuthUserAdminService.CheckBanStatus:input_type -> authuseradmin.CheckBanStatusRequest
+	67, // 35: authuseradmin.AuthUserAdminService.BanHistory:input_type -> authuseradmin.BanHistoryRequest
+	0,  // 36: authuseradmin.AuthUserAdminService.UsernameAvailable:input_type -> authuseradmin.UsernameAvailableRequest
+	72, // 37: authuseradmin.AuthUserAdminService.SearchUsers:input_type -> authuseradmin.SearchUsersRequest
+	41, // 38: authuseradmin.AuthUserAdminService.FollowUser:input_type -> authuseradmin.FollowUserRequest
+	43, // 39: authuseradmin.AuthUserAdminService.UnfollowUser:input_type -> authuseradmin.UnfollowUserRequest
+	45, // 40: authuseradmin.AuthUserAdminService.GetFollowing:input_type -> authuseradmin.GetFollowingRequest
+	47, // 41: authuseradmin.AuthUserAdminService.GetFollowers:input_type -> authuseradmin.GetFollowersRequest
+	74, // 42: authuseradmin.AuthUserAdminService.AdminLogin:input_type -> authuseradmin.AdminLoginRequest
+	77, // 43: authuseradmin.AuthUserAdminService.AdminProfile:input_type -> authuseradmin.AdminProfileRequest
+	49, // 44: authuseradmin.AuthUserAdminService.CreateUserAdmin:input_type -> authuseradmin.CreateUserAdminRequest
+	51, // 45: authuseradmin.AuthUserAdminService.UpdateUserAdmin:input_type -> authuseradmin.UpdateUserAdminRequest
+	53, // 46: authuseradmin.AuthUserAdminService.BanUser:input_type -> authuseradmin.BanUserRequest
+	55, // 47: authuseradmin.AuthUserAdminService.UnbanUser:input_type -> authuseradmin.UnbanUserRequest
+	57, // 48: authuseradmin.AuthUserAdminService.VerifyAdminUser:input_type -> authuseradmin.VerifyAdminUserRequest
+	59, // 49: authuseradmin.AuthUserAdminService.UnverifyUser:input_type -> authuseradmin.UnverifyUserAdminRequest
+	61, // 50: authuseradmin.AuthUserAdminService.SoftDeleteUserAdmin:input_type -> authuseradmin.SoftDeleteUserAdminRequest
+	63, // 51: authuseradmin.AuthUserAdminService.GetAllUsers:input_type -> authuseradmin.GetAllUsersRequest
+	12, // 52: authuseradmin.AuthUserAdminService.RegisterUser:output_type -> authuseradmin.RegisterUserResponse
+	16, // 53: authuseradmin.AuthUserAdminService.LoginUser:output_type -> authuseradmin.LoginUserResponse
+	16, // 54: authuseradmin.AuthUserAdminService.LoginWithGoogle:output_type -> authuseradmin.LoginUserResponse
+	18, // 55: authuseradmin.AuthUserAdminService.TokenRefresh:output_type -> authuseradmin.TokenRefreshResponse
+	20, // 56: authuseradmin.AuthUserAdminService.LogoutUser:output_type -> authuseradmin.LogoutResponse
+	22, // 57: authuseradmin.AuthUserAdminService.ResendEmailVerification:output_type -> authuseradmin.ResendEmailVerificationResponse
+	24, // 58: authuseradmin.AuthUserAdminService.VerifyUser:output_type -> authuseradmin.VerifyUserResponse
+	28, // 59: authuseradmin.AuthUserAdminService.ForgotPassword:output_type -> authuseradmin.ForgotPasswordResponse
+	30, // 60: authuseradmin.AuthUserAdminService.FinishForgotPassword:output_type -> authuseradmin.FinishForgotPasswordResponse
+	32, // 61: authuseradmin.AuthUserAdminService.ChangePassword:output_type -> authuseradmin.ChangePasswordResponse
+	6,  // 62: authuseradmin.AuthUserAdminService.SetUpTwoFactorAuth:output_type -> authuseradmin.SetUpTwoFactorAuthResponse
+	3,  // 63: authuseradmin.AuthUserAdminService.VerifyTwoFactorAuth:output_type -> authuseradmin.VerifyTwoFactorAuthResponse
+	8,  // 64: authuseradmin.AuthUserAdminService.DisableTwoFactorAuth:output_type -> authuseradmin.DisableTwoFactorAuthResponse
+	10, // 65: authuseradmin.AuthUserAdminService.GetTwoFactorAuthStatus:output_type -> authuseradmin.GetTwoFactorAuthStatusResponse
+	71, // 66: authuseradmin.AuthUserAdminService.LoginAdmin:output_type -> authuseradmin.LoginAdminResponse
+	34, // 67: authuseradmin.AuthUserAdminService.UpdateProfile:output_type -> authuseradmin.UpdateProfileResponse
+	36, // 68: authuseradmin.AuthUserAdminService.UpdateProfileImage:output_type -> authuseradmin.UpdateProfileImageResponse
+	38, // 69: authuseradmin.AuthUserAdminService.GetUserProfile:output_type -> authuseradmin.GetUserProfileResponse
+	40, // 70: authuseradmin.AuthUserAdminService.CheckBanStatus:output_type -> authuseradmin.CheckBanStatusResponse
+	68, // 71: authuseradmin.AuthUserAdminService.BanHistory:output_type -> authuseradmin.BanHistoryResponse
+	1,  // 72: authuseradmin.AuthUserAdminService.UsernameAvailable:output_type -> authuseradmin.UsernameAvailableResponse
+	73, // 73: authuseradmin.AuthUserAdminService.SearchUsers:output_type -> authuseradmin.SearchUsersResponse
+	42, // 74: authuseradmin.AuthUserAdminService.FollowUser:output_type -> authuseradmin.FollowUserResponse
+	44, // 75: authuseradmin.AuthUserAdminService.UnfollowUser:output_type -> authuseradmin.UnfollowUserResponse
+	46, // 76: authuseradmin.AuthUserAdminService.GetFollowing:output_type -> authuseradmin.GetFollowingResponse
+	48, // 77: authuseradmin.AuthUserAdminService.GetFollowers:output_type -> authuseradmin.GetFollowersResponse
+	75, // 78: authuseradmin.AuthUserAdminService.AdminLogin:output_type -> authuseradmin.AdminLoginResponse
+	78, // 79: authuseradmin.AuthUserAdminService.AdminProfile:output_type -> authuseradmin.AdminProfileResponse
+	50, // 80: authuseradmin.AuthUserAdminService.CreateUserAdmin:output_type -> authuseradmin.CreateUserAdminResponse
+	52, // 81: authuseradmin.AuthUserAdminService.UpdateUserAdmin:output_type -> authuseradmin.UpdateUserAdminResponse
+	54, // 82: authuseradmin.AuthUserAdminService.BanUser:output_type -> authuseradmin.BanUserResponse
+	56, // 83: authuseradmin.AuthUserAdminService.UnbanUser:output_type -> authuseradmin.UnbanUserResponse
+	58, // 84: authuseradmin.AuthUserAdminService.VerifyAdminUser:output_type -> authuseradmin.VerifyAdminUserResponse
+	60, // 85: authuseradmin.AuthUserAdminService.UnverifyUser:output_type -> authuseradmin.UnverifyUserAdminResponse
+	62, // 86: authuseradmin.AuthUserAdminService.SoftDeleteUserAdmin:output_type -> authuseradmin.SoftDeleteUserAdminResponse
+	64, // 87: authuseradmin.AuthUserAdminService.GetAllUsers:output_type -> authuseradmin.GetAllUsersResponse
+	52, // [52:88] is the sub-list for method output_type
+	16, // [16:52] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
 	16, // [16:16] is the sub-list for extension extendee
 	0,  // [0:16] is the sub-list for field type_name
@@ -5586,7 +5683,7 @@ func file_AuthUserAdminService_authuseradmin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_AuthUserAdminService_authuseradmin_proto_rawDesc), len(file_AuthUserAdminService_authuseradmin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   77,
+			NumMessages:   79,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
