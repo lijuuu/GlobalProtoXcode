@@ -38,6 +38,7 @@ const (
 	ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName     = "/problems.ProblemsService/GetLeaderBoardOptionalCountry"
 	ProblemsService_GetProblemsDoneStatistics_FullMethodName         = "/problems.ProblemsService/GetProblemsDoneStatistics"
 	ProblemsService_GetIndividualUserRank_FullMethodName             = "/problems.ProblemsService/GetIndividualUserRank"
+	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName         = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -65,6 +66,8 @@ type ProblemsServiceClient interface {
 	GetLeaderBoardOptionalCountry(ctx context.Context, in *GetLeaderBoardOptionalCountryRequest, opts ...grpc.CallOption) (*GetLeaderBoardOptionalCountryResponse, error)
 	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
 	GetIndividualUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
+	// actitvitycontribution
+	GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -265,6 +268,16 @@ func (c *problemsServiceClient) GetIndividualUserRank(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *problemsServiceClient) GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMonthlyActivityHeatmapResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetMonthlyActivityHeatmap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -290,6 +303,8 @@ type ProblemsServiceServer interface {
 	GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error)
 	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
 	GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
+	// actitvitycontribution
+	GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -356,6 +371,9 @@ func (UnimplementedProblemsServiceServer) GetProblemsDoneStatistics(context.Cont
 }
 func (UnimplementedProblemsServiceServer) GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIndividualUserRank not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMonthlyActivityHeatmap not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -720,6 +738,24 @@ func _ProblemsService_GetIndividualUserRank_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_GetMonthlyActivityHeatmap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMonthlyActivityHeatmapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetMonthlyActivityHeatmap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetMonthlyActivityHeatmap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetMonthlyActivityHeatmap(ctx, req.(*GetMonthlyActivityHeatmapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -802,6 +838,10 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetIndividualUserRank",
 			Handler:    _ProblemsService_GetIndividualUserRank_Handler,
+		},
+		{
+			MethodName: "GetMonthlyActivityHeatmap",
+			Handler:    _ProblemsService_GetMonthlyActivityHeatmap_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

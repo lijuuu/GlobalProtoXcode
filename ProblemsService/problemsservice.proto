@@ -28,7 +28,27 @@ service ProblemsService {
     rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest) returns (GetProblemsDoneStatisticsResponse);
 
     rpc GetIndividualUserRank(GetUserRankRequest) returns (GetUserRankResponse);
+
+
+    //actitvitycontribution
+    rpc GetMonthlyActivityHeatmap(GetMonthlyActivityHeatmapRequest) returns (GetMonthlyActivityHeatmapResponse);
 }
+
+message GetMonthlyActivityHeatmapRequest {
+    string userID = 1;
+    int32 month = 2; // 1 to 12
+    int32 year = 3;
+  }
+  
+  message ActivityDay {
+    string date = 1;   // format: YYYY-MM-DD
+    int32 count = 2;
+    bool isActive = 3;
+  }
+  
+  message GetMonthlyActivityHeatmapResponse {
+    repeated ActivityDay data = 1;
+  }
 
 message GetLeaderBoardOptionalCountryResponse{
     LeaderboardSingle data = 1;
