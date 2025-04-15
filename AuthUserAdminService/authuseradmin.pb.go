@@ -1972,6 +1972,7 @@ type UpdateProfileRequest struct {
 	PrimaryLanguageID string                 `protobuf:"bytes,6,opt,name=primaryLanguageID,proto3" json:"primaryLanguageID,omitempty"`
 	MuteNotifications bool                   `protobuf:"varint,7,opt,name=muteNotifications,proto3" json:"muteNotifications,omitempty"`
 	Socials           *Socials               `protobuf:"bytes,8,opt,name=socials,proto3" json:"socials,omitempty"`
+	Bio               string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -2060,6 +2061,13 @@ func (x *UpdateProfileRequest) GetSocials() *Socials {
 		return x.Socials
 	}
 	return nil
+}
+
+func (x *UpdateProfileRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
 }
 
 type UpdateProfileResponse struct {
@@ -4078,6 +4086,7 @@ type UserProfile struct {
 	CreatedAt         int64                  `protobuf:"varint,17,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	UpdatedAt         int64                  `protobuf:"varint,18,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
 	Socials           *Socials               `protobuf:"bytes,19,opt,name=socials,proto3" json:"socials,omitempty"`
+	Bio               string                 `protobuf:"bytes,20,opt,name=Bio,proto3" json:"Bio,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -4243,6 +4252,13 @@ func (x *UserProfile) GetSocials() *Socials {
 		return x.Socials
 	}
 	return nil
+}
+
+func (x *UserProfile) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
 }
 
 type BanHistoryRequest struct {
@@ -5167,7 +5183,7 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x16ChangePasswordResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"\xac\x02\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"\xbe\x02\n" +
 	"\x14UpdateProfileRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\buserName\x18\x02 \x01(\tR\buserName\x12\x1c\n" +
@@ -5176,7 +5192,8 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\acountry\x18\x05 \x01(\tR\acountry\x12,\n" +
 	"\x11primaryLanguageID\x18\x06 \x01(\tR\x11primaryLanguageID\x12,\n" +
 	"\x11muteNotifications\x18\a \x01(\bR\x11muteNotifications\x120\n" +
-	"\asocials\x18\b \x01(\v2\x16.authuseradmin.SocialsR\asocials\"\x8e\x01\n" +
+	"\asocials\x18\b \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12\x10\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\"\x8e\x01\n" +
 	"\x15UpdateProfileResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
 	"\vuserProfile\x18\x02 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x1d\n" +
@@ -5349,7 +5366,7 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\aSocials\x12\x16\n" +
 	"\x06github\x18\x01 \x01(\tR\x06github\x12\x18\n" +
 	"\atwitter\x18\x02 \x01(\tR\atwitter\x12\x1a\n" +
-	"\blinkedin\x18\x03 \x01(\tR\blinkedin\"\xf1\x04\n" +
+	"\blinkedin\x18\x03 \x01(\tR\blinkedin\"\x83\x05\n" +
 	"\vUserProfile\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\buserName\x18\x02 \x01(\tR\buserName\x12\x1c\n" +
@@ -5374,7 +5391,8 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"isVerified\x12\x1c\n" +
 	"\tcreatedAt\x18\x11 \x01(\x03R\tcreatedAt\x12\x1c\n" +
 	"\tupdatedAt\x18\x12 \x01(\x03R\tupdatedAt\x120\n" +
-	"\asocials\x18\x13 \x01(\v2\x16.authuseradmin.SocialsR\asocials\"+\n" +
+	"\asocials\x18\x13 \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12\x10\n" +
+	"\x03Bio\x18\x14 \x01(\tR\x03Bio\"+\n" +
 	"\x11BanHistoryRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\"|\n" +
 	"\x12BanHistoryResponse\x12-\n" +

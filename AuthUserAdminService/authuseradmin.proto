@@ -260,6 +260,7 @@ message UpdateProfileRequest {
     string primaryLanguageID = 6;
     bool muteNotifications = 7;
     Socials socials = 8;
+    string bio = 9;
 }
 
 message UpdateProfileResponse {
@@ -487,6 +488,7 @@ message UserProfile {
     int64 createdAt = 17;
     int64 updatedAt = 18;
     Socials socials = 19;
+    string Bio = 20;
 }
 
 message BanHistoryRequest {
