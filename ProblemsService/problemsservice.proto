@@ -283,7 +283,7 @@ message RunProblemRequest {
     string language = 3;
     bool is_run_testcase = 4;
     string user_id = 5;
-    optional string demo = 6;
+    optional string country = 6;
 }
 
 message RunProblemResponse {

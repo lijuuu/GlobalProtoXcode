@@ -2456,7 +2456,7 @@ type RunProblemRequest struct {
 	Language      string                 `protobuf:"bytes,3,opt,name=language,proto3" json:"language,omitempty"`
 	IsRunTestcase bool                   `protobuf:"varint,4,opt,name=is_run_testcase,json=isRunTestcase,proto3" json:"is_run_testcase,omitempty"`
 	UserId        string                 `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Demo          *string                `protobuf:"bytes,6,opt,name=demo,proto3,oneof" json:"demo,omitempty"`
+	Country       *string                `protobuf:"bytes,6,opt,name=country,proto3,oneof" json:"country,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2526,9 +2526,9 @@ func (x *RunProblemRequest) GetUserId() string {
 	return ""
 }
 
-func (x *RunProblemRequest) GetDemo() string {
-	if x != nil && x.Demo != nil {
-		return *x.Demo
+func (x *RunProblemRequest) GetCountry() string {
+	if x != nil && x.Country != nil {
+		return *x.Country
 	}
 	return ""
 }
@@ -3474,16 +3474,17 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\xce\x01\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\xd7\x01\n" +
 	"\x11RunProblemRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1b\n" +
 	"\tuser_code\x18\x02 \x01(\tR\buserCode\x12\x1a\n" +
 	"\blanguage\x18\x03 \x01(\tR\blanguage\x12&\n" +
 	"\x0fis_run_testcase\x18\x04 \x01(\bR\risRunTestcase\x12\x17\n" +
-	"\auser_id\x18\x05 \x01(\tR\x06userId\x12\x17\n" +
-	"\x04demo\x18\x06 \x01(\tH\x00R\x04demo\x88\x01\x01B\a\n" +
-	"\x05_demo\"\xca\x01\n" +
+	"\auser_id\x18\x05 \x01(\tR\x06userId\x12\x1d\n" +
+	"\acountry\x18\x06 \x01(\tH\x00R\acountry\x88\x01\x01B\n" +
+	"\n" +
+	"\b_country\"\xca\x01\n" +
 	"\x12RunProblemResponse\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +
