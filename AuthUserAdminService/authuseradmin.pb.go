@@ -2245,6 +2245,7 @@ func (x *UpdateProfileImageResponse) GetErrorType() string {
 type GetUserProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	UserName      *string                `protobuf:"bytes,2,opt,name=userName,proto3,oneof" json:"userName,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2282,6 +2283,13 @@ func (*GetUserProfileRequest) Descriptor() ([]byte, []int) {
 func (x *GetUserProfileRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *GetUserProfileRequest) GetUserName() string {
+	if x != nil && x.UserName != nil {
+		return *x.UserName
 	}
 	return ""
 }
@@ -5206,9 +5214,11 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1c\n" +
 	"\tavatarURL\x18\x02 \x01(\tR\tavatarURL\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"/\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"]\n" +
 	"\x15GetUserProfileRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"\x8f\x01\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1f\n" +
+	"\buserName\x18\x02 \x01(\tH\x00R\buserName\x88\x01\x01B\v\n" +
+	"\t_userName\"\x8f\x01\n" +
 	"\x16GetUserProfileResponse\x12<\n" +
 	"\vuserProfile\x18\x01 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
@@ -5695,6 +5705,7 @@ func file_AuthUserAdminService_authuseradmin_proto_init() {
 	if File_AuthUserAdminService_authuseradmin_proto != nil {
 		return
 	}
+	file_AuthUserAdminService_authuseradmin_proto_msgTypes[37].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

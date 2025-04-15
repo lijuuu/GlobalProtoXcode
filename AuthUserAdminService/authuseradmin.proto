@@ -282,6 +282,7 @@ message UpdateProfileImageResponse {
 
 message GetUserProfileRequest {
     string userID = 1;
+    optional string userName = 2;
 }
 
 message GetUserProfileResponse {
