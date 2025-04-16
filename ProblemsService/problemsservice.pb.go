@@ -254,10 +254,10 @@ func (x *ChallengeProblemMetadata) GetCompletedAt() int64 {
 }
 
 type ProblemMetadataList struct {
-	state         protoimpl.MessageState      `protogen:"open.v1"`
-	Metadata      []*ChallengeProblemMetadata `protobuf:"bytes,1,rep,name=metadata,proto3" json:"metadata,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState      `protogen:"open.v1"`
+	ChallengeProblemMetadata []*ChallengeProblemMetadata `protobuf:"bytes,1,rep,name=challenge_problem_metadata,json=challengeProblemMetadata,proto3" json:"challenge_problem_metadata,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ProblemMetadataList) Reset() {
@@ -290,9 +290,9 @@ func (*ProblemMetadataList) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ProblemMetadataList) GetMetadata() []*ChallengeProblemMetadata {
+func (x *ProblemMetadataList) GetChallengeProblemMetadata() []*ChallengeProblemMetadata {
 	if x != nil {
-		return x.Metadata
+		return x.ChallengeProblemMetadata
 	}
 	return nil
 }
@@ -1745,14 +1745,14 @@ func (x *GetChallengeUserStatsRequest) GetUserId() string {
 }
 
 type GetChallengeUserStatsResponse struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	UserId            string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	ProblemsCompleted int32                  `protobuf:"varint,2,opt,name=problems_completed,json=problemsCompleted,proto3" json:"problems_completed,omitempty"`
-	TotalScore        int32                  `protobuf:"varint,3,opt,name=total_score,json=totalScore,proto3" json:"total_score,omitempty"`
-	Rank              int32                  `protobuf:"varint,4,opt,name=rank,proto3" json:"rank,omitempty"`
-	ProblemMetadata   []*ProblemMetadata     `protobuf:"bytes,5,rep,name=problem_metadata,json=problemMetadata,proto3" json:"problem_metadata,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                    protoimpl.MessageState      `protogen:"open.v1"`
+	UserId                   string                      `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProblemsCompleted        int32                       `protobuf:"varint,2,opt,name=problems_completed,json=problemsCompleted,proto3" json:"problems_completed,omitempty"`
+	TotalScore               int32                       `protobuf:"varint,3,opt,name=total_score,json=totalScore,proto3" json:"total_score,omitempty"`
+	Rank                     int32                       `protobuf:"varint,4,opt,name=rank,proto3" json:"rank,omitempty"`
+	ChallengeProblemMetadata []*ChallengeProblemMetadata `protobuf:"bytes,5,rep,name=challenge_problem_metadata,json=challengeProblemMetadata,proto3" json:"challenge_problem_metadata,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *GetChallengeUserStatsResponse) Reset() {
@@ -1813,9 +1813,9 @@ func (x *GetChallengeUserStatsResponse) GetRank() int32 {
 	return 0
 }
 
-func (x *GetChallengeUserStatsResponse) GetProblemMetadata() []*ProblemMetadata {
+func (x *GetChallengeUserStatsResponse) GetChallengeProblemMetadata() []*ChallengeProblemMetadata {
 	if x != nil {
-		return x.ProblemMetadata
+		return x.ChallengeProblemMetadata
 	}
 	return nil
 }
@@ -5501,9 +5501,9 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x05score\x18\x02 \x01(\x05R\x05score\x12\x1d\n" +
 	"\n" +
 	"time_taken\x18\x03 \x01(\x03R\ttimeTaken\x12!\n" +
-	"\fcompleted_at\x18\x04 \x01(\x03R\vcompletedAt\"U\n" +
-	"\x13ProblemMetadataList\x12>\n" +
-	"\bmetadata\x18\x01 \x03(\v2\".problems.ChallengeProblemMetadataR\bmetadata\"\xa9\x02\n" +
+	"\fcompleted_at\x18\x04 \x01(\x03R\vcompletedAt\"w\n" +
+	"\x13ProblemMetadataList\x12`\n" +
+	"\x1achallenge_problem_metadata\x18\x01 \x03(\v2\".problems.ChallengeProblemMetadataR\x18challengeProblemMetadata\"\xa9\x02\n" +
 	"\x0fProblemMetadata\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x14\n" +
@@ -5622,14 +5622,14 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x05stats\x18\x01 \x01(\v2\x13.problems.UserStatsR\x05stats\"Z\n" +
 	"\x1cGetChallengeUserStatsRequest\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xe2\x01\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xfe\x01\n" +
 	"\x1dGetChallengeUserStatsResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12-\n" +
 	"\x12problems_completed\x18\x02 \x01(\x05R\x11problemsCompleted\x12\x1f\n" +
 	"\vtotal_score\x18\x03 \x01(\x05R\n" +
 	"totalScore\x12\x12\n" +
-	"\x04rank\x18\x04 \x01(\x05R\x04rank\x12D\n" +
-	"\x10problem_metadata\x18\x05 \x03(\v2\x19.problems.ProblemMetadataR\x0fproblemMetadata\"$\n" +
+	"\x04rank\x18\x04 \x01(\x05R\x04rank\x12`\n" +
+	"\x1achallenge_problem_metadata\x18\x05 \x03(\v2\".problems.ChallengeProblemMetadataR\x18challengeProblemMetadata\"$\n" +
 	"\x14GetTopKGlobalRequest\x12\f\n" +
 	"\x01k\x18\x01 \x01(\x05R\x01k\"B\n" +
 	"\x15GetTopKGlobalResponse\x12)\n" +
@@ -6113,7 +6113,7 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 }
 var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	87, // 0: problems.Challenge.user_problem_metadata:type_name -> problems.Challenge.UserProblemMetadataEntry
-	1,  // 1: problems.ProblemMetadataList.metadata:type_name -> problems.ChallengeProblemMetadata
+	1,  // 1: problems.ProblemMetadataList.challenge_problem_metadata:type_name -> problems.ChallengeProblemMetadata
 	50, // 2: problems.ProblemMetadata.testcase_run:type_name -> problems.TestCaseRunOnly
 	88, // 3: problems.UserStats.challenge_stats:type_name -> problems.UserStats.ChallengeStatsEntry
 	0,  // 4: problems.GetChallengeResponse.challenge:type_name -> problems.Challenge
@@ -6123,7 +6123,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	79, // 8: problems.GetSubmissionStatusResponse.submission:type_name -> problems.Submission
 	79, // 9: problems.GetChallengeSubmissionsResponse.submissions:type_name -> problems.Submission
 	4,  // 10: problems.GetUserStatsResponse.stats:type_name -> problems.UserStats
-	3,  // 11: problems.GetChallengeUserStatsResponse.problem_metadata:type_name -> problems.ProblemMetadata
+	1,  // 11: problems.GetChallengeUserStatsResponse.challenge_problem_metadata:type_name -> problems.ChallengeProblemMetadata
 	37, // 12: problems.GetTopKGlobalResponse.users:type_name -> problems.UserScore
 	37, // 13: problems.GetTopKEntityResponse.users:type_name -> problems.UserScore
 	37, // 14: problems.GetLeaderboardDataResponse.top_k_global:type_name -> problems.UserScore

@@ -81,7 +81,7 @@ message Challenge {
   }
   
   message ProblemMetadataList {
-    repeated ChallengeProblemMetadata metadata = 1;
+    repeated ChallengeProblemMetadata challenge_problem_metadata = 1;
   }
 
 
@@ -237,7 +237,7 @@ message ProblemMetadata {
     int32 problems_completed = 2;
     int32 total_score = 3;
     int32 rank = 4;
-    repeated ProblemMetadata problem_metadata = 5;
+    repeated ChallengeProblemMetadata challenge_problem_metadata = 5;
   }
 
 
