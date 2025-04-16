@@ -21,6 +21,434 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type GetTopKGlobalRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	K             int32                  `protobuf:"varint,1,opt,name=k,proto3" json:"k,omitempty"` //future updates needed on redis board config to accept dynamic k
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTopKGlobalRequest) Reset() {
+	*x = GetTopKGlobalRequest{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTopKGlobalRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTopKGlobalRequest) ProtoMessage() {}
+
+func (x *GetTopKGlobalRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTopKGlobalRequest.ProtoReflect.Descriptor instead.
+func (*GetTopKGlobalRequest) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GetTopKGlobalRequest) GetK() int32 {
+	if x != nil {
+		return x.K
+	}
+	return 0
+}
+
+type GetTopKGlobalResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Users         []*UserScore           `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTopKGlobalResponse) Reset() {
+	*x = GetTopKGlobalResponse{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTopKGlobalResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTopKGlobalResponse) ProtoMessage() {}
+
+func (x *GetTopKGlobalResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTopKGlobalResponse.ProtoReflect.Descriptor instead.
+func (*GetTopKGlobalResponse) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetTopKGlobalResponse) GetUsers() []*UserScore {
+	if x != nil {
+		return x.Users
+	}
+	return nil
+}
+
+type GetTopKEntityRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Entity        string                 `protobuf:"bytes,1,opt,name=entity,proto3" json:"entity,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTopKEntityRequest) Reset() {
+	*x = GetTopKEntityRequest{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTopKEntityRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTopKEntityRequest) ProtoMessage() {}
+
+func (x *GetTopKEntityRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTopKEntityRequest.ProtoReflect.Descriptor instead.
+func (*GetTopKEntityRequest) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetTopKEntityRequest) GetEntity() string {
+	if x != nil {
+		return x.Entity
+	}
+	return ""
+}
+
+type GetTopKEntityResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Users         []*UserScore           `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTopKEntityResponse) Reset() {
+	*x = GetTopKEntityResponse{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTopKEntityResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTopKEntityResponse) ProtoMessage() {}
+
+func (x *GetTopKEntityResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTopKEntityResponse.ProtoReflect.Descriptor instead.
+func (*GetTopKEntityResponse) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetTopKEntityResponse) GetUsers() []*UserScore {
+	if x != nil {
+		return x.Users
+	}
+	return nil
+}
+
+type GetUserRankRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserRankRequest) Reset() {
+	*x = GetUserRankRequest{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserRankRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserRankRequest) ProtoMessage() {}
+
+func (x *GetUserRankRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserRankRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRankRequest) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetUserRankRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetUserRankResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GlobalRank    int32                  `protobuf:"varint,1,opt,name=global_rank,json=globalRank,proto3" json:"global_rank,omitempty"`
+	EntityRank    int32                  `protobuf:"varint,2,opt,name=entity_rank,json=entityRank,proto3" json:"entity_rank,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserRankResponse) Reset() {
+	*x = GetUserRankResponse{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserRankResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserRankResponse) ProtoMessage() {}
+
+func (x *GetUserRankResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserRankResponse.ProtoReflect.Descriptor instead.
+func (*GetUserRankResponse) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetUserRankResponse) GetGlobalRank() int32 {
+	if x != nil {
+		return x.GlobalRank
+	}
+	return 0
+}
+
+func (x *GetUserRankResponse) GetEntityRank() int32 {
+	if x != nil {
+		return x.EntityRank
+	}
+	return 0
+}
+
+type GetLeaderboardDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLeaderboardDataRequest) Reset() {
+	*x = GetLeaderboardDataRequest{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLeaderboardDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLeaderboardDataRequest) ProtoMessage() {}
+
+func (x *GetLeaderboardDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLeaderboardDataRequest.ProtoReflect.Descriptor instead.
+func (*GetLeaderboardDataRequest) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetLeaderboardDataRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetLeaderboardDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Score         float64                `protobuf:"fixed64,2,opt,name=score,proto3" json:"score,omitempty"`
+	Entity        string                 `protobuf:"bytes,3,opt,name=entity,proto3" json:"entity,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLeaderboardDataResponse) Reset() {
+	*x = GetLeaderboardDataResponse{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLeaderboardDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLeaderboardDataResponse) ProtoMessage() {}
+
+func (x *GetLeaderboardDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLeaderboardDataResponse.ProtoReflect.Descriptor instead.
+func (*GetLeaderboardDataResponse) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetLeaderboardDataResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetLeaderboardDataResponse) GetScore() float64 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
+func (x *GetLeaderboardDataResponse) GetEntity() string {
+	if x != nil {
+		return x.Entity
+	}
+	return ""
+}
+
+type UserScore struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Score         float64                `protobuf:"fixed64,2,opt,name=score,proto3" json:"score,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserScore) Reset() {
+	*x = UserScore{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserScore) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserScore) ProtoMessage() {}
+
+func (x *UserScore) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserScore.ProtoReflect.Descriptor instead.
+func (*UserScore) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UserScore) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserScore) GetScore() float64 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
 type GetMonthlyActivityHeatmapRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
@@ -32,7 +460,7 @@ type GetMonthlyActivityHeatmapRequest struct {
 
 func (x *GetMonthlyActivityHeatmapRequest) Reset() {
 	*x = GetMonthlyActivityHeatmapRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[0]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +472,7 @@ func (x *GetMonthlyActivityHeatmapRequest) String() string {
 func (*GetMonthlyActivityHeatmapRequest) ProtoMessage() {}
 
 func (x *GetMonthlyActivityHeatmapRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[0]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +485,7 @@ func (x *GetMonthlyActivityHeatmapRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMonthlyActivityHeatmapRequest.ProtoReflect.Descriptor instead.
 func (*GetMonthlyActivityHeatmapRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{0}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetMonthlyActivityHeatmapRequest) GetUserID() string {
@@ -92,7 +520,7 @@ type ActivityDay struct {
 
 func (x *ActivityDay) Reset() {
 	*x = ActivityDay{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[1]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -104,7 +532,7 @@ func (x *ActivityDay) String() string {
 func (*ActivityDay) ProtoMessage() {}
 
 func (x *ActivityDay) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[1]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117,7 +545,7 @@ func (x *ActivityDay) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivityDay.ProtoReflect.Descriptor instead.
 func (*ActivityDay) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{1}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ActivityDay) GetDate() string {
@@ -150,7 +578,7 @@ type GetMonthlyActivityHeatmapResponse struct {
 
 func (x *GetMonthlyActivityHeatmapResponse) Reset() {
 	*x = GetMonthlyActivityHeatmapResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[2]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -162,7 +590,7 @@ func (x *GetMonthlyActivityHeatmapResponse) String() string {
 func (*GetMonthlyActivityHeatmapResponse) ProtoMessage() {}
 
 func (x *GetMonthlyActivityHeatmapResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[2]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -175,7 +603,7 @@ func (x *GetMonthlyActivityHeatmapResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetMonthlyActivityHeatmapResponse.ProtoReflect.Descriptor instead.
 func (*GetMonthlyActivityHeatmapResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{2}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetMonthlyActivityHeatmapResponse) GetData() []*ActivityDay {
@@ -195,7 +623,7 @@ type GetLeaderBoardOptionalCountryResponse struct {
 
 func (x *GetLeaderBoardOptionalCountryResponse) Reset() {
 	*x = GetLeaderBoardOptionalCountryResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -207,7 +635,7 @@ func (x *GetLeaderBoardOptionalCountryResponse) String() string {
 func (*GetLeaderBoardOptionalCountryResponse) ProtoMessage() {}
 
 func (x *GetLeaderBoardOptionalCountryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +648,7 @@ func (x *GetLeaderBoardOptionalCountryResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use GetLeaderBoardOptionalCountryResponse.ProtoReflect.Descriptor instead.
 func (*GetLeaderBoardOptionalCountryResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{3}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetLeaderBoardOptionalCountryResponse) GetData() *LeaderboardSingle {
@@ -248,7 +676,7 @@ type LeaderboardSingle struct {
 
 func (x *LeaderboardSingle) Reset() {
 	*x = LeaderboardSingle{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[4]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -260,7 +688,7 @@ func (x *LeaderboardSingle) String() string {
 func (*LeaderboardSingle) ProtoMessage() {}
 
 func (x *LeaderboardSingle) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[4]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -273,7 +701,7 @@ func (x *LeaderboardSingle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LeaderboardSingle.ProtoReflect.Descriptor instead.
 func (*LeaderboardSingle) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{4}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *LeaderboardSingle) GetUsername() string {
@@ -310,7 +738,7 @@ type GetLeaderBoardOptionalCountryRequest struct {
 
 func (x *GetLeaderBoardOptionalCountryRequest) Reset() {
 	*x = GetLeaderBoardOptionalCountryRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[5]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -322,7 +750,7 @@ func (x *GetLeaderBoardOptionalCountryRequest) String() string {
 func (*GetLeaderBoardOptionalCountryRequest) ProtoMessage() {}
 
 func (x *GetLeaderBoardOptionalCountryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[5]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -335,7 +763,7 @@ func (x *GetLeaderBoardOptionalCountryRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use GetLeaderBoardOptionalCountryRequest.ProtoReflect.Descriptor instead.
 func (*GetLeaderBoardOptionalCountryRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{5}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetLeaderBoardOptionalCountryRequest) GetPage() int64 {
@@ -383,7 +811,7 @@ type GetProblemsDoneStatisticsRequest struct {
 
 func (x *GetProblemsDoneStatisticsRequest) Reset() {
 	*x = GetProblemsDoneStatisticsRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[6]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -395,7 +823,7 @@ func (x *GetProblemsDoneStatisticsRequest) String() string {
 func (*GetProblemsDoneStatisticsRequest) ProtoMessage() {}
 
 func (x *GetProblemsDoneStatisticsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[6]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +836,7 @@ func (x *GetProblemsDoneStatisticsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemsDoneStatisticsRequest.ProtoReflect.Descriptor instead.
 func (*GetProblemsDoneStatisticsRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{6}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetProblemsDoneStatisticsRequest) GetUsername() string {
@@ -425,58 +853,6 @@ func (x *GetProblemsDoneStatisticsRequest) GetUserId() string {
 	return ""
 }
 
-type GetUserRankRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      *string                `protobuf:"bytes,1,opt,name=username,proto3,oneof" json:"username,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserRankRequest) Reset() {
-	*x = GetUserRankRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserRankRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserRankRequest) ProtoMessage() {}
-
-func (x *GetUserRankRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserRankRequest.ProtoReflect.Descriptor instead.
-func (*GetUserRankRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *GetUserRankRequest) GetUsername() string {
-	if x != nil && x.Username != nil {
-		return *x.Username
-	}
-	return ""
-}
-
-func (x *GetUserRankRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
 type GetProblemsDoneStatisticsResponse struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
 	Data          *ProblemsDoneStatistics `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
@@ -486,7 +862,7 @@ type GetProblemsDoneStatisticsResponse struct {
 
 func (x *GetProblemsDoneStatisticsResponse) Reset() {
 	*x = GetProblemsDoneStatisticsResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[8]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -498,7 +874,7 @@ func (x *GetProblemsDoneStatisticsResponse) String() string {
 func (*GetProblemsDoneStatisticsResponse) ProtoMessage() {}
 
 func (x *GetProblemsDoneStatisticsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[8]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -511,7 +887,7 @@ func (x *GetProblemsDoneStatisticsResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetProblemsDoneStatisticsResponse.ProtoReflect.Descriptor instead.
 func (*GetProblemsDoneStatisticsResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{8}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetProblemsDoneStatisticsResponse) GetData() *ProblemsDoneStatistics {
@@ -535,7 +911,7 @@ type ProblemsDoneStatistics struct {
 
 func (x *ProblemsDoneStatistics) Reset() {
 	*x = ProblemsDoneStatistics{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[9]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -547,7 +923,7 @@ func (x *ProblemsDoneStatistics) String() string {
 func (*ProblemsDoneStatistics) ProtoMessage() {}
 
 func (x *ProblemsDoneStatistics) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[9]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -560,7 +936,7 @@ func (x *ProblemsDoneStatistics) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProblemsDoneStatistics.ProtoReflect.Descriptor instead.
 func (*ProblemsDoneStatistics) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{9}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ProblemsDoneStatistics) GetMaxEasyCount() int32 {
@@ -605,66 +981,6 @@ func (x *ProblemsDoneStatistics) GetDoneHardCount() int32 {
 	return 0
 }
 
-type GetUserRankResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	CountryRank   int64                  `protobuf:"varint,2,opt,name=country_rank,json=countryRank,proto3" json:"country_rank,omitempty"`
-	GlobalRank    int64                  `protobuf:"varint,3,opt,name=global_rank,json=globalRank,proto3" json:"global_rank,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserRankResponse) Reset() {
-	*x = GetUserRankResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserRankResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserRankResponse) ProtoMessage() {}
-
-func (x *GetUserRankResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserRankResponse.ProtoReflect.Descriptor instead.
-func (*GetUserRankResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetUserRankResponse) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *GetUserRankResponse) GetCountryRank() int64 {
-	if x != nil {
-		return x.CountryRank
-	}
-	return 0
-}
-
-func (x *GetUserRankResponse) GetGlobalRank() int64 {
-	if x != nil {
-		return x.GlobalRank
-	}
-	return 0
-}
-
 type Timestamp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Seconds       int64                  `protobuf:"varint,1,opt,name=seconds,proto3" json:"seconds,omitempty"`
@@ -675,7 +991,7 @@ type Timestamp struct {
 
 func (x *Timestamp) Reset() {
 	*x = Timestamp{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[11]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -687,7 +1003,7 @@ func (x *Timestamp) String() string {
 func (*Timestamp) ProtoMessage() {}
 
 func (x *Timestamp) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[11]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -700,7 +1016,7 @@ func (x *Timestamp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Timestamp.ProtoReflect.Descriptor instead.
 func (*Timestamp) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{11}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *Timestamp) GetSeconds() int64 {
@@ -728,7 +1044,7 @@ type TestCase struct {
 
 func (x *TestCase) Reset() {
 	*x = TestCase{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[12]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -740,7 +1056,7 @@ func (x *TestCase) String() string {
 func (*TestCase) ProtoMessage() {}
 
 func (x *TestCase) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[12]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -753,7 +1069,7 @@ func (x *TestCase) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TestCase.ProtoReflect.Descriptor instead.
 func (*TestCase) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{12}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *TestCase) GetId() string {
@@ -787,7 +1103,7 @@ type TestCases struct {
 
 func (x *TestCases) Reset() {
 	*x = TestCases{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[13]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -799,7 +1115,7 @@ func (x *TestCases) String() string {
 func (*TestCases) ProtoMessage() {}
 
 func (x *TestCases) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[13]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -812,7 +1128,7 @@ func (x *TestCases) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TestCases.ProtoReflect.Descriptor instead.
 func (*TestCases) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{13}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *TestCases) GetRun() []*TestCase {
@@ -838,7 +1154,7 @@ type TestCaseRunOnly struct {
 
 func (x *TestCaseRunOnly) Reset() {
 	*x = TestCaseRunOnly{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[14]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -850,7 +1166,7 @@ func (x *TestCaseRunOnly) String() string {
 func (*TestCaseRunOnly) ProtoMessage() {}
 
 func (x *TestCaseRunOnly) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[14]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -863,7 +1179,7 @@ func (x *TestCaseRunOnly) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TestCaseRunOnly.ProtoReflect.Descriptor instead.
 func (*TestCaseRunOnly) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{14}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *TestCaseRunOnly) GetRun() []*TestCase {
@@ -884,7 +1200,7 @@ type ValidationCode struct {
 
 func (x *ValidationCode) Reset() {
 	*x = ValidationCode{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[15]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -896,7 +1212,7 @@ func (x *ValidationCode) String() string {
 func (*ValidationCode) ProtoMessage() {}
 
 func (x *ValidationCode) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[15]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -909,7 +1225,7 @@ func (x *ValidationCode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidationCode.ProtoReflect.Descriptor instead.
 func (*ValidationCode) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{15}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ValidationCode) GetPlaceholder() string {
@@ -945,7 +1261,7 @@ type CreateProblemRequest struct {
 
 func (x *CreateProblemRequest) Reset() {
 	*x = CreateProblemRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[16]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -957,7 +1273,7 @@ func (x *CreateProblemRequest) String() string {
 func (*CreateProblemRequest) ProtoMessage() {}
 
 func (x *CreateProblemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[16]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -970,7 +1286,7 @@ func (x *CreateProblemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProblemRequest.ProtoReflect.Descriptor instead.
 func (*CreateProblemRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{16}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *CreateProblemRequest) GetTitle() string {
@@ -1014,7 +1330,7 @@ type UpdateProblemRequest struct {
 
 func (x *UpdateProblemRequest) Reset() {
 	*x = UpdateProblemRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[17]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1026,7 +1342,7 @@ func (x *UpdateProblemRequest) String() string {
 func (*UpdateProblemRequest) ProtoMessage() {}
 
 func (x *UpdateProblemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[17]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1039,7 +1355,7 @@ func (x *UpdateProblemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProblemRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProblemRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{17}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *UpdateProblemRequest) GetProblemId() string {
@@ -1086,7 +1402,7 @@ type DeleteProblemRequest struct {
 
 func (x *DeleteProblemRequest) Reset() {
 	*x = DeleteProblemRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[18]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1098,7 +1414,7 @@ func (x *DeleteProblemRequest) String() string {
 func (*DeleteProblemRequest) ProtoMessage() {}
 
 func (x *DeleteProblemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[18]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1111,7 +1427,7 @@ func (x *DeleteProblemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProblemRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProblemRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{18}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DeleteProblemRequest) GetProblemId() string {
@@ -1130,7 +1446,7 @@ type GetProblemRequest struct {
 
 func (x *GetProblemRequest) Reset() {
 	*x = GetProblemRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[19]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1142,7 +1458,7 @@ func (x *GetProblemRequest) String() string {
 func (*GetProblemRequest) ProtoMessage() {}
 
 func (x *GetProblemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[19]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1155,7 +1471,7 @@ func (x *GetProblemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemRequest.ProtoReflect.Descriptor instead.
 func (*GetProblemRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{19}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetProblemRequest) GetProblemId() string {
@@ -1178,7 +1494,7 @@ type ListProblemsRequest struct {
 
 func (x *ListProblemsRequest) Reset() {
 	*x = ListProblemsRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[20]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1190,7 +1506,7 @@ func (x *ListProblemsRequest) String() string {
 func (*ListProblemsRequest) ProtoMessage() {}
 
 func (x *ListProblemsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[20]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1203,7 +1519,7 @@ func (x *ListProblemsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProblemsRequest.ProtoReflect.Descriptor instead.
 func (*ListProblemsRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{20}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ListProblemsRequest) GetPage() int32 {
@@ -1251,7 +1567,7 @@ type AddTestCasesRequest struct {
 
 func (x *AddTestCasesRequest) Reset() {
 	*x = AddTestCasesRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[21]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1263,7 +1579,7 @@ func (x *AddTestCasesRequest) String() string {
 func (*AddTestCasesRequest) ProtoMessage() {}
 
 func (x *AddTestCasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[21]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1276,7 +1592,7 @@ func (x *AddTestCasesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddTestCasesRequest.ProtoReflect.Descriptor instead.
 func (*AddTestCasesRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{21}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *AddTestCasesRequest) GetProblemId() string {
@@ -1304,7 +1620,7 @@ type AddLanguageSupportRequest struct {
 
 func (x *AddLanguageSupportRequest) Reset() {
 	*x = AddLanguageSupportRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[22]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1316,7 +1632,7 @@ func (x *AddLanguageSupportRequest) String() string {
 func (*AddLanguageSupportRequest) ProtoMessage() {}
 
 func (x *AddLanguageSupportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[22]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1329,7 +1645,7 @@ func (x *AddLanguageSupportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddLanguageSupportRequest.ProtoReflect.Descriptor instead.
 func (*AddLanguageSupportRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{22}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *AddLanguageSupportRequest) GetProblemId() string {
@@ -1364,7 +1680,7 @@ type UpdateLanguageSupportRequest struct {
 
 func (x *UpdateLanguageSupportRequest) Reset() {
 	*x = UpdateLanguageSupportRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[23]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1376,7 +1692,7 @@ func (x *UpdateLanguageSupportRequest) String() string {
 func (*UpdateLanguageSupportRequest) ProtoMessage() {}
 
 func (x *UpdateLanguageSupportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[23]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1389,7 +1705,7 @@ func (x *UpdateLanguageSupportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateLanguageSupportRequest.ProtoReflect.Descriptor instead.
 func (*UpdateLanguageSupportRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{23}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *UpdateLanguageSupportRequest) GetProblemId() string {
@@ -1423,7 +1739,7 @@ type RemoveLanguageSupportRequest struct {
 
 func (x *RemoveLanguageSupportRequest) Reset() {
 	*x = RemoveLanguageSupportRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[24]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1435,7 +1751,7 @@ func (x *RemoveLanguageSupportRequest) String() string {
 func (*RemoveLanguageSupportRequest) ProtoMessage() {}
 
 func (x *RemoveLanguageSupportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[24]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1448,7 +1764,7 @@ func (x *RemoveLanguageSupportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveLanguageSupportRequest.ProtoReflect.Descriptor instead.
 func (*RemoveLanguageSupportRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{24}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *RemoveLanguageSupportRequest) GetProblemId() string {
@@ -1486,7 +1802,7 @@ type Problem struct {
 
 func (x *Problem) Reset() {
 	*x = Problem{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[25]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1498,7 +1814,7 @@ func (x *Problem) String() string {
 func (*Problem) ProtoMessage() {}
 
 func (x *Problem) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[25]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1511,7 +1827,7 @@ func (x *Problem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Problem.ProtoReflect.Descriptor instead.
 func (*Problem) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{25}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *Problem) GetProblemId() string {
@@ -1621,7 +1937,7 @@ type ProblemMetadata struct {
 
 func (x *ProblemMetadata) Reset() {
 	*x = ProblemMetadata{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[26]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1633,7 +1949,7 @@ func (x *ProblemMetadata) String() string {
 func (*ProblemMetadata) ProtoMessage() {}
 
 func (x *ProblemMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[26]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1646,7 +1962,7 @@ func (x *ProblemMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProblemMetadata.ProtoReflect.Descriptor instead.
 func (*ProblemMetadata) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{26}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ProblemMetadata) GetProblemId() string {
@@ -1717,7 +2033,7 @@ type CreateProblemResponse struct {
 
 func (x *CreateProblemResponse) Reset() {
 	*x = CreateProblemResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[27]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1729,7 +2045,7 @@ func (x *CreateProblemResponse) String() string {
 func (*CreateProblemResponse) ProtoMessage() {}
 
 func (x *CreateProblemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[27]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1742,7 +2058,7 @@ func (x *CreateProblemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProblemResponse.ProtoReflect.Descriptor instead.
 func (*CreateProblemResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{27}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CreateProblemResponse) GetProblemId() string {
@@ -1784,7 +2100,7 @@ type UpdateProblemResponse struct {
 
 func (x *UpdateProblemResponse) Reset() {
 	*x = UpdateProblemResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[28]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1796,7 +2112,7 @@ func (x *UpdateProblemResponse) String() string {
 func (*UpdateProblemResponse) ProtoMessage() {}
 
 func (x *UpdateProblemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[28]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1809,7 +2125,7 @@ func (x *UpdateProblemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProblemResponse.ProtoReflect.Descriptor instead.
 func (*UpdateProblemResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{28}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *UpdateProblemResponse) GetSuccess() bool {
@@ -1844,7 +2160,7 @@ type DeleteProblemResponse struct {
 
 func (x *DeleteProblemResponse) Reset() {
 	*x = DeleteProblemResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[29]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1856,7 +2172,7 @@ func (x *DeleteProblemResponse) String() string {
 func (*DeleteProblemResponse) ProtoMessage() {}
 
 func (x *DeleteProblemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[29]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1869,7 +2185,7 @@ func (x *DeleteProblemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProblemResponse.ProtoReflect.Descriptor instead.
 func (*DeleteProblemResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{29}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *DeleteProblemResponse) GetSuccess() bool {
@@ -1903,7 +2219,7 @@ type GetProblemResponse struct {
 
 func (x *GetProblemResponse) Reset() {
 	*x = GetProblemResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[30]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1915,7 +2231,7 @@ func (x *GetProblemResponse) String() string {
 func (*GetProblemResponse) ProtoMessage() {}
 
 func (x *GetProblemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[30]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1928,7 +2244,7 @@ func (x *GetProblemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemResponse.ProtoReflect.Descriptor instead.
 func (*GetProblemResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{30}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetProblemResponse) GetProblem() *Problem {
@@ -1958,7 +2274,7 @@ type ListProblemsResponse struct {
 
 func (x *ListProblemsResponse) Reset() {
 	*x = ListProblemsResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[31]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1970,7 +2286,7 @@ func (x *ListProblemsResponse) String() string {
 func (*ListProblemsResponse) ProtoMessage() {}
 
 func (x *ListProblemsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[31]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1983,7 +2299,7 @@ func (x *ListProblemsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProblemsResponse.ProtoReflect.Descriptor instead.
 func (*ListProblemsResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{31}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ListProblemsResponse) GetProblems() []*Problem {
@@ -2033,7 +2349,7 @@ type AddTestCasesResponse struct {
 
 func (x *AddTestCasesResponse) Reset() {
 	*x = AddTestCasesResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[32]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2045,7 +2361,7 @@ func (x *AddTestCasesResponse) String() string {
 func (*AddTestCasesResponse) ProtoMessage() {}
 
 func (x *AddTestCasesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[32]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2058,7 +2374,7 @@ func (x *AddTestCasesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddTestCasesResponse.ProtoReflect.Descriptor instead.
 func (*AddTestCasesResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{32}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *AddTestCasesResponse) GetSuccess() bool {
@@ -2100,7 +2416,7 @@ type AddLanguageSupportResponse struct {
 
 func (x *AddLanguageSupportResponse) Reset() {
 	*x = AddLanguageSupportResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[33]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2112,7 +2428,7 @@ func (x *AddLanguageSupportResponse) String() string {
 func (*AddLanguageSupportResponse) ProtoMessage() {}
 
 func (x *AddLanguageSupportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[33]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2125,7 +2441,7 @@ func (x *AddLanguageSupportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddLanguageSupportResponse.ProtoReflect.Descriptor instead.
 func (*AddLanguageSupportResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{33}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *AddLanguageSupportResponse) GetSuccess() bool {
@@ -2160,7 +2476,7 @@ type UpdateLanguageSupportResponse struct {
 
 func (x *UpdateLanguageSupportResponse) Reset() {
 	*x = UpdateLanguageSupportResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2172,7 +2488,7 @@ func (x *UpdateLanguageSupportResponse) String() string {
 func (*UpdateLanguageSupportResponse) ProtoMessage() {}
 
 func (x *UpdateLanguageSupportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[34]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2185,7 +2501,7 @@ func (x *UpdateLanguageSupportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateLanguageSupportResponse.ProtoReflect.Descriptor instead.
 func (*UpdateLanguageSupportResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{34}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *UpdateLanguageSupportResponse) GetSuccess() bool {
@@ -2220,7 +2536,7 @@ type RemoveLanguageSupportResponse struct {
 
 func (x *RemoveLanguageSupportResponse) Reset() {
 	*x = RemoveLanguageSupportResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2232,7 +2548,7 @@ func (x *RemoveLanguageSupportResponse) String() string {
 func (*RemoveLanguageSupportResponse) ProtoMessage() {}
 
 func (x *RemoveLanguageSupportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[35]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2245,7 +2561,7 @@ func (x *RemoveLanguageSupportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveLanguageSupportResponse.ProtoReflect.Descriptor instead.
 func (*RemoveLanguageSupportResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{35}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *RemoveLanguageSupportResponse) GetSuccess() bool {
@@ -2280,7 +2596,7 @@ type DeleteTestCaseRequest struct {
 
 func (x *DeleteTestCaseRequest) Reset() {
 	*x = DeleteTestCaseRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2292,7 +2608,7 @@ func (x *DeleteTestCaseRequest) String() string {
 func (*DeleteTestCaseRequest) ProtoMessage() {}
 
 func (x *DeleteTestCaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[36]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2305,7 +2621,7 @@ func (x *DeleteTestCaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTestCaseRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTestCaseRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{36}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *DeleteTestCaseRequest) GetProblemId() string {
@@ -2340,7 +2656,7 @@ type DeleteTestCaseResponse struct {
 
 func (x *DeleteTestCaseResponse) Reset() {
 	*x = DeleteTestCaseResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2352,7 +2668,7 @@ func (x *DeleteTestCaseResponse) String() string {
 func (*DeleteTestCaseResponse) ProtoMessage() {}
 
 func (x *DeleteTestCaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[37]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2365,7 +2681,7 @@ func (x *DeleteTestCaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTestCaseResponse.ProtoReflect.Descriptor instead.
 func (*DeleteTestCaseResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{37}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *DeleteTestCaseResponse) GetSuccess() bool {
@@ -2398,7 +2714,7 @@ type GetLanguageSupportsRequest struct {
 
 func (x *GetLanguageSupportsRequest) Reset() {
 	*x = GetLanguageSupportsRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2410,7 +2726,7 @@ func (x *GetLanguageSupportsRequest) String() string {
 func (*GetLanguageSupportsRequest) ProtoMessage() {}
 
 func (x *GetLanguageSupportsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[38]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2423,7 +2739,7 @@ func (x *GetLanguageSupportsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLanguageSupportsRequest.ProtoReflect.Descriptor instead.
 func (*GetLanguageSupportsRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{38}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *GetLanguageSupportsRequest) GetProblemId() string {
@@ -2446,7 +2762,7 @@ type GetLanguageSupportsResponse struct {
 
 func (x *GetLanguageSupportsResponse) Reset() {
 	*x = GetLanguageSupportsResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2458,7 +2774,7 @@ func (x *GetLanguageSupportsResponse) String() string {
 func (*GetLanguageSupportsResponse) ProtoMessage() {}
 
 func (x *GetLanguageSupportsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[39]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2471,7 +2787,7 @@ func (x *GetLanguageSupportsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLanguageSupportsResponse.ProtoReflect.Descriptor instead.
 func (*GetLanguageSupportsResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{39}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GetLanguageSupportsResponse) GetSuccess() bool {
@@ -2518,7 +2834,7 @@ type FullValidationByProblemIDRequest struct {
 
 func (x *FullValidationByProblemIDRequest) Reset() {
 	*x = FullValidationByProblemIDRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2530,7 +2846,7 @@ func (x *FullValidationByProblemIDRequest) String() string {
 func (*FullValidationByProblemIDRequest) ProtoMessage() {}
 
 func (x *FullValidationByProblemIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[40]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2543,7 +2859,7 @@ func (x *FullValidationByProblemIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FullValidationByProblemIDRequest.ProtoReflect.Descriptor instead.
 func (*FullValidationByProblemIDRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{40}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *FullValidationByProblemIDRequest) GetProblemId() string {
@@ -2564,7 +2880,7 @@ type FullValidationByProblemIDResponse struct {
 
 func (x *FullValidationByProblemIDResponse) Reset() {
 	*x = FullValidationByProblemIDResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2576,7 +2892,7 @@ func (x *FullValidationByProblemIDResponse) String() string {
 func (*FullValidationByProblemIDResponse) ProtoMessage() {}
 
 func (x *FullValidationByProblemIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2589,7 +2905,7 @@ func (x *FullValidationByProblemIDResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use FullValidationByProblemIDResponse.ProtoReflect.Descriptor instead.
 func (*FullValidationByProblemIDResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{41}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *FullValidationByProblemIDResponse) GetSuccess() bool {
@@ -2627,7 +2943,7 @@ type RunProblemRequest struct {
 
 func (x *RunProblemRequest) Reset() {
 	*x = RunProblemRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2639,7 +2955,7 @@ func (x *RunProblemRequest) String() string {
 func (*RunProblemRequest) ProtoMessage() {}
 
 func (x *RunProblemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2652,7 +2968,7 @@ func (x *RunProblemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunProblemRequest.ProtoReflect.Descriptor instead.
 func (*RunProblemRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{42}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *RunProblemRequest) GetProblemId() string {
@@ -2711,7 +3027,7 @@ type RunProblemResponse struct {
 
 func (x *RunProblemResponse) Reset() {
 	*x = RunProblemResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2723,7 +3039,7 @@ func (x *RunProblemResponse) String() string {
 func (*RunProblemResponse) ProtoMessage() {}
 
 func (x *RunProblemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2736,7 +3052,7 @@ func (x *RunProblemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunProblemResponse.ProtoReflect.Descriptor instead.
 func (*RunProblemResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{43}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *RunProblemResponse) GetProblemId() string {
@@ -2803,7 +3119,7 @@ type Submission struct {
 
 func (x *Submission) Reset() {
 	*x = Submission{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[44]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2815,7 +3131,7 @@ func (x *Submission) String() string {
 func (*Submission) ProtoMessage() {}
 
 func (x *Submission) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[44]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2828,7 +3144,7 @@ func (x *Submission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Submission.ProtoReflect.Descriptor instead.
 func (*Submission) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{44}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *Submission) GetId() string {
@@ -2941,7 +3257,7 @@ type GetSubmissionsRequest struct {
 
 func (x *GetSubmissionsRequest) Reset() {
 	*x = GetSubmissionsRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[45]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2953,7 +3269,7 @@ func (x *GetSubmissionsRequest) String() string {
 func (*GetSubmissionsRequest) ProtoMessage() {}
 
 func (x *GetSubmissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[45]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2966,7 +3282,7 @@ func (x *GetSubmissionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubmissionsRequest.ProtoReflect.Descriptor instead.
 func (*GetSubmissionsRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{45}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *GetSubmissionsRequest) GetProblemId() string {
@@ -3009,7 +3325,7 @@ type GetSubmissionsResponse struct {
 
 func (x *GetSubmissionsResponse) Reset() {
 	*x = GetSubmissionsResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[46]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3021,7 +3337,7 @@ func (x *GetSubmissionsResponse) String() string {
 func (*GetSubmissionsResponse) ProtoMessage() {}
 
 func (x *GetSubmissionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[46]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3034,7 +3350,7 @@ func (x *GetSubmissionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubmissionsResponse.ProtoReflect.Descriptor instead.
 func (*GetSubmissionsResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{46}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *GetSubmissionsResponse) GetSubmissions() []*Submission {
@@ -3075,7 +3391,7 @@ type GetProblemByIdSlugRequest struct {
 
 func (x *GetProblemByIdSlugRequest) Reset() {
 	*x = GetProblemByIdSlugRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[47]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3087,7 +3403,7 @@ func (x *GetProblemByIdSlugRequest) String() string {
 func (*GetProblemByIdSlugRequest) ProtoMessage() {}
 
 func (x *GetProblemByIdSlugRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[47]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3100,7 +3416,7 @@ func (x *GetProblemByIdSlugRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemByIdSlugRequest.ProtoReflect.Descriptor instead.
 func (*GetProblemByIdSlugRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{47}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *GetProblemByIdSlugRequest) GetProblemId() string {
@@ -3127,7 +3443,7 @@ type GetProblemByIdSlugResponse struct {
 
 func (x *GetProblemByIdSlugResponse) Reset() {
 	*x = GetProblemByIdSlugResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[48]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3139,7 +3455,7 @@ func (x *GetProblemByIdSlugResponse) String() string {
 func (*GetProblemByIdSlugResponse) ProtoMessage() {}
 
 func (x *GetProblemByIdSlugResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[48]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3152,7 +3468,7 @@ func (x *GetProblemByIdSlugResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemByIdSlugResponse.ProtoReflect.Descriptor instead.
 func (*GetProblemByIdSlugResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{48}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *GetProblemByIdSlugResponse) GetProblemmetdata() *ProblemMetadataLite {
@@ -3182,7 +3498,7 @@ type GetProblemByIdListRequest struct {
 
 func (x *GetProblemByIdListRequest) Reset() {
 	*x = GetProblemByIdListRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[49]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3194,7 +3510,7 @@ func (x *GetProblemByIdListRequest) String() string {
 func (*GetProblemByIdListRequest) ProtoMessage() {}
 
 func (x *GetProblemByIdListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[49]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3207,7 +3523,7 @@ func (x *GetProblemByIdListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemByIdListRequest.ProtoReflect.Descriptor instead.
 func (*GetProblemByIdListRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{49}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetProblemByIdListRequest) GetPage() int32 {
@@ -3255,7 +3571,7 @@ type GetProblemByIdListResponse struct {
 
 func (x *GetProblemByIdListResponse) Reset() {
 	*x = GetProblemByIdListResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[50]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3267,7 +3583,7 @@ func (x *GetProblemByIdListResponse) String() string {
 func (*GetProblemByIdListResponse) ProtoMessage() {}
 
 func (x *GetProblemByIdListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[50]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3280,7 +3596,7 @@ func (x *GetProblemByIdListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProblemByIdListResponse.ProtoReflect.Descriptor instead.
 func (*GetProblemByIdListResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{50}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetProblemByIdListResponse) GetProblemmetdata() []*ProblemMetadataLite {
@@ -3314,7 +3630,7 @@ type ProblemMetadataLite struct {
 
 func (x *ProblemMetadataLite) Reset() {
 	*x = ProblemMetadataLite{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[51]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3326,7 +3642,7 @@ func (x *ProblemMetadataLite) String() string {
 func (*ProblemMetadataLite) ProtoMessage() {}
 
 func (x *ProblemMetadataLite) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[51]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3339,7 +3655,7 @@ func (x *ProblemMetadataLite) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProblemMetadataLite.ProtoReflect.Descriptor instead.
 func (*ProblemMetadataLite) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{51}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ProblemMetadataLite) GetProblemId() string {
@@ -3409,7 +3725,31 @@ var File_ProblemsService_problemsservice_proto protoreflect.FileDescriptor
 
 const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
-	"%ProblemsService/problemsservice.proto\x12\bproblems\"d\n" +
+	"%ProblemsService/problemsservice.proto\x12\bproblems\"$\n" +
+	"\x14GetTopKGlobalRequest\x12\f\n" +
+	"\x01k\x18\x01 \x01(\x05R\x01k\"B\n" +
+	"\x15GetTopKGlobalResponse\x12)\n" +
+	"\x05users\x18\x01 \x03(\v2\x13.problems.UserScoreR\x05users\".\n" +
+	"\x14GetTopKEntityRequest\x12\x16\n" +
+	"\x06entity\x18\x01 \x01(\tR\x06entity\"B\n" +
+	"\x15GetTopKEntityResponse\x12)\n" +
+	"\x05users\x18\x01 \x03(\v2\x13.problems.UserScoreR\x05users\"-\n" +
+	"\x12GetUserRankRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"W\n" +
+	"\x13GetUserRankResponse\x12\x1f\n" +
+	"\vglobal_rank\x18\x01 \x01(\x05R\n" +
+	"globalRank\x12\x1f\n" +
+	"\ventity_rank\x18\x02 \x01(\x05R\n" +
+	"entityRank\"4\n" +
+	"\x19GetLeaderboardDataRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"c\n" +
+	"\x1aGetLeaderboardDataResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05score\x18\x02 \x01(\x01R\x05score\x12\x16\n" +
+	"\x06entity\x18\x03 \x01(\tR\x06entity\":\n" +
+	"\tUserScore\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05score\x18\x02 \x01(\x01R\x05score\"d\n" +
 	" GetMonthlyActivityHeatmapRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
 	"\x05month\x18\x02 \x01(\x05R\x05month\x12\x12\n" +
@@ -3443,10 +3783,6 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	" GetProblemsDoneStatisticsRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tH\x00R\busername\x88\x01\x01\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userIdB\v\n" +
-	"\t_username\"[\n" +
-	"\x12GetUserRankRequest\x12\x1f\n" +
-	"\busername\x18\x01 \x01(\tH\x00R\busername\x88\x01\x01\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userIdB\v\n" +
 	"\t_username\"Y\n" +
 	"!GetProblemsDoneStatisticsResponse\x124\n" +
 	"\x04data\x18\x01 \x01(\v2 .problems.ProblemsDoneStatisticsR\x04data\"\x8a\x02\n" +
@@ -3456,12 +3792,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x10max_medium_count\x18\x03 \x01(\x05R\x0emaxMediumCount\x12*\n" +
 	"\x11done_medium_count\x18\x04 \x01(\x05R\x0fdoneMediumCount\x12$\n" +
 	"\x0emax_hard_count\x18\x05 \x01(\x05R\fmaxHardCount\x12&\n" +
-	"\x0fdone_hard_count\x18\x06 \x01(\x05R\rdoneHardCount\"u\n" +
-	"\x13GetUserRankResponse\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\x12!\n" +
-	"\fcountry_rank\x18\x02 \x01(\x03R\vcountryRank\x12\x1f\n" +
-	"\vglobal_rank\x18\x03 \x01(\x03R\n" +
-	"globalRank\";\n" +
+	"\x0fdone_hard_count\x18\x06 \x01(\x05R\rdoneHardCount\";\n" +
 	"\tTimestamp\x12\x18\n" +
 	"\aseconds\x18\x01 \x01(\x03R\aseconds\x12\x14\n" +
 	"\x05nanos\x18\x02 \x01(\x05R\x05nanos\"L\n" +
@@ -3735,7 +4066,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x10placeholder_maps\x18\t \x03(\v22.problems.ProblemMetadataLite.PlaceholderMapsEntryR\x0fplaceholderMaps\x1aB\n" +
 	"\x14PlaceholderMapsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x92\x0f\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x8a\x10\n" +
 	"\x0fProblemsService\x12P\n" +
 	"\rCreateProblem\x12\x1e.problems.CreateProblemRequest\x1a\x1f.problems.CreateProblemResponse\x12P\n" +
 	"\rUpdateProblem\x12\x1e.problems.UpdateProblemRequest\x1a\x1f.problems.UpdateProblemResponse\x12P\n" +
@@ -3753,11 +4084,13 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x15RemoveLanguageSupport\x12&.problems.RemoveLanguageSupportRequest\x1a'.problems.RemoveLanguageSupportResponse\x12t\n" +
 	"\x19FullValidationByProblemID\x12*.problems.FullValidationByProblemIDRequest\x1a+.problems.FullValidationByProblemIDResponse\x12O\n" +
 	"\x12RunUserCodeProblem\x12\x1b.problems.RunProblemRequest\x1a\x1c.problems.RunProblemResponse\x12f\n" +
-	"!GetSubmissionsByOptionalProblemID\x12\x1f.problems.GetSubmissionsRequest\x1a .problems.GetSubmissionsResponse\x12\x80\x01\n" +
-	"\x1dGetLeaderBoardOptionalCountry\x12..problems.GetLeaderBoardOptionalCountryRequest\x1a/.problems.GetLeaderBoardOptionalCountryResponse\x12t\n" +
-	"\x19GetProblemsDoneStatistics\x12*.problems.GetProblemsDoneStatisticsRequest\x1a+.problems.GetProblemsDoneStatisticsResponse\x12T\n" +
-	"\x15GetIndividualUserRank\x12\x1c.problems.GetUserRankRequest\x1a\x1d.problems.GetUserRankResponse\x12t\n" +
-	"\x19GetMonthlyActivityHeatmap\x12*.problems.GetMonthlyActivityHeatmapRequest\x1a+.problems.GetMonthlyActivityHeatmapResponseB\tZ\a./protob\x06proto3"
+	"!GetSubmissionsByOptionalProblemID\x12\x1f.problems.GetSubmissionsRequest\x1a .problems.GetSubmissionsResponse\x12t\n" +
+	"\x19GetProblemsDoneStatistics\x12*.problems.GetProblemsDoneStatisticsRequest\x1a+.problems.GetProblemsDoneStatisticsResponse\x12t\n" +
+	"\x19GetMonthlyActivityHeatmap\x12*.problems.GetMonthlyActivityHeatmapRequest\x1a+.problems.GetMonthlyActivityHeatmapResponse\x12P\n" +
+	"\rGetTopKGlobal\x12\x1e.problems.GetTopKGlobalRequest\x1a\x1f.problems.GetTopKGlobalResponse\x12P\n" +
+	"\rGetTopKEntity\x12\x1e.problems.GetTopKEntityRequest\x1a\x1f.problems.GetTopKEntityResponse\x12J\n" +
+	"\vGetUserRank\x12\x1c.problems.GetUserRankRequest\x1a\x1d.problems.GetUserRankResponse\x12_\n" +
+	"\x12GetLeaderboardData\x12#.problems.GetLeaderboardDataRequest\x1a$.problems.GetLeaderboardDataResponseB\tZ\a./protob\x06proto3"
 
 var (
 	file_ProblemsService_problemsservice_proto_rawDescOnce sync.Once
@@ -3771,137 +4104,150 @@ func file_ProblemsService_problemsservice_proto_rawDescGZIP() []byte {
 	return file_ProblemsService_problemsservice_proto_rawDescData
 }
 
-var file_ProblemsService_problemsservice_proto_msgTypes = make([]protoimpl.MessageInfo, 55)
+var file_ProblemsService_problemsservice_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
 var file_ProblemsService_problemsservice_proto_goTypes = []any{
-	(*GetMonthlyActivityHeatmapRequest)(nil),      // 0: problems.GetMonthlyActivityHeatmapRequest
-	(*ActivityDay)(nil),                           // 1: problems.ActivityDay
-	(*GetMonthlyActivityHeatmapResponse)(nil),     // 2: problems.GetMonthlyActivityHeatmapResponse
-	(*GetLeaderBoardOptionalCountryResponse)(nil), // 3: problems.GetLeaderBoardOptionalCountryResponse
-	(*LeaderboardSingle)(nil),                     // 4: problems.LeaderboardSingle
-	(*GetLeaderBoardOptionalCountryRequest)(nil),  // 5: problems.GetLeaderBoardOptionalCountryRequest
-	(*GetProblemsDoneStatisticsRequest)(nil),      // 6: problems.GetProblemsDoneStatisticsRequest
-	(*GetUserRankRequest)(nil),                    // 7: problems.GetUserRankRequest
-	(*GetProblemsDoneStatisticsResponse)(nil),     // 8: problems.GetProblemsDoneStatisticsResponse
-	(*ProblemsDoneStatistics)(nil),                // 9: problems.ProblemsDoneStatistics
-	(*GetUserRankResponse)(nil),                   // 10: problems.GetUserRankResponse
-	(*Timestamp)(nil),                             // 11: problems.Timestamp
-	(*TestCase)(nil),                              // 12: problems.TestCase
-	(*TestCases)(nil),                             // 13: problems.TestCases
-	(*TestCaseRunOnly)(nil),                       // 14: problems.TestCaseRunOnly
-	(*ValidationCode)(nil),                        // 15: problems.ValidationCode
-	(*CreateProblemRequest)(nil),                  // 16: problems.CreateProblemRequest
-	(*UpdateProblemRequest)(nil),                  // 17: problems.UpdateProblemRequest
-	(*DeleteProblemRequest)(nil),                  // 18: problems.DeleteProblemRequest
-	(*GetProblemRequest)(nil),                     // 19: problems.GetProblemRequest
-	(*ListProblemsRequest)(nil),                   // 20: problems.ListProblemsRequest
-	(*AddTestCasesRequest)(nil),                   // 21: problems.AddTestCasesRequest
-	(*AddLanguageSupportRequest)(nil),             // 22: problems.AddLanguageSupportRequest
-	(*UpdateLanguageSupportRequest)(nil),          // 23: problems.UpdateLanguageSupportRequest
-	(*RemoveLanguageSupportRequest)(nil),          // 24: problems.RemoveLanguageSupportRequest
-	(*Problem)(nil),                               // 25: problems.Problem
-	(*ProblemMetadata)(nil),                       // 26: problems.ProblemMetadata
-	(*CreateProblemResponse)(nil),                 // 27: problems.CreateProblemResponse
-	(*UpdateProblemResponse)(nil),                 // 28: problems.UpdateProblemResponse
-	(*DeleteProblemResponse)(nil),                 // 29: problems.DeleteProblemResponse
-	(*GetProblemResponse)(nil),                    // 30: problems.GetProblemResponse
-	(*ListProblemsResponse)(nil),                  // 31: problems.ListProblemsResponse
-	(*AddTestCasesResponse)(nil),                  // 32: problems.AddTestCasesResponse
-	(*AddLanguageSupportResponse)(nil),            // 33: problems.AddLanguageSupportResponse
-	(*UpdateLanguageSupportResponse)(nil),         // 34: problems.UpdateLanguageSupportResponse
-	(*RemoveLanguageSupportResponse)(nil),         // 35: problems.RemoveLanguageSupportResponse
-	(*DeleteTestCaseRequest)(nil),                 // 36: problems.DeleteTestCaseRequest
-	(*DeleteTestCaseResponse)(nil),                // 37: problems.DeleteTestCaseResponse
-	(*GetLanguageSupportsRequest)(nil),            // 38: problems.GetLanguageSupportsRequest
-	(*GetLanguageSupportsResponse)(nil),           // 39: problems.GetLanguageSupportsResponse
-	(*FullValidationByProblemIDRequest)(nil),      // 40: problems.FullValidationByProblemIDRequest
-	(*FullValidationByProblemIDResponse)(nil),     // 41: problems.FullValidationByProblemIDResponse
-	(*RunProblemRequest)(nil),                     // 42: problems.RunProblemRequest
-	(*RunProblemResponse)(nil),                    // 43: problems.RunProblemResponse
-	(*Submission)(nil),                            // 44: problems.Submission
-	(*GetSubmissionsRequest)(nil),                 // 45: problems.GetSubmissionsRequest
-	(*GetSubmissionsResponse)(nil),                // 46: problems.GetSubmissionsResponse
-	(*GetProblemByIdSlugRequest)(nil),             // 47: problems.GetProblemByIdSlugRequest
-	(*GetProblemByIdSlugResponse)(nil),            // 48: problems.GetProblemByIdSlugResponse
-	(*GetProblemByIdListRequest)(nil),             // 49: problems.GetProblemByIdListRequest
-	(*GetProblemByIdListResponse)(nil),            // 50: problems.GetProblemByIdListResponse
-	(*ProblemMetadataLite)(nil),                   // 51: problems.ProblemMetadataLite
-	nil,                                           // 52: problems.Problem.ValidateCodeEntry
-	nil,                                           // 53: problems.GetLanguageSupportsResponse.ValidateCodeEntry
-	nil,                                           // 54: problems.ProblemMetadataLite.PlaceholderMapsEntry
+	(*GetTopKGlobalRequest)(nil),                  // 0: problems.GetTopKGlobalRequest
+	(*GetTopKGlobalResponse)(nil),                 // 1: problems.GetTopKGlobalResponse
+	(*GetTopKEntityRequest)(nil),                  // 2: problems.GetTopKEntityRequest
+	(*GetTopKEntityResponse)(nil),                 // 3: problems.GetTopKEntityResponse
+	(*GetUserRankRequest)(nil),                    // 4: problems.GetUserRankRequest
+	(*GetUserRankResponse)(nil),                   // 5: problems.GetUserRankResponse
+	(*GetLeaderboardDataRequest)(nil),             // 6: problems.GetLeaderboardDataRequest
+	(*GetLeaderboardDataResponse)(nil),            // 7: problems.GetLeaderboardDataResponse
+	(*UserScore)(nil),                             // 8: problems.UserScore
+	(*GetMonthlyActivityHeatmapRequest)(nil),      // 9: problems.GetMonthlyActivityHeatmapRequest
+	(*ActivityDay)(nil),                           // 10: problems.ActivityDay
+	(*GetMonthlyActivityHeatmapResponse)(nil),     // 11: problems.GetMonthlyActivityHeatmapResponse
+	(*GetLeaderBoardOptionalCountryResponse)(nil), // 12: problems.GetLeaderBoardOptionalCountryResponse
+	(*LeaderboardSingle)(nil),                     // 13: problems.LeaderboardSingle
+	(*GetLeaderBoardOptionalCountryRequest)(nil),  // 14: problems.GetLeaderBoardOptionalCountryRequest
+	(*GetProblemsDoneStatisticsRequest)(nil),      // 15: problems.GetProblemsDoneStatisticsRequest
+	(*GetProblemsDoneStatisticsResponse)(nil),     // 16: problems.GetProblemsDoneStatisticsResponse
+	(*ProblemsDoneStatistics)(nil),                // 17: problems.ProblemsDoneStatistics
+	(*Timestamp)(nil),                             // 18: problems.Timestamp
+	(*TestCase)(nil),                              // 19: problems.TestCase
+	(*TestCases)(nil),                             // 20: problems.TestCases
+	(*TestCaseRunOnly)(nil),                       // 21: problems.TestCaseRunOnly
+	(*ValidationCode)(nil),                        // 22: problems.ValidationCode
+	(*CreateProblemRequest)(nil),                  // 23: problems.CreateProblemRequest
+	(*UpdateProblemRequest)(nil),                  // 24: problems.UpdateProblemRequest
+	(*DeleteProblemRequest)(nil),                  // 25: problems.DeleteProblemRequest
+	(*GetProblemRequest)(nil),                     // 26: problems.GetProblemRequest
+	(*ListProblemsRequest)(nil),                   // 27: problems.ListProblemsRequest
+	(*AddTestCasesRequest)(nil),                   // 28: problems.AddTestCasesRequest
+	(*AddLanguageSupportRequest)(nil),             // 29: problems.AddLanguageSupportRequest
+	(*UpdateLanguageSupportRequest)(nil),          // 30: problems.UpdateLanguageSupportRequest
+	(*RemoveLanguageSupportRequest)(nil),          // 31: problems.RemoveLanguageSupportRequest
+	(*Problem)(nil),                               // 32: problems.Problem
+	(*ProblemMetadata)(nil),                       // 33: problems.ProblemMetadata
+	(*CreateProblemResponse)(nil),                 // 34: problems.CreateProblemResponse
+	(*UpdateProblemResponse)(nil),                 // 35: problems.UpdateProblemResponse
+	(*DeleteProblemResponse)(nil),                 // 36: problems.DeleteProblemResponse
+	(*GetProblemResponse)(nil),                    // 37: problems.GetProblemResponse
+	(*ListProblemsResponse)(nil),                  // 38: problems.ListProblemsResponse
+	(*AddTestCasesResponse)(nil),                  // 39: problems.AddTestCasesResponse
+	(*AddLanguageSupportResponse)(nil),            // 40: problems.AddLanguageSupportResponse
+	(*UpdateLanguageSupportResponse)(nil),         // 41: problems.UpdateLanguageSupportResponse
+	(*RemoveLanguageSupportResponse)(nil),         // 42: problems.RemoveLanguageSupportResponse
+	(*DeleteTestCaseRequest)(nil),                 // 43: problems.DeleteTestCaseRequest
+	(*DeleteTestCaseResponse)(nil),                // 44: problems.DeleteTestCaseResponse
+	(*GetLanguageSupportsRequest)(nil),            // 45: problems.GetLanguageSupportsRequest
+	(*GetLanguageSupportsResponse)(nil),           // 46: problems.GetLanguageSupportsResponse
+	(*FullValidationByProblemIDRequest)(nil),      // 47: problems.FullValidationByProblemIDRequest
+	(*FullValidationByProblemIDResponse)(nil),     // 48: problems.FullValidationByProblemIDResponse
+	(*RunProblemRequest)(nil),                     // 49: problems.RunProblemRequest
+	(*RunProblemResponse)(nil),                    // 50: problems.RunProblemResponse
+	(*Submission)(nil),                            // 51: problems.Submission
+	(*GetSubmissionsRequest)(nil),                 // 52: problems.GetSubmissionsRequest
+	(*GetSubmissionsResponse)(nil),                // 53: problems.GetSubmissionsResponse
+	(*GetProblemByIdSlugRequest)(nil),             // 54: problems.GetProblemByIdSlugRequest
+	(*GetProblemByIdSlugResponse)(nil),            // 55: problems.GetProblemByIdSlugResponse
+	(*GetProblemByIdListRequest)(nil),             // 56: problems.GetProblemByIdListRequest
+	(*GetProblemByIdListResponse)(nil),            // 57: problems.GetProblemByIdListResponse
+	(*ProblemMetadataLite)(nil),                   // 58: problems.ProblemMetadataLite
+	nil,                                           // 59: problems.Problem.ValidateCodeEntry
+	nil,                                           // 60: problems.GetLanguageSupportsResponse.ValidateCodeEntry
+	nil,                                           // 61: problems.ProblemMetadataLite.PlaceholderMapsEntry
 }
 var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
-	1,  // 0: problems.GetMonthlyActivityHeatmapResponse.data:type_name -> problems.ActivityDay
-	4,  // 1: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
-	9,  // 2: problems.GetProblemsDoneStatisticsResponse.data:type_name -> problems.ProblemsDoneStatistics
-	12, // 3: problems.TestCases.run:type_name -> problems.TestCase
-	12, // 4: problems.TestCases.submit:type_name -> problems.TestCase
-	12, // 5: problems.TestCaseRunOnly.run:type_name -> problems.TestCase
-	13, // 6: problems.AddTestCasesRequest.testcases:type_name -> problems.TestCases
-	15, // 7: problems.AddLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
-	15, // 8: problems.UpdateLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
-	11, // 9: problems.Problem.created_at:type_name -> problems.Timestamp
-	11, // 10: problems.Problem.updated_at:type_name -> problems.Timestamp
-	11, // 11: problems.Problem.deleted_at:type_name -> problems.Timestamp
-	13, // 12: problems.Problem.testcases:type_name -> problems.TestCases
-	52, // 13: problems.Problem.validate_code:type_name -> problems.Problem.ValidateCodeEntry
-	11, // 14: problems.Problem.validated_at:type_name -> problems.Timestamp
-	14, // 15: problems.ProblemMetadata.testcase_run:type_name -> problems.TestCaseRunOnly
-	25, // 16: problems.GetProblemResponse.problem:type_name -> problems.Problem
-	25, // 17: problems.ListProblemsResponse.problems:type_name -> problems.Problem
-	53, // 18: problems.GetLanguageSupportsResponse.validate_code:type_name -> problems.GetLanguageSupportsResponse.ValidateCodeEntry
-	11, // 19: problems.Submission.submitted_at:type_name -> problems.Timestamp
-	44, // 20: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
-	51, // 21: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	51, // 22: problems.GetProblemByIdListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	14, // 23: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
-	54, // 24: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
-	15, // 25: problems.Problem.ValidateCodeEntry.value:type_name -> problems.ValidationCode
-	15, // 26: problems.GetLanguageSupportsResponse.ValidateCodeEntry.value:type_name -> problems.ValidationCode
-	16, // 27: problems.ProblemsService.CreateProblem:input_type -> problems.CreateProblemRequest
-	17, // 28: problems.ProblemsService.UpdateProblem:input_type -> problems.UpdateProblemRequest
-	18, // 29: problems.ProblemsService.DeleteProblem:input_type -> problems.DeleteProblemRequest
-	19, // 30: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
-	20, // 31: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
-	47, // 32: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
-	49, // 33: problems.ProblemsService.GetProblemByIDList:input_type -> problems.GetProblemByIdListRequest
-	21, // 34: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
-	36, // 35: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
-	38, // 36: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
-	22, // 37: problems.ProblemsService.AddLanguageSupport:input_type -> problems.AddLanguageSupportRequest
-	23, // 38: problems.ProblemsService.UpdateLanguageSupport:input_type -> problems.UpdateLanguageSupportRequest
-	24, // 39: problems.ProblemsService.RemoveLanguageSupport:input_type -> problems.RemoveLanguageSupportRequest
-	40, // 40: problems.ProblemsService.FullValidationByProblemID:input_type -> problems.FullValidationByProblemIDRequest
-	42, // 41: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
-	45, // 42: problems.ProblemsService.GetSubmissionsByOptionalProblemID:input_type -> problems.GetSubmissionsRequest
-	5,  // 43: problems.ProblemsService.GetLeaderBoardOptionalCountry:input_type -> problems.GetLeaderBoardOptionalCountryRequest
-	6,  // 44: problems.ProblemsService.GetProblemsDoneStatistics:input_type -> problems.GetProblemsDoneStatisticsRequest
-	7,  // 45: problems.ProblemsService.GetIndividualUserRank:input_type -> problems.GetUserRankRequest
-	0,  // 46: problems.ProblemsService.GetMonthlyActivityHeatmap:input_type -> problems.GetMonthlyActivityHeatmapRequest
-	27, // 47: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
-	28, // 48: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
-	29, // 49: problems.ProblemsService.DeleteProblem:output_type -> problems.DeleteProblemResponse
-	30, // 50: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
-	31, // 51: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
-	48, // 52: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
-	50, // 53: problems.ProblemsService.GetProblemByIDList:output_type -> problems.GetProblemByIdListResponse
-	32, // 54: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
-	37, // 55: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
-	39, // 56: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse
-	33, // 57: problems.ProblemsService.AddLanguageSupport:output_type -> problems.AddLanguageSupportResponse
-	34, // 58: problems.ProblemsService.UpdateLanguageSupport:output_type -> problems.UpdateLanguageSupportResponse
-	35, // 59: problems.ProblemsService.RemoveLanguageSupport:output_type -> problems.RemoveLanguageSupportResponse
-	41, // 60: problems.ProblemsService.FullValidationByProblemID:output_type -> problems.FullValidationByProblemIDResponse
-	43, // 61: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
-	46, // 62: problems.ProblemsService.GetSubmissionsByOptionalProblemID:output_type -> problems.GetSubmissionsResponse
-	3,  // 63: problems.ProblemsService.GetLeaderBoardOptionalCountry:output_type -> problems.GetLeaderBoardOptionalCountryResponse
-	8,  // 64: problems.ProblemsService.GetProblemsDoneStatistics:output_type -> problems.GetProblemsDoneStatisticsResponse
-	10, // 65: problems.ProblemsService.GetIndividualUserRank:output_type -> problems.GetUserRankResponse
-	2,  // 66: problems.ProblemsService.GetMonthlyActivityHeatmap:output_type -> problems.GetMonthlyActivityHeatmapResponse
-	47, // [47:67] is the sub-list for method output_type
-	27, // [27:47] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	8,  // 0: problems.GetTopKGlobalResponse.users:type_name -> problems.UserScore
+	8,  // 1: problems.GetTopKEntityResponse.users:type_name -> problems.UserScore
+	10, // 2: problems.GetMonthlyActivityHeatmapResponse.data:type_name -> problems.ActivityDay
+	13, // 3: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
+	17, // 4: problems.GetProblemsDoneStatisticsResponse.data:type_name -> problems.ProblemsDoneStatistics
+	19, // 5: problems.TestCases.run:type_name -> problems.TestCase
+	19, // 6: problems.TestCases.submit:type_name -> problems.TestCase
+	19, // 7: problems.TestCaseRunOnly.run:type_name -> problems.TestCase
+	20, // 8: problems.AddTestCasesRequest.testcases:type_name -> problems.TestCases
+	22, // 9: problems.AddLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
+	22, // 10: problems.UpdateLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
+	18, // 11: problems.Problem.created_at:type_name -> problems.Timestamp
+	18, // 12: problems.Problem.updated_at:type_name -> problems.Timestamp
+	18, // 13: problems.Problem.deleted_at:type_name -> problems.Timestamp
+	20, // 14: problems.Problem.testcases:type_name -> problems.TestCases
+	59, // 15: problems.Problem.validate_code:type_name -> problems.Problem.ValidateCodeEntry
+	18, // 16: problems.Problem.validated_at:type_name -> problems.Timestamp
+	21, // 17: problems.ProblemMetadata.testcase_run:type_name -> problems.TestCaseRunOnly
+	32, // 18: problems.GetProblemResponse.problem:type_name -> problems.Problem
+	32, // 19: problems.ListProblemsResponse.problems:type_name -> problems.Problem
+	60, // 20: problems.GetLanguageSupportsResponse.validate_code:type_name -> problems.GetLanguageSupportsResponse.ValidateCodeEntry
+	18, // 21: problems.Submission.submitted_at:type_name -> problems.Timestamp
+	51, // 22: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
+	58, // 23: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	58, // 24: problems.GetProblemByIdListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	21, // 25: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
+	61, // 26: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
+	22, // 27: problems.Problem.ValidateCodeEntry.value:type_name -> problems.ValidationCode
+	22, // 28: problems.GetLanguageSupportsResponse.ValidateCodeEntry.value:type_name -> problems.ValidationCode
+	23, // 29: problems.ProblemsService.CreateProblem:input_type -> problems.CreateProblemRequest
+	24, // 30: problems.ProblemsService.UpdateProblem:input_type -> problems.UpdateProblemRequest
+	25, // 31: problems.ProblemsService.DeleteProblem:input_type -> problems.DeleteProblemRequest
+	26, // 32: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
+	27, // 33: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
+	54, // 34: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
+	56, // 35: problems.ProblemsService.GetProblemByIDList:input_type -> problems.GetProblemByIdListRequest
+	28, // 36: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
+	43, // 37: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
+	45, // 38: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
+	29, // 39: problems.ProblemsService.AddLanguageSupport:input_type -> problems.AddLanguageSupportRequest
+	30, // 40: problems.ProblemsService.UpdateLanguageSupport:input_type -> problems.UpdateLanguageSupportRequest
+	31, // 41: problems.ProblemsService.RemoveLanguageSupport:input_type -> problems.RemoveLanguageSupportRequest
+	47, // 42: problems.ProblemsService.FullValidationByProblemID:input_type -> problems.FullValidationByProblemIDRequest
+	49, // 43: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
+	52, // 44: problems.ProblemsService.GetSubmissionsByOptionalProblemID:input_type -> problems.GetSubmissionsRequest
+	15, // 45: problems.ProblemsService.GetProblemsDoneStatistics:input_type -> problems.GetProblemsDoneStatisticsRequest
+	9,  // 46: problems.ProblemsService.GetMonthlyActivityHeatmap:input_type -> problems.GetMonthlyActivityHeatmapRequest
+	0,  // 47: problems.ProblemsService.GetTopKGlobal:input_type -> problems.GetTopKGlobalRequest
+	2,  // 48: problems.ProblemsService.GetTopKEntity:input_type -> problems.GetTopKEntityRequest
+	4,  // 49: problems.ProblemsService.GetUserRank:input_type -> problems.GetUserRankRequest
+	6,  // 50: problems.ProblemsService.GetLeaderboardData:input_type -> problems.GetLeaderboardDataRequest
+	34, // 51: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
+	35, // 52: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
+	36, // 53: problems.ProblemsService.DeleteProblem:output_type -> problems.DeleteProblemResponse
+	37, // 54: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
+	38, // 55: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
+	55, // 56: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
+	57, // 57: problems.ProblemsService.GetProblemByIDList:output_type -> problems.GetProblemByIdListResponse
+	39, // 58: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
+	44, // 59: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
+	46, // 60: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse
+	40, // 61: problems.ProblemsService.AddLanguageSupport:output_type -> problems.AddLanguageSupportResponse
+	41, // 62: problems.ProblemsService.UpdateLanguageSupport:output_type -> problems.UpdateLanguageSupportResponse
+	42, // 63: problems.ProblemsService.RemoveLanguageSupport:output_type -> problems.RemoveLanguageSupportResponse
+	48, // 64: problems.ProblemsService.FullValidationByProblemID:output_type -> problems.FullValidationByProblemIDResponse
+	50, // 65: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
+	53, // 66: problems.ProblemsService.GetSubmissionsByOptionalProblemID:output_type -> problems.GetSubmissionsResponse
+	16, // 67: problems.ProblemsService.GetProblemsDoneStatistics:output_type -> problems.GetProblemsDoneStatisticsResponse
+	11, // 68: problems.ProblemsService.GetMonthlyActivityHeatmap:output_type -> problems.GetMonthlyActivityHeatmapResponse
+	1,  // 69: problems.ProblemsService.GetTopKGlobal:output_type -> problems.GetTopKGlobalResponse
+	3,  // 70: problems.ProblemsService.GetTopKEntity:output_type -> problems.GetTopKEntityResponse
+	5,  // 71: problems.ProblemsService.GetUserRank:output_type -> problems.GetUserRankResponse
+	7,  // 72: problems.ProblemsService.GetLeaderboardData:output_type -> problems.GetLeaderboardDataResponse
+	51, // [51:73] is the sub-list for method output_type
+	29, // [29:51] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_ProblemsService_problemsservice_proto_init() }
@@ -3909,23 +4255,22 @@ func file_ProblemsService_problemsservice_proto_init() {
 	if File_ProblemsService_problemsservice_proto != nil {
 		return
 	}
-	file_ProblemsService_problemsservice_proto_msgTypes[3].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[4].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[5].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[6].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[7].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[17].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[25].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[42].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[45].OneofWrappers = []any{}
-	file_ProblemsService_problemsservice_proto_msgTypes[47].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[12].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[13].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[14].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[15].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[24].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[32].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[49].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[52].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[54].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ProblemsService_problemsservice_proto_rawDesc), len(file_ProblemsService_problemsservice_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   55,
+			NumMessages:   62,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

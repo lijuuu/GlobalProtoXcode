@@ -24,14 +24,56 @@ service ProblemsService {
 
     //leaderboard
     //get leaderboard -req: page,limit resp
-    rpc GetLeaderBoardOptionalCountry(GetLeaderBoardOptionalCountryRequest) returns (GetLeaderBoardOptionalCountryResponse);
     rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest) returns (GetProblemsDoneStatisticsResponse);
-
-    rpc GetIndividualUserRank(GetUserRankRequest) returns (GetUserRankResponse);
-
 
     //actitvitycontribution
     rpc GetMonthlyActivityHeatmap(GetMonthlyActivityHeatmapRequest) returns (GetMonthlyActivityHeatmapResponse);
+
+    // leaderboard methods
+    rpc GetTopKGlobal (GetTopKGlobalRequest) returns (GetTopKGlobalResponse);
+    rpc GetTopKEntity (GetTopKEntityRequest) returns (GetTopKEntityResponse);
+    rpc GetUserRank (GetUserRankRequest) returns (GetUserRankResponse);
+    rpc GetLeaderboardData (GetLeaderboardDataRequest) returns (GetLeaderboardDataResponse);
+}
+
+message GetTopKGlobalRequest {
+    int32 k = 1; //future updates needed on redis board config to accept dynamic k
+}
+
+message GetTopKGlobalResponse {
+    repeated UserScore users = 1;
+}
+
+message GetTopKEntityRequest {
+    string entity = 1;
+}
+
+message GetTopKEntityResponse {
+    repeated UserScore users = 1;
+}
+
+message GetUserRankRequest {
+    string user_id = 1;
+}
+
+message GetUserRankResponse {
+    int32 global_rank = 1;
+    int32 entity_rank = 2;
+}
+
+message GetLeaderboardDataRequest {
+    string user_id = 1;
+}
+
+message GetLeaderboardDataResponse {
+    string user_id = 1;
+    double score = 2;
+    string entity = 3;
+}
+
+message UserScore {
+    string user_id = 1;
+    double score = 2;
 }
 
 message GetMonthlyActivityHeatmapRequest {
@@ -74,10 +116,7 @@ message GetProblemsDoneStatisticsRequest {
     string user_id = 2; 
 }
 
-message GetUserRankRequest {
-    optional string username = 1; 
-    string user_id = 2; 
-}
+
 
 message GetProblemsDoneStatisticsResponse{
     ProblemsDoneStatistics data = 1;
@@ -90,12 +129,6 @@ message ProblemsDoneStatistics {
     int32 done_medium_count = 4; 
     int32 max_hard_count = 5; 
     int32 done_hard_count = 6; 
-}
-
-message GetUserRankResponse{
-    string username = 1;
-    int64 country_rank = 2;
-    int64 global_rank = 3;
 }
 
 

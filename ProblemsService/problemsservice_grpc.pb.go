@@ -35,10 +35,12 @@ const (
 	ProblemsService_FullValidationByProblemID_FullMethodName         = "/problems.ProblemsService/FullValidationByProblemID"
 	ProblemsService_RunUserCodeProblem_FullMethodName                = "/problems.ProblemsService/RunUserCodeProblem"
 	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
-	ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName     = "/problems.ProblemsService/GetLeaderBoardOptionalCountry"
 	ProblemsService_GetProblemsDoneStatistics_FullMethodName         = "/problems.ProblemsService/GetProblemsDoneStatistics"
-	ProblemsService_GetIndividualUserRank_FullMethodName             = "/problems.ProblemsService/GetIndividualUserRank"
 	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName         = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
+	ProblemsService_GetTopKGlobal_FullMethodName                     = "/problems.ProblemsService/GetTopKGlobal"
+	ProblemsService_GetTopKEntity_FullMethodName                     = "/problems.ProblemsService/GetTopKEntity"
+	ProblemsService_GetUserRank_FullMethodName                       = "/problems.ProblemsService/GetUserRank"
+	ProblemsService_GetLeaderboardData_FullMethodName                = "/problems.ProblemsService/GetLeaderboardData"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -63,11 +65,14 @@ type ProblemsServiceClient interface {
 	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
 	// leaderboard
 	// get leaderboard -req: page,limit resp
-	GetLeaderBoardOptionalCountry(ctx context.Context, in *GetLeaderBoardOptionalCountryRequest, opts ...grpc.CallOption) (*GetLeaderBoardOptionalCountryResponse, error)
 	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
-	GetIndividualUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
 	// actitvitycontribution
 	GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error)
+	// leaderboard methods
+	GetTopKGlobal(ctx context.Context, in *GetTopKGlobalRequest, opts ...grpc.CallOption) (*GetTopKGlobalResponse, error)
+	GetTopKEntity(ctx context.Context, in *GetTopKEntityRequest, opts ...grpc.CallOption) (*GetTopKEntityResponse, error)
+	GetUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
+	GetLeaderboardData(ctx context.Context, in *GetLeaderboardDataRequest, opts ...grpc.CallOption) (*GetLeaderboardDataResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -238,16 +243,6 @@ func (c *problemsServiceClient) GetSubmissionsByOptionalProblemID(ctx context.Co
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetLeaderBoardOptionalCountry(ctx context.Context, in *GetLeaderBoardOptionalCountryRequest, opts ...grpc.CallOption) (*GetLeaderBoardOptionalCountryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetLeaderBoardOptionalCountryResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *problemsServiceClient) GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetProblemsDoneStatisticsResponse)
@@ -258,20 +253,50 @@ func (c *problemsServiceClient) GetProblemsDoneStatistics(ctx context.Context, i
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetIndividualUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error) {
+func (c *problemsServiceClient) GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUserRankResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetIndividualUserRank_FullMethodName, in, out, cOpts...)
+	out := new(GetMonthlyActivityHeatmapResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetMonthlyActivityHeatmap_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error) {
+func (c *problemsServiceClient) GetTopKGlobal(ctx context.Context, in *GetTopKGlobalRequest, opts ...grpc.CallOption) (*GetTopKGlobalResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMonthlyActivityHeatmapResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetMonthlyActivityHeatmap_FullMethodName, in, out, cOpts...)
+	out := new(GetTopKGlobalResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetTopKGlobal_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetTopKEntity(ctx context.Context, in *GetTopKEntityRequest, opts ...grpc.CallOption) (*GetTopKEntityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTopKEntityResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetTopKEntity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserRankResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetUserRank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetLeaderboardData(ctx context.Context, in *GetLeaderboardDataRequest, opts ...grpc.CallOption) (*GetLeaderboardDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLeaderboardDataResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetLeaderboardData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -300,11 +325,14 @@ type ProblemsServiceServer interface {
 	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
 	// leaderboard
 	// get leaderboard -req: page,limit resp
-	GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error)
 	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
-	GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
 	// actitvitycontribution
 	GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error)
+	// leaderboard methods
+	GetTopKGlobal(context.Context, *GetTopKGlobalRequest) (*GetTopKGlobalResponse, error)
+	GetTopKEntity(context.Context, *GetTopKEntityRequest) (*GetTopKEntityResponse, error)
+	GetUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
+	GetLeaderboardData(context.Context, *GetLeaderboardDataRequest) (*GetLeaderboardDataResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -363,17 +391,23 @@ func (UnimplementedProblemsServiceServer) RunUserCodeProblem(context.Context, *R
 func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByOptionalProblemID not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetLeaderBoardOptionalCountry(context.Context, *GetLeaderBoardOptionalCountryRequest) (*GetLeaderBoardOptionalCountryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetLeaderBoardOptionalCountry not implemented")
-}
 func (UnimplementedProblemsServiceServer) GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatistics not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetIndividualUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetIndividualUserRank not implemented")
-}
 func (UnimplementedProblemsServiceServer) GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMonthlyActivityHeatmap not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetTopKGlobal(context.Context, *GetTopKGlobalRequest) (*GetTopKGlobalResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTopKGlobal not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetTopKEntity(context.Context, *GetTopKEntityRequest) (*GetTopKEntityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTopKEntity not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserRank not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetLeaderboardData(context.Context, *GetLeaderboardDataRequest) (*GetLeaderboardDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLeaderboardData not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -684,24 +718,6 @@ func _ProblemsService_GetSubmissionsByOptionalProblemID_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetLeaderBoardOptionalCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetLeaderBoardOptionalCountryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetLeaderBoardOptionalCountry(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProblemsService_GetLeaderBoardOptionalCountry_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetLeaderBoardOptionalCountry(ctx, req.(*GetLeaderBoardOptionalCountryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ProblemsService_GetProblemsDoneStatistics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetProblemsDoneStatisticsRequest)
 	if err := dec(in); err != nil {
@@ -720,24 +736,6 @@ func _ProblemsService_GetProblemsDoneStatistics_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetIndividualUserRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserRankRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetIndividualUserRank(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProblemsService_GetIndividualUserRank_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetIndividualUserRank(ctx, req.(*GetUserRankRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ProblemsService_GetMonthlyActivityHeatmap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMonthlyActivityHeatmapRequest)
 	if err := dec(in); err != nil {
@@ -752,6 +750,78 @@ func _ProblemsService_GetMonthlyActivityHeatmap_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProblemsServiceServer).GetMonthlyActivityHeatmap(ctx, req.(*GetMonthlyActivityHeatmapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetTopKGlobal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTopKGlobalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetTopKGlobal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetTopKGlobal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetTopKGlobal(ctx, req.(*GetTopKGlobalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetTopKEntity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTopKEntityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetTopKEntity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetTopKEntity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetTopKEntity(ctx, req.(*GetTopKEntityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetUserRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetUserRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetUserRank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetUserRank(ctx, req.(*GetUserRankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetLeaderboardData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLeaderboardDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetLeaderboardData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetLeaderboardData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetLeaderboardData(ctx, req.(*GetLeaderboardDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -828,20 +898,28 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_GetSubmissionsByOptionalProblemID_Handler,
 		},
 		{
-			MethodName: "GetLeaderBoardOptionalCountry",
-			Handler:    _ProblemsService_GetLeaderBoardOptionalCountry_Handler,
-		},
-		{
 			MethodName: "GetProblemsDoneStatistics",
 			Handler:    _ProblemsService_GetProblemsDoneStatistics_Handler,
 		},
 		{
-			MethodName: "GetIndividualUserRank",
-			Handler:    _ProblemsService_GetIndividualUserRank_Handler,
-		},
-		{
 			MethodName: "GetMonthlyActivityHeatmap",
 			Handler:    _ProblemsService_GetMonthlyActivityHeatmap_Handler,
+		},
+		{
+			MethodName: "GetTopKGlobal",
+			Handler:    _ProblemsService_GetTopKGlobal_Handler,
+		},
+		{
+			MethodName: "GetTopKEntity",
+			Handler:    _ProblemsService_GetTopKEntity_Handler,
+		},
+		{
+			MethodName: "GetUserRank",
+			Handler:    _ProblemsService_GetUserRank_Handler,
+		},
+		{
+			MethodName: "GetLeaderboardData",
+			Handler:    _ProblemsService_GetLeaderboardData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
