@@ -37,7 +37,7 @@ service ProblemsService {
 }
 
 message GetTopKGlobalRequest {
-    int32 k = 1; //future updates needed on redis board config to accept dynamic k
+    int32 k = 1;
 }
 
 message GetTopKGlobalResponse {
@@ -69,11 +69,16 @@ message GetLeaderboardDataResponse {
     string user_id = 1;
     double score = 2;
     string entity = 3;
+    int32 global_rank = 4;
+    int32 entity_rank = 5;
+    repeated UserScore top_k_global = 6;
+    repeated UserScore top_k_entity = 7;
 }
 
 message UserScore {
     string user_id = 1;
     double score = 2;
+    string entity = 3;
 }
 
 message GetMonthlyActivityHeatmapRequest {

@@ -23,7 +23,7 @@ const (
 
 type GetTopKGlobalRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	K             int32                  `protobuf:"varint,1,opt,name=k,proto3" json:"k,omitempty"` //future updates needed on redis board config to accept dynamic k
+	K             int32                  `protobuf:"varint,1,opt,name=k,proto3" json:"k,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -342,6 +342,10 @@ type GetLeaderboardDataResponse struct {
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Score         float64                `protobuf:"fixed64,2,opt,name=score,proto3" json:"score,omitempty"`
 	Entity        string                 `protobuf:"bytes,3,opt,name=entity,proto3" json:"entity,omitempty"`
+	GlobalRank    int32                  `protobuf:"varint,4,opt,name=global_rank,json=globalRank,proto3" json:"global_rank,omitempty"`
+	EntityRank    int32                  `protobuf:"varint,5,opt,name=entity_rank,json=entityRank,proto3" json:"entity_rank,omitempty"`
+	TopKGlobal    []*UserScore           `protobuf:"bytes,6,rep,name=top_k_global,json=topKGlobal,proto3" json:"top_k_global,omitempty"`
+	TopKEntity    []*UserScore           `protobuf:"bytes,7,rep,name=top_k_entity,json=topKEntity,proto3" json:"top_k_entity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -397,10 +401,39 @@ func (x *GetLeaderboardDataResponse) GetEntity() string {
 	return ""
 }
 
+func (x *GetLeaderboardDataResponse) GetGlobalRank() int32 {
+	if x != nil {
+		return x.GlobalRank
+	}
+	return 0
+}
+
+func (x *GetLeaderboardDataResponse) GetEntityRank() int32 {
+	if x != nil {
+		return x.EntityRank
+	}
+	return 0
+}
+
+func (x *GetLeaderboardDataResponse) GetTopKGlobal() []*UserScore {
+	if x != nil {
+		return x.TopKGlobal
+	}
+	return nil
+}
+
+func (x *GetLeaderboardDataResponse) GetTopKEntity() []*UserScore {
+	if x != nil {
+		return x.TopKEntity
+	}
+	return nil
+}
+
 type UserScore struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Score         float64                `protobuf:"fixed64,2,opt,name=score,proto3" json:"score,omitempty"`
+	Entity        string                 `protobuf:"bytes,3,opt,name=entity,proto3" json:"entity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -447,6 +480,13 @@ func (x *UserScore) GetScore() float64 {
 		return x.Score
 	}
 	return 0
+}
+
+func (x *UserScore) GetEntity() string {
+	if x != nil {
+		return x.Entity
+	}
+	return ""
 }
 
 type GetMonthlyActivityHeatmapRequest struct {
@@ -3742,14 +3782,23 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\ventity_rank\x18\x02 \x01(\x05R\n" +
 	"entityRank\"4\n" +
 	"\x19GetLeaderboardDataRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"c\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x93\x02\n" +
 	"\x1aGetLeaderboardDataResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05score\x18\x02 \x01(\x01R\x05score\x12\x16\n" +
-	"\x06entity\x18\x03 \x01(\tR\x06entity\":\n" +
+	"\x06entity\x18\x03 \x01(\tR\x06entity\x12\x1f\n" +
+	"\vglobal_rank\x18\x04 \x01(\x05R\n" +
+	"globalRank\x12\x1f\n" +
+	"\ventity_rank\x18\x05 \x01(\x05R\n" +
+	"entityRank\x125\n" +
+	"\ftop_k_global\x18\x06 \x03(\v2\x13.problems.UserScoreR\n" +
+	"topKGlobal\x125\n" +
+	"\ftop_k_entity\x18\a \x03(\v2\x13.problems.UserScoreR\n" +
+	"topKEntity\"R\n" +
 	"\tUserScore\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
-	"\x05score\x18\x02 \x01(\x01R\x05score\"d\n" +
+	"\x05score\x18\x02 \x01(\x01R\x05score\x12\x16\n" +
+	"\x06entity\x18\x03 \x01(\tR\x06entity\"d\n" +
 	" GetMonthlyActivityHeatmapRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
 	"\x05month\x18\x02 \x01(\x05R\x05month\x12\x12\n" +
@@ -4172,82 +4221,84 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	8,  // 0: problems.GetTopKGlobalResponse.users:type_name -> problems.UserScore
 	8,  // 1: problems.GetTopKEntityResponse.users:type_name -> problems.UserScore
-	10, // 2: problems.GetMonthlyActivityHeatmapResponse.data:type_name -> problems.ActivityDay
-	13, // 3: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
-	17, // 4: problems.GetProblemsDoneStatisticsResponse.data:type_name -> problems.ProblemsDoneStatistics
-	19, // 5: problems.TestCases.run:type_name -> problems.TestCase
-	19, // 6: problems.TestCases.submit:type_name -> problems.TestCase
-	19, // 7: problems.TestCaseRunOnly.run:type_name -> problems.TestCase
-	20, // 8: problems.AddTestCasesRequest.testcases:type_name -> problems.TestCases
-	22, // 9: problems.AddLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
-	22, // 10: problems.UpdateLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
-	18, // 11: problems.Problem.created_at:type_name -> problems.Timestamp
-	18, // 12: problems.Problem.updated_at:type_name -> problems.Timestamp
-	18, // 13: problems.Problem.deleted_at:type_name -> problems.Timestamp
-	20, // 14: problems.Problem.testcases:type_name -> problems.TestCases
-	59, // 15: problems.Problem.validate_code:type_name -> problems.Problem.ValidateCodeEntry
-	18, // 16: problems.Problem.validated_at:type_name -> problems.Timestamp
-	21, // 17: problems.ProblemMetadata.testcase_run:type_name -> problems.TestCaseRunOnly
-	32, // 18: problems.GetProblemResponse.problem:type_name -> problems.Problem
-	32, // 19: problems.ListProblemsResponse.problems:type_name -> problems.Problem
-	60, // 20: problems.GetLanguageSupportsResponse.validate_code:type_name -> problems.GetLanguageSupportsResponse.ValidateCodeEntry
-	18, // 21: problems.Submission.submitted_at:type_name -> problems.Timestamp
-	51, // 22: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
-	58, // 23: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	58, // 24: problems.GetProblemByIdListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	21, // 25: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
-	61, // 26: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
-	22, // 27: problems.Problem.ValidateCodeEntry.value:type_name -> problems.ValidationCode
-	22, // 28: problems.GetLanguageSupportsResponse.ValidateCodeEntry.value:type_name -> problems.ValidationCode
-	23, // 29: problems.ProblemsService.CreateProblem:input_type -> problems.CreateProblemRequest
-	24, // 30: problems.ProblemsService.UpdateProblem:input_type -> problems.UpdateProblemRequest
-	25, // 31: problems.ProblemsService.DeleteProblem:input_type -> problems.DeleteProblemRequest
-	26, // 32: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
-	27, // 33: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
-	54, // 34: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
-	56, // 35: problems.ProblemsService.GetProblemByIDList:input_type -> problems.GetProblemByIdListRequest
-	28, // 36: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
-	43, // 37: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
-	45, // 38: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
-	29, // 39: problems.ProblemsService.AddLanguageSupport:input_type -> problems.AddLanguageSupportRequest
-	30, // 40: problems.ProblemsService.UpdateLanguageSupport:input_type -> problems.UpdateLanguageSupportRequest
-	31, // 41: problems.ProblemsService.RemoveLanguageSupport:input_type -> problems.RemoveLanguageSupportRequest
-	47, // 42: problems.ProblemsService.FullValidationByProblemID:input_type -> problems.FullValidationByProblemIDRequest
-	49, // 43: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
-	52, // 44: problems.ProblemsService.GetSubmissionsByOptionalProblemID:input_type -> problems.GetSubmissionsRequest
-	15, // 45: problems.ProblemsService.GetProblemsDoneStatistics:input_type -> problems.GetProblemsDoneStatisticsRequest
-	9,  // 46: problems.ProblemsService.GetMonthlyActivityHeatmap:input_type -> problems.GetMonthlyActivityHeatmapRequest
-	0,  // 47: problems.ProblemsService.GetTopKGlobal:input_type -> problems.GetTopKGlobalRequest
-	2,  // 48: problems.ProblemsService.GetTopKEntity:input_type -> problems.GetTopKEntityRequest
-	4,  // 49: problems.ProblemsService.GetUserRank:input_type -> problems.GetUserRankRequest
-	6,  // 50: problems.ProblemsService.GetLeaderboardData:input_type -> problems.GetLeaderboardDataRequest
-	34, // 51: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
-	35, // 52: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
-	36, // 53: problems.ProblemsService.DeleteProblem:output_type -> problems.DeleteProblemResponse
-	37, // 54: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
-	38, // 55: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
-	55, // 56: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
-	57, // 57: problems.ProblemsService.GetProblemByIDList:output_type -> problems.GetProblemByIdListResponse
-	39, // 58: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
-	44, // 59: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
-	46, // 60: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse
-	40, // 61: problems.ProblemsService.AddLanguageSupport:output_type -> problems.AddLanguageSupportResponse
-	41, // 62: problems.ProblemsService.UpdateLanguageSupport:output_type -> problems.UpdateLanguageSupportResponse
-	42, // 63: problems.ProblemsService.RemoveLanguageSupport:output_type -> problems.RemoveLanguageSupportResponse
-	48, // 64: problems.ProblemsService.FullValidationByProblemID:output_type -> problems.FullValidationByProblemIDResponse
-	50, // 65: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
-	53, // 66: problems.ProblemsService.GetSubmissionsByOptionalProblemID:output_type -> problems.GetSubmissionsResponse
-	16, // 67: problems.ProblemsService.GetProblemsDoneStatistics:output_type -> problems.GetProblemsDoneStatisticsResponse
-	11, // 68: problems.ProblemsService.GetMonthlyActivityHeatmap:output_type -> problems.GetMonthlyActivityHeatmapResponse
-	1,  // 69: problems.ProblemsService.GetTopKGlobal:output_type -> problems.GetTopKGlobalResponse
-	3,  // 70: problems.ProblemsService.GetTopKEntity:output_type -> problems.GetTopKEntityResponse
-	5,  // 71: problems.ProblemsService.GetUserRank:output_type -> problems.GetUserRankResponse
-	7,  // 72: problems.ProblemsService.GetLeaderboardData:output_type -> problems.GetLeaderboardDataResponse
-	51, // [51:73] is the sub-list for method output_type
-	29, // [29:51] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	8,  // 2: problems.GetLeaderboardDataResponse.top_k_global:type_name -> problems.UserScore
+	8,  // 3: problems.GetLeaderboardDataResponse.top_k_entity:type_name -> problems.UserScore
+	10, // 4: problems.GetMonthlyActivityHeatmapResponse.data:type_name -> problems.ActivityDay
+	13, // 5: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
+	17, // 6: problems.GetProblemsDoneStatisticsResponse.data:type_name -> problems.ProblemsDoneStatistics
+	19, // 7: problems.TestCases.run:type_name -> problems.TestCase
+	19, // 8: problems.TestCases.submit:type_name -> problems.TestCase
+	19, // 9: problems.TestCaseRunOnly.run:type_name -> problems.TestCase
+	20, // 10: problems.AddTestCasesRequest.testcases:type_name -> problems.TestCases
+	22, // 11: problems.AddLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
+	22, // 12: problems.UpdateLanguageSupportRequest.validation_code:type_name -> problems.ValidationCode
+	18, // 13: problems.Problem.created_at:type_name -> problems.Timestamp
+	18, // 14: problems.Problem.updated_at:type_name -> problems.Timestamp
+	18, // 15: problems.Problem.deleted_at:type_name -> problems.Timestamp
+	20, // 16: problems.Problem.testcases:type_name -> problems.TestCases
+	59, // 17: problems.Problem.validate_code:type_name -> problems.Problem.ValidateCodeEntry
+	18, // 18: problems.Problem.validated_at:type_name -> problems.Timestamp
+	21, // 19: problems.ProblemMetadata.testcase_run:type_name -> problems.TestCaseRunOnly
+	32, // 20: problems.GetProblemResponse.problem:type_name -> problems.Problem
+	32, // 21: problems.ListProblemsResponse.problems:type_name -> problems.Problem
+	60, // 22: problems.GetLanguageSupportsResponse.validate_code:type_name -> problems.GetLanguageSupportsResponse.ValidateCodeEntry
+	18, // 23: problems.Submission.submitted_at:type_name -> problems.Timestamp
+	51, // 24: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
+	58, // 25: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	58, // 26: problems.GetProblemByIdListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	21, // 27: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
+	61, // 28: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
+	22, // 29: problems.Problem.ValidateCodeEntry.value:type_name -> problems.ValidationCode
+	22, // 30: problems.GetLanguageSupportsResponse.ValidateCodeEntry.value:type_name -> problems.ValidationCode
+	23, // 31: problems.ProblemsService.CreateProblem:input_type -> problems.CreateProblemRequest
+	24, // 32: problems.ProblemsService.UpdateProblem:input_type -> problems.UpdateProblemRequest
+	25, // 33: problems.ProblemsService.DeleteProblem:input_type -> problems.DeleteProblemRequest
+	26, // 34: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
+	27, // 35: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
+	54, // 36: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
+	56, // 37: problems.ProblemsService.GetProblemByIDList:input_type -> problems.GetProblemByIdListRequest
+	28, // 38: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
+	43, // 39: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
+	45, // 40: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
+	29, // 41: problems.ProblemsService.AddLanguageSupport:input_type -> problems.AddLanguageSupportRequest
+	30, // 42: problems.ProblemsService.UpdateLanguageSupport:input_type -> problems.UpdateLanguageSupportRequest
+	31, // 43: problems.ProblemsService.RemoveLanguageSupport:input_type -> problems.RemoveLanguageSupportRequest
+	47, // 44: problems.ProblemsService.FullValidationByProblemID:input_type -> problems.FullValidationByProblemIDRequest
+	49, // 45: problems.ProblemsService.RunUserCodeProblem:input_type -> problems.RunProblemRequest
+	52, // 46: problems.ProblemsService.GetSubmissionsByOptionalProblemID:input_type -> problems.GetSubmissionsRequest
+	15, // 47: problems.ProblemsService.GetProblemsDoneStatistics:input_type -> problems.GetProblemsDoneStatisticsRequest
+	9,  // 48: problems.ProblemsService.GetMonthlyActivityHeatmap:input_type -> problems.GetMonthlyActivityHeatmapRequest
+	0,  // 49: problems.ProblemsService.GetTopKGlobal:input_type -> problems.GetTopKGlobalRequest
+	2,  // 50: problems.ProblemsService.GetTopKEntity:input_type -> problems.GetTopKEntityRequest
+	4,  // 51: problems.ProblemsService.GetUserRank:input_type -> problems.GetUserRankRequest
+	6,  // 52: problems.ProblemsService.GetLeaderboardData:input_type -> problems.GetLeaderboardDataRequest
+	34, // 53: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
+	35, // 54: problems.ProblemsService.UpdateProblem:output_type -> problems.UpdateProblemResponse
+	36, // 55: problems.ProblemsService.DeleteProblem:output_type -> problems.DeleteProblemResponse
+	37, // 56: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
+	38, // 57: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
+	55, // 58: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
+	57, // 59: problems.ProblemsService.GetProblemByIDList:output_type -> problems.GetProblemByIdListResponse
+	39, // 60: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
+	44, // 61: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
+	46, // 62: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse
+	40, // 63: problems.ProblemsService.AddLanguageSupport:output_type -> problems.AddLanguageSupportResponse
+	41, // 64: problems.ProblemsService.UpdateLanguageSupport:output_type -> problems.UpdateLanguageSupportResponse
+	42, // 65: problems.ProblemsService.RemoveLanguageSupport:output_type -> problems.RemoveLanguageSupportResponse
+	48, // 66: problems.ProblemsService.FullValidationByProblemID:output_type -> problems.FullValidationByProblemIDResponse
+	50, // 67: problems.ProblemsService.RunUserCodeProblem:output_type -> problems.RunProblemResponse
+	53, // 68: problems.ProblemsService.GetSubmissionsByOptionalProblemID:output_type -> problems.GetSubmissionsResponse
+	16, // 69: problems.ProblemsService.GetProblemsDoneStatistics:output_type -> problems.GetProblemsDoneStatisticsResponse
+	11, // 70: problems.ProblemsService.GetMonthlyActivityHeatmap:output_type -> problems.GetMonthlyActivityHeatmapResponse
+	1,  // 71: problems.ProblemsService.GetTopKGlobal:output_type -> problems.GetTopKGlobalResponse
+	3,  // 72: problems.ProblemsService.GetTopKEntity:output_type -> problems.GetTopKEntityResponse
+	5,  // 73: problems.ProblemsService.GetUserRank:output_type -> problems.GetUserRankResponse
+	7,  // 74: problems.ProblemsService.GetLeaderboardData:output_type -> problems.GetLeaderboardDataResponse
+	53, // [53:75] is the sub-list for method output_type
+	31, // [31:53] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_ProblemsService_problemsservice_proto_init() }
