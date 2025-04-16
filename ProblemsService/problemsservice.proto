@@ -73,7 +73,7 @@ message Challenge {
     string password = 16;
   }
   
-  message ProblemMetadata {
+  message ChallengeProblemMetadata {
     string problem_id = 1;
     int32 score = 2;
     int64 time_taken = 3;
@@ -81,8 +81,20 @@ message Challenge {
   }
   
   message ProblemMetadataList {
-    repeated ProblemMetadata metadata = 1;
+    repeated ChallengeProblemMetadata metadata = 1;
   }
+
+
+message ProblemMetadata {
+    string problem_id = 1;
+    string title = 2;
+    string description = 3;
+    repeated string tags = 4;
+    TestCaseRunOnly testcase_run = 5;
+    string difficulty = 6;
+    repeated string supported_languages = 7;
+    bool validated = 8;
+}
   
  
   message UserStats {
