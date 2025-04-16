@@ -34,7 +34,200 @@ service ProblemsService {
     rpc GetTopKEntity (GetTopKEntityRequest) returns (GetTopKEntityResponse);
     rpc GetUserRank (GetUserRankRequest) returns (GetUserRankResponse);
     rpc GetLeaderboardData (GetLeaderboardDataRequest) returns (GetLeaderboardDataResponse);
+
+
+    //challenge 
+    rpc CreateChallenge(CreateChallengeRequest) returns (CreateChallengeResponse);
+    rpc GetChallenge(GetChallengeRequest) returns (GetChallengeResponse);
+    rpc GetPublicChallenges(GetPublicChallengesRequest) returns (GetPublicChallengesResponse);
+    rpc JoinChallenge(JoinChallengeRequest) returns (JoinChallengeResponse);
+    rpc StartChallenge(StartChallengeRequest) returns (StartChallengeResponse);
+    rpc EndChallenge(EndChallengeRequest) returns (EndChallengeResponse);
+  
+    // Submission operations
+    rpc SubmitSolution(SubmitSolutionRequest) returns (SubmitSolutionResponse);
+    rpc GetSubmissionStatus(GetSubmissionStatusRequest) returns (GetSubmissionStatusResponse);
+    rpc GetChallengeSubmissions(GetChallengeSubmissionsRequest) returns (GetChallengeSubmissionsResponse);
+  
+    // User stats operations
+    rpc GetUserStats(GetUserStatsRequest) returns (GetUserStatsResponse);
+    rpc GetChallengeUserStats(GetChallengeUserStatsRequest) returns (GetChallengeUserStatsResponse);
 }
+
+message Challenge {
+    string id = 1;
+    string title = 2;
+    string creator_id = 3;
+    string difficulty = 4;
+    bool is_private = 5;
+    string access_code = 6;
+    repeated string problem_ids = 7;
+    int32 time_limit = 8;
+    int64 created_at = 9;
+    bool is_active = 10;
+    repeated string participant_ids = 11;
+    map<string, ProblemMetadataList> user_problem_metadata = 12;
+    string status = 13;
+    int64 start_time = 14;
+    int64 end_time = 15;
+    string password = 16;
+  }
+  
+  message ProblemMetadata {
+    string problem_id = 1;
+    int32 score = 2;
+    int64 time_taken = 3;
+    int64 completed_at = 4;
+  }
+  
+  message ProblemMetadataList {
+    repeated ProblemMetadata metadata = 1;
+  }
+  
+ 
+  message UserStats {
+    string user_id = 1;
+    int32 problems_completed = 2;
+    int64 total_time_taken = 3;
+    int32 challenges_completed = 4;
+    double score = 5;
+    map<string, ChallengeStat> challenge_stats = 6;
+  }
+  
+  message ChallengeStat {
+    int32 rank = 1;
+    int32 problems_completed = 2;
+    int32 total_score = 3;
+  }
+  
+  // Challenge messages
+  message CreateChallengeRequest {
+    string title = 1;
+    string creator_id = 2;
+    string difficulty = 3;
+    bool is_private = 4;
+    optional string access_code = 5; //user defined password
+    repeated string problem_ids = 6;
+    int32 time_limit = 7;
+  }
+  
+  message CreateChallengeResponse {
+    string id = 1;
+    string access_code = 2; //if not present in the user defined gen a new one
+    string password = 3;
+    string join_url = 4; 
+  }
+  
+  message GetChallengeRequest {
+    string id = 1;
+  }
+  
+  message GetChallengeResponse {
+    Challenge challenge = 1;
+    repeated LeaderboardEntry leaderboard = 2;
+  }
+  
+  message GetPublicChallengesRequest {
+    string difficulty = 1;
+    bool is_active = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+  }
+  
+  message GetPublicChallengesResponse {
+    repeated Challenge challenges = 1;
+  }
+  
+  message JoinChallengeRequest {
+    string challenge_id = 1;
+    string user_id = 2;
+    string access_code = 3;
+    string password = 4;
+  }
+  
+  message JoinChallengeResponse {
+    string challenge_id = 1;
+  }
+  
+  message StartChallengeRequest {
+    string challenge_id = 1;
+    string user_id = 2;
+  }
+  
+  message StartChallengeResponse {
+    bool success = 1;
+    int64 start_time = 2;
+  }
+  
+  message EndChallengeRequest {
+    string challenge_id = 1;
+    string user_id = 2;
+  }
+  
+  message EndChallengeResponse {
+    bool success = 1;
+    repeated LeaderboardEntry leaderboard = 2;
+  }
+  
+  message LeaderboardEntry {
+    string user_id = 1;
+    int32 problems_completed = 2;
+    int32 total_score = 3;
+    int32 rank = 4;
+  }
+  
+  // Submission messages
+  message SubmitSolutionRequest {
+    string challenge_id = 1;
+    string user_id = 2;
+    string problem_id = 3;
+    string code = 4;
+    string language = 5;
+  }
+  
+  message SubmitSolutionResponse {
+    string submission_id = 1;
+    string status = 2;
+  }
+  
+  message GetSubmissionStatusRequest {
+    string submission_id = 1;
+  }
+  
+  message GetSubmissionStatusResponse {
+    Submission submission = 1;
+  }
+  
+  message GetChallengeSubmissionsRequest {
+    string challenge_id = 1;
+  }
+  
+  message GetChallengeSubmissionsResponse {
+    repeated Submission submissions = 1;
+  }
+  
+  // User stats messages
+  message GetUserStatsRequest {
+    string user_id = 1;
+  }
+  
+  message GetUserStatsResponse {
+    UserStats stats = 1;
+  }
+  
+  message GetChallengeUserStatsRequest {
+    string challenge_id = 1;
+    string user_id = 2;
+  }
+  
+  message GetChallengeUserStatsResponse {
+    string user_id = 1;
+    int32 problems_completed = 2;
+    int32 total_score = 3;
+    int32 rank = 4;
+    repeated ProblemMetadata problem_metadata = 5;
+  }
+
 
 message GetTopKGlobalRequest {
     int32 k = 1;
@@ -232,16 +425,6 @@ message Problem {
     Timestamp validated_at = 13;
 }
 
-message ProblemMetadata {
-    string problem_id = 1;
-    string title = 2;
-    string description = 3;
-    repeated string tags = 4;
-    TestCaseRunOnly testcase_run = 5;
-    string difficulty = 6;
-    repeated string supported_languages = 7;
-    bool validated = 8;
-}
 
 message CreateProblemResponse {
     string problem_id = 1;

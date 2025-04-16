@@ -41,6 +41,17 @@ const (
 	ProblemsService_GetTopKEntity_FullMethodName                     = "/problems.ProblemsService/GetTopKEntity"
 	ProblemsService_GetUserRank_FullMethodName                       = "/problems.ProblemsService/GetUserRank"
 	ProblemsService_GetLeaderboardData_FullMethodName                = "/problems.ProblemsService/GetLeaderboardData"
+	ProblemsService_CreateChallenge_FullMethodName                   = "/problems.ProblemsService/CreateChallenge"
+	ProblemsService_GetChallenge_FullMethodName                      = "/problems.ProblemsService/GetChallenge"
+	ProblemsService_GetPublicChallenges_FullMethodName               = "/problems.ProblemsService/GetPublicChallenges"
+	ProblemsService_JoinChallenge_FullMethodName                     = "/problems.ProblemsService/JoinChallenge"
+	ProblemsService_StartChallenge_FullMethodName                    = "/problems.ProblemsService/StartChallenge"
+	ProblemsService_EndChallenge_FullMethodName                      = "/problems.ProblemsService/EndChallenge"
+	ProblemsService_SubmitSolution_FullMethodName                    = "/problems.ProblemsService/SubmitSolution"
+	ProblemsService_GetSubmissionStatus_FullMethodName               = "/problems.ProblemsService/GetSubmissionStatus"
+	ProblemsService_GetChallengeSubmissions_FullMethodName           = "/problems.ProblemsService/GetChallengeSubmissions"
+	ProblemsService_GetUserStats_FullMethodName                      = "/problems.ProblemsService/GetUserStats"
+	ProblemsService_GetChallengeUserStats_FullMethodName             = "/problems.ProblemsService/GetChallengeUserStats"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -73,6 +84,20 @@ type ProblemsServiceClient interface {
 	GetTopKEntity(ctx context.Context, in *GetTopKEntityRequest, opts ...grpc.CallOption) (*GetTopKEntityResponse, error)
 	GetUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
 	GetLeaderboardData(ctx context.Context, in *GetLeaderboardDataRequest, opts ...grpc.CallOption) (*GetLeaderboardDataResponse, error)
+	// challenge
+	CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error)
+	GetChallenge(ctx context.Context, in *GetChallengeRequest, opts ...grpc.CallOption) (*GetChallengeResponse, error)
+	GetPublicChallenges(ctx context.Context, in *GetPublicChallengesRequest, opts ...grpc.CallOption) (*GetPublicChallengesResponse, error)
+	JoinChallenge(ctx context.Context, in *JoinChallengeRequest, opts ...grpc.CallOption) (*JoinChallengeResponse, error)
+	StartChallenge(ctx context.Context, in *StartChallengeRequest, opts ...grpc.CallOption) (*StartChallengeResponse, error)
+	EndChallenge(ctx context.Context, in *EndChallengeRequest, opts ...grpc.CallOption) (*EndChallengeResponse, error)
+	// Submission operations
+	SubmitSolution(ctx context.Context, in *SubmitSolutionRequest, opts ...grpc.CallOption) (*SubmitSolutionResponse, error)
+	GetSubmissionStatus(ctx context.Context, in *GetSubmissionStatusRequest, opts ...grpc.CallOption) (*GetSubmissionStatusResponse, error)
+	GetChallengeSubmissions(ctx context.Context, in *GetChallengeSubmissionsRequest, opts ...grpc.CallOption) (*GetChallengeSubmissionsResponse, error)
+	// User stats operations
+	GetUserStats(ctx context.Context, in *GetUserStatsRequest, opts ...grpc.CallOption) (*GetUserStatsResponse, error)
+	GetChallengeUserStats(ctx context.Context, in *GetChallengeUserStatsRequest, opts ...grpc.CallOption) (*GetChallengeUserStatsResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -303,6 +328,116 @@ func (c *problemsServiceClient) GetLeaderboardData(ctx context.Context, in *GetL
 	return out, nil
 }
 
+func (c *problemsServiceClient) CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateChallengeResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_CreateChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetChallenge(ctx context.Context, in *GetChallengeRequest, opts ...grpc.CallOption) (*GetChallengeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChallengeResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetPublicChallenges(ctx context.Context, in *GetPublicChallengesRequest, opts ...grpc.CallOption) (*GetPublicChallengesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPublicChallengesResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetPublicChallenges_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) JoinChallenge(ctx context.Context, in *JoinChallengeRequest, opts ...grpc.CallOption) (*JoinChallengeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JoinChallengeResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_JoinChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) StartChallenge(ctx context.Context, in *StartChallengeRequest, opts ...grpc.CallOption) (*StartChallengeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StartChallengeResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_StartChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) EndChallenge(ctx context.Context, in *EndChallengeRequest, opts ...grpc.CallOption) (*EndChallengeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EndChallengeResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_EndChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) SubmitSolution(ctx context.Context, in *SubmitSolutionRequest, opts ...grpc.CallOption) (*SubmitSolutionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SubmitSolutionResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_SubmitSolution_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetSubmissionStatus(ctx context.Context, in *GetSubmissionStatusRequest, opts ...grpc.CallOption) (*GetSubmissionStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSubmissionStatusResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetChallengeSubmissions(ctx context.Context, in *GetChallengeSubmissionsRequest, opts ...grpc.CallOption) (*GetChallengeSubmissionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChallengeSubmissionsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetChallengeSubmissions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetUserStats(ctx context.Context, in *GetUserStatsRequest, opts ...grpc.CallOption) (*GetUserStatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserStatsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetUserStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) GetChallengeUserStats(ctx context.Context, in *GetChallengeUserStatsRequest, opts ...grpc.CallOption) (*GetChallengeUserStatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChallengeUserStatsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetChallengeUserStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -333,6 +468,20 @@ type ProblemsServiceServer interface {
 	GetTopKEntity(context.Context, *GetTopKEntityRequest) (*GetTopKEntityResponse, error)
 	GetUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
 	GetLeaderboardData(context.Context, *GetLeaderboardDataRequest) (*GetLeaderboardDataResponse, error)
+	// challenge
+	CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error)
+	GetChallenge(context.Context, *GetChallengeRequest) (*GetChallengeResponse, error)
+	GetPublicChallenges(context.Context, *GetPublicChallengesRequest) (*GetPublicChallengesResponse, error)
+	JoinChallenge(context.Context, *JoinChallengeRequest) (*JoinChallengeResponse, error)
+	StartChallenge(context.Context, *StartChallengeRequest) (*StartChallengeResponse, error)
+	EndChallenge(context.Context, *EndChallengeRequest) (*EndChallengeResponse, error)
+	// Submission operations
+	SubmitSolution(context.Context, *SubmitSolutionRequest) (*SubmitSolutionResponse, error)
+	GetSubmissionStatus(context.Context, *GetSubmissionStatusRequest) (*GetSubmissionStatusResponse, error)
+	GetChallengeSubmissions(context.Context, *GetChallengeSubmissionsRequest) (*GetChallengeSubmissionsResponse, error)
+	// User stats operations
+	GetUserStats(context.Context, *GetUserStatsRequest) (*GetUserStatsResponse, error)
+	GetChallengeUserStats(context.Context, *GetChallengeUserStatsRequest) (*GetChallengeUserStatsResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -408,6 +557,39 @@ func (UnimplementedProblemsServiceServer) GetUserRank(context.Context, *GetUserR
 }
 func (UnimplementedProblemsServiceServer) GetLeaderboardData(context.Context, *GetLeaderboardDataRequest) (*GetLeaderboardDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLeaderboardData not implemented")
+}
+func (UnimplementedProblemsServiceServer) CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateChallenge not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetChallenge(context.Context, *GetChallengeRequest) (*GetChallengeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChallenge not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetPublicChallenges(context.Context, *GetPublicChallengesRequest) (*GetPublicChallengesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPublicChallenges not implemented")
+}
+func (UnimplementedProblemsServiceServer) JoinChallenge(context.Context, *JoinChallengeRequest) (*JoinChallengeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method JoinChallenge not implemented")
+}
+func (UnimplementedProblemsServiceServer) StartChallenge(context.Context, *StartChallengeRequest) (*StartChallengeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartChallenge not implemented")
+}
+func (UnimplementedProblemsServiceServer) EndChallenge(context.Context, *EndChallengeRequest) (*EndChallengeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EndChallenge not implemented")
+}
+func (UnimplementedProblemsServiceServer) SubmitSolution(context.Context, *SubmitSolutionRequest) (*SubmitSolutionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitSolution not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetSubmissionStatus(context.Context, *GetSubmissionStatusRequest) (*GetSubmissionStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionStatus not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetChallengeSubmissions(context.Context, *GetChallengeSubmissionsRequest) (*GetChallengeSubmissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeSubmissions not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetUserStats(context.Context, *GetUserStatsRequest) (*GetUserStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserStats not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetChallengeUserStats(context.Context, *GetChallengeUserStatsRequest) (*GetChallengeUserStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeUserStats not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -826,6 +1008,204 @@ func _ProblemsService_GetLeaderboardData_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_CreateChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateChallengeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).CreateChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_CreateChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).CreateChallenge(ctx, req.(*CreateChallengeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChallengeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetChallenge(ctx, req.(*GetChallengeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetPublicChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPublicChallengesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetPublicChallenges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetPublicChallenges_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetPublicChallenges(ctx, req.(*GetPublicChallengesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_JoinChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JoinChallengeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).JoinChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_JoinChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).JoinChallenge(ctx, req.(*JoinChallengeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_StartChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartChallengeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).StartChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_StartChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).StartChallenge(ctx, req.(*StartChallengeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_EndChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EndChallengeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).EndChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_EndChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).EndChallenge(ctx, req.(*EndChallengeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_SubmitSolution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubmitSolutionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).SubmitSolution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_SubmitSolution_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).SubmitSolution(ctx, req.(*SubmitSolutionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetSubmissionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubmissionStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetSubmissionStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetSubmissionStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetSubmissionStatus(ctx, req.(*GetSubmissionStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetChallengeSubmissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChallengeSubmissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetChallengeSubmissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetChallengeSubmissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetChallengeSubmissions(ctx, req.(*GetChallengeSubmissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetUserStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetUserStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetUserStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetUserStats(ctx, req.(*GetUserStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_GetChallengeUserStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChallengeUserStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetChallengeUserStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetChallengeUserStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetChallengeUserStats(ctx, req.(*GetChallengeUserStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -920,6 +1300,50 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLeaderboardData",
 			Handler:    _ProblemsService_GetLeaderboardData_Handler,
+		},
+		{
+			MethodName: "CreateChallenge",
+			Handler:    _ProblemsService_CreateChallenge_Handler,
+		},
+		{
+			MethodName: "GetChallenge",
+			Handler:    _ProblemsService_GetChallenge_Handler,
+		},
+		{
+			MethodName: "GetPublicChallenges",
+			Handler:    _ProblemsService_GetPublicChallenges_Handler,
+		},
+		{
+			MethodName: "JoinChallenge",
+			Handler:    _ProblemsService_JoinChallenge_Handler,
+		},
+		{
+			MethodName: "StartChallenge",
+			Handler:    _ProblemsService_StartChallenge_Handler,
+		},
+		{
+			MethodName: "EndChallenge",
+			Handler:    _ProblemsService_EndChallenge_Handler,
+		},
+		{
+			MethodName: "SubmitSolution",
+			Handler:    _ProblemsService_SubmitSolution_Handler,
+		},
+		{
+			MethodName: "GetSubmissionStatus",
+			Handler:    _ProblemsService_GetSubmissionStatus_Handler,
+		},
+		{
+			MethodName: "GetChallengeSubmissions",
+			Handler:    _ProblemsService_GetChallengeSubmissions_Handler,
+		},
+		{
+			MethodName: "GetUserStats",
+			Handler:    _ProblemsService_GetUserStats_Handler,
+		},
+		{
+			MethodName: "GetChallengeUserStats",
+			Handler:    _ProblemsService_GetChallengeUserStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
