@@ -146,6 +146,7 @@ message ProblemMetadata {
     bool is_active = 2;
     int32 page = 3;
     int32 page_size = 4;
+    string userID = 5;
   }
   
   message GetPublicChallengesResponse {
