@@ -147,6 +147,7 @@ message ProblemMetadata {
     int32 page = 3;
     int32 page_size = 4;
     string userID = 5;
+    string everything = 6;
   }
   
   message GetPublicChallengesResponse {

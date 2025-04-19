@@ -813,6 +813,7 @@ type GetPublicChallengesRequest struct {
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	UserID        string                 `protobuf:"bytes,5,opt,name=userID,proto3" json:"userID,omitempty"`
+	Everything    string                 `protobuf:"bytes,6,opt,name=everything,proto3" json:"everything,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -878,6 +879,13 @@ func (x *GetPublicChallengesRequest) GetPageSize() int32 {
 func (x *GetPublicChallengesRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *GetPublicChallengesRequest) GetEverything() string {
+	if x != nil {
+		return x.Everything
 	}
 	return ""
 }
@@ -5582,7 +5590,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x87\x01\n" +
 	"\x14GetChallengeResponse\x121\n" +
 	"\tchallenge\x18\x01 \x01(\v2\x13.problems.ChallengeR\tchallenge\x12<\n" +
-	"\vleaderboard\x18\x02 \x03(\v2\x1a.problems.LeaderboardEntryR\vleaderboard\"\xa2\x01\n" +
+	"\vleaderboard\x18\x02 \x03(\v2\x1a.problems.LeaderboardEntryR\vleaderboard\"\xc2\x01\n" +
 	"\x1aGetPublicChallengesRequest\x12\x1e\n" +
 	"\n" +
 	"difficulty\x18\x01 \x01(\tR\n" +
@@ -5590,7 +5598,10 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\tis_active\x18\x02 \x01(\bR\bisActive\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x16\n" +
-	"\x06userID\x18\x05 \x01(\tR\x06userID\"R\n" +
+	"\x06userID\x18\x05 \x01(\tR\x06userID\x12\x1e\n" +
+	"\n" +
+	"everything\x18\x06 \x01(\tR\n" +
+	"everything\"R\n" +
 	"\x1bGetPublicChallengesResponse\x123\n" +
 	"\n" +
 	"challenges\x18\x01 \x03(\v2\x13.problems.ChallengeR\n" +
