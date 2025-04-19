@@ -813,7 +813,7 @@ type GetPublicChallengesRequest struct {
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	UserID        string                 `protobuf:"bytes,5,opt,name=userID,proto3" json:"userID,omitempty"`
-	Everything    string                 `protobuf:"bytes,6,opt,name=everything,proto3" json:"everything,omitempty"`
+	Everything    bool                   `protobuf:"varint,6,opt,name=everything,proto3" json:"everything,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -883,11 +883,11 @@ func (x *GetPublicChallengesRequest) GetUserID() string {
 	return ""
 }
 
-func (x *GetPublicChallengesRequest) GetEverything() string {
+func (x *GetPublicChallengesRequest) GetEverything() bool {
 	if x != nil {
 		return x.Everything
 	}
-	return ""
+	return false
 }
 
 type GetPublicChallengesResponse struct {
@@ -5600,7 +5600,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x16\n" +
 	"\x06userID\x18\x05 \x01(\tR\x06userID\x12\x1e\n" +
 	"\n" +
-	"everything\x18\x06 \x01(\tR\n" +
+	"everything\x18\x06 \x01(\bR\n" +
 	"everything\"R\n" +
 	"\x1bGetPublicChallengesResponse\x123\n" +
 	"\n" +
