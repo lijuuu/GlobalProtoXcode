@@ -23,7 +23,8 @@ const (
 
 type GetFollowFollowingCheckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	TargetUserID  string                 `protobuf:"bytes,2,opt,name=targetUserID,proto3" json:"targetUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -58,9 +59,16 @@ func (*GetFollowFollowingCheckRequest) Descriptor() ([]byte, []int) {
 	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetFollowFollowingCheckRequest) GetUserID() string {
+func (x *GetFollowFollowingCheckRequest) GetOwnerUserID() string {
 	if x != nil {
-		return x.UserID
+		return x.OwnerUserID
+	}
+	return ""
+}
+
+func (x *GetFollowFollowingCheckRequest) GetTargetUserID() string {
+	if x != nil {
+		return x.TargetUserID
 	}
 	return ""
 }
@@ -5145,9 +5153,10 @@ var File_AuthUserAdminService_authuseradmin_proto protoreflect.FileDescriptor
 
 const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\n" +
-	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"8\n" +
-	"\x1eGetFollowFollowingCheckRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"c\n" +
+	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"f\n" +
+	"\x1eGetFollowFollowingCheckRequest\x12 \n" +
+	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
+	"\ftargetUserID\x18\x02 \x01(\tR\ftargetUserID\"c\n" +
 	"\x1fGetFollowFollowingCheckResponse\x12\x1e\n" +
 	"\n" +
 	"isFollower\x18\x01 \x01(\bR\n" +

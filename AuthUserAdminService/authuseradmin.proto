@@ -54,7 +54,8 @@ service AuthUserAdminService {
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
 message GetFollowFollowingCheckRequest {
-    string userID = 1;
+    string ownerUserID = 1;
+    string targetUserID = 2;
 }
 
 message GetFollowFollowingCheckResponse{
