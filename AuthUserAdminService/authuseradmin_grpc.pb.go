@@ -45,6 +45,7 @@ const (
 	AuthUserAdminService_UnfollowUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnfollowUser"
 	AuthUserAdminService_GetFollowing_FullMethodName            = "/authuseradmin.AuthUserAdminService/GetFollowing"
 	AuthUserAdminService_GetFollowers_FullMethodName            = "/authuseradmin.AuthUserAdminService/GetFollowers"
+	AuthUserAdminService_GetFollowFollowingCheck_FullMethodName = "/authuseradmin.AuthUserAdminService/GetFollowFollowingCheck"
 	AuthUserAdminService_AdminLogin_FullMethodName              = "/authuseradmin.AuthUserAdminService/AdminLogin"
 	AuthUserAdminService_AdminProfile_FullMethodName            = "/authuseradmin.AuthUserAdminService/AdminProfile"
 	AuthUserAdminService_CreateUserAdmin_FullMethodName         = "/authuseradmin.AuthUserAdminService/CreateUserAdmin"
@@ -92,6 +93,7 @@ type AuthUserAdminServiceClient interface {
 	UnfollowUser(ctx context.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error)
 	GetFollowing(ctx context.Context, in *GetFollowingRequest, opts ...grpc.CallOption) (*GetFollowingResponse, error)
 	GetFollowers(ctx context.Context, in *GetFollowersRequest, opts ...grpc.CallOption) (*GetFollowersResponse, error)
+	GetFollowFollowingCheck(ctx context.Context, in *GetFollowFollowingCheckRequest, opts ...grpc.CallOption) (*GetFollowFollowingCheckResponse, error)
 	// Admin Operations
 	AdminLogin(ctx context.Context, in *AdminLoginRequest, opts ...grpc.CallOption) (*AdminLoginResponse, error)
 	AdminProfile(ctx context.Context, in *AdminProfileRequest, opts ...grpc.CallOption) (*AdminProfileResponse, error)
@@ -373,6 +375,16 @@ func (c *authUserAdminServiceClient) GetFollowers(ctx context.Context, in *GetFo
 	return out, nil
 }
 
+func (c *authUserAdminServiceClient) GetFollowFollowingCheck(ctx context.Context, in *GetFollowFollowingCheckRequest, opts ...grpc.CallOption) (*GetFollowFollowingCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFollowFollowingCheckResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_GetFollowFollowingCheck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authUserAdminServiceClient) AdminLogin(ctx context.Context, in *AdminLoginRequest, opts ...grpc.CallOption) (*AdminLoginResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AdminLoginResponse)
@@ -508,6 +520,7 @@ type AuthUserAdminServiceServer interface {
 	UnfollowUser(context.Context, *UnfollowUserRequest) (*UnfollowUserResponse, error)
 	GetFollowing(context.Context, *GetFollowingRequest) (*GetFollowingResponse, error)
 	GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error)
+	GetFollowFollowingCheck(context.Context, *GetFollowFollowingCheckRequest) (*GetFollowFollowingCheckResponse, error)
 	// Admin Operations
 	AdminLogin(context.Context, *AdminLoginRequest) (*AdminLoginResponse, error)
 	AdminProfile(context.Context, *AdminProfileRequest) (*AdminProfileResponse, error)
@@ -606,6 +619,9 @@ func (UnimplementedAuthUserAdminServiceServer) GetFollowing(context.Context, *Ge
 }
 func (UnimplementedAuthUserAdminServiceServer) GetFollowers(context.Context, *GetFollowersRequest) (*GetFollowersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFollowers not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) GetFollowFollowingCheck(context.Context, *GetFollowFollowingCheckRequest) (*GetFollowFollowingCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFollowFollowingCheck not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) AdminLogin(context.Context, *AdminLoginRequest) (*AdminLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminLogin not implemented")
@@ -1126,6 +1142,24 @@ func _AuthUserAdminService_GetFollowers_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthUserAdminService_GetFollowFollowingCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFollowFollowingCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).GetFollowFollowingCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_GetFollowFollowingCheck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).GetFollowFollowingCheck(ctx, req.(*GetFollowFollowingCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthUserAdminService_AdminLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AdminLoginRequest)
 	if err := dec(in); err != nil {
@@ -1416,6 +1450,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFollowers",
 			Handler:    _AuthUserAdminService_GetFollowers_Handler,
+		},
+		{
+			MethodName: "GetFollowFollowingCheck",
+			Handler:    _AuthUserAdminService_GetFollowFollowingCheck_Handler,
 		},
 		{
 			MethodName: "AdminLogin",

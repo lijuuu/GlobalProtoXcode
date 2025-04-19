@@ -115,19 +115,21 @@ message ProblemMetadata {
   // Challenge messages
   message CreateChallengeRequest {
     string title = 1;
-    string creator_id = 2;
-    string difficulty = 3;
+    string creator_id = 2; //userid
+    string difficulty = 3; // for 3problems 1E:1M:1H , the difficulty is medium .. find a ratio and determine difficulty
     bool is_private = 4;
-    optional string access_code = 5; //user defined password
+    optional string access_code = 5; //if private
     repeated string problem_ids = 6;
     int32 time_limit = 7;
+    Timestamp start_at = 8; //like a cooldown time for users.
   }
   
   message CreateChallengeResponse {
     string id = 1;
-    string access_code = 2; //if not present in the user defined gen a new one
+    string access_code = 2; //if not present in the user request, gen a new one
     string password = 3;
     string join_url = 4; 
+    
   }
   
   message GetChallengeRequest {
@@ -159,6 +161,7 @@ message ProblemMetadata {
   
   message JoinChallengeResponse {
     string challenge_id = 1;
+    bool success = 2;
   }
   
   message StartChallengeRequest {

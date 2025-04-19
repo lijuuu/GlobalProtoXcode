@@ -39,6 +39,7 @@ service AuthUserAdminService {
     rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse);
     rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
     rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
+    rpc GetFollowFollowingCheck(GetFollowFollowingCheckRequest)  returns(GetFollowFollowingCheckResponse);
 
     // Admin Operations
     rpc AdminLogin(AdminLoginRequest) returns (AdminLoginResponse);
@@ -51,6 +52,14 @@ service AuthUserAdminService {
     rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
     rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
     rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
+}
+message GetFollowFollowingCheckRequest {
+    string userID = 1;
+}
+
+message GetFollowFollowingCheckResponse{
+    bool isFollower = 1;
+    bool isFollowing = 2;
 }
 
 message UsernameAvailableRequest{
