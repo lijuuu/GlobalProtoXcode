@@ -42,7 +42,7 @@ const (
 	ProblemsService_GetUserRank_FullMethodName                       = "/problems.ProblemsService/GetUserRank"
 	ProblemsService_GetLeaderboardData_FullMethodName                = "/problems.ProblemsService/GetLeaderboardData"
 	ProblemsService_CreateChallenge_FullMethodName                   = "/problems.ProblemsService/CreateChallenge"
-	ProblemsService_GetChallenge_FullMethodName                      = "/problems.ProblemsService/GetChallenge"
+	ProblemsService_GetChallengeDetails_FullMethodName               = "/problems.ProblemsService/GetChallengeDetails"
 	ProblemsService_GetPublicChallenges_FullMethodName               = "/problems.ProblemsService/GetPublicChallenges"
 	ProblemsService_JoinChallenge_FullMethodName                     = "/problems.ProblemsService/JoinChallenge"
 	ProblemsService_StartChallenge_FullMethodName                    = "/problems.ProblemsService/StartChallenge"
@@ -84,18 +84,15 @@ type ProblemsServiceClient interface {
 	GetTopKEntity(ctx context.Context, in *GetTopKEntityRequest, opts ...grpc.CallOption) (*GetTopKEntityResponse, error)
 	GetUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
 	GetLeaderboardData(ctx context.Context, in *GetLeaderboardDataRequest, opts ...grpc.CallOption) (*GetLeaderboardDataResponse, error)
-	// challenge
 	CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error)
-	GetChallenge(ctx context.Context, in *GetChallengeRequest, opts ...grpc.CallOption) (*GetChallengeResponse, error)
+	GetChallengeDetails(ctx context.Context, in *GetChallengeDetailsRequest, opts ...grpc.CallOption) (*GetChallengeDetailsResponse, error)
 	GetPublicChallenges(ctx context.Context, in *GetPublicChallengesRequest, opts ...grpc.CallOption) (*GetPublicChallengesResponse, error)
 	JoinChallenge(ctx context.Context, in *JoinChallengeRequest, opts ...grpc.CallOption) (*JoinChallengeResponse, error)
 	StartChallenge(ctx context.Context, in *StartChallengeRequest, opts ...grpc.CallOption) (*StartChallengeResponse, error)
 	EndChallenge(ctx context.Context, in *EndChallengeRequest, opts ...grpc.CallOption) (*EndChallengeResponse, error)
-	// Submission operations
 	SubmitSolution(ctx context.Context, in *SubmitSolutionRequest, opts ...grpc.CallOption) (*SubmitSolutionResponse, error)
 	GetSubmissionStatus(ctx context.Context, in *GetSubmissionStatusRequest, opts ...grpc.CallOption) (*GetSubmissionStatusResponse, error)
 	GetChallengeSubmissions(ctx context.Context, in *GetChallengeSubmissionsRequest, opts ...grpc.CallOption) (*GetChallengeSubmissionsResponse, error)
-	// User stats operations
 	GetUserStats(ctx context.Context, in *GetUserStatsRequest, opts ...grpc.CallOption) (*GetUserStatsResponse, error)
 	GetChallengeUserStats(ctx context.Context, in *GetChallengeUserStatsRequest, opts ...grpc.CallOption) (*GetChallengeUserStatsResponse, error)
 }
@@ -338,10 +335,10 @@ func (c *problemsServiceClient) CreateChallenge(ctx context.Context, in *CreateC
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetChallenge(ctx context.Context, in *GetChallengeRequest, opts ...grpc.CallOption) (*GetChallengeResponse, error) {
+func (c *problemsServiceClient) GetChallengeDetails(ctx context.Context, in *GetChallengeDetailsRequest, opts ...grpc.CallOption) (*GetChallengeDetailsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetChallengeResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetChallenge_FullMethodName, in, out, cOpts...)
+	out := new(GetChallengeDetailsResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetChallengeDetails_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -468,18 +465,15 @@ type ProblemsServiceServer interface {
 	GetTopKEntity(context.Context, *GetTopKEntityRequest) (*GetTopKEntityResponse, error)
 	GetUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
 	GetLeaderboardData(context.Context, *GetLeaderboardDataRequest) (*GetLeaderboardDataResponse, error)
-	// challenge
 	CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error)
-	GetChallenge(context.Context, *GetChallengeRequest) (*GetChallengeResponse, error)
+	GetChallengeDetails(context.Context, *GetChallengeDetailsRequest) (*GetChallengeDetailsResponse, error)
 	GetPublicChallenges(context.Context, *GetPublicChallengesRequest) (*GetPublicChallengesResponse, error)
 	JoinChallenge(context.Context, *JoinChallengeRequest) (*JoinChallengeResponse, error)
 	StartChallenge(context.Context, *StartChallengeRequest) (*StartChallengeResponse, error)
 	EndChallenge(context.Context, *EndChallengeRequest) (*EndChallengeResponse, error)
-	// Submission operations
 	SubmitSolution(context.Context, *SubmitSolutionRequest) (*SubmitSolutionResponse, error)
 	GetSubmissionStatus(context.Context, *GetSubmissionStatusRequest) (*GetSubmissionStatusResponse, error)
 	GetChallengeSubmissions(context.Context, *GetChallengeSubmissionsRequest) (*GetChallengeSubmissionsResponse, error)
-	// User stats operations
 	GetUserStats(context.Context, *GetUserStatsRequest) (*GetUserStatsResponse, error)
 	GetChallengeUserStats(context.Context, *GetChallengeUserStatsRequest) (*GetChallengeUserStatsResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
@@ -561,8 +555,8 @@ func (UnimplementedProblemsServiceServer) GetLeaderboardData(context.Context, *G
 func (UnimplementedProblemsServiceServer) CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChallenge not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetChallenge(context.Context, *GetChallengeRequest) (*GetChallengeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetChallenge not implemented")
+func (UnimplementedProblemsServiceServer) GetChallengeDetails(context.Context, *GetChallengeDetailsRequest) (*GetChallengeDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeDetails not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetPublicChallenges(context.Context, *GetPublicChallengesRequest) (*GetPublicChallengesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPublicChallenges not implemented")
@@ -1026,20 +1020,20 @@ func _ProblemsService_CreateChallenge_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetChallengeRequest)
+func _ProblemsService_GetChallengeDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChallengeDetailsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetChallenge(ctx, in)
+		return srv.(ProblemsServiceServer).GetChallengeDetails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetChallenge_FullMethodName,
+		FullMethod: ProblemsService_GetChallengeDetails_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetChallenge(ctx, req.(*GetChallengeRequest))
+		return srv.(ProblemsServiceServer).GetChallengeDetails(ctx, req.(*GetChallengeDetailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1306,8 +1300,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_CreateChallenge_Handler,
 		},
 		{
-			MethodName: "GetChallenge",
-			Handler:    _ProblemsService_GetChallenge_Handler,
+			MethodName: "GetChallengeDetails",
+			Handler:    _ProblemsService_GetChallengeDetails_Handler,
 		},
 		{
 			MethodName: "GetPublicChallenges",
