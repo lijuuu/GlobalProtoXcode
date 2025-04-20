@@ -29,7 +29,7 @@ type Challenge struct {
 	CreatorId           string                          `protobuf:"bytes,3,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
 	Difficulty          string                          `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	IsPrivate           bool                            `protobuf:"varint,5,opt,name=is_private,json=isPrivate,proto3" json:"is_private,omitempty"`
-	RoomCode            string                          `protobuf:"bytes,6,opt,name=room_code,json=roomCode,proto3" json:"room_code,omitempty"`
+	Status              string                          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
 	Password            string                          `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"` // Only for private challenges
 	ProblemIds          []string                        `protobuf:"bytes,8,rep,name=problem_ids,json=problemIds,proto3" json:"problem_ids,omitempty"`
 	TimeLimit           int32                           `protobuf:"varint,9,opt,name=time_limit,json=timeLimit,proto3" json:"time_limit,omitempty"`
@@ -37,9 +37,8 @@ type Challenge struct {
 	IsActive            bool                            `protobuf:"varint,11,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	ParticipantIds      []string                        `protobuf:"bytes,12,rep,name=participant_ids,json=participantIds,proto3" json:"participant_ids,omitempty"`
 	UserProblemMetadata map[string]*ProblemMetadataList `protobuf:"bytes,13,rep,name=user_problem_metadata,json=userProblemMetadata,proto3" json:"user_problem_metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Status              string                          `protobuf:"bytes,14,opt,name=status,proto3" json:"status,omitempty"`
-	StartTime           int64                           `protobuf:"varint,15,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
-	EndTime             int64                           `protobuf:"varint,16,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	StartTime           int64                           `protobuf:"varint,14,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	EndTime             int64                           `protobuf:"varint,15,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -109,9 +108,9 @@ func (x *Challenge) GetIsPrivate() bool {
 	return false
 }
 
-func (x *Challenge) GetRoomCode() string {
+func (x *Challenge) GetStatus() string {
 	if x != nil {
-		return x.RoomCode
+		return x.Status
 	}
 	return ""
 }
@@ -163,13 +162,6 @@ func (x *Challenge) GetUserProblemMetadata() map[string]*ProblemMetadataList {
 		return x.UserProblemMetadata
 	}
 	return nil
-}
-
-func (x *Challenge) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
 }
 
 func (x *Challenge) GetStartTime() int64 {
@@ -706,9 +698,8 @@ func (x *CreateChallengeRequest) GetStartAt() *Timestamp {
 type CreateChallengeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	RoomCode      string                 `protobuf:"bytes,2,opt,name=room_code,json=roomCode,proto3" json:"room_code,omitempty"`
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"` // Only for private challenges
-	JoinUrl       string                 `protobuf:"bytes,4,opt,name=join_url,json=joinUrl,proto3" json:"join_url,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"` // Only for private challenges
+	JoinUrl       string                 `protobuf:"bytes,3,opt,name=join_url,json=joinUrl,proto3" json:"join_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -746,13 +737,6 @@ func (*CreateChallengeResponse) Descriptor() ([]byte, []int) {
 func (x *CreateChallengeResponse) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *CreateChallengeResponse) GetRoomCode() string {
-	if x != nil {
-		return x.RoomCode
 	}
 	return ""
 }
@@ -1015,8 +999,7 @@ type JoinChallengeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	RoomCode      string                 `protobuf:"bytes,3,opt,name=room_code,json=roomCode,proto3" json:"room_code,omitempty"`
-	Password      *string                `protobuf:"bytes,4,opt,name=password,proto3,oneof" json:"password,omitempty"` // Required for private challenges
+	Password      *string                `protobuf:"bytes,3,opt,name=password,proto3,oneof" json:"password,omitempty"` // Required for private challenges
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1061,13 +1044,6 @@ func (x *JoinChallengeRequest) GetChallengeId() string {
 func (x *JoinChallengeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
-	}
-	return ""
-}
-
-func (x *JoinChallengeRequest) GetRoomCode() string {
-	if x != nil {
-		return x.RoomCode
 	}
 	return ""
 }
@@ -5383,7 +5359,7 @@ var File_ProblemsService_problemsservice_proto protoreflect.FileDescriptor
 
 const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
-	"%ProblemsService/problemsservice.proto\x12\bproblems\"\x88\x05\n" +
+	"%ProblemsService/problemsservice.proto\x12\bproblems\"\xeb\x04\n" +
 	"\tChallenge\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1d\n" +
@@ -5393,8 +5369,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12\x1d\n" +
 	"\n" +
-	"is_private\x18\x05 \x01(\bR\tisPrivate\x12\x1b\n" +
-	"\troom_code\x18\x06 \x01(\tR\broomCode\x12\x1a\n" +
+	"is_private\x18\x05 \x01(\bR\tisPrivate\x12\x16\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1a\n" +
 	"\bpassword\x18\a \x01(\tR\bpassword\x12\x1f\n" +
 	"\vproblem_ids\x18\b \x03(\tR\n" +
 	"problemIds\x12\x1d\n" +
@@ -5405,11 +5381,10 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	" \x01(\x03R\tcreatedAt\x12\x1b\n" +
 	"\tis_active\x18\v \x01(\bR\bisActive\x12'\n" +
 	"\x0fparticipant_ids\x18\f \x03(\tR\x0eparticipantIds\x12`\n" +
-	"\x15user_problem_metadata\x18\r \x03(\v2,.problems.Challenge.UserProblemMetadataEntryR\x13userProblemMetadata\x12\x16\n" +
-	"\x06status\x18\x0e \x01(\tR\x06status\x12\x1d\n" +
+	"\x15user_problem_metadata\x18\r \x03(\v2,.problems.Challenge.UserProblemMetadataEntryR\x13userProblemMetadata\x12\x1d\n" +
 	"\n" +
-	"start_time\x18\x0f \x01(\x03R\tstartTime\x12\x19\n" +
-	"\bend_time\x18\x10 \x01(\x03R\aendTime\x1ae\n" +
+	"start_time\x18\x0e \x01(\x03R\tstartTime\x12\x19\n" +
+	"\bend_time\x18\x0f \x01(\x03R\aendTime\x1ae\n" +
 	"\x18UserProblemMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x123\n" +
 	"\x05value\x18\x02 \x01(\v2\x1d.problems.ProblemMetadataListR\x05value:\x028\x01\"\xa9\x02\n" +
@@ -5468,12 +5443,11 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"problemIds\x12\x1d\n" +
 	"\n" +
 	"time_limit\x18\x06 \x01(\x05R\ttimeLimit\x12.\n" +
-	"\bstart_at\x18\a \x01(\v2\x13.problems.TimestampR\astartAt\"}\n" +
+	"\bstart_at\x18\a \x01(\v2\x13.problems.TimestampR\astartAt\"`\n" +
 	"\x17CreateChallengeResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
-	"\troom_code\x18\x02 \x01(\tR\broomCode\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x19\n" +
-	"\bjoin_url\x18\x04 \x01(\tR\ajoinUrl\"E\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x19\n" +
+	"\bjoin_url\x18\x03 \x01(\tR\ajoinUrl\"E\n" +
 	"\x1aGetChallengeDetailsRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xd2\x01\n" +
@@ -5493,12 +5467,11 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x1bGetPublicChallengesResponse\x123\n" +
 	"\n" +
 	"challenges\x18\x01 \x03(\v2\x13.problems.ChallengeR\n" +
-	"challenges\"\x9d\x01\n" +
+	"challenges\"\x80\x01\n" +
 	"\x14JoinChallengeRequest\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
-	"\troom_code\x18\x03 \x01(\tR\broomCode\x12\x1f\n" +
-	"\bpassword\x18\x04 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1f\n" +
+	"\bpassword\x18\x03 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
 	"\t_password\"n\n" +
 	"\x15JoinChallengeResponse\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x18\n" +

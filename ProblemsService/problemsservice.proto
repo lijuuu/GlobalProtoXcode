@@ -55,7 +55,7 @@ message Challenge {
   string creator_id = 3;
   string difficulty = 4;
   bool is_private = 5;
-  string room_code = 6;
+  string status = 6;
   string password = 7; // Only for private challenges
   repeated string problem_ids = 8;
   int32 time_limit = 9;
@@ -63,9 +63,8 @@ message Challenge {
   bool is_active = 11;
   repeated string participant_ids = 12;
   map<string, ProblemMetadataList> user_problem_metadata = 13;
-  string status = 14;
-  int64 start_time = 15;
-  int64 end_time = 16;
+  int64 start_time = 14;
+  int64 end_time = 15;
 }
 
 message ProblemMetadata {
@@ -125,9 +124,8 @@ message CreateChallengeRequest {
 
 message CreateChallengeResponse {
   string id = 1;
-  string room_code = 2;
-  string password = 3; // Only for private challenges
-  string join_url = 4;
+  string password = 2; // Only for private challenges
+  string join_url = 3;
 }
 
 message GetChallengeDetailsRequest {
@@ -157,8 +155,7 @@ message GetPublicChallengesResponse {
 message JoinChallengeRequest {
   string challenge_id = 1;
   string user_id = 2;
-  string room_code = 3;
-  optional string password = 4; // Required for private challenges
+  optional string password = 3; // Required for private challenges
 }
 
 message JoinChallengeResponse {
