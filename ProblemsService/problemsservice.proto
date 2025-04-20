@@ -46,6 +46,22 @@ service ProblemsService {
     rpc GetChallengeSubmissions(GetChallengeSubmissionsRequest) returns (GetChallengeSubmissionsResponse);
     rpc GetUserStats(GetUserStatsRequest) returns (GetUserStatsResponse);
     rpc GetChallengeUserStats(GetChallengeUserStatsRequest) returns (GetChallengeUserStatsResponse);
+
+    rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (GetChallengeHistoryResponse);
+}
+
+message GetChallengeHistoryRequest {
+  string user_id = 1; 
+  optional bool is_private = 2; 
+  int32 page = 3; 
+  int32 page_size = 4; 
+}
+
+message GetChallengeHistoryResponse {
+  repeated Challenge challenges = 1; 
+  int32 total_count = 2; 
+  int32 page = 3; 
+  int32 page_size = 4; 
 }
 
 // Messages
@@ -144,7 +160,6 @@ message GetPublicChallengesRequest {
   int32 page = 3;
   int32 page_size = 4;
   string user_id = 5;
-  bool include_private = 6; // If true, include user's private challenges
 }
 
 message GetPublicChallengesResponse {
