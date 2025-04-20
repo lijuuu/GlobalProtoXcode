@@ -136,7 +136,8 @@ message GetChallengeDetailsRequest {
 message GetChallengeDetailsResponse {
   Challenge challenge = 1;
   repeated LeaderboardEntry leaderboard = 2;
-  ProblemMetadataList user_metadata = 3; // User's problem metadata
+  map<string, ProblemMetadataList> user_metadata = 3; // maps userID -> their metadata
+
 }
 
 message GetPublicChallengesRequest {
