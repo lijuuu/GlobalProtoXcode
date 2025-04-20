@@ -42,7 +42,6 @@ service ProblemsService {
     rpc JoinChallenge(JoinChallengeRequest) returns (JoinChallengeResponse);
     rpc StartChallenge(StartChallengeRequest) returns (StartChallengeResponse);
     rpc EndChallenge(EndChallengeRequest) returns (EndChallengeResponse);
-    rpc SubmitSolution(SubmitSolutionRequest) returns (SubmitSolutionResponse);
     rpc GetSubmissionStatus(GetSubmissionStatusRequest) returns (GetSubmissionStatusResponse);
     rpc GetChallengeSubmissions(GetChallengeSubmissionsRequest) returns (GetChallengeSubmissionsResponse);
     rpc GetUserStats(GetUserStatsRequest) returns (GetUserStatsResponse);
@@ -67,6 +66,17 @@ message Challenge {
   string status = 14;
   int64 start_time = 15;
   int64 end_time = 16;
+}
+
+message ProblemMetadata {
+  string problem_id = 1;
+  string title = 2;
+  string description = 3;
+  repeated string tags = 4;
+  TestCaseRunOnly testcase_run = 5;
+  string difficulty = 6;
+  repeated string supported_languages = 7;
+  bool validated = 8;
 }
 
 message ChallengeProblemMetadata {
@@ -177,18 +187,6 @@ message EndChallengeResponse {
   repeated LeaderboardEntry leaderboard = 2;
 }
 
-message SubmitSolutionRequest {
-  string challenge_id = 1;
-  string user_id = 2;
-  string problem_id = 3;
-  string code = 4;
-  string language = 5;
-}
-
-message SubmitSolutionResponse {
-  string submission_id = 1;
-  string status = 2;
-}
 
 message GetSubmissionStatusRequest {
   string submission_id = 1;

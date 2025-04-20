@@ -47,7 +47,6 @@ const (
 	ProblemsService_JoinChallenge_FullMethodName                     = "/problems.ProblemsService/JoinChallenge"
 	ProblemsService_StartChallenge_FullMethodName                    = "/problems.ProblemsService/StartChallenge"
 	ProblemsService_EndChallenge_FullMethodName                      = "/problems.ProblemsService/EndChallenge"
-	ProblemsService_SubmitSolution_FullMethodName                    = "/problems.ProblemsService/SubmitSolution"
 	ProblemsService_GetSubmissionStatus_FullMethodName               = "/problems.ProblemsService/GetSubmissionStatus"
 	ProblemsService_GetChallengeSubmissions_FullMethodName           = "/problems.ProblemsService/GetChallengeSubmissions"
 	ProblemsService_GetUserStats_FullMethodName                      = "/problems.ProblemsService/GetUserStats"
@@ -90,7 +89,6 @@ type ProblemsServiceClient interface {
 	JoinChallenge(ctx context.Context, in *JoinChallengeRequest, opts ...grpc.CallOption) (*JoinChallengeResponse, error)
 	StartChallenge(ctx context.Context, in *StartChallengeRequest, opts ...grpc.CallOption) (*StartChallengeResponse, error)
 	EndChallenge(ctx context.Context, in *EndChallengeRequest, opts ...grpc.CallOption) (*EndChallengeResponse, error)
-	SubmitSolution(ctx context.Context, in *SubmitSolutionRequest, opts ...grpc.CallOption) (*SubmitSolutionResponse, error)
 	GetSubmissionStatus(ctx context.Context, in *GetSubmissionStatusRequest, opts ...grpc.CallOption) (*GetSubmissionStatusResponse, error)
 	GetChallengeSubmissions(ctx context.Context, in *GetChallengeSubmissionsRequest, opts ...grpc.CallOption) (*GetChallengeSubmissionsResponse, error)
 	GetUserStats(ctx context.Context, in *GetUserStatsRequest, opts ...grpc.CallOption) (*GetUserStatsResponse, error)
@@ -385,16 +383,6 @@ func (c *problemsServiceClient) EndChallenge(ctx context.Context, in *EndChallen
 	return out, nil
 }
 
-func (c *problemsServiceClient) SubmitSolution(ctx context.Context, in *SubmitSolutionRequest, opts ...grpc.CallOption) (*SubmitSolutionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SubmitSolutionResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_SubmitSolution_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *problemsServiceClient) GetSubmissionStatus(ctx context.Context, in *GetSubmissionStatusRequest, opts ...grpc.CallOption) (*GetSubmissionStatusResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSubmissionStatusResponse)
@@ -471,7 +459,6 @@ type ProblemsServiceServer interface {
 	JoinChallenge(context.Context, *JoinChallengeRequest) (*JoinChallengeResponse, error)
 	StartChallenge(context.Context, *StartChallengeRequest) (*StartChallengeResponse, error)
 	EndChallenge(context.Context, *EndChallengeRequest) (*EndChallengeResponse, error)
-	SubmitSolution(context.Context, *SubmitSolutionRequest) (*SubmitSolutionResponse, error)
 	GetSubmissionStatus(context.Context, *GetSubmissionStatusRequest) (*GetSubmissionStatusResponse, error)
 	GetChallengeSubmissions(context.Context, *GetChallengeSubmissionsRequest) (*GetChallengeSubmissionsResponse, error)
 	GetUserStats(context.Context, *GetUserStatsRequest) (*GetUserStatsResponse, error)
@@ -569,9 +556,6 @@ func (UnimplementedProblemsServiceServer) StartChallenge(context.Context, *Start
 }
 func (UnimplementedProblemsServiceServer) EndChallenge(context.Context, *EndChallengeRequest) (*EndChallengeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EndChallenge not implemented")
-}
-func (UnimplementedProblemsServiceServer) SubmitSolution(context.Context, *SubmitSolutionRequest) (*SubmitSolutionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubmitSolution not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetSubmissionStatus(context.Context, *GetSubmissionStatusRequest) (*GetSubmissionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionStatus not implemented")
@@ -1110,24 +1094,6 @@ func _ProblemsService_EndChallenge_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_SubmitSolution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SubmitSolutionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProblemsServiceServer).SubmitSolution(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProblemsService_SubmitSolution_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).SubmitSolution(ctx, req.(*SubmitSolutionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ProblemsService_GetSubmissionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSubmissionStatusRequest)
 	if err := dec(in); err != nil {
@@ -1318,10 +1284,6 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EndChallenge",
 			Handler:    _ProblemsService_EndChallenge_Handler,
-		},
-		{
-			MethodName: "SubmitSolution",
-			Handler:    _ProblemsService_SubmitSolution_Handler,
 		},
 		{
 			MethodName: "GetSubmissionStatus",
