@@ -5239,7 +5239,7 @@ func (x *GetProblemByIdSlugResponse) GetMessage() string {
 	return ""
 }
 
-type GetProblemByIdListRequest struct {
+type GetProblemMetadataListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
@@ -5250,20 +5250,20 @@ type GetProblemByIdListRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetProblemByIdListRequest) Reset() {
-	*x = GetProblemByIdListRequest{}
+func (x *GetProblemMetadataListRequest) Reset() {
+	*x = GetProblemMetadataListRequest{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProblemByIdListRequest) String() string {
+func (x *GetProblemMetadataListRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProblemByIdListRequest) ProtoMessage() {}
+func (*GetProblemMetadataListRequest) ProtoMessage() {}
 
-func (x *GetProblemByIdListRequest) ProtoReflect() protoreflect.Message {
+func (x *GetProblemMetadataListRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5275,47 +5275,47 @@ func (x *GetProblemByIdListRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProblemByIdListRequest.ProtoReflect.Descriptor instead.
-func (*GetProblemByIdListRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetProblemMetadataListRequest.ProtoReflect.Descriptor instead.
+func (*GetProblemMetadataListRequest) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{84}
 }
 
-func (x *GetProblemByIdListRequest) GetPage() int32 {
+func (x *GetProblemMetadataListRequest) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *GetProblemByIdListRequest) GetPageSize() int32 {
+func (x *GetProblemMetadataListRequest) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-func (x *GetProblemByIdListRequest) GetTags() []string {
+func (x *GetProblemMetadataListRequest) GetTags() []string {
 	if x != nil {
 		return x.Tags
 	}
 	return nil
 }
 
-func (x *GetProblemByIdListRequest) GetDifficulty() string {
+func (x *GetProblemMetadataListRequest) GetDifficulty() string {
 	if x != nil {
 		return x.Difficulty
 	}
 	return ""
 }
 
-func (x *GetProblemByIdListRequest) GetSearchQuery() string {
+func (x *GetProblemMetadataListRequest) GetSearchQuery() string {
 	if x != nil {
 		return x.SearchQuery
 	}
 	return ""
 }
 
-type GetProblemByIdListResponse struct {
+type GetProblemMetadataListResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Problemmetdata []*ProblemMetadataLite `protobuf:"bytes,1,rep,name=problemmetdata,proto3" json:"problemmetdata,omitempty"`
 	Message        string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -5323,20 +5323,20 @@ type GetProblemByIdListResponse struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *GetProblemByIdListResponse) Reset() {
-	*x = GetProblemByIdListResponse{}
+func (x *GetProblemMetadataListResponse) Reset() {
+	*x = GetProblemMetadataListResponse{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProblemByIdListResponse) String() string {
+func (x *GetProblemMetadataListResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProblemByIdListResponse) ProtoMessage() {}
+func (*GetProblemMetadataListResponse) ProtoMessage() {}
 
-func (x *GetProblemByIdListResponse) ProtoReflect() protoreflect.Message {
+func (x *GetProblemMetadataListResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5348,19 +5348,19 @@ func (x *GetProblemByIdListResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProblemByIdListResponse.ProtoReflect.Descriptor instead.
-func (*GetProblemByIdListResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetProblemMetadataListResponse.ProtoReflect.Descriptor instead.
+func (*GetProblemMetadataListResponse) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{85}
 }
 
-func (x *GetProblemByIdListResponse) GetProblemmetdata() []*ProblemMetadataLite {
+func (x *GetProblemMetadataListResponse) GetProblemmetdata() []*ProblemMetadataLite {
 	if x != nil {
 		return x.Problemmetdata
 	}
 	return nil
 }
 
-func (x *GetProblemByIdListResponse) GetMessage() string {
+func (x *GetProblemMetadataListResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -5957,16 +5957,16 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x05_slug\"}\n" +
 	"\x1aGetProblemByIdSlugResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x01(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xa3\x01\n" +
-	"\x19GetProblemByIdListRequest\x12\x12\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xa7\x01\n" +
+	"\x1dGetProblemMetadataListRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tags\x12\x1e\n" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12!\n" +
-	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\"}\n" +
-	"\x1aGetProblemByIdListResponse\x12E\n" +
+	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\"\x81\x01\n" +
+	"\x1eGetProblemMetadataListResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x03(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xd0\x03\n" +
 	"\x13ProblemMetadataLite\x12\x1d\n" +
@@ -5984,7 +5984,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x10placeholder_maps\x18\t \x03(\v22.problems.ProblemMetadataLite.PlaceholderMapsEntryR\x0fplaceholderMaps\x1aB\n" +
 	"\x14PlaceholderMapsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x91\x18\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x9d\x18\n" +
 	"\x0fProblemsService\x12P\n" +
 	"\rCreateProblem\x12\x1e.problems.CreateProblemRequest\x1a\x1f.problems.CreateProblemResponse\x12P\n" +
 	"\rUpdateProblem\x12\x1e.problems.UpdateProblemRequest\x1a\x1f.problems.UpdateProblemResponse\x12P\n" +
@@ -5992,8 +5992,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"GetProblem\x12\x1b.problems.GetProblemRequest\x1a\x1c.problems.GetProblemResponse\x12M\n" +
 	"\fListProblems\x12\x1d.problems.ListProblemsRequest\x1a\x1e.problems.ListProblemsResponse\x12_\n" +
-	"\x12GetProblemByIDSlug\x12#.problems.GetProblemByIdSlugRequest\x1a$.problems.GetProblemByIdSlugResponse\x12_\n" +
-	"\x12GetProblemByIDList\x12#.problems.GetProblemByIdListRequest\x1a$.problems.GetProblemByIdListResponse\x12M\n" +
+	"\x12GetProblemByIDSlug\x12#.problems.GetProblemByIdSlugRequest\x1a$.problems.GetProblemByIdSlugResponse\x12k\n" +
+	"\x16GetProblemMetadataList\x12'.problems.GetProblemMetadataListRequest\x1a(.problems.GetProblemMetadataListResponse\x12M\n" +
 	"\fAddTestCases\x12\x1d.problems.AddTestCasesRequest\x1a\x1e.problems.AddTestCasesResponse\x12S\n" +
 	"\x0eDeleteTestCase\x12\x1f.problems.DeleteTestCaseRequest\x1a .problems.DeleteTestCaseResponse\x12b\n" +
 	"\x13GetLanguageSupports\x12$.problems.GetLanguageSupportsRequest\x1a%.problems.GetLanguageSupportsResponse\x12_\n" +
@@ -6119,8 +6119,8 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*GetSubmissionsResponse)(nil),                // 81: problems.GetSubmissionsResponse
 	(*GetProblemByIdSlugRequest)(nil),             // 82: problems.GetProblemByIdSlugRequest
 	(*GetProblemByIdSlugResponse)(nil),            // 83: problems.GetProblemByIdSlugResponse
-	(*GetProblemByIdListRequest)(nil),             // 84: problems.GetProblemByIdListRequest
-	(*GetProblemByIdListResponse)(nil),            // 85: problems.GetProblemByIdListResponse
+	(*GetProblemMetadataListRequest)(nil),         // 84: problems.GetProblemMetadataListRequest
+	(*GetProblemMetadataListResponse)(nil),        // 85: problems.GetProblemMetadataListResponse
 	(*ProblemMetadataLite)(nil),                   // 86: problems.ProblemMetadataLite
 	nil,                                           // 87: problems.Challenge.UserProblemMetadataEntry
 	nil,                                           // 88: problems.UserStats.ChallengeStatsEntry
@@ -6167,7 +6167,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	47, // 35: problems.Submission.submitted_at:type_name -> problems.Timestamp
 	79, // 36: problems.GetSubmissionsResponse.submissions:type_name -> problems.Submission
 	86, // 37: problems.GetProblemByIdSlugResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
-	86, // 38: problems.GetProblemByIdListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
+	86, // 38: problems.GetProblemMetadataListResponse.problemmetdata:type_name -> problems.ProblemMetadataLite
 	50, // 39: problems.ProblemMetadataLite.testcase_run:type_name -> problems.TestCaseRunOnly
 	91, // 40: problems.ProblemMetadataLite.placeholder_maps:type_name -> problems.ProblemMetadataLite.PlaceholderMapsEntry
 	5,  // 41: problems.Challenge.UserProblemMetadataEntry.value:type_name -> problems.ProblemMetadataList
@@ -6180,7 +6180,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	55, // 48: problems.ProblemsService.GetProblem:input_type -> problems.GetProblemRequest
 	56, // 49: problems.ProblemsService.ListProblems:input_type -> problems.ListProblemsRequest
 	82, // 50: problems.ProblemsService.GetProblemByIDSlug:input_type -> problems.GetProblemByIdSlugRequest
-	84, // 51: problems.ProblemsService.GetProblemByIDList:input_type -> problems.GetProblemByIdListRequest
+	84, // 51: problems.ProblemsService.GetProblemMetadataList:input_type -> problems.GetProblemMetadataListRequest
 	57, // 52: problems.ProblemsService.AddTestCases:input_type -> problems.AddTestCasesRequest
 	71, // 53: problems.ProblemsService.DeleteTestCase:input_type -> problems.DeleteTestCaseRequest
 	73, // 54: problems.ProblemsService.GetLanguageSupports:input_type -> problems.GetLanguageSupportsRequest
@@ -6213,7 +6213,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	65, // 81: problems.ProblemsService.GetProblem:output_type -> problems.GetProblemResponse
 	66, // 82: problems.ProblemsService.ListProblems:output_type -> problems.ListProblemsResponse
 	83, // 83: problems.ProblemsService.GetProblemByIDSlug:output_type -> problems.GetProblemByIdSlugResponse
-	85, // 84: problems.ProblemsService.GetProblemByIDList:output_type -> problems.GetProblemByIdListResponse
+	85, // 84: problems.ProblemsService.GetProblemMetadataList:output_type -> problems.GetProblemMetadataListResponse
 	67, // 85: problems.ProblemsService.AddTestCases:output_type -> problems.AddTestCasesResponse
 	72, // 86: problems.ProblemsService.DeleteTestCase:output_type -> problems.DeleteTestCaseResponse
 	74, // 87: problems.ProblemsService.GetLanguageSupports:output_type -> problems.GetLanguageSupportsResponse

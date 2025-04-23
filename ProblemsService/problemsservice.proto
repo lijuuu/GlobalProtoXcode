@@ -11,7 +11,7 @@ service ProblemsService {
     rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
     rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
     rpc GetProblemByIDSlug(GetProblemByIdSlugRequest) returns (GetProblemByIdSlugResponse);
-    rpc GetProblemByIDList(GetProblemByIdListRequest) returns (GetProblemByIdListResponse);
+    rpc GetProblemMetadataList(GetProblemMetadataListRequest) returns (GetProblemMetadataListResponse);
     rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
     rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
     rpc GetLanguageSupports(GetLanguageSupportsRequest) returns (GetLanguageSupportsResponse);
@@ -586,7 +586,7 @@ message GetProblemByIdSlugResponse {
     string message = 2;
 }
 
-message GetProblemByIdListRequest {
+message GetProblemMetadataListRequest {
     int32 page = 1;
     int32 page_size = 2;
     repeated string tags = 3;
@@ -594,7 +594,7 @@ message GetProblemByIdListRequest {
     string search_query = 5;
 }
 
-message GetProblemByIdListResponse {
+message GetProblemMetadataListResponse {
     repeated ProblemMetadataLite problemmetdata = 1;
     string message = 2;
 }
