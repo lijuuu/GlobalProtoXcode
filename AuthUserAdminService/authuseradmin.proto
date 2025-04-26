@@ -454,14 +454,15 @@ message SoftDeleteUserAdminResponse {
 }
 
 message GetAllUsersRequest {
-    string pageToken = 1;
-    int32 limit = 2;
-    string roleFilter = 3;
-    string statusFilter = 4;
-    string nameFilter = 5; 
-    string emailFilter = 6; 
-    int64 fromDateFilter = 7;
-    int64 toDateFilter = 8;  
+    string nextPageToken = 1;
+    string prevPageToken =2;
+    int32 limit = 3;
+    string roleFilter = 4;
+    string statusFilter = 5;
+    string nameFilter = 6; 
+    string emailFilter = 7; 
+    int64 fromDateFilter = 8;
+    int64 toDateFilter = 9;  
 }
 
 message GetAllUsersResponse {
@@ -469,7 +470,8 @@ message GetAllUsersResponse {
     int32 totalCount = 2;
     string message = 3;
     string nextPageToken = 4;
-    string error_type = 5;
+    string prevPageToken = 5;
+    string error_type = 6;
 }
 
 // Common Messages

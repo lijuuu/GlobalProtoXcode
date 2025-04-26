@@ -3942,14 +3942,15 @@ func (x *SoftDeleteUserAdminResponse) GetErrorType() string {
 
 type GetAllUsersRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	PageToken      string                 `protobuf:"bytes,1,opt,name=pageToken,proto3" json:"pageToken,omitempty"`
-	Limit          int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	RoleFilter     string                 `protobuf:"bytes,3,opt,name=roleFilter,proto3" json:"roleFilter,omitempty"`
-	StatusFilter   string                 `protobuf:"bytes,4,opt,name=statusFilter,proto3" json:"statusFilter,omitempty"`
-	NameFilter     string                 `protobuf:"bytes,5,opt,name=nameFilter,proto3" json:"nameFilter,omitempty"`
-	EmailFilter    string                 `protobuf:"bytes,6,opt,name=emailFilter,proto3" json:"emailFilter,omitempty"`
-	FromDateFilter int64                  `protobuf:"varint,7,opt,name=fromDateFilter,proto3" json:"fromDateFilter,omitempty"`
-	ToDateFilter   int64                  `protobuf:"varint,8,opt,name=toDateFilter,proto3" json:"toDateFilter,omitempty"`
+	NextPageToken  string                 `protobuf:"bytes,1,opt,name=nextPageToken,proto3" json:"nextPageToken,omitempty"`
+	PrevPageToken  string                 `protobuf:"bytes,2,opt,name=prevPageToken,proto3" json:"prevPageToken,omitempty"`
+	Limit          int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	RoleFilter     string                 `protobuf:"bytes,4,opt,name=roleFilter,proto3" json:"roleFilter,omitempty"`
+	StatusFilter   string                 `protobuf:"bytes,5,opt,name=statusFilter,proto3" json:"statusFilter,omitempty"`
+	NameFilter     string                 `protobuf:"bytes,6,opt,name=nameFilter,proto3" json:"nameFilter,omitempty"`
+	EmailFilter    string                 `protobuf:"bytes,7,opt,name=emailFilter,proto3" json:"emailFilter,omitempty"`
+	FromDateFilter int64                  `protobuf:"varint,8,opt,name=fromDateFilter,proto3" json:"fromDateFilter,omitempty"`
+	ToDateFilter   int64                  `protobuf:"varint,9,opt,name=toDateFilter,proto3" json:"toDateFilter,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -3984,9 +3985,16 @@ func (*GetAllUsersRequest) Descriptor() ([]byte, []int) {
 	return file_AuthUserAdminService_authuseradmin_proto_rawDescGZIP(), []int{65}
 }
 
-func (x *GetAllUsersRequest) GetPageToken() string {
+func (x *GetAllUsersRequest) GetNextPageToken() string {
 	if x != nil {
-		return x.PageToken
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *GetAllUsersRequest) GetPrevPageToken() string {
+	if x != nil {
+		return x.PrevPageToken
 	}
 	return ""
 }
@@ -4046,7 +4054,8 @@ type GetAllUsersResponse struct {
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount,omitempty"`
 	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	NextPageToken string                 `protobuf:"bytes,4,opt,name=nextPageToken,proto3" json:"nextPageToken,omitempty"`
-	ErrorType     string                 `protobuf:"bytes,5,opt,name=error_type,json=errorType,proto3" json:"error_type,omitempty"`
+	PrevPageToken string                 `protobuf:"bytes,5,opt,name=prevPageToken,proto3" json:"prevPageToken,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,6,opt,name=error_type,json=errorType,proto3" json:"error_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4105,6 +4114,13 @@ func (x *GetAllUsersResponse) GetMessage() string {
 func (x *GetAllUsersResponse) GetNextPageToken() string {
 	if x != nil {
 		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *GetAllUsersResponse) GetPrevPageToken() string {
+	if x != nil {
+		return x.PrevPageToken
 	}
 	return ""
 }
@@ -5462,29 +5478,31 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x1bSoftDeleteUserAdminResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"\x9a\x02\n" +
-	"\x12GetAllUsersRequest\x12\x1c\n" +
-	"\tpageToken\x18\x01 \x01(\tR\tpageToken\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1e\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"\xc8\x02\n" +
+	"\x12GetAllUsersRequest\x12$\n" +
+	"\rnextPageToken\x18\x01 \x01(\tR\rnextPageToken\x12$\n" +
+	"\rprevPageToken\x18\x02 \x01(\tR\rprevPageToken\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1e\n" +
 	"\n" +
-	"roleFilter\x18\x03 \x01(\tR\n" +
+	"roleFilter\x18\x04 \x01(\tR\n" +
 	"roleFilter\x12\"\n" +
-	"\fstatusFilter\x18\x04 \x01(\tR\fstatusFilter\x12\x1e\n" +
+	"\fstatusFilter\x18\x05 \x01(\tR\fstatusFilter\x12\x1e\n" +
 	"\n" +
-	"nameFilter\x18\x05 \x01(\tR\n" +
+	"nameFilter\x18\x06 \x01(\tR\n" +
 	"nameFilter\x12 \n" +
-	"\vemailFilter\x18\x06 \x01(\tR\vemailFilter\x12&\n" +
-	"\x0efromDateFilter\x18\a \x01(\x03R\x0efromDateFilter\x12\"\n" +
-	"\ftoDateFilter\x18\b \x01(\x03R\ftoDateFilter\"\xc6\x01\n" +
+	"\vemailFilter\x18\a \x01(\tR\vemailFilter\x12&\n" +
+	"\x0efromDateFilter\x18\b \x01(\x03R\x0efromDateFilter\x12\"\n" +
+	"\ftoDateFilter\x18\t \x01(\x03R\ftoDateFilter\"\xec\x01\n" +
 	"\x13GetAllUsersResponse\x120\n" +
 	"\x05users\x18\x01 \x03(\v2\x1a.authuseradmin.UserProfileR\x05users\x12\x1e\n" +
 	"\n" +
 	"totalCount\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12$\n" +
-	"\rnextPageToken\x18\x04 \x01(\tR\rnextPageToken\x12\x1d\n" +
+	"\rnextPageToken\x18\x04 \x01(\tR\rnextPageToken\x12$\n" +
+	"\rprevPageToken\x18\x05 \x01(\tR\rprevPageToken\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"W\n" +
+	"error_type\x18\x06 \x01(\tR\terrorType\"W\n" +
 	"\aSocials\x12\x16\n" +
 	"\x06github\x18\x01 \x01(\tR\x06github\x12\x18\n" +
 	"\atwitter\x18\x02 \x01(\tR\atwitter\x12\x1a\n" +
