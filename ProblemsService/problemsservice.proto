@@ -5,607 +5,632 @@ package problems;
 option go_package = "./proto";
 
 service ProblemsService {
-    rpc CreateProblem(CreateProblemRequest) returns (CreateProblemResponse);
-    rpc UpdateProblem(UpdateProblemRequest) returns (UpdateProblemResponse);
-    rpc DeleteProblem(DeleteProblemRequest) returns (DeleteProblemResponse);
-    rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
-    rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
-    rpc GetProblemByIDSlug(GetProblemByIdSlugRequest) returns (GetProblemByIdSlugResponse);
-    rpc GetProblemMetadataList(GetProblemMetadataListRequest) returns (GetProblemMetadataListResponse);
-    rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
-    rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
-    rpc GetLanguageSupports(GetLanguageSupportsRequest) returns (GetLanguageSupportsResponse);
-    rpc AddLanguageSupport(AddLanguageSupportRequest) returns (AddLanguageSupportResponse);
-    rpc UpdateLanguageSupport(UpdateLanguageSupportRequest) returns (UpdateLanguageSupportResponse);
-    rpc RemoveLanguageSupport(RemoveLanguageSupportRequest) returns (RemoveLanguageSupportResponse);
-    rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
-    rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
-    rpc GetSubmissionsByOptionalProblemID(GetSubmissionsRequest) returns (GetSubmissionsResponse);
+rpc CreateProblem(CreateProblemRequest) returns (CreateProblemResponse);
+rpc UpdateProblem(UpdateProblemRequest) returns (UpdateProblemResponse);
+rpc DeleteProblem(DeleteProblemRequest) returns (DeleteProblemResponse);
+rpc GetProblem(GetProblemRequest) returns (GetProblemResponse);
+rpc ListProblems(ListProblemsRequest) returns (ListProblemsResponse);
+rpc GetProblemByIDSlug(GetProblemByIdSlugRequest) returns (GetProblemByIdSlugResponse);
+rpc GetProblemMetadataList(GetProblemMetadataListRequest) returns (GetProblemMetadataListResponse);
+rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
+rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
+rpc GetLanguageSupports(GetLanguageSupportsRequest) returns (GetLanguageSupportsResponse);
+rpc AddLanguageSupport(AddLanguageSupportRequest) returns (AddLanguageSupportResponse);
+rpc UpdateLanguageSupport(UpdateLanguageSupportRequest) returns (UpdateLanguageSupportResponse);
+rpc RemoveLanguageSupport(RemoveLanguageSupportRequest) returns (RemoveLanguageSupportResponse);
+rpc FullValidationByProblemID(FullValidationByProblemIDRequest) returns (FullValidationByProblemIDResponse);
+rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
+rpc GetSubmissionsByOptionalProblemID(GetSubmissionsRequest) returns (GetSubmissionsResponse);
 
-    //leaderboard
-    //get leaderboard -req: page,limit resp
-    rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest) returns (GetProblemsDoneStatisticsResponse);
+// Leaderboard
+rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest) returns (GetProblemsDoneStatisticsResponse);
 
-    //actitvitycontribution
-    rpc GetMonthlyActivityHeatmap(GetMonthlyActivityHeatmapRequest) returns (GetMonthlyActivityHeatmapResponse);
+// Activity Contribution
+rpc GetMonthlyActivityHeatmap(GetMonthlyActivityHeatmapRequest) returns (GetMonthlyActivityHeatmapResponse);
 
-    // leaderboard methods
-    rpc GetTopKGlobal (GetTopKGlobalRequest) returns (GetTopKGlobalResponse);
-    rpc GetTopKEntity (GetTopKEntityRequest) returns (GetTopKEntityResponse);
-    rpc GetUserRank (GetUserRankRequest) returns (GetUserRankResponse);
-    rpc GetLeaderboardData (GetLeaderboardDataRequest) returns (GetLeaderboardDataResponse);
+// Leaderboard Methods
+rpc GetTopKGlobal(GetTopKGlobalRequest) returns (GetTopKGlobalResponse);
+rpc GetTopKEntity(GetTopKEntityRequest) returns (GetTopKEntityResponse);
+rpc GetUserRank(GetUserRankRequest) returns (GetUserRankResponse);
+rpc GetLeaderboardData(GetLeaderboardDataRequest) returns (GetLeaderboardDataResponse);
 
+rpc CreateChallenge(CreateChallengeRequest) returns (CreateChallengeResponse);
+rpc GetChallengeDetails(GetChallengeDetailsRequest) returns (GetChallengeDetailsResponse);
+rpc GetPublicChallenges(GetPublicChallengesRequest) returns (GetPublicChallengesResponse);
+rpc JoinChallenge(JoinChallengeRequest) returns (JoinChallengeResponse);
+rpc StartChallenge(StartChallengeRequest) returns (StartChallengeResponse);
+rpc EndChallenge(EndChallengeRequest) returns (EndChallengeResponse);
+rpc GetSubmissionStatus(GetSubmissionStatusRequest) returns (GetSubmissionStatusResponse);
+rpc GetChallengeSubmissions(GetChallengeSubmissionsRequest) returns (GetChallengeSubmissionsResponse);
+rpc GetUserStats(GetUserStatsRequest) returns (GetUserStatsResponse);
+rpc GetChallengeUserStats(GetChallengeUserStatsRequest) returns (GetChallengeUserStatsResponse);
 
-    rpc CreateChallenge(CreateChallengeRequest) returns (CreateChallengeResponse);
-    rpc GetChallengeDetails(GetChallengeDetailsRequest) returns (GetChallengeDetailsResponse);
-    rpc GetPublicChallenges(GetPublicChallengesRequest) returns (GetPublicChallengesResponse);
-    rpc JoinChallenge(JoinChallengeRequest) returns (JoinChallengeResponse);
-    rpc StartChallenge(StartChallengeRequest) returns (StartChallengeResponse);
-    rpc EndChallenge(EndChallengeRequest) returns (EndChallengeResponse);
-    rpc GetSubmissionStatus(GetSubmissionStatusRequest) returns (GetSubmissionStatusResponse);
-    rpc GetChallengeSubmissions(GetChallengeSubmissionsRequest) returns (GetChallengeSubmissionsResponse);
-    rpc GetUserStats(GetUserStatsRequest) returns (GetUserStatsResponse);
-    rpc GetChallengeUserStats(GetChallengeUserStatsRequest) returns (GetChallengeUserStatsResponse);
-
-    rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (GetChallengeHistoryResponse);
+rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (GetChallengeHistoryResponse);
 }
 
 message GetChallengeHistoryRequest {
-  string user_id = 1; 
-  optional bool is_private = 2; 
-  int32 page = 3; 
-  int32 page_size = 4; 
+string user_id = 1;
+optional bool is_private = 2;
+int32 page = 3;
+int32 page_size = 4;
+string traceID = 5;
 }
 
 message GetChallengeHistoryResponse {
-  repeated Challenge challenges = 1; 
-  int32 total_count = 2; 
-  int32 page = 3; 
-  int32 page_size = 4; 
+repeated Challenge challenges = 1;
+int32 total_count = 2;
+int32 page = 3;
+int32 page_size = 4;
 }
 
 // Messages
 message Challenge {
-  string id = 1;
-  string title = 2;
-  string creator_id = 3;
-  string difficulty = 4;
-  bool is_private = 5;
-  string status = 6;
-  string password = 7; // Only for private challenges
-  repeated string problem_ids = 8;
-  int32 time_limit = 9;
-  int64 created_at = 10;
-  bool is_active = 11;
-  repeated string participant_ids = 12;
-  map<string, ProblemMetadataList> user_problem_metadata = 13;
-  int64 start_time = 14;
-  int64 end_time = 15;
+string id = 1;
+string title = 2;
+string creator_id = 3;
+string difficulty = 4;
+bool is_private = 5;
+string status = 6;
+string password = 7; // Only for private challenges
+repeated string problem_ids = 8;
+int32 time_limit = 9;
+int64 created_at = 10;
+bool is_active = 11;
+repeated string participant_ids = 12;
+map<string, ProblemMetadataList> user_problem_metadata = 13;
+int64 start_time = 14;
+int64 end_time = 15;
 }
 
 message ProblemMetadata {
-  string problem_id = 1;
-  string title = 2;
-  string description = 3;
-  repeated string tags = 4;
-  TestCaseRunOnly testcase_run = 5;
-  string difficulty = 6;
-  repeated string supported_languages = 7;
-  bool validated = 8;
+string problem_id = 1;
+string title = 2;
+string description = 3;
+repeated string tags = 4;
+TestCaseRunOnly testcase_run = 5;
+string difficulty = 6;
+repeated string supported_languages = 7;
+bool validated = 8;
 }
 
 message ChallengeProblemMetadata {
-  string problem_id = 1;
-  int32 score = 2;
-  int64 time_taken = 3;
-  int64 completed_at = 4;
+string problem_id = 1;
+int32 score = 2;
+int64 time_taken = 3;
+int64 completed_at = 4;
 }
 
 message ProblemMetadataList {
-  repeated ChallengeProblemMetadata challenge_problem_metadata = 1;
+repeated ChallengeProblemMetadata challenge_problem_metadata = 1;
 }
 
 message LeaderboardEntry {
-  string user_id = 1;
-  int32 problems_completed = 2;
-  int32 total_score = 3;
-  int32 rank = 4;
+string user_id = 1;
+int32 problems_completed = 2;
+int32 total_score = 3;
+int32 rank = 4;
 }
 
 message UserStats {
-  string user_id = 1;
-  int32 problems_completed = 2;
-  int64 total_time_taken = 3;
-  int32 challenges_completed = 4;
-  double score = 5;
-  map<string, ChallengeStat> challenge_stats = 6;
+string user_id = 1;
+int32 problems_completed = 2;
+int64 total_time_taken = 3;
+int32 challenges_completed = 4;
+double score = 5;
+map<string, ChallengeStat> challenge_stats = 6;
 }
 
 message ChallengeStat {
-  int32 rank = 1;
-  int32 problems_completed = 2;
-  int32 total_score = 3;
+int32 rank = 1;
+int32 problems_completed = 2;
+int32 total_score = 3;
 }
 
 // Request/Response Messages
 message CreateChallengeRequest {
-  string title = 1;
-  string creator_id = 2;
-  string difficulty = 3;
-  bool is_private = 4;
-  repeated string problem_ids = 5;
-  int32 time_limit = 6;
-  int64 expected_start = 7;
+string title = 1;
+string creator_id = 2;
+string difficulty = 3;
+bool is_private = 4;
+repeated string problem_ids = 5;
+int32 time_limit = 6;
+int64 expected_start = 7;
+string traceID = 8;
 }
 
 message CreateChallengeResponse {
-  string id = 1;
-  string password = 2; // Only for private challenges
-  string join_url = 3;
+string id = 1;
+string password = 2; // Only for private challenges
+string join_url = 3;
 }
 
 message GetChallengeDetailsRequest {
-  string id = 1;
-  string user_id = 2; // For user-specific metadata
+string id = 1;
+string user_id = 2; // For user-specific metadata
+string traceID = 3;
 }
 
 message GetChallengeDetailsResponse {
-  Challenge challenge = 1;
-  repeated LeaderboardEntry leaderboard = 2;
+Challenge challenge = 1;
+repeated LeaderboardEntry leaderboard = 2;
 }
 
 message GetPublicChallengesRequest {
-  string difficulty = 1;
-  bool is_active = 2;
-  int32 page = 3;
-  int32 page_size = 4;
-  string user_id = 5;
+string difficulty = 1;
+bool is_active = 2;
+int32 page = 3;
+int32 page_size = 4;
+string user_id = 5;
+string traceID = 6;
 }
 
 message GetPublicChallengesResponse {
-  repeated Challenge challenges = 1;
+repeated Challenge challenges = 1;
 }
 
 message JoinChallengeRequest {
-  string challenge_id = 1;
-  string user_id = 2;
-  optional string password = 3; // Required for private challenges
+string challenge_id = 1;
+string user_id = 2;
+optional string password = 3; // Required for private challenges
+string traceID = 4;
 }
 
 message JoinChallengeResponse {
-  string challenge_id = 1;
-  bool success = 2;
-  string message = 3;
+string challenge_id = 1;
+bool success = 2;
+string message = 3;
 }
 
 message StartChallengeRequest {
-  string challenge_id = 1;
-  string user_id = 2;
+string challenge_id = 1;
+string user_id = 2;
+string traceID = 3;
 }
 
 message StartChallengeResponse {
-  bool success = 1;
-  int64 start_time = 2;
+bool success = 1;
+int64 start_time = 2;
 }
 
 message EndChallengeRequest {
-  string challenge_id = 1;
-  string user_id = 2;
+string challenge_id = 1;
+string user_id = 2;
+string traceID = 3;
 }
 
 message EndChallengeResponse {
-  bool success = 1;
-  repeated LeaderboardEntry leaderboard = 2;
+bool success = 1;
+repeated LeaderboardEntry leaderboard = 2;
 }
 
-
 message GetSubmissionStatusRequest {
-  string submission_id = 1;
+string submission_id = 1;
+string traceID = 2;
 }
 
 message GetSubmissionStatusResponse {
-  Submission submission = 1;
+Submission submission = 1;
 }
 
 message GetChallengeSubmissionsRequest {
-  string challenge_id = 1;
+string challenge_id = 1;
+string traceID = 2;
 }
 
 message GetChallengeSubmissionsResponse {
-  repeated Submission submissions = 1;
+repeated Submission submissions = 1;
 }
 
 message GetUserStatsRequest {
-  string user_id = 1;
+string user_id = 1;
+string traceID = 2;
 }
 
 message GetUserStatsResponse {
-  UserStats stats = 1;
+UserStats stats = 1;
 }
 
 message GetChallengeUserStatsRequest {
-  string challenge_id = 1;
-  string user_id = 2;
+string challenge_id = 1;
+string user_id = 2;
+string traceID = 3;
 }
 
 message GetChallengeUserStatsResponse {
-  string user_id = 1;
-  int32 problems_completed = 2;
-  int32 total_score = 3;
-  int32 rank = 4;
-  repeated ChallengeProblemMetadata challenge_problem_metadata = 5;
+string user_id = 1;
+int32 problems_completed = 2;
+int32 total_score = 3;
+int32 rank = 4;
+repeated ChallengeProblemMetadata challenge_problem_metadata = 5;
 }
 
 message GetTopKGlobalRequest {
-    int32 k = 1;
+int32 k = 1;
+string traceID = 2;
 }
 
 message GetTopKGlobalResponse {
-    repeated UserScore users = 1;
+repeated UserScore users = 1;
 }
 
 message GetTopKEntityRequest {
-    string entity = 1;
+string entity = 1;
+string traceID = 2;
 }
 
 message GetTopKEntityResponse {
-    repeated UserScore users = 1;
+repeated UserScore users = 1;
 }
 
 message GetUserRankRequest {
-    string user_id = 1;
+string user_id = 1;
+string traceID = 2;
 }
 
 message GetUserRankResponse {
-    int32 global_rank = 1;
-    int32 entity_rank = 2;
+int32 global_rank = 1;
+int32 entity_rank = 2;
 }
 
 message GetLeaderboardDataRequest {
-    string user_id = 1;
+string user_id = 1;
+string traceID = 2;
 }
 
 message GetLeaderboardDataResponse {
-    string user_id = 1;
-    double score = 2;
-    string entity = 3;
-    int32 global_rank = 4;
-    int32 entity_rank = 5;
-    repeated UserScore top_k_global = 6;
-    repeated UserScore top_k_entity = 7;
+string user_id = 1;
+double score = 2;
+string entity = 3;
+int32 global_rank = 4;
+int32 entity_rank = 5;
+repeated UserScore top_k_global = 6;
+repeated UserScore top_k_entity = 7;
 }
 
 message UserScore {
-    string user_id = 1;
-    double score = 2;
-    string entity = 3;
+string user_id = 1;
+double score = 2;
+string entity = 3;
 }
 
 message GetMonthlyActivityHeatmapRequest {
-    string userID = 1;
-    int32 month = 2; // 1 to 12
-    int32 year = 3;
-  }
-  
-  message ActivityDay {
-    string date = 1;   // format: YYYY-MM-DD
-    int32 count = 2;
-    bool isActive = 3;
-  }
-  
-  message GetMonthlyActivityHeatmapResponse {
-    repeated ActivityDay data = 1;
-  }
-
-message GetLeaderBoardOptionalCountryResponse{
-    LeaderboardSingle data = 1;
-    optional string filter_type = 2; //country or global
+string userID = 1;
+int32 month = 2; // 1 to 12
+int32 year = 3;
+string traceID = 4;
 }
 
-message LeaderboardSingle{
-    string username = 1;
-    optional int64 country_rank = 2;
-    int64 global_rank = 3;
+message ActivityDay {
+string date = 1; // format: YYYY-MM-DD
+int32 count = 2;
+bool isActive = 3;
+}
+
+message GetMonthlyActivityHeatmapResponse {
+repeated ActivityDay data = 1;
 }
 
 message GetLeaderBoardOptionalCountryRequest {
-    int64 page = 1;
-    int64 limit = 2;
-    optional string country = 3;
-    optional string username = 4; 
-    string user_id = 5; 
+int64 page = 1;
+int64 limit = 2;
+optional string country = 3;
+optional string username = 4;
+string user_id = 5;
+string traceID = 6;
+}
+
+message GetLeaderBoardOptionalCountryResponse {
+LeaderboardSingle data = 1;
+optional string filter_type = 2; // country or global
+}
+
+message LeaderboardSingle {
+string username = 1;
+optional int64 country_rank = 2;
+int64 global_rank = 3;
 }
 
 message GetProblemsDoneStatisticsRequest {
-    optional string username = 1; 
-    string user_id = 2; 
+optional string username = 1;
+string user_id = 2;
+string traceID = 3;
 }
 
-
-
-message GetProblemsDoneStatisticsResponse{
-    ProblemsDoneStatistics data = 1;
+message GetProblemsDoneStatisticsResponse {
+ProblemsDoneStatistics data = 1;
 }
 
 message ProblemsDoneStatistics {
-    int32 max_easy_count = 1; 
-    int32 done_easy_count = 2; 
-    int32 max_medium_count = 3; 
-    int32 done_medium_count = 4; 
-    int32 max_hard_count = 5; 
-    int32 done_hard_count = 6; 
+int32 max_easy_count = 1;
+int32 done_easy_count = 2;
+int32 max_medium_count = 3;
+int32 done_medium_count = 4;
+int32 max_hard_count = 5;
+int32 done_hard_count = 6;
 }
 
-
 message Timestamp {
-    int64 seconds = 1;
-    int32 nanos = 2;
+int64 seconds = 1;
+int32 nanos = 2;
 }
 
 message TestCase {
-    string id = 1;
-    string input = 2;
-    string expected = 3;
+string id = 1;
+string input = 2;
+string expected = 3;
 }
 
 message TestCases {
-    repeated TestCase run = 1;
-    repeated TestCase submit = 2;
+repeated TestCase run = 1;
+repeated TestCase submit = 2;
 }
 
 message TestCaseRunOnly {
-    repeated TestCase run = 1;
+repeated TestCase run = 1;
 }
 
 message ValidationCode {
-    string placeholder = 1;
-    string code = 2;
-    string template = 3;
+string placeholder = 1;
+string code = 2;
+string template = 3;
 }
 
 message CreateProblemRequest {
-    string title = 1;
-    string description = 2;
-    repeated string tags = 3;
-    string difficulty = 4;
+string title = 1;
+string description = 2;
+repeated string tags = 3;
+string difficulty = 4;
+string traceID = 5;
 }
 
 message UpdateProblemRequest {
-    string problem_id = 1;
-    optional string title = 2;
-    optional string description = 3;
-    repeated string tags = 4;
-    optional string difficulty = 5;
+string problem_id = 1;
+optional string title = 2;
+optional string description = 3;
+repeated string tags = 4;
+optional string difficulty = 5;
+string traceID = 6;
 }
 
 message DeleteProblemRequest {
-    string problem_id = 1;
+string problem_id = 1;
+string traceID = 2;
 }
 
 message GetProblemRequest {
-    string problem_id = 1;
+string problem_id = 1;
+string traceID = 2;
 }
 
 message ListProblemsRequest {
-    int32 page = 1;
-    int32 page_size = 2;
-    repeated string tags = 3;
-    string difficulty = 4;
-    string search_query = 5;
+int32 page = 1;
+int32 page_size = 2;
+repeated string tags = 3;
+string difficulty = 4;
+string search_query = 5;
+string traceID = 6;
 }
 
 message AddTestCasesRequest {
-    string problem_id = 1;
-    TestCases testcases = 2;
+string problem_id = 1;
+TestCases testcases = 2;
+string traceID = 3;
 }
 
 message AddLanguageSupportRequest {
-    string problem_id = 1;
-    string language = 2;
-    ValidationCode validation_code = 3;
+string problem_id = 1;
+string language = 2;
+ValidationCode validation_code = 3;
+string traceID = 4;
 }
 
 message UpdateLanguageSupportRequest {
-    string problem_id = 1;
-    string language = 2;
-    ValidationCode validation_code = 3;
+string problem_id = 1;
+string language = 2;
+ValidationCode validation_code = 3;
+string traceID = 4;
 }
 
 message RemoveLanguageSupportRequest {
-    string problem_id = 1;
-    string language = 2;
+string problem_id = 1;
+string language = 2;
+string traceID = 3;
 }
 
 message Problem {
-    string problem_id = 1;
-    Timestamp created_at = 2;
-    Timestamp updated_at = 3;
-    optional Timestamp deleted_at = 4;
-    string title = 5;
-    string description = 6;
-    repeated string tags = 7;
-    TestCases testcases = 8;
-    string difficulty = 9;
-    repeated string supported_languages = 10;
-    map<string, ValidationCode> validate_code = 11;
-    bool validated = 12;
-    Timestamp validated_at = 13;
+string problem_id = 1;
+Timestamp created_at = 2;
+Timestamp updated_at = 3;
+optional Timestamp deleted_at = 4;
+string title = 5;
+string description = 6;
+repeated string tags = 7;
+TestCases testcases = 8;
+string difficulty = 9;
+repeated string supported_languages = 10;
+map<string, ValidationCode> validate_code = 11;
+bool validated = 12;
+Timestamp validated_at = 13;
 }
 
-
 message CreateProblemResponse {
-    string problem_id = 1;
-    bool success = 2;
-    string message = 3;
-    string error_type = 4;
+string problem_id = 1;
+bool success = 2;
+string message = 3;
+string error_type = 4;
 }
 
 message UpdateProblemResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message DeleteProblemResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message GetProblemResponse {
-    Problem problem = 1;
-    string error_type = 2;
+Problem problem = 1;
+string error_type = 2;
 }
 
 message ListProblemsResponse {
-    repeated Problem problems = 1;
-    int32 total_count = 2;
-    int32 page = 3;
-    int32 page_size = 4;
-    string error_type = 5;
+repeated Problem problems = 1;
+int32 total_count = 2;
+int32 page = 3;
+int32 page_size = 4;
+string error_type = 5;
 }
 
 message AddTestCasesResponse {
-    bool success = 1;
-    string message = 2;
-    int32 added_count = 3;
-    string error_type = 4;
+bool success = 1;
+string message = 2;
+int32 added_count = 3;
+string error_type = 4;
 }
 
 message AddLanguageSupportResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message UpdateLanguageSupportResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message RemoveLanguageSupportResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message DeleteTestCaseRequest {
-    string problem_id = 1;
-    string testcase_id = 2;
-    bool is_run_testcase = 3;
+string problem_id = 1;
+string testcase_id = 2;
+bool is_run_testcase = 3;
+string traceID = 4;
 }
 
 message DeleteTestCaseResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message GetLanguageSupportsRequest {
-    string problem_id = 1;
+string problem_id = 1;
+string traceID = 2;
 }
 
 message GetLanguageSupportsResponse {
-    bool success = 1;
-    string message = 2;
-    repeated string supported_languages = 3;
-    map<string, ValidationCode> validate_code = 4;
-    string error_type = 5;
+bool success = 1;
+string message = 2;
+repeated string supported_languages = 3;
+map<string, ValidationCode> validate_code = 4;
+string error_type = 5;
 }
 
 message FullValidationByProblemIDRequest {
-    string problem_id = 1;
+string problem_id = 1;
+string traceID = 2;
 }
 
 message FullValidationByProblemIDResponse {
-    bool success = 1;
-    string message = 2;
-    string error_type = 3;
+bool success = 1;
+string message = 2;
+string error_type = 3;
 }
 
-
 message RunProblemRequest {
-    string problem_id = 1;
-    string user_code = 2;
-    string language = 3;
-    bool is_run_testcase = 4;
-    string user_id = 5;
-    optional string country = 6;
+string problem_id = 1;
+string user_code = 2;
+string language = 3;
+bool is_run_testcase = 4;
+string user_id = 5;
+optional string country = 6;
+string traceID = 7;
 }
 
 message RunProblemResponse {
-    string problem_id = 1;
-    string language = 2;
-    bool is_run_testcase = 3;
-    bool success = 4;
-    string message = 5;
-    string error_type = 6;
+string problem_id = 1;
+string language = 2;
+bool is_run_testcase = 3;
+bool success = 4;
+string message = 5;
+string error_type = 6;
 }
-
 
 message Submission {
-    string id = 1; 
-    string problem_id = 2; 
-    string user_id = 3; 
-    string challenge_id = 4;
-    Timestamp submitted_at = 5;
-    int32 score = 6; 
-    string status = 7;
-    string output = 8;
-    string language = 9; 
-    float execution_time = 10; 
-    string difficulty = 11; 
-    bool is_first = 12; 
-    string title = 13;
-    string user_code  = 14;
+string id = 1;
+string problem_id = 2;
+string user_id = 3;
+string challenge_id = 4;
+Timestamp submitted_at = 5;
+int32 score = 6;
+string status = 7;
+string output = 8;
+string language = 9;
+float execution_time = 10;
+string difficulty = 11;
+bool is_first = 12;
+string title = 13;
+string user_code = 14;
 }
 
-
 message GetSubmissionsRequest {
-    optional string problem_id = 1;
-    int32 page = 2;
-    int32 limit = 3;
-    string user_id = 4;
+optional string problem_id = 1;
+int32 page = 2;
+int32 limit = 3;
+string user_id = 4;
+string traceID = 5;
 }
 
 message GetSubmissionsResponse {
-    repeated Submission submissions = 1;
-    bool success = 2;
-    string message = 3;
-    string error_type = 4;
+repeated Submission submissions = 1;
+bool success = 2;
+string message = 3;
+string error_type = 4;
 }
 
 message GetProblemByIdSlugRequest {
-    string problem_id = 1;
-    optional string slug = 2;
+string problem_id = 1;
+optional string slug = 2;
+string traceID = 3;
 }
 
 message GetProblemByIdSlugResponse {
-    ProblemMetadataLite problemmetdata = 1;
-    string message = 2;
+ProblemMetadataLite problemmetdata = 1;
+string message = 2;
 }
 
 message GetProblemMetadataListRequest {
-    int32 page = 1;
-    int32 page_size = 2;
-    repeated string tags = 3;
-    string difficulty = 4;
-    string search_query = 5;
+int32 page = 1;
+int32 page_size = 2;
+repeated string tags = 3;
+string difficulty = 4;
+string search_query = 5;
+string traceID = 6;
 }
 
 message GetProblemMetadataListResponse {
-    repeated ProblemMetadataLite problemmetdata = 1;
-    string message = 2;
+repeated ProblemMetadataLite problemmetdata = 1;
+string message = 2;
 }
+
 message ProblemMetadataLite {
-    string problem_id = 1;
-    string title = 2;
-    string description = 3;
-    repeated string tags = 4;
-    TestCaseRunOnly testcase_run = 5;
-    string difficulty = 6;
-    repeated string supported_languages = 7;
-    bool validated = 8;
-    map<string, string> placeholder_maps = 9; 
+string problem_id = 1;
+string title = 2;
+string description = 3;
+repeated string tags = 4;
+TestCaseRunOnly testcase_run = 5;
+string difficulty = 6;
+repeated string supported_languages = 7;
+bool validated = 8;
+map<string, string> placeholder_maps = 9;
 }

@@ -1,585 +1,618 @@
 syntax = "proto3";
 
 package authuseradmin;
-option go_package = "."; 
+option go_package = ".";
 
-service AuthUserAdminService {  
-    // Authentication and Security
-    rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
-    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
-    rpc LoginWithGoogle(GoogleLoginRequest) returns (LoginUserResponse);
-    rpc TokenRefresh(TokenRefreshRequest) returns (TokenRefreshResponse);
-    rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
-    rpc ResendEmailVerification(ResendEmailVerificationRequest) returns (ResendEmailVerificationResponse);
-    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
-    // rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
-    rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);  
-    rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);  
-    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
-    rpc SetUpTwoFactorAuth(SetUpTwoFactorAuthRequest) returns (SetUpTwoFactorAuthResponse);
-    rpc VerifyTwoFactorAuth(VerifyTwoFactorAuthRequest) returns (VerifyTwoFactorAuthResponse);
-    rpc DisableTwoFactorAuth(DisableTwoFactorAuthRequest) returns (DisableTwoFactorAuthResponse);
-    rpc GetTwoFactorAuthStatus(GetTwoFactorAuthStatusRequest) returns (GetTwoFactorAuthStatusResponse);
+service AuthUserAdminService {
+// Authentication and Security
+rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
+rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+rpc LoginWithGoogle(GoogleLoginRequest) returns (LoginUserResponse);
+rpc TokenRefresh(TokenRefreshRequest) returns (TokenRefreshResponse);
+rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
+rpc ResendEmailVerification(ResendEmailVerificationRequest) returns (ResendEmailVerificationResponse);
+rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
+rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse);
+rpc FinishForgotPassword(FinishForgotPasswordRequest) returns (FinishForgotPasswordResponse);
+rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+rpc SetUpTwoFactorAuth(SetUpTwoFactorAuthRequest) returns (SetUpTwoFactorAuthResponse);
+rpc VerifyTwoFactorAuth(VerifyTwoFactorAuthRequest) returns (VerifyTwoFactorAuthResponse);
+rpc DisableTwoFactorAuth(DisableTwoFactorAuthRequest) returns (DisableTwoFactorAuthResponse);
+rpc GetTwoFactorAuthStatus(GetTwoFactorAuthStatusRequest) returns (GetTwoFactorAuthStatusResponse);
 
-    // Authentication Admin
-    rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
+// Authentication Admin
+rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
 
-    // User Management
-    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
-    rpc UpdateProfileImage(UpdateProfileImageRequest) returns (UpdateProfileImageResponse);
-    rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
-    rpc CheckBanStatus(CheckBanStatusRequest) returns (CheckBanStatusResponse);
-    rpc BanHistory(BanHistoryRequest) returns (BanHistoryResponse);
+// User Management
+rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+rpc UpdateProfileImage(UpdateProfileImageRequest) returns (UpdateProfileImageResponse);
+rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
+rpc CheckBanStatus(CheckBanStatusRequest) returns (CheckBanStatusResponse);
+rpc BanHistory(BanHistoryRequest) returns (BanHistoryResponse);
 
-    rpc UsernameAvailable(UsernameAvailableRequest) returns (UsernameAvailableResponse);
+rpc UsernameAvailable(UsernameAvailableRequest) returns (UsernameAvailableResponse);
 
-    // Social Features
-    rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse);
-    rpc FollowUser(FollowUserRequest) returns (FollowUserResponse);
-    rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse);
-    rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
-    rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
-    rpc GetFollowFollowingCheck(GetFollowFollowingCheckRequest)  returns(GetFollowFollowingCheckResponse);
+// Social Features
+rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse);
+rpc FollowUser(FollowUserRequest) returns (FollowUserResponse);
+rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse);
+rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
+rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
+rpc GetFollowFollowingCheck(GetFollowFollowingCheckRequest) returns (GetFollowFollowingCheckResponse);
 
-    // Admin Operations
-    rpc AdminLogin(AdminLoginRequest) returns (AdminLoginResponse);
-    rpc AdminProfile(AdminProfileRequest) returns (AdminProfileResponse);
-    rpc CreateUserAdmin(CreateUserAdminRequest) returns (CreateUserAdminResponse);
-    rpc UpdateUserAdmin(UpdateUserAdminRequest) returns (UpdateUserAdminResponse);
-    rpc BanUser(BanUserRequest) returns (BanUserResponse);
-    rpc UnbanUser(UnbanUserRequest) returns (UnbanUserResponse);
-    rpc VerifyAdminUser(VerifyAdminUserRequest) returns (VerifyAdminUserResponse);
-    rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
-    rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
-    rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
+// Admin Operations
+rpc AdminLogin(AdminLoginRequest) returns (AdminLoginResponse);
+rpc AdminProfile(AdminProfileRequest) returns (AdminProfileResponse);
+rpc CreateUserAdmin(CreateUserAdminRequest) returns (CreateUserAdminResponse);
+rpc UpdateUserAdmin(UpdateUserAdminRequest) returns (UpdateUserAdminResponse);
+rpc BanUser(BanUserRequest) returns (BanUserResponse);
+rpc UnbanUser(UnbanUserRequest) returns (UnbanUserResponse);
+rpc VerifyAdminUser(VerifyAdminUserRequest) returns (VerifyAdminUserResponse);
+rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
+rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
+rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
 }
+
 message GetFollowFollowingCheckRequest {
-    string ownerUserID = 1;
-    string targetUserID = 2;
+string ownerUserID = 1;
+string targetUserID = 2;
+string traceID = 3;
 }
 
-message GetFollowFollowingCheckResponse{
-    bool isFollower = 1;
-    bool isFollowing = 2;
+message GetFollowFollowingCheckResponse {
+bool isFollower = 1;
+bool isFollowing = 2;
 }
 
-message UsernameAvailableRequest{
-    string username = 1;
+message UsernameAvailableRequest {
+string username = 1;
+string traceID = 2;
 }
 
-message UsernameAvailableResponse{
-    bool status = 1;
+message UsernameAvailableResponse {
+bool status = 1;
 }
 
-message VerifyTwoFactorAuthRequest{
-    string userID =1;
-    string twoFactorCode = 2; 
+message VerifyTwoFactorAuthRequest {
+string userID = 1;
+string twoFactorCode = 2;
+string traceID = 3;
 }
 
-message VerifyTwoFactorAuthResponse{
-    string message =1;
-    bool verified = 2;
+message VerifyTwoFactorAuthResponse {
+string message = 1;
+bool verified = 2;
 }
 
 message GoogleLoginRequest {
-    string id_token = 1;
-  }
-
+string id_token = 1;
+string traceID = 2;
+}
 
 message SetUpTwoFactorAuthRequest {
-    string userID = 1;
-    string password = 2;
+string userID = 1;
+string password = 2;
+string traceID = 3;
 }
 
 message SetUpTwoFactorAuthResponse {
-    string image = 1;
-    string secret = 2;
-    string message = 3;
-    string error_type = 4;
+string image = 1;
+string secret = 2;
+string message = 3;
+string error_type = 4;
 }
 
 message DisableTwoFactorAuthRequest {
-    string userID = 1;
-    string password = 2;
-    string otp = 3;
+string userID = 1;
+string password = 2;
+string otp = 3;
+string traceID = 4;
 }
 
 message DisableTwoFactorAuthResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message GetTwoFactorAuthStatusRequest {
-    string email = 1;
-}   
+string email = 1;
+string traceID = 2;
+}
 
 message GetTwoFactorAuthStatusResponse {
-    bool isEnabled = 1;
-    string message = 2;
-    string error_type = 3;
+bool isEnabled = 1;
+string message = 2;
+string error_type = 3;
 }
-
 
 message RegisterUserRequest {
-    string firstName = 1;
-    string lastName = 2;
-    string country = 3;
-    string role = 4;
-    string primaryLanguageID = 5;
-    string email = 7;
-    string authType = 8;
-    string password = 9;
-    string confirmPassword = 10;
-    bool muteNotifications = 11;
-    Socials socials = 12;
-    bool twoFactorAuth = 13;
+string firstName = 1;
+string lastName = 2;
+string country = 3;
+string role = 4;
+string primaryLanguageID = 5;
+string email = 7;
+string authType = 8;
+string password = 9;
+string confirmPassword = 10;
+bool muteNotifications = 11;
+Socials socials = 12;
+bool twoFactorAuth = 13;
+string traceID = 14;
 }
 
-message RegisterUserResponse {  
-    string userID = 1;
-    string accessToken = 2;
-    string refreshToken = 3;
-    int32 expiresIn = 4;
-    UserProfile userProfile = 5;
-    string message = 6;
-    string error_type = 7;
+message RegisterUserResponse {
+string userID = 1;
+string accessToken = 2;
+string refreshToken = 3;
+int32 expiresIn = 4;
+UserProfile userProfile = 5;
+string message = 6;
+string error_type = 7;
 }
 
 message LoginUserRequest {
-    string email = 1;
-    string password = 2;
-    string twoFactorCode = 3;
+string email = 1;
+string password = 2;
+string twoFactorCode = 3;
+string traceID = 4;
 }
 
-
 message TwoFactorAuthRequest {
-    string userID = 1;
-    string twoFactorCode = 2;
+string userID = 1;
+string twoFactorCode = 2;
+string traceID = 3;
 }
 
 message TwoFactorAuthResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
-
 message LoginUserResponse {
-    string accessToken = 1;
-    string refreshToken = 2;
-    int32 expiresIn = 3;
-    string userID = 4;
-    UserProfile userProfile = 5;
-    string message = 6;
-    string error_type = 7;
+string accessToken = 1;
+string refreshToken = 2;
+int32 expiresIn = 3;
+string userID = 4;
+UserProfile userProfile = 5;
+string message = 6;
+string error_type = 7;
 }
 
 message TokenRefreshRequest {
-    string refreshToken = 1;
+string refreshToken = 1;
+string traceID = 2;
 }
 
 message TokenRefreshResponse {
-    string accessToken = 1;
-    int32 expiresIn = 2;
-    string userID = 3;
-    string message = 4;
-    string error_type = 5;
+string accessToken = 1;
+int32 expiresIn = 2;
+string userID = 3;
+string message = 4;
+string error_type = 5;
 }
 
 message LogoutRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message LogoutResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message ResendEmailVerificationRequest {
-    string email = 1;
+string email = 1;
+string traceID = 2;
 }
 
 message ResendEmailVerificationResponse {
-    string message = 1;
-    int64 expiryAt = 2;
-    string error_type = 3;
+string message = 1;
+int64 expiryAt = 2;
+string error_type = 3;
 }
 
 message VerifyUserRequest {
-    string email = 1; 
-    string token = 2;
+string email = 1;
+string token = 2;
+string traceID = 3;
 }
 
 message VerifyUserResponse {
-    string userID = 1;
-    string message = 2;
-    string error_type = 3;
+string userID = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message ToggleTwoFactorAuthRequest {
-    string userID = 1;
-    string password = 2;
-    bool twoFactorAuth = 3;
+string userID = 1;
+string password = 2;
+bool twoFactorAuth = 3;
+string traceID = 4;
 }
 
 message ToggleTwoFactorAuthResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message ForgotPasswordRequest {
-    string email = 1;
+string email = 1;
+string traceID = 2;
 }
 
 message ForgotPasswordResponse {
-    string message = 1;
-    string token = 2;
-    string error_type = 3;  
+string message = 1;
+string token = 2;
+string error_type = 3;
 }
 
 message FinishForgotPasswordRequest {
-    string email = 1;
-    string token = 2;
-    string newPassword = 3;
-    string confirmPassword = 4;
+string email = 1;
+string token = 2;
+string newPassword = 3;
+string confirmPassword = 4;
+string traceID = 5;
 }
 
 message FinishForgotPasswordResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message ChangePasswordRequest {
-    string userID = 1;  
-    string oldPassword = 2; 
-    string newPassword = 3;
-    string confirmPassword = 4;
+string userID = 1;
+string oldPassword = 2;
+string newPassword = 3;
+string confirmPassword = 4;
+string traceID = 5;
 }
 
 message ChangePasswordResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 // User Management Messages
 message UpdateProfileRequest {
-    string userID = 1;
-    string userName = 2;
-    string firstName = 3;
-    string lastName = 4;
-    string country = 5;
-    string primaryLanguageID = 6;
-    bool muteNotifications = 7;
-    Socials socials = 8;
-    string bio = 9;
+string userID = 1;
+string userName = 2;
+string firstName = 3;
+string lastName = 4;
+string country = 5;
+string primaryLanguageID = 6;
+bool muteNotifications = 7;
+Socials socials = 8;
+string bio = 9;
+string traceID = 10;
 }
 
 message UpdateProfileResponse {
-    string message = 1;
-    UserProfile userProfile = 2;
-    string error_type = 3;
+string message = 1;
+UserProfile userProfile = 2;
+string error_type = 3;
 }
 
 message UpdateProfileImageRequest {
-    string userID = 1;
-    string avatarURL = 2;
+string userID = 1;
+string avatarURL = 2;
+string traceID = 3;
 }
 
 message UpdateProfileImageResponse {
-    string message = 1;
-    string avatarURL = 2;
-    string error_type = 3;
+string message = 1;
+string avatarURL = 2;
+string error_type = 3;
 }
 
 message GetUserProfileRequest {
-    string userID = 1;
-    optional string userName = 2;
+string userID = 1;
+optional string userName = 2;
+string traceID = 3;
 }
 
 message GetUserProfileResponse {
-    UserProfile userProfile = 1;
-    string message = 2;
-    string error_type = 3;
+UserProfile userProfile = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message CheckBanStatusRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message CheckBanStatusResponse {
-    bool isBanned = 1;
-    string reason = 2;
-    int64 banExpiration = 3; 
-    string message = 4;
-    string error_type = 5;
+bool isBanned = 1;
+string reason = 2;
+int64 banExpiration = 3;
+string message = 4;
+string error_type = 5;
 }
 
 // Social Features Messages
 message FollowUserRequest {
-    string followerID = 1;
-    string followeeID = 2;
+string followerID = 1;
+string followeeID = 2;
+string traceID = 3;
 }
 
 message FollowUserResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message UnfollowUserRequest {
-    string followerID = 1;
-    string followeeID = 2;
+string followerID = 1;
+string followeeID = 2;
+string traceID = 3;
 }
 
 message UnfollowUserResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message GetFollowingRequest {
-    string userID = 1;
-    string pageToken = 2; 
-    int32 limit = 3;
+string userID = 1;
+string pageToken = 2;
+int32 limit = 3;
+string traceID = 4;
 }
 
 message GetFollowingResponse {
-    repeated UserProfile users = 1;
-    int32 totalCount = 2;
-    string nextPageToken = 3;
-    string message = 4;
-    string error_type = 5;
+repeated UserProfile users = 1;
+int32 totalCount = 2;
+string nextPageToken = 3;
+string message = 4;
+string error_type = 5;
 }
 
 message GetFollowersRequest {
-    string userID = 1;
-    string pageToken = 2; 
-    int32 limit = 3;
+string userID = 1;
+string pageToken = 2;
+int32 limit = 3;
+string traceID = 4;
 }
 
 message GetFollowersResponse {
-    repeated UserProfile users = 1;
-    int32 totalCount = 2;
-    string nextPageToken = 3;
-    string message = 4;
-    string error_type = 5;
+repeated UserProfile users = 1;
+int32 totalCount = 2;
+string nextPageToken = 3;
+string message = 4;
+string error_type = 5;
 }
 
 // Admin Operations Messages
 message CreateUserAdminRequest {
-    string firstName = 1;
-    string lastName = 2;
-    string country = 3;
-    string role = 4;
-    string primaryLanguageID = 5;
-    string email = 6;
-    string authType = 7;
-    string password = 8;
-    string confirmPassword = 9;
-    bool muteNotifications = 10;
-    Socials socials = 11;
+string firstName = 1;
+string lastName = 2;
+string country = 3;
+string role = 4;
+string primaryLanguageID = 5;
+string email = 6;
+string authType = 7;
+string password = 8;
+string confirmPassword = 9;
+bool muteNotifications = 10;
+Socials socials = 11;
+string traceID = 12;
 }
 
 message CreateUserAdminResponse {
-    string userID = 1;
-    string message = 2;
-    string error_type = 3;
+string userID = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message UpdateUserAdminRequest {
-    string userID = 1;
-    string firstName = 2;
-    string lastName = 3;
-    string country = 4;
-    string role = 5;
-    string email = 6;
-    string password = 7;
-    string primaryLanguageID = 8;
-    bool muteNotifications = 9;
-    Socials socials = 10;
+string userID = 1;
+string firstName = 2;
+string lastName = 3;
+string country = 4;
+string role = 5;
+string email = 6;
+string password = 7;
+string primaryLanguageID = 8;
+bool muteNotifications = 9;
+Socials socials = 10;
+string traceID = 11;
 }
 
 message UpdateUserAdminResponse {
-    string message = 1;
-    UserProfile userProfile = 2;
-    string error_type = 3;
+string message = 1;
+UserProfile userProfile = 2;
+string error_type = 3;
 }
 
 message BanUserRequest {
-    string userID = 1;
-    string reason = 2;
-    string banType = 3;
-    string banReason = 4;
-    int64 bannedAt = 5;
-    int64 banExpiry = 6;  
+string userID = 1;
+string reason = 2;
+string banType = 3;
+string banReason = 4;
+int64 bannedAt = 5;
+int64 banExpiry = 6;
+string traceID = 7;
 }
 
-
 message BanUserResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message UnbanUserRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message UnbanUserResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message VerifyAdminUserRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message VerifyAdminUserResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message UnverifyUserAdminRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message UnverifyUserAdminResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message SoftDeleteUserAdminRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message SoftDeleteUserAdminResponse {
-    string message = 1;
-    string error_type = 2;
+string message = 1;
+string error_type = 2;
 }
 
 message GetAllUsersRequest {
-    string nextPageToken = 1;
-    string prevPageToken =2;
-    int32 limit = 3;
-    string roleFilter = 4;
-    string statusFilter = 5;
-    string nameFilter = 6; 
-    string emailFilter = 7; 
-    int64 fromDateFilter = 8;
-    int64 toDateFilter = 9;  
+string nextPageToken = 1;
+string prevPageToken = 2;
+int32 limit = 3;
+string roleFilter = 4;
+string statusFilter = 5;
+string nameFilter = 6;
+string emailFilter = 7;
+int64 fromDateFilter = 8;
+int64 toDateFilter = 9;
+string traceID = 10;
 }
 
 message GetAllUsersResponse {
-    repeated UserProfile users = 1;
-    int32 totalCount = 2;
-    string message = 3;
-    string nextPageToken = 4;
-    string prevPageToken = 5;
-    string error_type = 6;
+repeated UserProfile users = 1;
+int32 totalCount = 2;
+string message = 3;
+string nextPageToken = 4;
+string prevPageToken = 5;
+string error_type = 6;
 }
 
 // Common Messages
 message Socials {
-    string github = 1;
-    string twitter = 2;
-    string linkedin = 3;
+string github = 1;
+string twitter = 2;
+string linkedin = 3;
 }
 
 message UserProfile {
-    string userID = 1;
-    string userName = 2;
-    string firstName = 3;
-    string lastName = 4;
-    string country = 5;
-    string role = 6;
-    string primaryLanguageID = 7;
-    string email = 8;
-    string authType = 9;
-    string avatarData = 10;
-    bool muteNotifications = 11;
-    bool isBanned = 12;
-    string banReason = 13;
-    int64 banExpiration = 14;
-    bool twoFactorEnabled = 15;
-    bool isVerified = 16;
-    int64 createdAt = 17;
-    int64 updatedAt = 18;
-    Socials socials = 19;
-    string Bio = 20;
+string userID = 1;
+string userName = 2;
+string firstName = 3;
+string lastName = 4;
+string country = 5;
+string role = 6;
+string primaryLanguageID = 7;
+string email = 8;
+string authType = 9;
+string avatarData = 10;
+bool muteNotifications = 11;
+bool isBanned = 12;
+string banReason = 13;
+int64 banExpiration = 14;
+bool twoFactorEnabled = 15;
+bool isVerified = 16;
+int64 createdAt = 17;
+int64 updatedAt = 18;
+Socials socials = 19;
+string Bio = 20;
 }
 
 message BanHistoryRequest {
-    string userID = 1;
+string userID = 1;
+string traceID = 2;
 }
 
 message BanHistoryResponse {
-    repeated BanHistory bans = 1;
-    string message = 2;
-    string error_type = 3;
+repeated BanHistory bans = 1;
+string message = 2;
+string error_type = 3;
 }
 
 message BanHistory {
-    string id = 1;
-    string userID = 2;
-    int64 bannedAt = 3;
-    string banType = 4;
-    string banReason = 5;
-    int64 banExpiry = 6;
+string id = 1;
+string userID = 2;
+int64 bannedAt = 3;
+string banType = 4;
+string banReason = 5;
+int64 banExpiry = 6;
 }
 
 message LoginAdminRequest {
-    string email = 1;
-    string password = 2;
+string email = 1;
+string password = 2;
+string traceID = 3;
 }
 
 message LoginAdminResponse {
-    string accessToken = 1;
-    string refreshToken = 2;
-    int32 expiresIn = 3;
-    string adminID = 4;
-    string message = 5;
-    string error_type = 6;
+string accessToken = 1;
+string refreshToken = 2;
+int32 expiresIn = 3;
+string adminID = 4;
+string message = 5;
+string error_type = 6;
 }
 
 message SearchUsersRequest {
-    string query = 1;
-    string pageToken = 2; 
-    int32 limit = 3;
+string query = 1;
+string pageToken = 2;
+int32 limit = 3;
+string traceID = 4;
 }
 
 message SearchUsersResponse {
-    repeated UserProfile users = 1;
-    int32 totalCount = 2;
-    string message = 3;
-    string nextPageToken = 4;
-    string error_type = 5;
+repeated UserProfile users = 1;
+int32 totalCount = 2;
+string message = 3;
+string nextPageToken = 4;
+string error_type = 5;
 }
 
 message AdminLoginRequest {
-    string email = 1;
-    string password = 2;
+string email = 1;
+string password = 2;
+string traceID = 3;
 }
 
 message AdminLoginResponse {
-    string accessToken = 1;
-    string refreshToken = 2;
-    int32 expiresIn = 3;
-    string adminID = 4;
-    string message = 5;
-    string error_type = 6;
+string accessToken = 1;
+string refreshToken = 2;
+int32 expiresIn = 3;
+string adminID = 4;
+string message = 5;
+string error_type = 6;
 }
 
-
 message AdminProfile {
-    string adminID = 1;
-    string email = 2;
-    string firstName = 3;
-    string lastName = 4;
-    string avatarURL = 5;
+string adminID = 1;
+string email = 2;
+string firstName = 3;
+string lastName = 4;
+string avatarURL = 5;
 }
 
 message AdminProfileRequest {
-    string adminID = 1;
+string adminID = 1;
+string traceID = 2;
 }
 
 message AdminProfileResponse {
-    string message = 1;
-    AdminProfile adminProfile = 2;
-    string error_type = 3;
+string message = 1;
+AdminProfile adminProfile = 2;
+string error_type = 3;
 }

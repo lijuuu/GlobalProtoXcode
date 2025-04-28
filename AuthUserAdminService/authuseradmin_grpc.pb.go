@@ -70,7 +70,6 @@ type AuthUserAdminServiceClient interface {
 	LogoutUser(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error)
 	VerifyUser(ctx context.Context, in *VerifyUserRequest, opts ...grpc.CallOption) (*VerifyUserResponse, error)
-	// rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
 	FinishForgotPassword(ctx context.Context, in *FinishForgotPasswordRequest, opts ...grpc.CallOption) (*FinishForgotPasswordResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
@@ -497,7 +496,6 @@ type AuthUserAdminServiceServer interface {
 	LogoutUser(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error)
 	VerifyUser(context.Context, *VerifyUserRequest) (*VerifyUserResponse, error)
-	// rpc ToggleTwoFactorAuth(ToggleTwoFactorAuthRequest) returns (ToggleTwoFactorAuthResponse);
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
 	FinishForgotPassword(context.Context, *FinishForgotPasswordRequest) (*FinishForgotPasswordResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)

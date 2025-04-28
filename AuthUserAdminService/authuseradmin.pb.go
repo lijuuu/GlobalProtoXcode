@@ -25,6 +25,7 @@ type GetFollowFollowingCheckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
 	TargetUserID  string                 `protobuf:"bytes,2,opt,name=targetUserID,proto3" json:"targetUserID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -69,6 +70,13 @@ func (x *GetFollowFollowingCheckRequest) GetOwnerUserID() string {
 func (x *GetFollowFollowingCheckRequest) GetTargetUserID() string {
 	if x != nil {
 		return x.TargetUserID
+	}
+	return ""
+}
+
+func (x *GetFollowFollowingCheckRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -128,6 +136,7 @@ func (x *GetFollowFollowingCheckResponse) GetIsFollowing() bool {
 type UsernameAvailableRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -165,6 +174,13 @@ func (*UsernameAvailableRequest) Descriptor() ([]byte, []int) {
 func (x *UsernameAvailableRequest) GetUsername() string {
 	if x != nil {
 		return x.Username
+	}
+	return ""
+}
+
+func (x *UsernameAvailableRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -217,6 +233,7 @@ type VerifyTwoFactorAuthRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	TwoFactorCode string                 `protobuf:"bytes,2,opt,name=twoFactorCode,proto3" json:"twoFactorCode,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -261,6 +278,13 @@ func (x *VerifyTwoFactorAuthRequest) GetUserID() string {
 func (x *VerifyTwoFactorAuthRequest) GetTwoFactorCode() string {
 	if x != nil {
 		return x.TwoFactorCode
+	}
+	return ""
+}
+
+func (x *VerifyTwoFactorAuthRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -320,6 +344,7 @@ func (x *VerifyTwoFactorAuthResponse) GetVerified() bool {
 type GoogleLoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IdToken       string                 `protobuf:"bytes,1,opt,name=id_token,json=idToken,proto3" json:"id_token,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -361,10 +386,18 @@ func (x *GoogleLoginRequest) GetIdToken() string {
 	return ""
 }
 
+func (x *GoogleLoginRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type SetUpTwoFactorAuthRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -409,6 +442,13 @@ func (x *SetUpTwoFactorAuthRequest) GetUserID() string {
 func (x *SetUpTwoFactorAuthRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
+	}
+	return ""
+}
+
+func (x *SetUpTwoFactorAuthRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -486,6 +526,7 @@ type DisableTwoFactorAuthRequest struct {
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	Otp           string                 `protobuf:"bytes,3,opt,name=otp,proto3" json:"otp,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -537,6 +578,13 @@ func (x *DisableTwoFactorAuthRequest) GetPassword() string {
 func (x *DisableTwoFactorAuthRequest) GetOtp() string {
 	if x != nil {
 		return x.Otp
+	}
+	return ""
+}
+
+func (x *DisableTwoFactorAuthRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -596,6 +644,7 @@ func (x *DisableTwoFactorAuthResponse) GetErrorType() string {
 type GetTwoFactorAuthStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -633,6 +682,13 @@ func (*GetTwoFactorAuthStatusRequest) Descriptor() ([]byte, []int) {
 func (x *GetTwoFactorAuthStatusRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *GetTwoFactorAuthStatusRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -711,6 +767,7 @@ type RegisterUserRequest struct {
 	MuteNotifications bool                   `protobuf:"varint,11,opt,name=muteNotifications,proto3" json:"muteNotifications,omitempty"`
 	Socials           *Socials               `protobuf:"bytes,12,opt,name=socials,proto3" json:"socials,omitempty"`
 	TwoFactorAuth     bool                   `protobuf:"varint,13,opt,name=twoFactorAuth,proto3" json:"twoFactorAuth,omitempty"`
+	TraceID           string                 `protobuf:"bytes,14,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -829,6 +886,13 @@ func (x *RegisterUserRequest) GetTwoFactorAuth() bool {
 	return false
 }
 
+func (x *RegisterUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type RegisterUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
@@ -926,6 +990,7 @@ type LoginUserRequest struct {
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	TwoFactorCode string                 `protobuf:"bytes,3,opt,name=twoFactorCode,proto3" json:"twoFactorCode,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -981,10 +1046,18 @@ func (x *LoginUserRequest) GetTwoFactorCode() string {
 	return ""
 }
 
+func (x *LoginUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type TwoFactorAuthRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	TwoFactorCode string                 `protobuf:"bytes,2,opt,name=twoFactorCode,proto3" json:"twoFactorCode,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1029,6 +1102,13 @@ func (x *TwoFactorAuthRequest) GetUserID() string {
 func (x *TwoFactorAuthRequest) GetTwoFactorCode() string {
 	if x != nil {
 		return x.TwoFactorCode
+	}
+	return ""
+}
+
+func (x *TwoFactorAuthRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1180,6 +1260,7 @@ func (x *LoginUserResponse) GetErrorType() string {
 type TokenRefreshRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refreshToken,proto3" json:"refreshToken,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1217,6 +1298,13 @@ func (*TokenRefreshRequest) Descriptor() ([]byte, []int) {
 func (x *TokenRefreshRequest) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *TokenRefreshRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1300,6 +1388,7 @@ func (x *TokenRefreshResponse) GetErrorType() string {
 type LogoutRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1337,6 +1426,13 @@ func (*LogoutRequest) Descriptor() ([]byte, []int) {
 func (x *LogoutRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *LogoutRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1396,6 +1492,7 @@ func (x *LogoutResponse) GetErrorType() string {
 type ResendEmailVerificationRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1433,6 +1530,13 @@ func (*ResendEmailVerificationRequest) Descriptor() ([]byte, []int) {
 func (x *ResendEmailVerificationRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *ResendEmailVerificationRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1501,6 +1605,7 @@ type VerifyUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1545,6 +1650,13 @@ func (x *VerifyUserRequest) GetEmail() string {
 func (x *VerifyUserRequest) GetToken() string {
 	if x != nil {
 		return x.Token
+	}
+	return ""
+}
+
+func (x *VerifyUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1614,6 +1726,7 @@ type ToggleTwoFactorAuthRequest struct {
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	TwoFactorAuth bool                   `protobuf:"varint,3,opt,name=twoFactorAuth,proto3" json:"twoFactorAuth,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1667,6 +1780,13 @@ func (x *ToggleTwoFactorAuthRequest) GetTwoFactorAuth() bool {
 		return x.TwoFactorAuth
 	}
 	return false
+}
+
+func (x *ToggleTwoFactorAuthRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type ToggleTwoFactorAuthResponse struct {
@@ -1724,6 +1844,7 @@ func (x *ToggleTwoFactorAuthResponse) GetErrorType() string {
 type ForgotPasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1761,6 +1882,13 @@ func (*ForgotPasswordRequest) Descriptor() ([]byte, []int) {
 func (x *ForgotPasswordRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *ForgotPasswordRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1831,6 +1959,7 @@ type FinishForgotPasswordRequest struct {
 	Token           string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	NewPassword     string                 `protobuf:"bytes,3,opt,name=newPassword,proto3" json:"newPassword,omitempty"`
 	ConfirmPassword string                 `protobuf:"bytes,4,opt,name=confirmPassword,proto3" json:"confirmPassword,omitempty"`
+	TraceID         string                 `protobuf:"bytes,5,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1893,6 +2022,13 @@ func (x *FinishForgotPasswordRequest) GetConfirmPassword() string {
 	return ""
 }
 
+func (x *FinishForgotPasswordRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type FinishForgotPasswordResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
@@ -1951,6 +2087,7 @@ type ChangePasswordRequest struct {
 	OldPassword     string                 `protobuf:"bytes,2,opt,name=oldPassword,proto3" json:"oldPassword,omitempty"`
 	NewPassword     string                 `protobuf:"bytes,3,opt,name=newPassword,proto3" json:"newPassword,omitempty"`
 	ConfirmPassword string                 `protobuf:"bytes,4,opt,name=confirmPassword,proto3" json:"confirmPassword,omitempty"`
+	TraceID         string                 `protobuf:"bytes,5,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2009,6 +2146,13 @@ func (x *ChangePasswordRequest) GetNewPassword() string {
 func (x *ChangePasswordRequest) GetConfirmPassword() string {
 	if x != nil {
 		return x.ConfirmPassword
+	}
+	return ""
+}
+
+func (x *ChangePasswordRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2077,6 +2221,7 @@ type UpdateProfileRequest struct {
 	MuteNotifications bool                   `protobuf:"varint,7,opt,name=muteNotifications,proto3" json:"muteNotifications,omitempty"`
 	Socials           *Socials               `protobuf:"bytes,8,opt,name=socials,proto3" json:"socials,omitempty"`
 	Bio               string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
+	TraceID           string                 `protobuf:"bytes,10,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -2174,6 +2319,13 @@ func (x *UpdateProfileRequest) GetBio() string {
 	return ""
 }
 
+func (x *UpdateProfileRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type UpdateProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
@@ -2238,6 +2390,7 @@ type UpdateProfileImageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	AvatarURL     string                 `protobuf:"bytes,2,opt,name=avatarURL,proto3" json:"avatarURL,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2282,6 +2435,13 @@ func (x *UpdateProfileImageRequest) GetUserID() string {
 func (x *UpdateProfileImageRequest) GetAvatarURL() string {
 	if x != nil {
 		return x.AvatarURL
+	}
+	return ""
+}
+
+func (x *UpdateProfileImageRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2350,6 +2510,7 @@ type GetUserProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	UserName      *string                `protobuf:"bytes,2,opt,name=userName,proto3,oneof" json:"userName,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2394,6 +2555,13 @@ func (x *GetUserProfileRequest) GetUserID() string {
 func (x *GetUserProfileRequest) GetUserName() string {
 	if x != nil && x.UserName != nil {
 		return *x.UserName
+	}
+	return ""
+}
+
+func (x *GetUserProfileRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2461,6 +2629,7 @@ func (x *GetUserProfileResponse) GetErrorType() string {
 type CheckBanStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2498,6 +2667,13 @@ func (*CheckBanStatusRequest) Descriptor() ([]byte, []int) {
 func (x *CheckBanStatusRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *CheckBanStatusRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2583,6 +2759,7 @@ type FollowUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FollowerID    string                 `protobuf:"bytes,1,opt,name=followerID,proto3" json:"followerID,omitempty"`
 	FolloweeID    string                 `protobuf:"bytes,2,opt,name=followeeID,proto3" json:"followeeID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2627,6 +2804,13 @@ func (x *FollowUserRequest) GetFollowerID() string {
 func (x *FollowUserRequest) GetFolloweeID() string {
 	if x != nil {
 		return x.FolloweeID
+	}
+	return ""
+}
+
+func (x *FollowUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2687,6 +2871,7 @@ type UnfollowUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FollowerID    string                 `protobuf:"bytes,1,opt,name=followerID,proto3" json:"followerID,omitempty"`
 	FolloweeID    string                 `protobuf:"bytes,2,opt,name=followeeID,proto3" json:"followeeID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2731,6 +2916,13 @@ func (x *UnfollowUserRequest) GetFollowerID() string {
 func (x *UnfollowUserRequest) GetFolloweeID() string {
 	if x != nil {
 		return x.FolloweeID
+	}
+	return ""
+}
+
+func (x *UnfollowUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2792,6 +2984,7 @@ type GetFollowingRequest struct {
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	PageToken     string                 `protobuf:"bytes,2,opt,name=pageToken,proto3" json:"pageToken,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2845,6 +3038,13 @@ func (x *GetFollowingRequest) GetLimit() int32 {
 		return x.Limit
 	}
 	return 0
+}
+
+func (x *GetFollowingRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type GetFollowingResponse struct {
@@ -2928,6 +3128,7 @@ type GetFollowersRequest struct {
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	PageToken     string                 `protobuf:"bytes,2,opt,name=pageToken,proto3" json:"pageToken,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2981,6 +3182,13 @@ func (x *GetFollowersRequest) GetLimit() int32 {
 		return x.Limit
 	}
 	return 0
+}
+
+func (x *GetFollowersRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type GetFollowersResponse struct {
@@ -3073,6 +3281,7 @@ type CreateUserAdminRequest struct {
 	ConfirmPassword   string                 `protobuf:"bytes,9,opt,name=confirmPassword,proto3" json:"confirmPassword,omitempty"`
 	MuteNotifications bool                   `protobuf:"varint,10,opt,name=muteNotifications,proto3" json:"muteNotifications,omitempty"`
 	Socials           *Socials               `protobuf:"bytes,11,opt,name=socials,proto3" json:"socials,omitempty"`
+	TraceID           string                 `protobuf:"bytes,12,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -3184,6 +3393,13 @@ func (x *CreateUserAdminRequest) GetSocials() *Socials {
 	return nil
 }
 
+func (x *CreateUserAdminRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type CreateUserAdminResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
@@ -3256,6 +3472,7 @@ type UpdateUserAdminRequest struct {
 	PrimaryLanguageID string                 `protobuf:"bytes,8,opt,name=primaryLanguageID,proto3" json:"primaryLanguageID,omitempty"`
 	MuteNotifications bool                   `protobuf:"varint,9,opt,name=muteNotifications,proto3" json:"muteNotifications,omitempty"`
 	Socials           *Socials               `protobuf:"bytes,10,opt,name=socials,proto3" json:"socials,omitempty"`
+	TraceID           string                 `protobuf:"bytes,11,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -3360,6 +3577,13 @@ func (x *UpdateUserAdminRequest) GetSocials() *Socials {
 	return nil
 }
 
+func (x *UpdateUserAdminRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type UpdateUserAdminResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
@@ -3428,6 +3652,7 @@ type BanUserRequest struct {
 	BanReason     string                 `protobuf:"bytes,4,opt,name=banReason,proto3" json:"banReason,omitempty"`
 	BannedAt      int64                  `protobuf:"varint,5,opt,name=bannedAt,proto3" json:"bannedAt,omitempty"`
 	BanExpiry     int64                  `protobuf:"varint,6,opt,name=banExpiry,proto3" json:"banExpiry,omitempty"`
+	TraceID       string                 `protobuf:"bytes,7,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3504,6 +3729,13 @@ func (x *BanUserRequest) GetBanExpiry() int64 {
 	return 0
 }
 
+func (x *BanUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type BanUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
@@ -3559,6 +3791,7 @@ func (x *BanUserResponse) GetErrorType() string {
 type UnbanUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3596,6 +3829,13 @@ func (*UnbanUserRequest) Descriptor() ([]byte, []int) {
 func (x *UnbanUserRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *UnbanUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -3655,6 +3895,7 @@ func (x *UnbanUserResponse) GetErrorType() string {
 type VerifyAdminUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3692,6 +3933,13 @@ func (*VerifyAdminUserRequest) Descriptor() ([]byte, []int) {
 func (x *VerifyAdminUserRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *VerifyAdminUserRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -3751,6 +3999,7 @@ func (x *VerifyAdminUserResponse) GetErrorType() string {
 type UnverifyUserAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3788,6 +4037,13 @@ func (*UnverifyUserAdminRequest) Descriptor() ([]byte, []int) {
 func (x *UnverifyUserAdminRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *UnverifyUserAdminRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -3847,6 +4103,7 @@ func (x *UnverifyUserAdminResponse) GetErrorType() string {
 type SoftDeleteUserAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3884,6 +4141,13 @@ func (*SoftDeleteUserAdminRequest) Descriptor() ([]byte, []int) {
 func (x *SoftDeleteUserAdminRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *SoftDeleteUserAdminRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -3951,6 +4215,7 @@ type GetAllUsersRequest struct {
 	EmailFilter    string                 `protobuf:"bytes,7,opt,name=emailFilter,proto3" json:"emailFilter,omitempty"`
 	FromDateFilter int64                  `protobuf:"varint,8,opt,name=fromDateFilter,proto3" json:"fromDateFilter,omitempty"`
 	ToDateFilter   int64                  `protobuf:"varint,9,opt,name=toDateFilter,proto3" json:"toDateFilter,omitempty"`
+	TraceID        string                 `protobuf:"bytes,10,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -4046,6 +4311,13 @@ func (x *GetAllUsersRequest) GetToDateFilter() int64 {
 		return x.ToDateFilter
 	}
 	return 0
+}
+
+func (x *GetAllUsersRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type GetAllUsersResponse struct {
@@ -4392,6 +4664,7 @@ func (x *UserProfile) GetBio() string {
 type BanHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4429,6 +4702,13 @@ func (*BanHistoryRequest) Descriptor() ([]byte, []int) {
 func (x *BanHistoryRequest) GetUserID() string {
 	if x != nil {
 		return x.UserID
+	}
+	return ""
+}
+
+func (x *BanHistoryRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -4581,6 +4861,7 @@ type LoginAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4625,6 +4906,13 @@ func (x *LoginAdminRequest) GetEmail() string {
 func (x *LoginAdminRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
+	}
+	return ""
+}
+
+func (x *LoginAdminRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -4718,6 +5006,7 @@ type SearchUsersRequest struct {
 	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	PageToken     string                 `protobuf:"bytes,2,opt,name=pageToken,proto3" json:"pageToken,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4771,6 +5060,13 @@ func (x *SearchUsersRequest) GetLimit() int32 {
 		return x.Limit
 	}
 	return 0
+}
+
+func (x *SearchUsersRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type SearchUsersResponse struct {
@@ -4853,6 +5149,7 @@ type AdminLoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4897,6 +5194,13 @@ func (x *AdminLoginRequest) GetEmail() string {
 func (x *AdminLoginRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
+	}
+	return ""
+}
+
+func (x *AdminLoginRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -5064,6 +5368,7 @@ func (x *AdminProfile) GetAvatarURL() string {
 type AdminProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AdminID       string                 `protobuf:"bytes,1,opt,name=adminID,proto3" json:"adminID,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5101,6 +5406,13 @@ func (*AdminProfileRequest) Descriptor() ([]byte, []int) {
 func (x *AdminProfileRequest) GetAdminID() string {
 	if x != nil {
 		return x.AdminID
+	}
+	return ""
+}
+
+func (x *AdminProfileRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -5169,51 +5481,58 @@ var File_AuthUserAdminService_authuseradmin_proto protoreflect.FileDescriptor
 
 const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\n" +
-	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"f\n" +
+	"(AuthUserAdminService/authuseradmin.proto\x12\rauthuseradmin\"\x80\x01\n" +
 	"\x1eGetFollowFollowingCheckRequest\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
-	"\ftargetUserID\x18\x02 \x01(\tR\ftargetUserID\"c\n" +
+	"\ftargetUserID\x18\x02 \x01(\tR\ftargetUserID\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"c\n" +
 	"\x1fGetFollowFollowingCheckResponse\x12\x1e\n" +
 	"\n" +
 	"isFollower\x18\x01 \x01(\bR\n" +
 	"isFollower\x12 \n" +
-	"\visFollowing\x18\x02 \x01(\bR\visFollowing\"6\n" +
+	"\visFollowing\x18\x02 \x01(\bR\visFollowing\"P\n" +
 	"\x18UsernameAvailableRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\"3\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"3\n" +
 	"\x19UsernameAvailableResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\bR\x06status\"Z\n" +
+	"\x06status\x18\x01 \x01(\bR\x06status\"t\n" +
 	"\x1aVerifyTwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12$\n" +
-	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\"S\n" +
+	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"S\n" +
 	"\x1bVerifyTwoFactorAuthResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1a\n" +
-	"\bverified\x18\x02 \x01(\bR\bverified\"/\n" +
+	"\bverified\x18\x02 \x01(\bR\bverified\"I\n" +
 	"\x12GoogleLoginRequest\x12\x19\n" +
-	"\bid_token\x18\x01 \x01(\tR\aidToken\"O\n" +
+	"\bid_token\x18\x01 \x01(\tR\aidToken\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"i\n" +
 	"\x19SetUpTwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x83\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\x83\x01\n" +
 	"\x1aSetUpTwoFactorAuthResponse\x12\x14\n" +
 	"\x05image\x18\x01 \x01(\tR\x05image\x12\x16\n" +
 	"\x06secret\x18\x02 \x01(\tR\x06secret\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x04 \x01(\tR\terrorType\"c\n" +
+	"error_type\x18\x04 \x01(\tR\terrorType\"}\n" +
 	"\x1bDisableTwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x10\n" +
-	"\x03otp\x18\x03 \x01(\tR\x03otp\"W\n" +
+	"\x03otp\x18\x03 \x01(\tR\x03otp\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"W\n" +
 	"\x1cDisableTwoFactorAuthResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"5\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"O\n" +
 	"\x1dGetTwoFactorAuthStatusRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"w\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"w\n" +
 	"\x1eGetTwoFactorAuthStatusResponse\x12\x1c\n" +
 	"\tisEnabled\x18\x01 \x01(\bR\tisEnabled\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\xa9\x03\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\xc3\x03\n" +
 	"\x13RegisterUserRequest\x12\x1c\n" +
 	"\tfirstName\x18\x01 \x01(\tR\tfirstName\x12\x1a\n" +
 	"\blastName\x18\x02 \x01(\tR\blastName\x12\x18\n" +
@@ -5227,7 +5546,8 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	" \x01(\tR\x0fconfirmPassword\x12,\n" +
 	"\x11muteNotifications\x18\v \x01(\bR\x11muteNotifications\x120\n" +
 	"\asocials\x18\f \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12$\n" +
-	"\rtwoFactorAuth\x18\r \x01(\bR\rtwoFactorAuth\"\x89\x02\n" +
+	"\rtwoFactorAuth\x18\r \x01(\bR\rtwoFactorAuth\x12\x18\n" +
+	"\atraceID\x18\x0e \x01(\tR\atraceID\"\x89\x02\n" +
 	"\x14RegisterUserResponse\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12 \n" +
 	"\vaccessToken\x18\x02 \x01(\tR\vaccessToken\x12\"\n" +
@@ -5236,14 +5556,16 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\vuserProfile\x18\x05 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x18\n" +
 	"\amessage\x18\x06 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\a \x01(\tR\terrorType\"j\n" +
+	"error_type\x18\a \x01(\tR\terrorType\"\x84\x01\n" +
 	"\x10LoginUserRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12$\n" +
-	"\rtwoFactorCode\x18\x03 \x01(\tR\rtwoFactorCode\"T\n" +
+	"\rtwoFactorCode\x18\x03 \x01(\tR\rtwoFactorCode\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"n\n" +
 	"\x14TwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12$\n" +
-	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\"P\n" +
+	"\rtwoFactorCode\x18\x02 \x01(\tR\rtwoFactorCode\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"P\n" +
 	"\x15TwoFactorAuthResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
@@ -5256,70 +5578,78 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\vuserProfile\x18\x05 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x18\n" +
 	"\amessage\x18\x06 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\a \x01(\tR\terrorType\"9\n" +
+	"error_type\x18\a \x01(\tR\terrorType\"S\n" +
 	"\x13TokenRefreshRequest\x12\"\n" +
-	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"\xa7\x01\n" +
+	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\xa7\x01\n" +
 	"\x14TokenRefreshResponse\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\x1c\n" +
 	"\texpiresIn\x18\x02 \x01(\x05R\texpiresIn\x12\x16\n" +
 	"\x06userID\x18\x03 \x01(\tR\x06userID\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"'\n" +
+	"error_type\x18\x05 \x01(\tR\terrorType\"A\n" +
 	"\rLogoutRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"I\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"I\n" +
 	"\x0eLogoutResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"6\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"P\n" +
 	"\x1eResendEmailVerificationRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"v\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"v\n" +
 	"\x1fResendEmailVerificationResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1a\n" +
 	"\bexpiryAt\x18\x02 \x01(\x03R\bexpiryAt\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"?\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"Y\n" +
 	"\x11VerifyUserRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"e\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"e\n" +
 	"\x12VerifyUserResponse\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"v\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\x90\x01\n" +
 	"\x1aToggleTwoFactorAuthRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12$\n" +
-	"\rtwoFactorAuth\x18\x03 \x01(\bR\rtwoFactorAuth\"V\n" +
+	"\rtwoFactorAuth\x18\x03 \x01(\bR\rtwoFactorAuth\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"V\n" +
 	"\x1bToggleTwoFactorAuthResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"-\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"G\n" +
 	"\x15ForgotPasswordRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"g\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"g\n" +
 	"\x16ForgotPasswordResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\x95\x01\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\xaf\x01\n" +
 	"\x1bFinishForgotPasswordRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12 \n" +
 	"\vnewPassword\x18\x03 \x01(\tR\vnewPassword\x12(\n" +
-	"\x0fconfirmPassword\x18\x04 \x01(\tR\x0fconfirmPassword\"W\n" +
+	"\x0fconfirmPassword\x18\x04 \x01(\tR\x0fconfirmPassword\x12\x18\n" +
+	"\atraceID\x18\x05 \x01(\tR\atraceID\"W\n" +
 	"\x1cFinishForgotPasswordResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"\x9d\x01\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"\xb7\x01\n" +
 	"\x15ChangePasswordRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12 \n" +
 	"\voldPassword\x18\x02 \x01(\tR\voldPassword\x12 \n" +
 	"\vnewPassword\x18\x03 \x01(\tR\vnewPassword\x12(\n" +
-	"\x0fconfirmPassword\x18\x04 \x01(\tR\x0fconfirmPassword\"Q\n" +
+	"\x0fconfirmPassword\x18\x04 \x01(\tR\x0fconfirmPassword\x12\x18\n" +
+	"\atraceID\x18\x05 \x01(\tR\atraceID\"Q\n" +
 	"\x16ChangePasswordResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"\xbe\x02\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"\xd8\x02\n" +
 	"\x14UpdateProfileRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\buserName\x18\x02 \x01(\tR\buserName\x12\x1c\n" +
@@ -5329,64 +5659,72 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x11primaryLanguageID\x18\x06 \x01(\tR\x11primaryLanguageID\x12,\n" +
 	"\x11muteNotifications\x18\a \x01(\bR\x11muteNotifications\x120\n" +
 	"\asocials\x18\b \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\"\x8e\x01\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
+	"\atraceID\x18\n" +
+	" \x01(\tR\atraceID\"\x8e\x01\n" +
 	"\x15UpdateProfileResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
 	"\vuserProfile\x18\x02 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"Q\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"k\n" +
 	"\x19UpdateProfileImageRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1c\n" +
-	"\tavatarURL\x18\x02 \x01(\tR\tavatarURL\"s\n" +
+	"\tavatarURL\x18\x02 \x01(\tR\tavatarURL\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"s\n" +
 	"\x1aUpdateProfileImageResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1c\n" +
 	"\tavatarURL\x18\x02 \x01(\tR\tavatarURL\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"]\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"w\n" +
 	"\x15GetUserProfileRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1f\n" +
-	"\buserName\x18\x02 \x01(\tH\x00R\buserName\x88\x01\x01B\v\n" +
+	"\buserName\x18\x02 \x01(\tH\x00R\buserName\x88\x01\x01\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceIDB\v\n" +
 	"\t_userName\"\x8f\x01\n" +
 	"\x16GetUserProfileResponse\x12<\n" +
 	"\vuserProfile\x18\x01 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"/\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"I\n" +
 	"\x15CheckBanStatusRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"\xab\x01\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\xab\x01\n" +
 	"\x16CheckBanStatusResponse\x12\x1a\n" +
 	"\bisBanned\x18\x01 \x01(\bR\bisBanned\x12\x16\n" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\x12$\n" +
 	"\rbanExpiration\x18\x03 \x01(\x03R\rbanExpiration\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"S\n" +
+	"error_type\x18\x05 \x01(\tR\terrorType\"m\n" +
 	"\x11FollowUserRequest\x12\x1e\n" +
 	"\n" +
 	"followerID\x18\x01 \x01(\tR\n" +
 	"followerID\x12\x1e\n" +
 	"\n" +
 	"followeeID\x18\x02 \x01(\tR\n" +
-	"followeeID\"M\n" +
+	"followeeID\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"M\n" +
 	"\x12FollowUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"U\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"o\n" +
 	"\x13UnfollowUserRequest\x12\x1e\n" +
 	"\n" +
 	"followerID\x18\x01 \x01(\tR\n" +
 	"followerID\x12\x1e\n" +
 	"\n" +
 	"followeeID\x18\x02 \x01(\tR\n" +
-	"followeeID\"O\n" +
+	"followeeID\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"O\n" +
 	"\x14UnfollowUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"a\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"{\n" +
 	"\x13GetFollowingRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1c\n" +
 	"\tpageToken\x18\x02 \x01(\tR\tpageToken\x12\x14\n" +
-	"\x05limit\x18\x03 \x01(\x05R\x05limit\"\xc7\x01\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"\xc7\x01\n" +
 	"\x14GetFollowingResponse\x120\n" +
 	"\x05users\x18\x01 \x03(\v2\x1a.authuseradmin.UserProfileR\x05users\x12\x1e\n" +
 	"\n" +
@@ -5395,11 +5733,12 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\rnextPageToken\x18\x03 \x01(\tR\rnextPageToken\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"a\n" +
+	"error_type\x18\x05 \x01(\tR\terrorType\"{\n" +
 	"\x13GetFollowersRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1c\n" +
 	"\tpageToken\x18\x02 \x01(\tR\tpageToken\x12\x14\n" +
-	"\x05limit\x18\x03 \x01(\x05R\x05limit\"\xc7\x01\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"\xc7\x01\n" +
 	"\x14GetFollowersResponse\x120\n" +
 	"\x05users\x18\x01 \x03(\v2\x1a.authuseradmin.UserProfileR\x05users\x12\x1e\n" +
 	"\n" +
@@ -5408,7 +5747,7 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\rnextPageToken\x18\x03 \x01(\tR\rnextPageToken\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"\x86\x03\n" +
+	"error_type\x18\x05 \x01(\tR\terrorType\"\xa0\x03\n" +
 	"\x16CreateUserAdminRequest\x12\x1c\n" +
 	"\tfirstName\x18\x01 \x01(\tR\tfirstName\x12\x1a\n" +
 	"\blastName\x18\x02 \x01(\tR\blastName\x12\x18\n" +
@@ -5421,12 +5760,13 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x0fconfirmPassword\x18\t \x01(\tR\x0fconfirmPassword\x12,\n" +
 	"\x11muteNotifications\x18\n" +
 	" \x01(\bR\x11muteNotifications\x120\n" +
-	"\asocials\x18\v \x01(\v2\x16.authuseradmin.SocialsR\asocials\"j\n" +
+	"\asocials\x18\v \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12\x18\n" +
+	"\atraceID\x18\f \x01(\tR\atraceID\"j\n" +
 	"\x17CreateUserAdminResponse\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\xd8\x02\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\xf2\x02\n" +
 	"\x16UpdateUserAdminRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1c\n" +
 	"\tfirstName\x18\x02 \x01(\tR\tfirstName\x12\x1a\n" +
@@ -5438,47 +5778,53 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x11primaryLanguageID\x18\b \x01(\tR\x11primaryLanguageID\x12,\n" +
 	"\x11muteNotifications\x18\t \x01(\bR\x11muteNotifications\x120\n" +
 	"\asocials\x18\n" +
-	" \x01(\v2\x16.authuseradmin.SocialsR\asocials\"\x90\x01\n" +
+	" \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12\x18\n" +
+	"\atraceID\x18\v \x01(\tR\atraceID\"\x90\x01\n" +
 	"\x17UpdateUserAdminResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12<\n" +
 	"\vuserProfile\x18\x02 \x01(\v2\x1a.authuseradmin.UserProfileR\vuserProfile\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\xb2\x01\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\xcc\x01\n" +
 	"\x0eBanUserRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x16\n" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\x12\x18\n" +
 	"\abanType\x18\x03 \x01(\tR\abanType\x12\x1c\n" +
 	"\tbanReason\x18\x04 \x01(\tR\tbanReason\x12\x1a\n" +
 	"\bbannedAt\x18\x05 \x01(\x03R\bbannedAt\x12\x1c\n" +
-	"\tbanExpiry\x18\x06 \x01(\x03R\tbanExpiry\"J\n" +
+	"\tbanExpiry\x18\x06 \x01(\x03R\tbanExpiry\x12\x18\n" +
+	"\atraceID\x18\a \x01(\tR\atraceID\"J\n" +
 	"\x0fBanUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"*\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"D\n" +
 	"\x10UnbanUserRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"L\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"L\n" +
 	"\x11UnbanUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"0\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"J\n" +
 	"\x16VerifyAdminUserRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"R\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"R\n" +
 	"\x17VerifyAdminUserResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"2\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"L\n" +
 	"\x18UnverifyUserAdminRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"T\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"T\n" +
 	"\x19UnverifyUserAdminResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"4\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"N\n" +
 	"\x1aSoftDeleteUserAdminRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"V\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"V\n" +
 	"\x1bSoftDeleteUserAdminResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x02 \x01(\tR\terrorType\"\xc8\x02\n" +
+	"error_type\x18\x02 \x01(\tR\terrorType\"\xe2\x02\n" +
 	"\x12GetAllUsersRequest\x12$\n" +
 	"\rnextPageToken\x18\x01 \x01(\tR\rnextPageToken\x12$\n" +
 	"\rprevPageToken\x18\x02 \x01(\tR\rprevPageToken\x12\x14\n" +
@@ -5492,7 +5838,9 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"nameFilter\x12 \n" +
 	"\vemailFilter\x18\a \x01(\tR\vemailFilter\x12&\n" +
 	"\x0efromDateFilter\x18\b \x01(\x03R\x0efromDateFilter\x12\"\n" +
-	"\ftoDateFilter\x18\t \x01(\x03R\ftoDateFilter\"\xec\x01\n" +
+	"\ftoDateFilter\x18\t \x01(\x03R\ftoDateFilter\x12\x18\n" +
+	"\atraceID\x18\n" +
+	" \x01(\tR\atraceID\"\xec\x01\n" +
 	"\x13GetAllUsersResponse\x120\n" +
 	"\x05users\x18\x01 \x03(\v2\x1a.authuseradmin.UserProfileR\x05users\x12\x1e\n" +
 	"\n" +
@@ -5532,9 +5880,10 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x11 \x01(\x03R\tcreatedAt\x12\x1c\n" +
 	"\tupdatedAt\x18\x12 \x01(\x03R\tupdatedAt\x120\n" +
 	"\asocials\x18\x13 \x01(\v2\x16.authuseradmin.SocialsR\asocials\x12\x10\n" +
-	"\x03Bio\x18\x14 \x01(\tR\x03Bio\"+\n" +
+	"\x03Bio\x18\x14 \x01(\tR\x03Bio\"E\n" +
 	"\x11BanHistoryRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"|\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"|\n" +
 	"\x12BanHistoryResponse\x12-\n" +
 	"\x04bans\x18\x01 \x03(\v2\x19.authuseradmin.BanHistoryR\x04bans\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
@@ -5547,10 +5896,11 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\bbannedAt\x18\x03 \x01(\x03R\bbannedAt\x12\x18\n" +
 	"\abanType\x18\x04 \x01(\tR\abanType\x12\x1c\n" +
 	"\tbanReason\x18\x05 \x01(\tR\tbanReason\x12\x1c\n" +
-	"\tbanExpiry\x18\x06 \x01(\x03R\tbanExpiry\"E\n" +
+	"\tbanExpiry\x18\x06 \x01(\x03R\tbanExpiry\"_\n" +
 	"\x11LoginAdminRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xcb\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xcb\x01\n" +
 	"\x12LoginAdminResponse\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
 	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\x12\x1c\n" +
@@ -5558,11 +5908,12 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\aadminID\x18\x04 \x01(\tR\aadminID\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x06 \x01(\tR\terrorType\"^\n" +
+	"error_type\x18\x06 \x01(\tR\terrorType\"x\n" +
 	"\x12SearchUsersRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12\x1c\n" +
 	"\tpageToken\x18\x02 \x01(\tR\tpageToken\x12\x14\n" +
-	"\x05limit\x18\x03 \x01(\x05R\x05limit\"\xc6\x01\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"\xc6\x01\n" +
 	"\x13SearchUsersResponse\x120\n" +
 	"\x05users\x18\x01 \x03(\v2\x1a.authuseradmin.UserProfileR\x05users\x12\x1e\n" +
 	"\n" +
@@ -5571,10 +5922,11 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12$\n" +
 	"\rnextPageToken\x18\x04 \x01(\tR\rnextPageToken\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"E\n" +
+	"error_type\x18\x05 \x01(\tR\terrorType\"_\n" +
 	"\x11AdminLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xcb\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xcb\x01\n" +
 	"\x12AdminLoginResponse\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
 	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\x12\x1c\n" +
@@ -5588,9 +5940,10 @@ const file_AuthUserAdminService_authuseradmin_proto_rawDesc = "" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1c\n" +
 	"\tfirstName\x18\x03 \x01(\tR\tfirstName\x12\x1a\n" +
 	"\blastName\x18\x04 \x01(\tR\blastName\x12\x1c\n" +
-	"\tavatarURL\x18\x05 \x01(\tR\tavatarURL\"/\n" +
+	"\tavatarURL\x18\x05 \x01(\tR\tavatarURL\"I\n" +
 	"\x13AdminProfileRequest\x12\x18\n" +
-	"\aadminID\x18\x01 \x01(\tR\aadminID\"\x90\x01\n" +
+	"\aadminID\x18\x01 \x01(\tR\aadminID\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\x90\x01\n" +
 	"\x14AdminProfileResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12?\n" +
 	"\fadminProfile\x18\x02 \x01(\v2\x1b.authuseradmin.AdminProfileR\fadminProfile\x12\x1d\n" +

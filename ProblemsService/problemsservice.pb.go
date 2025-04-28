@@ -27,6 +27,7 @@ type GetChallengeHistoryRequest struct {
 	IsPrivate     *bool                  `protobuf:"varint,2,opt,name=is_private,json=isPrivate,proto3,oneof" json:"is_private,omitempty"`
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	TraceID       string                 `protobuf:"bytes,5,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -87,6 +88,13 @@ func (x *GetChallengeHistoryRequest) GetPageSize() int32 {
 		return x.PageSize
 	}
 	return 0
+}
+
+func (x *GetChallengeHistoryRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type GetChallengeHistoryResponse struct {
@@ -748,6 +756,7 @@ type CreateChallengeRequest struct {
 	ProblemIds    []string               `protobuf:"bytes,5,rep,name=problem_ids,json=problemIds,proto3" json:"problem_ids,omitempty"`
 	TimeLimit     int32                  `protobuf:"varint,6,opt,name=time_limit,json=timeLimit,proto3" json:"time_limit,omitempty"`
 	ExpectedStart int64                  `protobuf:"varint,7,opt,name=expected_start,json=expectedStart,proto3" json:"expected_start,omitempty"`
+	TraceID       string                 `protobuf:"bytes,8,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -831,6 +840,13 @@ func (x *CreateChallengeRequest) GetExpectedStart() int64 {
 	return 0
 }
 
+func (x *CreateChallengeRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type CreateChallengeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -895,6 +911,7 @@ type GetChallengeDetailsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // For user-specific metadata
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -939,6 +956,13 @@ func (x *GetChallengeDetailsRequest) GetId() string {
 func (x *GetChallengeDetailsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetChallengeDetailsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1002,6 +1026,7 @@ type GetPublicChallengesRequest struct {
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	UserId        string                 `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1071,6 +1096,13 @@ func (x *GetPublicChallengesRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetPublicChallengesRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type GetPublicChallengesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Challenges    []*Challenge           `protobuf:"bytes,1,rep,name=challenges,proto3" json:"challenges,omitempty"`
@@ -1120,6 +1152,7 @@ type JoinChallengeRequest struct {
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Password      *string                `protobuf:"bytes,3,opt,name=password,proto3,oneof" json:"password,omitempty"` // Required for private challenges
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1171,6 +1204,13 @@ func (x *JoinChallengeRequest) GetUserId() string {
 func (x *JoinChallengeRequest) GetPassword() string {
 	if x != nil && x.Password != nil {
 		return *x.Password
+	}
+	return ""
+}
+
+func (x *JoinChallengeRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1239,6 +1279,7 @@ type StartChallengeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1283,6 +1324,13 @@ func (x *StartChallengeRequest) GetChallengeId() string {
 func (x *StartChallengeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *StartChallengeRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1343,6 +1391,7 @@ type EndChallengeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1387,6 +1436,13 @@ func (x *EndChallengeRequest) GetChallengeId() string {
 func (x *EndChallengeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *EndChallengeRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1446,6 +1502,7 @@ func (x *EndChallengeResponse) GetLeaderboard() []*LeaderboardEntry {
 type GetSubmissionStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SubmissionId  string                 `protobuf:"bytes,1,opt,name=submission_id,json=submissionId,proto3" json:"submission_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1483,6 +1540,13 @@ func (*GetSubmissionStatusRequest) Descriptor() ([]byte, []int) {
 func (x *GetSubmissionStatusRequest) GetSubmissionId() string {
 	if x != nil {
 		return x.SubmissionId
+	}
+	return ""
+}
+
+func (x *GetSubmissionStatusRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1534,6 +1598,7 @@ func (x *GetSubmissionStatusResponse) GetSubmission() *Submission {
 type GetChallengeSubmissionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1571,6 +1636,13 @@ func (*GetChallengeSubmissionsRequest) Descriptor() ([]byte, []int) {
 func (x *GetChallengeSubmissionsRequest) GetChallengeId() string {
 	if x != nil {
 		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *GetChallengeSubmissionsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1622,6 +1694,7 @@ func (x *GetChallengeSubmissionsResponse) GetSubmissions() []*Submission {
 type GetUserStatsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1659,6 +1732,13 @@ func (*GetUserStatsRequest) Descriptor() ([]byte, []int) {
 func (x *GetUserStatsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetUserStatsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1711,6 +1791,7 @@ type GetChallengeUserStatsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1755,6 +1836,13 @@ func (x *GetChallengeUserStatsRequest) GetChallengeId() string {
 func (x *GetChallengeUserStatsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetChallengeUserStatsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -1838,6 +1926,7 @@ func (x *GetChallengeUserStatsResponse) GetChallengeProblemMetadata() []*Challen
 type GetTopKGlobalRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	K             int32                  `protobuf:"varint,1,opt,name=k,proto3" json:"k,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1877,6 +1966,13 @@ func (x *GetTopKGlobalRequest) GetK() int32 {
 		return x.K
 	}
 	return 0
+}
+
+func (x *GetTopKGlobalRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type GetTopKGlobalResponse struct {
@@ -1926,6 +2022,7 @@ func (x *GetTopKGlobalResponse) GetUsers() []*UserScore {
 type GetTopKEntityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Entity        string                 `protobuf:"bytes,1,opt,name=entity,proto3" json:"entity,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1963,6 +2060,13 @@ func (*GetTopKEntityRequest) Descriptor() ([]byte, []int) {
 func (x *GetTopKEntityRequest) GetEntity() string {
 	if x != nil {
 		return x.Entity
+	}
+	return ""
+}
+
+func (x *GetTopKEntityRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2014,6 +2118,7 @@ func (x *GetTopKEntityResponse) GetUsers() []*UserScore {
 type GetUserRankRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2051,6 +2156,13 @@ func (*GetUserRankRequest) Descriptor() ([]byte, []int) {
 func (x *GetUserRankRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetUserRankRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2110,6 +2222,7 @@ func (x *GetUserRankResponse) GetEntityRank() int32 {
 type GetLeaderboardDataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2147,6 +2260,13 @@ func (*GetLeaderboardDataRequest) Descriptor() ([]byte, []int) {
 func (x *GetLeaderboardDataRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetLeaderboardDataRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -2308,6 +2428,7 @@ type GetMonthlyActivityHeatmapRequest struct {
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	Month         int32                  `protobuf:"varint,2,opt,name=month,proto3" json:"month,omitempty"` // 1 to 12
 	Year          int32                  `protobuf:"varint,3,opt,name=year,proto3" json:"year,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2361,6 +2482,13 @@ func (x *GetMonthlyActivityHeatmapRequest) GetYear() int32 {
 		return x.Year
 	}
 	return 0
+}
+
+func (x *GetMonthlyActivityHeatmapRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type ActivityDay struct {
@@ -2467,118 +2595,6 @@ func (x *GetMonthlyActivityHeatmapResponse) GetData() []*ActivityDay {
 	return nil
 }
 
-type GetLeaderBoardOptionalCountryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          *LeaderboardSingle     `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	FilterType    *string                `protobuf:"bytes,2,opt,name=filter_type,json=filterType,proto3,oneof" json:"filter_type,omitempty"` //country or global
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetLeaderBoardOptionalCountryResponse) Reset() {
-	*x = GetLeaderBoardOptionalCountryResponse{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLeaderBoardOptionalCountryResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLeaderBoardOptionalCountryResponse) ProtoMessage() {}
-
-func (x *GetLeaderBoardOptionalCountryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLeaderBoardOptionalCountryResponse.ProtoReflect.Descriptor instead.
-func (*GetLeaderBoardOptionalCountryResponse) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{41}
-}
-
-func (x *GetLeaderBoardOptionalCountryResponse) GetData() *LeaderboardSingle {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-func (x *GetLeaderBoardOptionalCountryResponse) GetFilterType() string {
-	if x != nil && x.FilterType != nil {
-		return *x.FilterType
-	}
-	return ""
-}
-
-type LeaderboardSingle struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	CountryRank   *int64                 `protobuf:"varint,2,opt,name=country_rank,json=countryRank,proto3,oneof" json:"country_rank,omitempty"`
-	GlobalRank    int64                  `protobuf:"varint,3,opt,name=global_rank,json=globalRank,proto3" json:"global_rank,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LeaderboardSingle) Reset() {
-	*x = LeaderboardSingle{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LeaderboardSingle) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LeaderboardSingle) ProtoMessage() {}
-
-func (x *LeaderboardSingle) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LeaderboardSingle.ProtoReflect.Descriptor instead.
-func (*LeaderboardSingle) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{42}
-}
-
-func (x *LeaderboardSingle) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *LeaderboardSingle) GetCountryRank() int64 {
-	if x != nil && x.CountryRank != nil {
-		return *x.CountryRank
-	}
-	return 0
-}
-
-func (x *LeaderboardSingle) GetGlobalRank() int64 {
-	if x != nil {
-		return x.GlobalRank
-	}
-	return 0
-}
-
 type GetLeaderBoardOptionalCountryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
@@ -2586,13 +2602,14 @@ type GetLeaderBoardOptionalCountryRequest struct {
 	Country       *string                `protobuf:"bytes,3,opt,name=country,proto3,oneof" json:"country,omitempty"`
 	Username      *string                `protobuf:"bytes,4,opt,name=username,proto3,oneof" json:"username,omitempty"`
 	UserId        string                 `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetLeaderBoardOptionalCountryRequest) Reset() {
 	*x = GetLeaderBoardOptionalCountryRequest{}
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2604,7 +2621,7 @@ func (x *GetLeaderBoardOptionalCountryRequest) String() string {
 func (*GetLeaderBoardOptionalCountryRequest) ProtoMessage() {}
 
 func (x *GetLeaderBoardOptionalCountryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2617,7 +2634,7 @@ func (x *GetLeaderBoardOptionalCountryRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use GetLeaderBoardOptionalCountryRequest.ProtoReflect.Descriptor instead.
 func (*GetLeaderBoardOptionalCountryRequest) Descriptor() ([]byte, []int) {
-	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{43}
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *GetLeaderBoardOptionalCountryRequest) GetPage() int64 {
@@ -2655,10 +2672,130 @@ func (x *GetLeaderBoardOptionalCountryRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetLeaderBoardOptionalCountryRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
+type GetLeaderBoardOptionalCountryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          *LeaderboardSingle     `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	FilterType    *string                `protobuf:"bytes,2,opt,name=filter_type,json=filterType,proto3,oneof" json:"filter_type,omitempty"` // country or global
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLeaderBoardOptionalCountryResponse) Reset() {
+	*x = GetLeaderBoardOptionalCountryResponse{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLeaderBoardOptionalCountryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLeaderBoardOptionalCountryResponse) ProtoMessage() {}
+
+func (x *GetLeaderBoardOptionalCountryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLeaderBoardOptionalCountryResponse.ProtoReflect.Descriptor instead.
+func (*GetLeaderBoardOptionalCountryResponse) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *GetLeaderBoardOptionalCountryResponse) GetData() *LeaderboardSingle {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *GetLeaderBoardOptionalCountryResponse) GetFilterType() string {
+	if x != nil && x.FilterType != nil {
+		return *x.FilterType
+	}
+	return ""
+}
+
+type LeaderboardSingle struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	CountryRank   *int64                 `protobuf:"varint,2,opt,name=country_rank,json=countryRank,proto3,oneof" json:"country_rank,omitempty"`
+	GlobalRank    int64                  `protobuf:"varint,3,opt,name=global_rank,json=globalRank,proto3" json:"global_rank,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LeaderboardSingle) Reset() {
+	*x = LeaderboardSingle{}
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LeaderboardSingle) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LeaderboardSingle) ProtoMessage() {}
+
+func (x *LeaderboardSingle) ProtoReflect() protoreflect.Message {
+	mi := &file_ProblemsService_problemsservice_proto_msgTypes[43]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LeaderboardSingle.ProtoReflect.Descriptor instead.
+func (*LeaderboardSingle) Descriptor() ([]byte, []int) {
+	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{43}
+}
+
+func (x *LeaderboardSingle) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *LeaderboardSingle) GetCountryRank() int64 {
+	if x != nil && x.CountryRank != nil {
+		return *x.CountryRank
+	}
+	return 0
+}
+
+func (x *LeaderboardSingle) GetGlobalRank() int64 {
+	if x != nil {
+		return x.GlobalRank
+	}
+	return 0
+}
+
 type GetProblemsDoneStatisticsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      *string                `protobuf:"bytes,1,opt,name=username,proto3,oneof" json:"username,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2703,6 +2840,13 @@ func (x *GetProblemsDoneStatisticsRequest) GetUsername() string {
 func (x *GetProblemsDoneStatisticsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetProblemsDoneStatisticsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -3109,6 +3253,7 @@ type CreateProblemRequest struct {
 	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Tags          []string               `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	Difficulty    string                 `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
+	TraceID       string                 `protobuf:"bytes,5,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3171,6 +3316,13 @@ func (x *CreateProblemRequest) GetDifficulty() string {
 	return ""
 }
 
+func (x *CreateProblemRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type UpdateProblemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
@@ -3178,6 +3330,7 @@ type UpdateProblemRequest struct {
 	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 	Difficulty    *string                `protobuf:"bytes,5,opt,name=difficulty,proto3,oneof" json:"difficulty,omitempty"`
+	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3247,9 +3400,17 @@ func (x *UpdateProblemRequest) GetDifficulty() string {
 	return ""
 }
 
+func (x *UpdateProblemRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type DeleteProblemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3291,9 +3452,17 @@ func (x *DeleteProblemRequest) GetProblemId() string {
 	return ""
 }
 
+func (x *DeleteProblemRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type GetProblemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3335,6 +3504,13 @@ func (x *GetProblemRequest) GetProblemId() string {
 	return ""
 }
 
+func (x *GetProblemRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type ListProblemsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
@@ -3342,6 +3518,7 @@ type ListProblemsRequest struct {
 	Tags          []string               `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	Difficulty    string                 `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	SearchQuery   string                 `protobuf:"bytes,5,opt,name=search_query,json=searchQuery,proto3" json:"search_query,omitempty"`
+	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3411,10 +3588,18 @@ func (x *ListProblemsRequest) GetSearchQuery() string {
 	return ""
 }
 
+func (x *ListProblemsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type AddTestCasesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
 	Testcases     *TestCases             `protobuf:"bytes,2,opt,name=testcases,proto3" json:"testcases,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3463,11 +3648,19 @@ func (x *AddTestCasesRequest) GetTestcases() *TestCases {
 	return nil
 }
 
+func (x *AddTestCasesRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type AddLanguageSupportRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId      string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
 	Language       string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
 	ValidationCode *ValidationCode        `protobuf:"bytes,3,opt,name=validation_code,json=validationCode,proto3" json:"validation_code,omitempty"`
+	TraceID        string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -3523,11 +3716,19 @@ func (x *AddLanguageSupportRequest) GetValidationCode() *ValidationCode {
 	return nil
 }
 
+func (x *AddLanguageSupportRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type UpdateLanguageSupportRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId      string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
 	Language       string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
 	ValidationCode *ValidationCode        `protobuf:"bytes,3,opt,name=validation_code,json=validationCode,proto3" json:"validation_code,omitempty"`
+	TraceID        string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -3583,10 +3784,18 @@ func (x *UpdateLanguageSupportRequest) GetValidationCode() *ValidationCode {
 	return nil
 }
 
+func (x *UpdateLanguageSupportRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
+}
+
 type RemoveLanguageSupportRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
 	Language      string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3631,6 +3840,13 @@ func (x *RemoveLanguageSupportRequest) GetProblemId() string {
 func (x *RemoveLanguageSupportRequest) GetLanguage() string {
 	if x != nil {
 		return x.Language
+	}
+	return ""
+}
+
+func (x *RemoveLanguageSupportRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -4344,6 +4560,7 @@ type DeleteTestCaseRequest struct {
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
 	TestcaseId    string                 `protobuf:"bytes,2,opt,name=testcase_id,json=testcaseId,proto3" json:"testcase_id,omitempty"`
 	IsRunTestcase bool                   `protobuf:"varint,3,opt,name=is_run_testcase,json=isRunTestcase,proto3" json:"is_run_testcase,omitempty"`
+	TraceID       string                 `protobuf:"bytes,4,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4397,6 +4614,13 @@ func (x *DeleteTestCaseRequest) GetIsRunTestcase() bool {
 		return x.IsRunTestcase
 	}
 	return false
+}
+
+func (x *DeleteTestCaseRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
+	}
+	return ""
 }
 
 type DeleteTestCaseResponse struct {
@@ -4462,6 +4686,7 @@ func (x *DeleteTestCaseResponse) GetErrorType() string {
 type GetLanguageSupportsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4499,6 +4724,13 @@ func (*GetLanguageSupportsRequest) Descriptor() ([]byte, []int) {
 func (x *GetLanguageSupportsRequest) GetProblemId() string {
 	if x != nil {
 		return x.ProblemId
+	}
+	return ""
+}
+
+func (x *GetLanguageSupportsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -4582,6 +4814,7 @@ func (x *GetLanguageSupportsResponse) GetErrorType() string {
 type FullValidationByProblemIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,2,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4619,6 +4852,13 @@ func (*FullValidationByProblemIDRequest) Descriptor() ([]byte, []int) {
 func (x *FullValidationByProblemIDRequest) GetProblemId() string {
 	if x != nil {
 		return x.ProblemId
+	}
+	return ""
+}
+
+func (x *FullValidationByProblemIDRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -4691,6 +4931,7 @@ type RunProblemRequest struct {
 	IsRunTestcase bool                   `protobuf:"varint,4,opt,name=is_run_testcase,json=isRunTestcase,proto3" json:"is_run_testcase,omitempty"`
 	UserId        string                 `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Country       *string                `protobuf:"bytes,6,opt,name=country,proto3,oneof" json:"country,omitempty"`
+	TraceID       string                 `protobuf:"bytes,7,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4763,6 +5004,13 @@ func (x *RunProblemRequest) GetUserId() string {
 func (x *RunProblemRequest) GetCountry() string {
 	if x != nil && x.Country != nil {
 		return *x.Country
+	}
+	return ""
+}
+
+func (x *RunProblemRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -5005,6 +5253,7 @@ type GetSubmissionsRequest struct {
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TraceID       string                 `protobuf:"bytes,5,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5063,6 +5312,13 @@ func (x *GetSubmissionsRequest) GetLimit() int32 {
 func (x *GetSubmissionsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetSubmissionsRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -5139,6 +5395,7 @@ type GetProblemByIdSlugRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemId     string                 `protobuf:"bytes,1,opt,name=problem_id,json=problemId,proto3" json:"problem_id,omitempty"`
 	Slug          *string                `protobuf:"bytes,2,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
+	TraceID       string                 `protobuf:"bytes,3,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5183,6 +5440,13 @@ func (x *GetProblemByIdSlugRequest) GetProblemId() string {
 func (x *GetProblemByIdSlugRequest) GetSlug() string {
 	if x != nil && x.Slug != nil {
 		return *x.Slug
+	}
+	return ""
+}
+
+func (x *GetProblemByIdSlugRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -5246,6 +5510,7 @@ type GetProblemMetadataListRequest struct {
 	Tags          []string               `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	Difficulty    string                 `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	SearchQuery   string                 `protobuf:"bytes,5,opt,name=search_query,json=searchQuery,proto3" json:"search_query,omitempty"`
+	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5311,6 +5576,13 @@ func (x *GetProblemMetadataListRequest) GetDifficulty() string {
 func (x *GetProblemMetadataListRequest) GetSearchQuery() string {
 	if x != nil {
 		return x.SearchQuery
+	}
+	return ""
+}
+
+func (x *GetProblemMetadataListRequest) GetTraceID() string {
+	if x != nil {
+		return x.TraceID
 	}
 	return ""
 }
@@ -5479,13 +5751,14 @@ var File_ProblemsService_problemsservice_proto protoreflect.FileDescriptor
 
 const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
-	"%ProblemsService/problemsservice.proto\x12\bproblems\"\x99\x01\n" +
+	"%ProblemsService/problemsservice.proto\x12\bproblems\"\xb3\x01\n" +
 	"\x1aGetChallengeHistoryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\"\n" +
 	"\n" +
 	"is_private\x18\x02 \x01(\bH\x00R\tisPrivate\x88\x01\x01\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSizeB\r\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x18\n" +
+	"\atraceID\x18\x05 \x01(\tR\atraceIDB\r\n" +
 	"\v_is_private\"\xa4\x01\n" +
 	"\x1bGetChallengeHistoryResponse\x123\n" +
 	"\n" +
@@ -5564,7 +5837,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x04rank\x18\x01 \x01(\x05R\x04rank\x12-\n" +
 	"\x12problems_completed\x18\x02 \x01(\x05R\x11problemsCompleted\x12\x1f\n" +
 	"\vtotal_score\x18\x03 \x01(\x05R\n" +
-	"totalScore\"\xf3\x01\n" +
+	"totalScore\"\x8d\x02\n" +
 	"\x16CreateChallengeRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1d\n" +
 	"\n" +
@@ -5578,17 +5851,19 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"problemIds\x12\x1d\n" +
 	"\n" +
 	"time_limit\x18\x06 \x01(\x05R\ttimeLimit\x12%\n" +
-	"\x0eexpected_start\x18\a \x01(\x03R\rexpectedStart\"`\n" +
+	"\x0eexpected_start\x18\a \x01(\x03R\rexpectedStart\x12\x18\n" +
+	"\atraceID\x18\b \x01(\tR\atraceID\"`\n" +
 	"\x17CreateChallengeResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x19\n" +
-	"\bjoin_url\x18\x03 \x01(\tR\ajoinUrl\"E\n" +
+	"\bjoin_url\x18\x03 \x01(\tR\ajoinUrl\"_\n" +
 	"\x1aGetChallengeDetailsRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x8e\x01\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\x8e\x01\n" +
 	"\x1bGetChallengeDetailsResponse\x121\n" +
 	"\tchallenge\x18\x01 \x01(\v2\x13.problems.ChallengeR\tchallenge\x12<\n" +
-	"\vleaderboard\x18\x02 \x03(\v2\x1a.problems.LeaderboardEntryR\vleaderboard\"\xa3\x01\n" +
+	"\vleaderboard\x18\x02 \x03(\v2\x1a.problems.LeaderboardEntryR\vleaderboard\"\xbd\x01\n" +
 	"\x1aGetPublicChallengesRequest\x12\x1e\n" +
 	"\n" +
 	"difficulty\x18\x01 \x01(\tR\n" +
@@ -5596,74 +5871,86 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\tis_active\x18\x02 \x01(\bR\bisActive\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x17\n" +
-	"\auser_id\x18\x05 \x01(\tR\x06userId\"R\n" +
+	"\auser_id\x18\x05 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceID\"R\n" +
 	"\x1bGetPublicChallengesResponse\x123\n" +
 	"\n" +
 	"challenges\x18\x01 \x03(\v2\x13.problems.ChallengeR\n" +
-	"challenges\"\x80\x01\n" +
+	"challenges\"\x9a\x01\n" +
 	"\x14JoinChallengeRequest\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1f\n" +
-	"\bpassword\x18\x03 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
+	"\bpassword\x18\x03 \x01(\tH\x00R\bpassword\x88\x01\x01\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceIDB\v\n" +
 	"\t_password\"n\n" +
 	"\x15JoinChallengeResponse\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"S\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"m\n" +
 	"\x15StartChallengeRequest\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"Q\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"Q\n" +
 	"\x16StartChallengeResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x1d\n" +
 	"\n" +
-	"start_time\x18\x02 \x01(\x03R\tstartTime\"Q\n" +
+	"start_time\x18\x02 \x01(\x03R\tstartTime\"k\n" +
 	"\x13EndChallengeRequest\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"n\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"n\n" +
 	"\x14EndChallengeResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12<\n" +
-	"\vleaderboard\x18\x02 \x03(\v2\x1a.problems.LeaderboardEntryR\vleaderboard\"A\n" +
+	"\vleaderboard\x18\x02 \x03(\v2\x1a.problems.LeaderboardEntryR\vleaderboard\"[\n" +
 	"\x1aGetSubmissionStatusRequest\x12#\n" +
-	"\rsubmission_id\x18\x01 \x01(\tR\fsubmissionId\"S\n" +
+	"\rsubmission_id\x18\x01 \x01(\tR\fsubmissionId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"S\n" +
 	"\x1bGetSubmissionStatusResponse\x124\n" +
 	"\n" +
 	"submission\x18\x01 \x01(\v2\x14.problems.SubmissionR\n" +
-	"submission\"C\n" +
+	"submission\"]\n" +
 	"\x1eGetChallengeSubmissionsRequest\x12!\n" +
-	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\"Y\n" +
+	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"Y\n" +
 	"\x1fGetChallengeSubmissionsResponse\x126\n" +
-	"\vsubmissions\x18\x01 \x03(\v2\x14.problems.SubmissionR\vsubmissions\".\n" +
+	"\vsubmissions\x18\x01 \x03(\v2\x14.problems.SubmissionR\vsubmissions\"H\n" +
 	"\x13GetUserStatsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"A\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"A\n" +
 	"\x14GetUserStatsResponse\x12)\n" +
-	"\x05stats\x18\x01 \x01(\v2\x13.problems.UserStatsR\x05stats\"Z\n" +
+	"\x05stats\x18\x01 \x01(\v2\x13.problems.UserStatsR\x05stats\"t\n" +
 	"\x1cGetChallengeUserStatsRequest\x12!\n" +
 	"\fchallenge_id\x18\x01 \x01(\tR\vchallengeId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xfe\x01\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xfe\x01\n" +
 	"\x1dGetChallengeUserStatsResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12-\n" +
 	"\x12problems_completed\x18\x02 \x01(\x05R\x11problemsCompleted\x12\x1f\n" +
 	"\vtotal_score\x18\x03 \x01(\x05R\n" +
 	"totalScore\x12\x12\n" +
 	"\x04rank\x18\x04 \x01(\x05R\x04rank\x12`\n" +
-	"\x1achallenge_problem_metadata\x18\x05 \x03(\v2\".problems.ChallengeProblemMetadataR\x18challengeProblemMetadata\"$\n" +
+	"\x1achallenge_problem_metadata\x18\x05 \x03(\v2\".problems.ChallengeProblemMetadataR\x18challengeProblemMetadata\">\n" +
 	"\x14GetTopKGlobalRequest\x12\f\n" +
-	"\x01k\x18\x01 \x01(\x05R\x01k\"B\n" +
+	"\x01k\x18\x01 \x01(\x05R\x01k\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"B\n" +
 	"\x15GetTopKGlobalResponse\x12)\n" +
-	"\x05users\x18\x01 \x03(\v2\x13.problems.UserScoreR\x05users\".\n" +
+	"\x05users\x18\x01 \x03(\v2\x13.problems.UserScoreR\x05users\"H\n" +
 	"\x14GetTopKEntityRequest\x12\x16\n" +
-	"\x06entity\x18\x01 \x01(\tR\x06entity\"B\n" +
+	"\x06entity\x18\x01 \x01(\tR\x06entity\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"B\n" +
 	"\x15GetTopKEntityResponse\x12)\n" +
-	"\x05users\x18\x01 \x03(\v2\x13.problems.UserScoreR\x05users\"-\n" +
+	"\x05users\x18\x01 \x03(\v2\x13.problems.UserScoreR\x05users\"G\n" +
 	"\x12GetUserRankRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"W\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"W\n" +
 	"\x13GetUserRankResponse\x12\x1f\n" +
 	"\vglobal_rank\x18\x01 \x01(\x05R\n" +
 	"globalRank\x12\x1f\n" +
 	"\ventity_rank\x18\x02 \x01(\x05R\n" +
-	"entityRank\"4\n" +
+	"entityRank\"N\n" +
 	"\x19GetLeaderboardDataRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x93\x02\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\x93\x02\n" +
 	"\x1aGetLeaderboardDataResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05score\x18\x02 \x01(\x01R\x05score\x12\x16\n" +
@@ -5679,17 +5966,28 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\tUserScore\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05score\x18\x02 \x01(\x01R\x05score\x12\x16\n" +
-	"\x06entity\x18\x03 \x01(\tR\x06entity\"d\n" +
+	"\x06entity\x18\x03 \x01(\tR\x06entity\"~\n" +
 	" GetMonthlyActivityHeatmapRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
 	"\x05month\x18\x02 \x01(\x05R\x05month\x12\x12\n" +
-	"\x04year\x18\x03 \x01(\x05R\x04year\"S\n" +
+	"\x04year\x18\x03 \x01(\x05R\x04year\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"S\n" +
 	"\vActivityDay\x12\x12\n" +
 	"\x04date\x18\x01 \x01(\tR\x04date\x12\x14\n" +
 	"\x05count\x18\x02 \x01(\x05R\x05count\x12\x1a\n" +
 	"\bisActive\x18\x03 \x01(\bR\bisActive\"N\n" +
 	"!GetMonthlyActivityHeatmapResponse\x12)\n" +
-	"\x04data\x18\x01 \x03(\v2\x15.problems.ActivityDayR\x04data\"\x8e\x01\n" +
+	"\x04data\x18\x01 \x03(\v2\x15.problems.ActivityDayR\x04data\"\xdc\x01\n" +
+	"$GetLeaderBoardOptionalCountryRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\x12\x1d\n" +
+	"\acountry\x18\x03 \x01(\tH\x00R\acountry\x88\x01\x01\x12\x1f\n" +
+	"\busername\x18\x04 \x01(\tH\x01R\busername\x88\x01\x01\x12\x17\n" +
+	"\auser_id\x18\x05 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceIDB\n" +
+	"\n" +
+	"\b_countryB\v\n" +
+	"\t_username\"\x8e\x01\n" +
 	"%GetLeaderBoardOptionalCountryResponse\x12/\n" +
 	"\x04data\x18\x01 \x01(\v2\x1b.problems.LeaderboardSingleR\x04data\x12$\n" +
 	"\vfilter_type\x18\x02 \x01(\tH\x00R\n" +
@@ -5700,19 +5998,11 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\fcountry_rank\x18\x02 \x01(\x03H\x00R\vcountryRank\x88\x01\x01\x12\x1f\n" +
 	"\vglobal_rank\x18\x03 \x01(\x03R\n" +
 	"globalRankB\x0f\n" +
-	"\r_country_rank\"\xc2\x01\n" +
-	"$GetLeaderBoardOptionalCountryRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x03R\x05limit\x12\x1d\n" +
-	"\acountry\x18\x03 \x01(\tH\x00R\acountry\x88\x01\x01\x12\x1f\n" +
-	"\busername\x18\x04 \x01(\tH\x01R\busername\x88\x01\x01\x12\x17\n" +
-	"\auser_id\x18\x05 \x01(\tR\x06userIdB\n" +
-	"\n" +
-	"\b_countryB\v\n" +
-	"\t_username\"i\n" +
+	"\r_country_rank\"\x83\x01\n" +
 	" GetProblemsDoneStatisticsRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tH\x00R\busername\x88\x01\x01\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userIdB\v\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceIDB\v\n" +
 	"\t_username\"Y\n" +
 	"!GetProblemsDoneStatisticsResponse\x124\n" +
 	"\x04data\x18\x01 \x01(\v2 .problems.ProblemsDoneStatisticsR\x04data\"\x8a\x02\n" +
@@ -5738,14 +6028,15 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x0eValidationCode\x12 \n" +
 	"\vplaceholder\x18\x01 \x01(\tR\vplaceholder\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x1a\n" +
-	"\btemplate\x18\x03 \x01(\tR\btemplate\"\x82\x01\n" +
+	"\btemplate\x18\x03 \x01(\tR\btemplate\"\x9c\x01\n" +
 	"\x14CreateProblemRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tags\x12\x1e\n" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
-	"difficulty\"\xd9\x01\n" +
+	"difficulty\x12\x18\n" +
+	"\atraceID\x18\x05 \x01(\tR\atraceID\"\xf3\x01\n" +
 	"\x14UpdateProblemRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x19\n" +
@@ -5754,16 +6045,19 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12#\n" +
 	"\n" +
 	"difficulty\x18\x05 \x01(\tH\x02R\n" +
-	"difficulty\x88\x01\x01B\b\n" +
+	"difficulty\x88\x01\x01\x12\x18\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceIDB\b\n" +
 	"\x06_titleB\x0e\n" +
 	"\f_descriptionB\r\n" +
-	"\v_difficulty\"5\n" +
+	"\v_difficulty\"O\n" +
 	"\x14DeleteProblemRequest\x12\x1d\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\"2\n" +
+	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"L\n" +
 	"\x11GetProblemRequest\x12\x1d\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\"\x9d\x01\n" +
+	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\xb7\x01\n" +
 	"\x13ListProblemsRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
@@ -5771,25 +6065,30 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12!\n" +
-	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\"g\n" +
+	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\x12\x18\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceID\"\x81\x01\n" +
 	"\x13AddTestCasesRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x121\n" +
-	"\ttestcases\x18\x02 \x01(\v2\x13.problems.TestCasesR\ttestcases\"\x99\x01\n" +
+	"\ttestcases\x18\x02 \x01(\v2\x13.problems.TestCasesR\ttestcases\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xb3\x01\n" +
 	"\x19AddLanguageSupportRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +
 	"\blanguage\x18\x02 \x01(\tR\blanguage\x12A\n" +
-	"\x0fvalidation_code\x18\x03 \x01(\v2\x18.problems.ValidationCodeR\x0evalidationCode\"\x9c\x01\n" +
+	"\x0fvalidation_code\x18\x03 \x01(\v2\x18.problems.ValidationCodeR\x0evalidationCode\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"\xb6\x01\n" +
 	"\x1cUpdateLanguageSupportRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +
 	"\blanguage\x18\x02 \x01(\tR\blanguage\x12A\n" +
-	"\x0fvalidation_code\x18\x03 \x01(\v2\x18.problems.ValidationCodeR\x0evalidationCode\"Y\n" +
+	"\x0fvalidation_code\x18\x03 \x01(\v2\x18.problems.ValidationCodeR\x0evalidationCode\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"s\n" +
 	"\x1cRemoveLanguageSupportRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +
-	"\blanguage\x18\x02 \x01(\tR\blanguage\"\xa3\x05\n" +
+	"\blanguage\x18\x02 \x01(\tR\blanguage\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xa3\x05\n" +
 	"\aProblem\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x122\n" +
@@ -5865,21 +6164,23 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\x7f\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\x99\x01\n" +
 	"\x15DeleteTestCaseRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1f\n" +
 	"\vtestcase_id\x18\x02 \x01(\tR\n" +
 	"testcaseId\x12&\n" +
-	"\x0fis_run_testcase\x18\x03 \x01(\bR\risRunTestcase\"k\n" +
+	"\x0fis_run_testcase\x18\x03 \x01(\bR\risRunTestcase\x12\x18\n" +
+	"\atraceID\x18\x04 \x01(\tR\atraceID\"k\n" +
 	"\x16DeleteTestCaseResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\";\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"U\n" +
 	"\x1aGetLanguageSupportsRequest\x12\x1d\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\"\xda\x02\n" +
+	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\xda\x02\n" +
 	"\x1bGetLanguageSupportsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12/\n" +
@@ -5889,15 +6190,16 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"error_type\x18\x05 \x01(\tR\terrorType\x1aY\n" +
 	"\x11ValidateCodeEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\v2\x18.problems.ValidationCodeR\x05value:\x028\x01\"A\n" +
+	"\x05value\x18\x02 \x01(\v2\x18.problems.ValidationCodeR\x05value:\x028\x01\"[\n" +
 	" FullValidationByProblemIDRequest\x12\x1d\n" +
 	"\n" +
-	"problem_id\x18\x01 \x01(\tR\tproblemId\"v\n" +
+	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"v\n" +
 	"!FullValidationByProblemIDResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x03 \x01(\tR\terrorType\"\xd7\x01\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType\"\xf1\x01\n" +
 	"\x11RunProblemRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1b\n" +
@@ -5905,7 +6207,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\blanguage\x18\x03 \x01(\tR\blanguage\x12&\n" +
 	"\x0fis_run_testcase\x18\x04 \x01(\bR\risRunTestcase\x12\x17\n" +
 	"\auser_id\x18\x05 \x01(\tR\x06userId\x12\x1d\n" +
-	"\acountry\x18\x06 \x01(\tH\x00R\acountry\x88\x01\x01B\n" +
+	"\acountry\x18\x06 \x01(\tH\x00R\acountry\x88\x01\x01\x12\x18\n" +
+	"\atraceID\x18\a \x01(\tR\atraceIDB\n" +
 	"\n" +
 	"\b_country\"\xca\x01\n" +
 	"\x12RunProblemResponse\x12\x1d\n" +
@@ -5936,28 +6239,30 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x12\x19\n" +
 	"\bis_first\x18\f \x01(\bR\aisFirst\x12\x14\n" +
 	"\x05title\x18\r \x01(\tR\x05title\x12\x1b\n" +
-	"\tuser_code\x18\x0e \x01(\tR\buserCode\"\x8d\x01\n" +
+	"\tuser_code\x18\x0e \x01(\tR\buserCode\"\xa7\x01\n" +
 	"\x15GetSubmissionsRequest\x12\"\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tH\x00R\tproblemId\x88\x01\x01\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x17\n" +
-	"\auser_id\x18\x04 \x01(\tR\x06userIdB\r\n" +
+	"\auser_id\x18\x04 \x01(\tR\x06userId\x12\x18\n" +
+	"\atraceID\x18\x05 \x01(\tR\atraceIDB\r\n" +
 	"\v_problem_id\"\xa3\x01\n" +
 	"\x16GetSubmissionsResponse\x126\n" +
 	"\vsubmissions\x18\x01 \x03(\v2\x14.problems.SubmissionR\vsubmissions\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x04 \x01(\tR\terrorType\"\\\n" +
+	"error_type\x18\x04 \x01(\tR\terrorType\"v\n" +
 	"\x19GetProblemByIdSlugRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x17\n" +
-	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01B\a\n" +
+	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01\x12\x18\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceIDB\a\n" +
 	"\x05_slug\"}\n" +
 	"\x1aGetProblemByIdSlugResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x01(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xa7\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xc1\x01\n" +
 	"\x1dGetProblemMetadataListRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
@@ -5965,7 +6270,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12!\n" +
-	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\"\x81\x01\n" +
+	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\x12\x18\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceID\"\x81\x01\n" +
 	"\x1eGetProblemMetadataListResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x03(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\xd0\x03\n" +
@@ -6076,9 +6382,9 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*GetMonthlyActivityHeatmapRequest)(nil),      // 38: problems.GetMonthlyActivityHeatmapRequest
 	(*ActivityDay)(nil),                           // 39: problems.ActivityDay
 	(*GetMonthlyActivityHeatmapResponse)(nil),     // 40: problems.GetMonthlyActivityHeatmapResponse
-	(*GetLeaderBoardOptionalCountryResponse)(nil), // 41: problems.GetLeaderBoardOptionalCountryResponse
-	(*LeaderboardSingle)(nil),                     // 42: problems.LeaderboardSingle
-	(*GetLeaderBoardOptionalCountryRequest)(nil),  // 43: problems.GetLeaderBoardOptionalCountryRequest
+	(*GetLeaderBoardOptionalCountryRequest)(nil),  // 41: problems.GetLeaderBoardOptionalCountryRequest
+	(*GetLeaderBoardOptionalCountryResponse)(nil), // 42: problems.GetLeaderBoardOptionalCountryResponse
+	(*LeaderboardSingle)(nil),                     // 43: problems.LeaderboardSingle
 	(*GetProblemsDoneStatisticsRequest)(nil),      // 44: problems.GetProblemsDoneStatisticsRequest
 	(*GetProblemsDoneStatisticsResponse)(nil),     // 45: problems.GetProblemsDoneStatisticsResponse
 	(*ProblemsDoneStatistics)(nil),                // 46: problems.ProblemsDoneStatistics
@@ -6147,7 +6453,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	37, // 15: problems.GetLeaderboardDataResponse.top_k_global:type_name -> problems.UserScore
 	37, // 16: problems.GetLeaderboardDataResponse.top_k_entity:type_name -> problems.UserScore
 	39, // 17: problems.GetMonthlyActivityHeatmapResponse.data:type_name -> problems.ActivityDay
-	42, // 18: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
+	43, // 18: problems.GetLeaderBoardOptionalCountryResponse.data:type_name -> problems.LeaderboardSingle
 	46, // 19: problems.GetProblemsDoneStatisticsResponse.data:type_name -> problems.ProblemsDoneStatistics
 	48, // 20: problems.TestCases.run:type_name -> problems.TestCase
 	48, // 21: problems.TestCases.submit:type_name -> problems.TestCase

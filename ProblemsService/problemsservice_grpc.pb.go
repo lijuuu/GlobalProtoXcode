@@ -74,12 +74,11 @@ type ProblemsServiceClient interface {
 	FullValidationByProblemID(ctx context.Context, in *FullValidationByProblemIDRequest, opts ...grpc.CallOption) (*FullValidationByProblemIDResponse, error)
 	RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error)
 	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
-	// leaderboard
-	// get leaderboard -req: page,limit resp
+	// Leaderboard
 	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
-	// actitvitycontribution
+	// Activity Contribution
 	GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error)
-	// leaderboard methods
+	// Leaderboard Methods
 	GetTopKGlobal(ctx context.Context, in *GetTopKGlobalRequest, opts ...grpc.CallOption) (*GetTopKGlobalResponse, error)
 	GetTopKEntity(ctx context.Context, in *GetTopKEntityRequest, opts ...grpc.CallOption) (*GetTopKEntityResponse, error)
 	GetUserRank(ctx context.Context, in *GetUserRankRequest, opts ...grpc.CallOption) (*GetUserRankResponse, error)
@@ -455,12 +454,11 @@ type ProblemsServiceServer interface {
 	FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error)
 	RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error)
 	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
-	// leaderboard
-	// get leaderboard -req: page,limit resp
+	// Leaderboard
 	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
-	// actitvitycontribution
+	// Activity Contribution
 	GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error)
-	// leaderboard methods
+	// Leaderboard Methods
 	GetTopKGlobal(context.Context, *GetTopKGlobalRequest) (*GetTopKGlobalResponse, error)
 	GetTopKEntity(context.Context, *GetTopKEntityRequest) (*GetTopKEntityResponse, error)
 	GetUserRank(context.Context, *GetUserRankRequest) (*GetUserRankResponse, error)
