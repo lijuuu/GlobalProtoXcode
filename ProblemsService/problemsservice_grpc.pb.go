@@ -52,6 +52,7 @@ const (
 	ProblemsService_GetUserStats_FullMethodName                      = "/problems.ProblemsService/GetUserStats"
 	ProblemsService_GetChallengeUserStats_FullMethodName             = "/problems.ProblemsService/GetChallengeUserStats"
 	ProblemsService_GetChallengeHistory_FullMethodName               = "/problems.ProblemsService/GetChallengeHistory"
+	ProblemsService_GetBulkProblemMetadata_FullMethodName            = "/problems.ProblemsService/GetBulkProblemMetadata"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -94,6 +95,7 @@ type ProblemsServiceClient interface {
 	GetUserStats(ctx context.Context, in *GetUserStatsRequest, opts ...grpc.CallOption) (*GetUserStatsResponse, error)
 	GetChallengeUserStats(ctx context.Context, in *GetChallengeUserStatsRequest, opts ...grpc.CallOption) (*GetChallengeUserStatsResponse, error)
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*GetChallengeHistoryResponse, error)
+	GetBulkProblemMetadata(ctx context.Context, in *GetBulkProblemMetadataRequest, opts ...grpc.CallOption) (*GetBulkProblemMetadataResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -434,6 +436,16 @@ func (c *problemsServiceClient) GetChallengeHistory(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *problemsServiceClient) GetBulkProblemMetadata(ctx context.Context, in *GetBulkProblemMetadataRequest, opts ...grpc.CallOption) (*GetBulkProblemMetadataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBulkProblemMetadataResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetBulkProblemMetadata_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -474,6 +486,7 @@ type ProblemsServiceServer interface {
 	GetUserStats(context.Context, *GetUserStatsRequest) (*GetUserStatsResponse, error)
 	GetChallengeUserStats(context.Context, *GetChallengeUserStatsRequest) (*GetChallengeUserStatsResponse, error)
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*GetChallengeHistoryResponse, error)
+	GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -582,6 +595,9 @@ func (UnimplementedProblemsServiceServer) GetChallengeUserStats(context.Context,
 }
 func (UnimplementedProblemsServiceServer) GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*GetChallengeHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeHistory not implemented")
+}
+func (UnimplementedProblemsServiceServer) GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulkProblemMetadata not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -1198,6 +1214,24 @@ func _ProblemsService_GetChallengeHistory_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_GetBulkProblemMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBulkProblemMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).GetBulkProblemMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_GetBulkProblemMetadata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).GetBulkProblemMetadata(ctx, req.(*GetBulkProblemMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1336,6 +1370,10 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetChallengeHistory",
 			Handler:    _ProblemsService_GetChallengeHistory_Handler,
+		},
+		{
+			MethodName: "GetBulkProblemMetadata",
+			Handler:    _ProblemsService_GetBulkProblemMetadata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

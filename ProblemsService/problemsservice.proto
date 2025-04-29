@@ -46,7 +46,25 @@ rpc GetUserStats(GetUserStatsRequest) returns (GetUserStatsResponse);
 rpc GetChallengeUserStats(GetChallengeUserStatsRequest) returns (GetChallengeUserStatsResponse);
 
 rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (GetChallengeHistoryResponse);
+
+rpc GetBulkProblemMetadata(GetBulkProblemMetadataRequest) returns (GetBulkProblemMetadataResponse);
 }
+
+message GetBulkProblemMetadataRequest{
+  repeated string  problem_ids = 1; 
+}
+
+message GetBulkProblemMetadataResponse{
+  repeated BulkProblemMetadata BulkProblemMetadata = 1;
+}
+
+message BulkProblemMetadata{
+  string problem_id = 1;
+  string title = 2;
+  string difficulty = 6;
+  repeated string tags = 4;
+}
+  
 
 message GetChallengeHistoryRequest {
 string user_id = 1;
@@ -146,8 +164,9 @@ string join_url = 3;
 
 message GetChallengeDetailsRequest {
 string id = 1;
-string user_id = 2; // For user-specific metadata
-string traceID = 3;
+string password = 2;
+string user_id = 3; // For user-specific metadata
+string traceID = 4;
 }
 
 message GetChallengeDetailsResponse {
