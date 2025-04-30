@@ -330,7 +330,7 @@ type Challenge struct {
 	Difficulty          string                          `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	IsPrivate           bool                            `protobuf:"varint,5,opt,name=is_private,json=isPrivate,proto3" json:"is_private,omitempty"`
 	Status              string                          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	Password            string                          `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"` // Only for private challenges
+	Password            *string                         `protobuf:"bytes,7,opt,name=password,proto3,oneof" json:"password,omitempty"` // Only for private challenges
 	ProblemIds          []string                        `protobuf:"bytes,8,rep,name=problem_ids,json=problemIds,proto3" json:"problem_ids,omitempty"`
 	TimeLimit           int32                           `protobuf:"varint,9,opt,name=time_limit,json=timeLimit,proto3" json:"time_limit,omitempty"`
 	CreatedAt           int64                           `protobuf:"varint,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
@@ -416,8 +416,8 @@ func (x *Challenge) GetStatus() string {
 }
 
 func (x *Challenge) GetPassword() string {
-	if x != nil {
-		return x.Password
+	if x != nil && x.Password != nil {
+		return *x.Password
 	}
 	return ""
 }
@@ -5944,7 +5944,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xeb\x04\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xfd\x04\n" +
 	"\tChallenge\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1d\n" +
@@ -5955,8 +5955,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x12\x1d\n" +
 	"\n" +
 	"is_private\x18\x05 \x01(\bR\tisPrivate\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1a\n" +
-	"\bpassword\x18\a \x01(\tR\bpassword\x12\x1f\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1f\n" +
+	"\bpassword\x18\a \x01(\tH\x00R\bpassword\x88\x01\x01\x12\x1f\n" +
 	"\vproblem_ids\x18\b \x03(\tR\n" +
 	"problemIds\x12\x1d\n" +
 	"\n" +
@@ -5972,7 +5972,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\bend_time\x18\x0f \x01(\x03R\aendTime\x1ae\n" +
 	"\x18UserProblemMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x123\n" +
-	"\x05value\x18\x02 \x01(\v2\x1d.problems.ProblemMetadataListR\x05value:\x028\x01\"\xa9\x02\n" +
+	"\x05value\x18\x02 \x01(\v2\x1d.problems.ProblemMetadataListR\x05value:\x028\x01B\v\n" +
+	"\t_password\"\xa9\x02\n" +
 	"\x0fProblemMetadata\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x14\n" +
@@ -6744,6 +6745,7 @@ func file_ProblemsService_problemsservice_proto_init() {
 		return
 	}
 	file_ProblemsService_problemsservice_proto_msgTypes[3].OneofWrappers = []any{}
+	file_ProblemsService_problemsservice_proto_msgTypes[5].OneofWrappers = []any{}
 	file_ProblemsService_problemsservice_proto_msgTypes[18].OneofWrappers = []any{}
 	file_ProblemsService_problemsservice_proto_msgTypes[44].OneofWrappers = []any{}
 	file_ProblemsService_problemsservice_proto_msgTypes[45].OneofWrappers = []any{}

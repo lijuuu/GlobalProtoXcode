@@ -51,6 +51,32 @@ rpc VerifyAdminUser(VerifyAdminUserRequest) returns (VerifyAdminUserResponse);
 rpc UnverifyUser(UnverifyUserAdminRequest) returns (UnverifyUserAdminResponse);
 rpc SoftDeleteUserAdmin(SoftDeleteUserAdminRequest) returns (SoftDeleteUserAdminResponse);
 rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
+
+
+//bulk
+rpc GetBulkUserMetadata(GetBulkUserMetadataRequest)returns (GetBulkUserMetadataResponse);
+
+}
+message GetBulkUserMetadataRequest {
+  repeated string userIDs  =1 ;
+}
+
+message GetBulkUserMetadataResponse {
+  repeated UserProfileMetadata UserProfileMetadata = 1 ;
+}
+
+message UserProfileMetadata{
+string userID = 1;
+string exists = 2;
+string userName = 3;
+string firstName = 4;
+string lastName = 5;
+string country = 6;
+string role = 7;
+string primaryLanguageID = 8;
+string avatarData =9;
+Socials socials = 10;
+string Bio = 11;
 }
 
 message GetFollowFollowingCheckRequest {

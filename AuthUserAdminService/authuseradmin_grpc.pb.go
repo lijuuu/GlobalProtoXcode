@@ -56,6 +56,7 @@ const (
 	AuthUserAdminService_UnverifyUser_FullMethodName            = "/authuseradmin.AuthUserAdminService/UnverifyUser"
 	AuthUserAdminService_SoftDeleteUserAdmin_FullMethodName     = "/authuseradmin.AuthUserAdminService/SoftDeleteUserAdmin"
 	AuthUserAdminService_GetAllUsers_FullMethodName             = "/authuseradmin.AuthUserAdminService/GetAllUsers"
+	AuthUserAdminService_GetBulkUserMetadata_FullMethodName     = "/authuseradmin.AuthUserAdminService/GetBulkUserMetadata"
 )
 
 // AuthUserAdminServiceClient is the client API for AuthUserAdminService service.
@@ -104,6 +105,8 @@ type AuthUserAdminServiceClient interface {
 	UnverifyUser(ctx context.Context, in *UnverifyUserAdminRequest, opts ...grpc.CallOption) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(ctx context.Context, in *SoftDeleteUserAdminRequest, opts ...grpc.CallOption) (*SoftDeleteUserAdminResponse, error)
 	GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error)
+	// bulk
+	GetBulkUserMetadata(ctx context.Context, in *GetBulkUserMetadataRequest, opts ...grpc.CallOption) (*GetBulkUserMetadataResponse, error)
 }
 
 type authUserAdminServiceClient struct {
@@ -484,6 +487,16 @@ func (c *authUserAdminServiceClient) GetAllUsers(ctx context.Context, in *GetAll
 	return out, nil
 }
 
+func (c *authUserAdminServiceClient) GetBulkUserMetadata(ctx context.Context, in *GetBulkUserMetadataRequest, opts ...grpc.CallOption) (*GetBulkUserMetadataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBulkUserMetadataResponse)
+	err := c.cc.Invoke(ctx, AuthUserAdminService_GetBulkUserMetadata_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthUserAdminServiceServer is the server API for AuthUserAdminService service.
 // All implementations must embed UnimplementedAuthUserAdminServiceServer
 // for forward compatibility.
@@ -530,6 +543,8 @@ type AuthUserAdminServiceServer interface {
 	UnverifyUser(context.Context, *UnverifyUserAdminRequest) (*UnverifyUserAdminResponse, error)
 	SoftDeleteUserAdmin(context.Context, *SoftDeleteUserAdminRequest) (*SoftDeleteUserAdminResponse, error)
 	GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error)
+	// bulk
+	GetBulkUserMetadata(context.Context, *GetBulkUserMetadataRequest) (*GetBulkUserMetadataResponse, error)
 	mustEmbedUnimplementedAuthUserAdminServiceServer()
 }
 
@@ -650,6 +665,9 @@ func (UnimplementedAuthUserAdminServiceServer) SoftDeleteUserAdmin(context.Conte
 }
 func (UnimplementedAuthUserAdminServiceServer) GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllUsers not implemented")
+}
+func (UnimplementedAuthUserAdminServiceServer) GetBulkUserMetadata(context.Context, *GetBulkUserMetadataRequest) (*GetBulkUserMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBulkUserMetadata not implemented")
 }
 func (UnimplementedAuthUserAdminServiceServer) mustEmbedUnimplementedAuthUserAdminServiceServer() {}
 func (UnimplementedAuthUserAdminServiceServer) testEmbeddedByValue()                              {}
@@ -1338,6 +1356,24 @@ func _AuthUserAdminService_GetAllUsers_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthUserAdminService_GetBulkUserMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBulkUserMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthUserAdminServiceServer).GetBulkUserMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthUserAdminService_GetBulkUserMetadata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthUserAdminServiceServer).GetBulkUserMetadata(ctx, req.(*GetBulkUserMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthUserAdminService_ServiceDesc is the grpc.ServiceDesc for AuthUserAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1492,6 +1528,10 @@ var AuthUserAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllUsers",
 			Handler:    _AuthUserAdminService_GetAllUsers_Handler,
+		},
+		{
+			MethodName: "GetBulkUserMetadata",
+			Handler:    _AuthUserAdminService_GetBulkUserMetadata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
