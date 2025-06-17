@@ -27,6 +27,7 @@ service AuthUserAdminService {
       returns (GetTwoFactorAuthStatusResponse);
 
   // Authentication Admin
+  
   rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
 
   // User Management
@@ -76,7 +77,7 @@ message GetBulkUserMetadataResponse {
 }
 
 message UserProfileMetadata {
-  string userID = 1;
+  string userID= 1;
   string exists = 2;
   string userName = 3;
   string firstName = 4;

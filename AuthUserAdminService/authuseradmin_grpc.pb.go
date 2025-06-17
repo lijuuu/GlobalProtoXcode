@@ -78,7 +78,6 @@ type AuthUserAdminServiceClient interface {
 	VerifyTwoFactorAuth(ctx context.Context, in *VerifyTwoFactorAuthRequest, opts ...grpc.CallOption) (*VerifyTwoFactorAuthResponse, error)
 	DisableTwoFactorAuth(ctx context.Context, in *DisableTwoFactorAuthRequest, opts ...grpc.CallOption) (*DisableTwoFactorAuthResponse, error)
 	GetTwoFactorAuthStatus(ctx context.Context, in *GetTwoFactorAuthStatusRequest, opts ...grpc.CallOption) (*GetTwoFactorAuthStatusResponse, error)
-	// Authentication Admin
 	LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error)
 	// User Management
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
@@ -516,7 +515,6 @@ type AuthUserAdminServiceServer interface {
 	VerifyTwoFactorAuth(context.Context, *VerifyTwoFactorAuthRequest) (*VerifyTwoFactorAuthResponse, error)
 	DisableTwoFactorAuth(context.Context, *DisableTwoFactorAuthRequest) (*DisableTwoFactorAuthResponse, error)
 	GetTwoFactorAuthStatus(context.Context, *GetTwoFactorAuthStatusRequest) (*GetTwoFactorAuthStatusResponse, error)
-	// Authentication Admin
 	LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error)
 	// User Management
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)

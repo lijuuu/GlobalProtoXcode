@@ -15,6 +15,7 @@ service ProblemsService {
   rpc GetProblemMetadataList(GetProblemMetadataListRequest)
       returns (GetProblemMetadataListResponse);
   rpc AddTestCases(AddTestCasesRequest) returns (AddTestCasesResponse);
+  // rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseid for updates :priority low
   rpc DeleteTestCase(DeleteTestCaseRequest) returns (DeleteTestCaseResponse);
   rpc GetLanguageSupports(GetLanguageSupportsRequest)
       returns (GetLanguageSupportsResponse);
@@ -33,6 +34,7 @@ service ProblemsService {
   // Leaderboard
   rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest)
       returns (GetProblemsDoneStatisticsResponse);
+  rpc ForceChangeUserEntityInSubmission(ForceChangeUserEntityInSubmissionRequest) returns (ForceChangeUserEntityInSubmissionResponse);
 
   // Activity Contribution
   rpc GetMonthlyActivityHeatmap(GetMonthlyActivityHeatmapRequest)
@@ -67,6 +69,15 @@ service ProblemsService {
   rpc GetBulkProblemMetadata(GetBulkProblemMetadataRequest)
       returns (GetBulkProblemMetadataResponse);
 }
+
+message ForceChangeUserEntityInSubmissionRequest{
+  string user_id = 1;
+  string entity = 2;
+}
+
+message ForceChangeUserEntityInSubmissionResponse{}
+
+// rpc EditTestcasesRequest 
 
 message GetBulkProblemMetadataRequest {
   repeated string problem_ids = 1;

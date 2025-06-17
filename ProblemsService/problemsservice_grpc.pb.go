@@ -36,6 +36,7 @@ const (
 	ProblemsService_RunUserCodeProblem_FullMethodName                = "/problems.ProblemsService/RunUserCodeProblem"
 	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
 	ProblemsService_GetProblemsDoneStatistics_FullMethodName         = "/problems.ProblemsService/GetProblemsDoneStatistics"
+	ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName = "/problems.ProblemsService/ForceChangeUserEntityInSubmission"
 	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName         = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
 	ProblemsService_GetTopKGlobal_FullMethodName                     = "/problems.ProblemsService/GetTopKGlobal"
 	ProblemsService_GetTopKEntity_FullMethodName                     = "/problems.ProblemsService/GetTopKEntity"
@@ -67,6 +68,7 @@ type ProblemsServiceClient interface {
 	GetProblemByIDSlug(ctx context.Context, in *GetProblemByIdSlugRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error)
 	GetProblemMetadataList(ctx context.Context, in *GetProblemMetadataListRequest, opts ...grpc.CallOption) (*GetProblemMetadataListResponse, error)
 	AddTestCases(ctx context.Context, in *AddTestCasesRequest, opts ...grpc.CallOption) (*AddTestCasesResponse, error)
+	// rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseid for updates :priority low
 	DeleteTestCase(ctx context.Context, in *DeleteTestCaseRequest, opts ...grpc.CallOption) (*DeleteTestCaseResponse, error)
 	GetLanguageSupports(ctx context.Context, in *GetLanguageSupportsRequest, opts ...grpc.CallOption) (*GetLanguageSupportsResponse, error)
 	AddLanguageSupport(ctx context.Context, in *AddLanguageSupportRequest, opts ...grpc.CallOption) (*AddLanguageSupportResponse, error)
@@ -77,6 +79,7 @@ type ProblemsServiceClient interface {
 	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
 	// Leaderboard
 	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
+	ForceChangeUserEntityInSubmission(ctx context.Context, in *ForceChangeUserEntityInSubmissionRequest, opts ...grpc.CallOption) (*ForceChangeUserEntityInSubmissionResponse, error)
 	// Activity Contribution
 	GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error)
 	// Leaderboard Methods
@@ -276,6 +279,16 @@ func (c *problemsServiceClient) GetProblemsDoneStatistics(ctx context.Context, i
 	return out, nil
 }
 
+func (c *problemsServiceClient) ForceChangeUserEntityInSubmission(ctx context.Context, in *ForceChangeUserEntityInSubmissionRequest, opts ...grpc.CallOption) (*ForceChangeUserEntityInSubmissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForceChangeUserEntityInSubmissionResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *problemsServiceClient) GetMonthlyActivityHeatmap(ctx context.Context, in *GetMonthlyActivityHeatmapRequest, opts ...grpc.CallOption) (*GetMonthlyActivityHeatmapResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMonthlyActivityHeatmapResponse)
@@ -458,6 +471,7 @@ type ProblemsServiceServer interface {
 	GetProblemByIDSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error)
 	GetProblemMetadataList(context.Context, *GetProblemMetadataListRequest) (*GetProblemMetadataListResponse, error)
 	AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error)
+	// rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseid for updates :priority low
 	DeleteTestCase(context.Context, *DeleteTestCaseRequest) (*DeleteTestCaseResponse, error)
 	GetLanguageSupports(context.Context, *GetLanguageSupportsRequest) (*GetLanguageSupportsResponse, error)
 	AddLanguageSupport(context.Context, *AddLanguageSupportRequest) (*AddLanguageSupportResponse, error)
@@ -468,6 +482,7 @@ type ProblemsServiceServer interface {
 	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
 	// Leaderboard
 	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
+	ForceChangeUserEntityInSubmission(context.Context, *ForceChangeUserEntityInSubmissionRequest) (*ForceChangeUserEntityInSubmissionResponse, error)
 	// Activity Contribution
 	GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error)
 	// Leaderboard Methods
@@ -547,6 +562,9 @@ func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(cont
 }
 func (UnimplementedProblemsServiceServer) GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatistics not implemented")
+}
+func (UnimplementedProblemsServiceServer) ForceChangeUserEntityInSubmission(context.Context, *ForceChangeUserEntityInSubmissionRequest) (*ForceChangeUserEntityInSubmissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForceChangeUserEntityInSubmission not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetMonthlyActivityHeatmap(context.Context, *GetMonthlyActivityHeatmapRequest) (*GetMonthlyActivityHeatmapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMonthlyActivityHeatmap not implemented")
@@ -922,6 +940,24 @@ func _ProblemsService_GetProblemsDoneStatistics_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProblemsServiceServer).GetProblemsDoneStatistics(ctx, req.(*GetProblemsDoneStatisticsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_ForceChangeUserEntityInSubmission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForceChangeUserEntityInSubmissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).ForceChangeUserEntityInSubmission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).ForceChangeUserEntityInSubmission(ctx, req.(*ForceChangeUserEntityInSubmissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1306,6 +1342,10 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProblemsDoneStatistics",
 			Handler:    _ProblemsService_GetProblemsDoneStatistics_Handler,
+		},
+		{
+			MethodName: "ForceChangeUserEntityInSubmission",
+			Handler:    _ProblemsService_ForceChangeUserEntityInSubmission_Handler,
 		},
 		{
 			MethodName: "GetMonthlyActivityHeatmap",
