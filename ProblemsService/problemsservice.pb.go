@@ -3779,6 +3779,7 @@ type ListProblemsRequest struct {
 	Difficulty    string                 `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	SearchQuery   string                 `protobuf:"bytes,5,opt,name=search_query,json=searchQuery,proto3" json:"search_query,omitempty"`
 	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
+	IsAdmin       bool                   `protobuf:"varint,7,opt,name=isAdmin,proto3" json:"isAdmin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3853,6 +3854,13 @@ func (x *ListProblemsRequest) GetTraceID() string {
 		return x.TraceID
 	}
 	return ""
+}
+
+func (x *ListProblemsRequest) GetIsAdmin() bool {
+	if x != nil {
+		return x.IsAdmin
+	}
+	return false
 }
 
 type AddTestCasesRequest struct {
@@ -6339,7 +6347,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x11GetProblemRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +
-	"\atraceID\x18\x02 \x01(\tR\atraceID\"\xb7\x01\n" +
+	"\atraceID\x18\x02 \x01(\tR\atraceID\"\xd1\x01\n" +
 	"\x13ListProblemsRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
@@ -6348,7 +6356,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12!\n" +
 	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\x12\x18\n" +
-	"\atraceID\x18\x06 \x01(\tR\atraceID\"\x81\x01\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceID\x12\x18\n" +
+	"\aisAdmin\x18\a \x01(\bR\aisAdmin\"\x81\x01\n" +
 	"\x13AddTestCasesRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x121\n" +

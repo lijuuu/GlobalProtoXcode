@@ -457,6 +457,7 @@ message ListProblemsRequest {
   string difficulty = 4;
   string search_query = 5;
   string traceID = 6;
+  bool isAdmin = 7;
 }
 
 message AddTestCasesRequest {
