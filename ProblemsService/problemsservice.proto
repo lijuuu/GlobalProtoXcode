@@ -30,6 +30,9 @@ service ProblemsService {
   rpc RunUserCodeProblem(RunProblemRequest) returns (RunProblemResponse);
   rpc GetSubmissionsByOptionalProblemID(GetSubmissionsRequest)
       returns (GetSubmissionsResponse);
+  rpc GetSubmissionsByID(GetSubmissionsByIDRequest) returns (GetSubmissionsByIDResponse);
+
+  rpc ProblemIDsDoneByUserID(ProblemIDsDoneByUserIDRequest) returns (ProblemIDsDoneByUserIDResponse);
 
   // Leaderboard
   rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest)
@@ -68,6 +71,22 @@ service ProblemsService {
 
   rpc GetBulkProblemMetadata(GetBulkProblemMetadataRequest)
       returns (GetBulkProblemMetadataResponse);
+}
+
+message ProblemIDsDoneByUserIDRequest{
+  string user_id = 1;
+}
+message ProblemIDsDoneByUserIDResponse{
+  repeated string problem_ids = 1;
+}
+
+message GetSubmissionsByIDRequest {
+ string submission_id =1;
+ string traceID = 2;
+}
+
+message GetSubmissionsByIDResponse{
+ 
 }
 
 message ForceChangeUserEntityInSubmissionRequest{
