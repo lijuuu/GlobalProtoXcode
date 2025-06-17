@@ -4134,6 +4134,7 @@ type Problem struct {
 	ValidateCode       map[string]*ValidationCode `protobuf:"bytes,11,rep,name=validate_code,json=validateCode,proto3" json:"validate_code,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	Validated          bool                       `protobuf:"varint,12,opt,name=validated,proto3" json:"validated,omitempty"`
 	ValidatedAt        *Timestamp                 `protobuf:"bytes,13,opt,name=validated_at,json=validatedAt,proto3" json:"validated_at,omitempty"`
+	Visible            bool                       `protobuf:"varint,14,opt,name=visible,proto3" json:"visible,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -4257,6 +4258,13 @@ func (x *Problem) GetValidatedAt() *Timestamp {
 		return x.ValidatedAt
 	}
 	return nil
+}
+
+func (x *Problem) GetVisible() bool {
+	if x != nil {
+		return x.Visible
+	}
+	return false
 }
 
 type CreateProblemResponse struct {
@@ -6379,7 +6387,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +
 	"\blanguage\x18\x02 \x01(\tR\blanguage\x12\x18\n" +
-	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xa3\x05\n" +
+	"\atraceID\x18\x03 \x01(\tR\atraceID\"\xbd\x05\n" +
 	"\aProblem\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x122\n" +
@@ -6400,7 +6408,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	" \x03(\tR\x12supportedLanguages\x12H\n" +
 	"\rvalidate_code\x18\v \x03(\v2#.problems.Problem.ValidateCodeEntryR\fvalidateCode\x12\x1c\n" +
 	"\tvalidated\x18\f \x01(\bR\tvalidated\x126\n" +
-	"\fvalidated_at\x18\r \x01(\v2\x13.problems.TimestampR\vvalidatedAt\x1aY\n" +
+	"\fvalidated_at\x18\r \x01(\v2\x13.problems.TimestampR\vvalidatedAt\x12\x18\n" +
+	"\avisible\x18\x0e \x01(\bR\avisible\x1aY\n" +
 	"\x11ValidateCodeEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\v2\x18.problems.ValidationCodeR\x05value:\x028\x01B\r\n" +

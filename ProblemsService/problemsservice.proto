@@ -500,6 +500,7 @@ message Problem {
   map<string, ValidationCode> validate_code = 11;
   bool validated = 12;
   Timestamp validated_at = 13;
+  bool visible = 14;
 }
 
 message CreateProblemResponse {
