@@ -3582,7 +3582,8 @@ type UpdateProblemRequest struct {
 	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 	Difficulty    *string                `protobuf:"bytes,5,opt,name=difficulty,proto3,oneof" json:"difficulty,omitempty"`
-	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
+	Visible       *bool                  `protobuf:"varint,6,opt,name=visible,proto3,oneof" json:"visible,omitempty"`
+	TraceID       string                 `protobuf:"bytes,7,opt,name=traceID,proto3" json:"traceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3650,6 +3651,13 @@ func (x *UpdateProblemRequest) GetDifficulty() string {
 		return *x.Difficulty
 	}
 	return ""
+}
+
+func (x *UpdateProblemRequest) GetVisible() bool {
+	if x != nil && x.Visible != nil {
+		return *x.Visible
+	}
+	return false
 }
 
 func (x *UpdateProblemRequest) GetTraceID() string {
@@ -6307,7 +6315,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12\x18\n" +
-	"\atraceID\x18\x05 \x01(\tR\atraceID\"\xf3\x01\n" +
+	"\atraceID\x18\x05 \x01(\tR\atraceID\"\x9e\x02\n" +
 	"\x14UpdateProblemRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x19\n" +
@@ -6316,11 +6324,14 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12#\n" +
 	"\n" +
 	"difficulty\x18\x05 \x01(\tH\x02R\n" +
-	"difficulty\x88\x01\x01\x12\x18\n" +
-	"\atraceID\x18\x06 \x01(\tR\atraceIDB\b\n" +
+	"difficulty\x88\x01\x01\x12\x1d\n" +
+	"\avisible\x18\x06 \x01(\bH\x03R\avisible\x88\x01\x01\x12\x18\n" +
+	"\atraceID\x18\a \x01(\tR\atraceIDB\b\n" +
 	"\x06_titleB\x0e\n" +
 	"\f_descriptionB\r\n" +
-	"\v_difficulty\"O\n" +
+	"\v_difficultyB\n" +
+	"\n" +
+	"\b_visible\"O\n" +
 	"\x14DeleteProblemRequest\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x18\n" +

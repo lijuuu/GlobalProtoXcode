@@ -436,7 +436,8 @@ message UpdateProblemRequest {
   optional string description = 3;
   repeated string tags = 4;
   optional string difficulty = 5;
-  string traceID = 6;
+  optional bool visible = 6;
+  string traceID = 7;
 }
 
 message DeleteProblemRequest {
