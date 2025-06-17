@@ -666,6 +666,7 @@ message GetProblemMetadataListRequest {
   string difficulty = 4;
   string search_query = 5;
   string traceID = 6;
+  bool isAdmin = 7;
 }
 
 message GetProblemMetadataListResponse {
@@ -683,4 +684,5 @@ message ProblemMetadataLite {
   repeated string supported_languages = 7;
   bool validated = 8;
   map<string, string> placeholder_maps = 9;
+  bool visible = 10;
 }

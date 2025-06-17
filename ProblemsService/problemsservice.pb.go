@@ -5787,6 +5787,7 @@ type GetProblemMetadataListRequest struct {
 	Difficulty    string                 `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
 	SearchQuery   string                 `protobuf:"bytes,5,opt,name=search_query,json=searchQuery,proto3" json:"search_query,omitempty"`
 	TraceID       string                 `protobuf:"bytes,6,opt,name=traceID,proto3" json:"traceID,omitempty"`
+	IsAdmin       bool                   `protobuf:"varint,7,opt,name=isAdmin,proto3" json:"isAdmin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5863,6 +5864,13 @@ func (x *GetProblemMetadataListRequest) GetTraceID() string {
 	return ""
 }
 
+func (x *GetProblemMetadataListRequest) GetIsAdmin() bool {
+	if x != nil {
+		return x.IsAdmin
+	}
+	return false
+}
+
 type GetProblemMetadataListResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Problemmetdata []*ProblemMetadataLite `protobuf:"bytes,1,rep,name=problemmetdata,proto3" json:"problemmetdata,omitempty"`
@@ -5926,6 +5934,7 @@ type ProblemMetadataLite struct {
 	SupportedLanguages []string               `protobuf:"bytes,7,rep,name=supported_languages,json=supportedLanguages,proto3" json:"supported_languages,omitempty"`
 	Validated          bool                   `protobuf:"varint,8,opt,name=validated,proto3" json:"validated,omitempty"`
 	PlaceholderMaps    map[string]string      `protobuf:"bytes,9,rep,name=placeholder_maps,json=placeholderMaps,proto3" json:"placeholder_maps,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Visible            bool                   `protobuf:"varint,10,opt,name=visible,proto3" json:"visible,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -6021,6 +6030,13 @@ func (x *ProblemMetadataLite) GetPlaceholderMaps() map[string]string {
 		return x.PlaceholderMaps
 	}
 	return nil
+}
+
+func (x *ProblemMetadataLite) GetVisible() bool {
+	if x != nil {
+		return x.Visible
+	}
+	return false
 }
 
 var File_ProblemsService_problemsservice_proto protoreflect.FileDescriptor
@@ -6562,7 +6578,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x05_slug\"}\n" +
 	"\x1aGetProblemByIdSlugResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x01(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xc1\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xdb\x01\n" +
 	"\x1dGetProblemMetadataListRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
@@ -6571,10 +6587,11 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12!\n" +
 	"\fsearch_query\x18\x05 \x01(\tR\vsearchQuery\x12\x18\n" +
-	"\atraceID\x18\x06 \x01(\tR\atraceID\"\x81\x01\n" +
+	"\atraceID\x18\x06 \x01(\tR\atraceID\x12\x18\n" +
+	"\aisAdmin\x18\a \x01(\bR\aisAdmin\"\x81\x01\n" +
 	"\x1eGetProblemMetadataListResponse\x12E\n" +
 	"\x0eproblemmetdata\x18\x01 \x03(\v2\x1d.problems.ProblemMetadataLiteR\x0eproblemmetdata\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xd0\x03\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xea\x03\n" +
 	"\x13ProblemMetadataLite\x12\x1d\n" +
 	"\n" +
 	"problem_id\x18\x01 \x01(\tR\tproblemId\x12\x14\n" +
@@ -6587,7 +6604,9 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"difficulty\x12/\n" +
 	"\x13supported_languages\x18\a \x03(\tR\x12supportedLanguages\x12\x1c\n" +
 	"\tvalidated\x18\b \x01(\bR\tvalidated\x12]\n" +
-	"\x10placeholder_maps\x18\t \x03(\v22.problems.ProblemMetadataLite.PlaceholderMapsEntryR\x0fplaceholderMaps\x1aB\n" +
+	"\x10placeholder_maps\x18\t \x03(\v22.problems.ProblemMetadataLite.PlaceholderMapsEntryR\x0fplaceholderMaps\x12\x18\n" +
+	"\avisible\x18\n" +
+	" \x01(\bR\avisible\x1aB\n" +
 	"\x14PlaceholderMapsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\x99\x1a\n" +
