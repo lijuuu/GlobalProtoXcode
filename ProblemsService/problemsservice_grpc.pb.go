@@ -19,43 +19,45 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProblemsService_CreateProblem_FullMethodName                     = "/problems.ProblemsService/CreateProblem"
-	ProblemsService_UpdateProblem_FullMethodName                     = "/problems.ProblemsService/UpdateProblem"
-	ProblemsService_DeleteProblem_FullMethodName                     = "/problems.ProblemsService/DeleteProblem"
-	ProblemsService_GetProblem_FullMethodName                        = "/problems.ProblemsService/GetProblem"
-	ProblemsService_ListProblems_FullMethodName                      = "/problems.ProblemsService/ListProblems"
-	ProblemsService_GetProblemByIDSlug_FullMethodName                = "/problems.ProblemsService/GetProblemByIDSlug"
-	ProblemsService_GetProblemMetadataList_FullMethodName            = "/problems.ProblemsService/GetProblemMetadataList"
-	ProblemsService_AddTestCases_FullMethodName                      = "/problems.ProblemsService/AddTestCases"
-	ProblemsService_DeleteTestCase_FullMethodName                    = "/problems.ProblemsService/DeleteTestCase"
-	ProblemsService_GetLanguageSupports_FullMethodName               = "/problems.ProblemsService/GetLanguageSupports"
-	ProblemsService_AddLanguageSupport_FullMethodName                = "/problems.ProblemsService/AddLanguageSupport"
-	ProblemsService_UpdateLanguageSupport_FullMethodName             = "/problems.ProblemsService/UpdateLanguageSupport"
-	ProblemsService_RemoveLanguageSupport_FullMethodName             = "/problems.ProblemsService/RemoveLanguageSupport"
-	ProblemsService_FullValidationByProblemID_FullMethodName         = "/problems.ProblemsService/FullValidationByProblemID"
-	ProblemsService_RunUserCodeProblem_FullMethodName                = "/problems.ProblemsService/RunUserCodeProblem"
-	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
-	ProblemsService_GetSubmissionsByID_FullMethodName                = "/problems.ProblemsService/GetSubmissionsByID"
-	ProblemsService_ProblemIDsDoneByUserID_FullMethodName            = "/problems.ProblemsService/ProblemIDsDoneByUserID"
-	ProblemsService_GetProblemsDoneStatistics_FullMethodName         = "/problems.ProblemsService/GetProblemsDoneStatistics"
-	ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName = "/problems.ProblemsService/ForceChangeUserEntityInSubmission"
-	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName         = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
-	ProblemsService_GetTopKGlobal_FullMethodName                     = "/problems.ProblemsService/GetTopKGlobal"
-	ProblemsService_GetTopKEntity_FullMethodName                     = "/problems.ProblemsService/GetTopKEntity"
-	ProblemsService_GetUserRank_FullMethodName                       = "/problems.ProblemsService/GetUserRank"
-	ProblemsService_GetLeaderboardData_FullMethodName                = "/problems.ProblemsService/GetLeaderboardData"
-	ProblemsService_CreateChallenge_FullMethodName                   = "/problems.ProblemsService/CreateChallenge"
-	ProblemsService_GetChallengeDetails_FullMethodName               = "/problems.ProblemsService/GetChallengeDetails"
-	ProblemsService_GetPublicChallenges_FullMethodName               = "/problems.ProblemsService/GetPublicChallenges"
-	ProblemsService_JoinChallenge_FullMethodName                     = "/problems.ProblemsService/JoinChallenge"
-	ProblemsService_StartChallenge_FullMethodName                    = "/problems.ProblemsService/StartChallenge"
-	ProblemsService_EndChallenge_FullMethodName                      = "/problems.ProblemsService/EndChallenge"
-	ProblemsService_GetSubmissionStatus_FullMethodName               = "/problems.ProblemsService/GetSubmissionStatus"
-	ProblemsService_GetChallengeSubmissions_FullMethodName           = "/problems.ProblemsService/GetChallengeSubmissions"
-	ProblemsService_GetUserStats_FullMethodName                      = "/problems.ProblemsService/GetUserStats"
-	ProblemsService_GetChallengeUserStats_FullMethodName             = "/problems.ProblemsService/GetChallengeUserStats"
-	ProblemsService_GetChallengeHistory_FullMethodName               = "/problems.ProblemsService/GetChallengeHistory"
-	ProblemsService_GetBulkProblemMetadata_FullMethodName            = "/problems.ProblemsService/GetBulkProblemMetadata"
+	ProblemsService_CreateProblem_FullMethodName                          = "/problems.ProblemsService/CreateProblem"
+	ProblemsService_UpdateProblem_FullMethodName                          = "/problems.ProblemsService/UpdateProblem"
+	ProblemsService_DeleteProblem_FullMethodName                          = "/problems.ProblemsService/DeleteProblem"
+	ProblemsService_GetProblem_FullMethodName                             = "/problems.ProblemsService/GetProblem"
+	ProblemsService_ListProblems_FullMethodName                           = "/problems.ProblemsService/ListProblems"
+	ProblemsService_GetProblemByIDSlug_FullMethodName                     = "/problems.ProblemsService/GetProblemByIDSlug"
+	ProblemsService_GetProblemMetadataList_FullMethodName                 = "/problems.ProblemsService/GetProblemMetadataList"
+	ProblemsService_AddTestCases_FullMethodName                           = "/problems.ProblemsService/AddTestCases"
+	ProblemsService_DeleteTestCase_FullMethodName                         = "/problems.ProblemsService/DeleteTestCase"
+	ProblemsService_GetLanguageSupports_FullMethodName                    = "/problems.ProblemsService/GetLanguageSupports"
+	ProblemsService_AddLanguageSupport_FullMethodName                     = "/problems.ProblemsService/AddLanguageSupport"
+	ProblemsService_UpdateLanguageSupport_FullMethodName                  = "/problems.ProblemsService/UpdateLanguageSupport"
+	ProblemsService_RemoveLanguageSupport_FullMethodName                  = "/problems.ProblemsService/RemoveLanguageSupport"
+	ProblemsService_FullValidationByProblemID_FullMethodName              = "/problems.ProblemsService/FullValidationByProblemID"
+	ProblemsService_RunUserCodeProblem_FullMethodName                     = "/problems.ProblemsService/RunUserCodeProblem"
+	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName      = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
+	ProblemsService_GetSubmissionsByID_FullMethodName                     = "/problems.ProblemsService/GetSubmissionsByID"
+	ProblemsService_ProblemIDsDoneByUserID_FullMethodName                 = "/problems.ProblemsService/ProblemIDsDoneByUserID"
+	ProblemsService_GetProblemsDoneStatistics_FullMethodName              = "/problems.ProblemsService/GetProblemsDoneStatistics"
+	ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName      = "/problems.ProblemsService/ForceChangeUserEntityInSubmission"
+	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName              = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
+	ProblemsService_GetTopKGlobal_FullMethodName                          = "/problems.ProblemsService/GetTopKGlobal"
+	ProblemsService_GetTopKEntity_FullMethodName                          = "/problems.ProblemsService/GetTopKEntity"
+	ProblemsService_GetUserRank_FullMethodName                            = "/problems.ProblemsService/GetUserRank"
+	ProblemsService_GetLeaderboardData_FullMethodName                     = "/problems.ProblemsService/GetLeaderboardData"
+	ProblemsService_CreateChallenge_FullMethodName                        = "/problems.ProblemsService/CreateChallenge"
+	ProblemsService_GetChallengeDetails_FullMethodName                    = "/problems.ProblemsService/GetChallengeDetails"
+	ProblemsService_GetPublicChallenges_FullMethodName                    = "/problems.ProblemsService/GetPublicChallenges"
+	ProblemsService_JoinChallenge_FullMethodName                          = "/problems.ProblemsService/JoinChallenge"
+	ProblemsService_StartChallenge_FullMethodName                         = "/problems.ProblemsService/StartChallenge"
+	ProblemsService_EndChallenge_FullMethodName                           = "/problems.ProblemsService/EndChallenge"
+	ProblemsService_GetSubmissionStatus_FullMethodName                    = "/problems.ProblemsService/GetSubmissionStatus"
+	ProblemsService_GetChallengeSubmissions_FullMethodName                = "/problems.ProblemsService/GetChallengeSubmissions"
+	ProblemsService_GetUserStats_FullMethodName                           = "/problems.ProblemsService/GetUserStats"
+	ProblemsService_GetChallengeUserStats_FullMethodName                  = "/problems.ProblemsService/GetChallengeUserStats"
+	ProblemsService_GetChallengeHistory_FullMethodName                    = "/problems.ProblemsService/GetChallengeHistory"
+	ProblemsService_GetBulkProblemMetadata_FullMethodName                 = "/problems.ProblemsService/GetBulkProblemMetadata"
+	ProblemsService_CheckProblemExistenceBulk_FullMethodName              = "/problems.ProblemsService/CheckProblemExistenceBulk"
+	ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName = "/problems.ProblemsService/RandomProblemIDsGenWithDifficultyRatio"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -102,7 +104,11 @@ type ProblemsServiceClient interface {
 	GetUserStats(ctx context.Context, in *GetUserStatsRequest, opts ...grpc.CallOption) (*GetUserStatsResponse, error)
 	GetChallengeUserStats(ctx context.Context, in *GetChallengeUserStatsRequest, opts ...grpc.CallOption) (*GetChallengeUserStatsResponse, error)
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*GetChallengeHistoryResponse, error)
+	// todo:(apigateway) frontend to get bulk metadata for previews of qns in the challenge room,connect it to api gateway
 	GetBulkProblemMetadata(ctx context.Context, in *GetBulkProblemMetadataRequest, opts ...grpc.CallOption) (*GetBulkProblemMetadataResponse, error)
+	// 2new methods for challenge service
+	CheckProblemExistenceBulk(ctx context.Context, in *CheckProblemExistenceBulkRequest, opts ...grpc.CallOption) (*CheckProblemExistenceBulkResponse, error)
+	RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -483,6 +489,26 @@ func (c *problemsServiceClient) GetBulkProblemMetadata(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *problemsServiceClient) CheckProblemExistenceBulk(ctx context.Context, in *CheckProblemExistenceBulkRequest, opts ...grpc.CallOption) (*CheckProblemExistenceBulkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckProblemExistenceBulkResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_CheckProblemExistenceBulk_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *problemsServiceClient) RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RandomProblemIDsGenWithDifficultyRatioResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -527,7 +553,11 @@ type ProblemsServiceServer interface {
 	GetUserStats(context.Context, *GetUserStatsRequest) (*GetUserStatsResponse, error)
 	GetChallengeUserStats(context.Context, *GetChallengeUserStatsRequest) (*GetChallengeUserStatsResponse, error)
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*GetChallengeHistoryResponse, error)
+	// todo:(apigateway) frontend to get bulk metadata for previews of qns in the challenge room,connect it to api gateway
 	GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error)
+	// 2new methods for challenge service
+	CheckProblemExistenceBulk(context.Context, *CheckProblemExistenceBulkRequest) (*CheckProblemExistenceBulkResponse, error)
+	RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -648,6 +678,12 @@ func (UnimplementedProblemsServiceServer) GetChallengeHistory(context.Context, *
 }
 func (UnimplementedProblemsServiceServer) GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkProblemMetadata not implemented")
+}
+func (UnimplementedProblemsServiceServer) CheckProblemExistenceBulk(context.Context, *CheckProblemExistenceBulkRequest) (*CheckProblemExistenceBulkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckProblemExistenceBulk not implemented")
+}
+func (UnimplementedProblemsServiceServer) RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RandomProblemIDsGenWithDifficultyRatio not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -1336,6 +1372,42 @@ func _ProblemsService_GetBulkProblemMetadata_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_CheckProblemExistenceBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckProblemExistenceBulkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).CheckProblemExistenceBulk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_CheckProblemExistenceBulk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).CheckProblemExistenceBulk(ctx, req.(*CheckProblemExistenceBulkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProblemsService_RandomProblemIDsGenWithDifficultyRatio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RandomProblemIDsGenWithDifficultyRatioRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).RandomProblemIDsGenWithDifficultyRatio(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).RandomProblemIDsGenWithDifficultyRatio(ctx, req.(*RandomProblemIDsGenWithDifficultyRatioRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1490,6 +1562,14 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBulkProblemMetadata",
 			Handler:    _ProblemsService_GetBulkProblemMetadata_Handler,
+		},
+		{
+			MethodName: "CheckProblemExistenceBulk",
+			Handler:    _ProblemsService_CheckProblemExistenceBulk_Handler,
+		},
+		{
+			MethodName: "RandomProblemIDsGenWithDifficultyRatio",
+			Handler:    _ProblemsService_RandomProblemIDsGenWithDifficultyRatio_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

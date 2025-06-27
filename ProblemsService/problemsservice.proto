@@ -69,8 +69,43 @@ service ProblemsService {
   rpc GetChallengeHistory(GetChallengeHistoryRequest)
       returns (GetChallengeHistoryResponse);
 
+
+  //todo:(apigateway) frontend to get bulk metadata for previews of qns in the challenge room,connect it to api gateway
   rpc GetBulkProblemMetadata(GetBulkProblemMetadataRequest)
       returns (GetBulkProblemMetadataResponse);
+  //2new methods for challenge service
+  rpc CheckProblemExistenceBulk(CheckProblemExistenceBulkRequest)
+      returns (CheckProblemExistenceBulkResponse);
+  rpc RandomProblemIDsGenWithDifficultyRatio(RandomProblemIDsGenWithDifficultyRatioRequest)
+      returns (RandomProblemIDsGenWithDifficultyRatioResponse);
+  
+}
+
+message RandomProblemIDsGenWithDifficultyRatioRequest{
+  ProblemDifficultyRatio qnratio = 1;
+  string traceID = 2;
+}
+
+message ProblemDifficultyRatio {
+  int32 easy = 1;
+  int32 medium = 2;
+  int32 hard = 3;
+}
+
+message RandomProblemIDsGenWithDifficultyRatioResponse {
+  repeated string problem_ids = 1;
+  bool success = 2;
+  string message = 3;
+  string error_type = 4;
+}
+
+
+message CheckProblemExistenceBulkRequest{
+  repeated string problem_ids = 1;
+}
+
+message CheckProblemExistenceBulkResponse{
+  map<string, bool> problem_existence = 1; // problem_id -> exists
 }
 
 message ProblemIDsDoneByUserIDRequest{
