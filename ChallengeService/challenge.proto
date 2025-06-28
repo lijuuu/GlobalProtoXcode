@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package challenge;
+
+option go_package = "./proto";
+
+service ChallengeService {
+  rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse);
+}
+
+message PushSubmissionStatusRequest {
+  string userCode = 1;
+  string challengeId = 2;
+  string userId = 3;
+  string problemId = 4;
+  string status = 5;
+  string submissionId = 6;
+  string traceId = 7;
+}
+
+message PushSubmissionStatusResponse {
+  string message = 1; 
+  bool success = 2;
+}

@@ -1,6 +1,6 @@
 # Install necessary tools for protobuf compilation
 GO_MODULE ?= $(shell go env GOPATH)
-PROTO_DIRS := AuthUserAdminService ProblemsService
+PROTO_DIRS := AuthUserAdminService ProblemsService ChallengeService
 
 init:
 	@echo "Initializing environment..."

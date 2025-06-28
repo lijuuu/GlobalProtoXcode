@@ -32,8 +32,6 @@ service ProblemsService {
       returns (GetSubmissionsResponse);
   rpc GetSubmissionsByID(GetSubmissionsByIDRequest) returns (GetSubmissionsByIDResponse);
 
-  rpc ProblemIDsDoneByUserID(ProblemIDsDoneByUserIDRequest) returns (ProblemIDsDoneByUserIDResponse);
-
   // Leaderboard
   rpc GetProblemsDoneStatistics(GetProblemsDoneStatisticsRequest)
       returns (GetProblemsDoneStatisticsResponse);
@@ -78,6 +76,8 @@ service ProblemsService {
       returns (CheckProblemExistenceBulkResponse);
   rpc RandomProblemIDsGenWithDifficultyRatio(RandomProblemIDsGenWithDifficultyRatioRequest)
       returns (RandomProblemIDsGenWithDifficultyRatioResponse);
+  //todo
+  rpc ProblemIDsDoneByUserID(ProblemIDsDoneByUserIDRequest) returns (ProblemIDsDoneByUserIDResponse);
   
 }
 
@@ -112,17 +112,24 @@ message ProblemIDsDoneByUserIDRequest{
   string user_id = 1;
 }
 message ProblemIDsDoneByUserIDResponse{
-  repeated string problem_ids = 1;
-}
+   repeated string problem_ids = 1;
+  bool   success    = 2;
+  string message    = 3;
+  string error_type = 4;
+ }
 
 message GetSubmissionsByIDRequest {
  string submission_id =1;
  string traceID = 2;
 }
-
 message GetSubmissionsByIDResponse{
- 
+  Submission submission = 1;
+  bool       success    = 2;
+  string     message    = 3;
+  string     error_type = 4;
 }
+ 
+
 
 message ForceChangeUserEntityInSubmissionRequest{
   string user_id = 1;

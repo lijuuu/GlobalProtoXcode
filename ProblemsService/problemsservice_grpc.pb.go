@@ -36,7 +36,6 @@ const (
 	ProblemsService_RunUserCodeProblem_FullMethodName                     = "/problems.ProblemsService/RunUserCodeProblem"
 	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName      = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
 	ProblemsService_GetSubmissionsByID_FullMethodName                     = "/problems.ProblemsService/GetSubmissionsByID"
-	ProblemsService_ProblemIDsDoneByUserID_FullMethodName                 = "/problems.ProblemsService/ProblemIDsDoneByUserID"
 	ProblemsService_GetProblemsDoneStatistics_FullMethodName              = "/problems.ProblemsService/GetProblemsDoneStatistics"
 	ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName      = "/problems.ProblemsService/ForceChangeUserEntityInSubmission"
 	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName              = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
@@ -58,6 +57,7 @@ const (
 	ProblemsService_GetBulkProblemMetadata_FullMethodName                 = "/problems.ProblemsService/GetBulkProblemMetadata"
 	ProblemsService_CheckProblemExistenceBulk_FullMethodName              = "/problems.ProblemsService/CheckProblemExistenceBulk"
 	ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName = "/problems.ProblemsService/RandomProblemIDsGenWithDifficultyRatio"
+	ProblemsService_ProblemIDsDoneByUserID_FullMethodName                 = "/problems.ProblemsService/ProblemIDsDoneByUserID"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -82,7 +82,6 @@ type ProblemsServiceClient interface {
 	RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error)
 	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
 	GetSubmissionsByID(ctx context.Context, in *GetSubmissionsByIDRequest, opts ...grpc.CallOption) (*GetSubmissionsByIDResponse, error)
-	ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error)
 	// Leaderboard
 	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
 	ForceChangeUserEntityInSubmission(ctx context.Context, in *ForceChangeUserEntityInSubmissionRequest, opts ...grpc.CallOption) (*ForceChangeUserEntityInSubmissionResponse, error)
@@ -109,6 +108,8 @@ type ProblemsServiceClient interface {
 	// 2new methods for challenge service
 	CheckProblemExistenceBulk(ctx context.Context, in *CheckProblemExistenceBulkRequest, opts ...grpc.CallOption) (*CheckProblemExistenceBulkResponse, error)
 	RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
+	// todo
+	ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -283,16 +284,6 @@ func (c *problemsServiceClient) GetSubmissionsByID(ctx context.Context, in *GetS
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSubmissionsByIDResponse)
 	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionsByID_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *problemsServiceClient) ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProblemIDsDoneByUserIDResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_ProblemIDsDoneByUserID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -509,6 +500,16 @@ func (c *problemsServiceClient) RandomProblemIDsGenWithDifficultyRatio(ctx conte
 	return out, nil
 }
 
+func (c *problemsServiceClient) ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProblemIDsDoneByUserIDResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_ProblemIDsDoneByUserID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -531,7 +532,6 @@ type ProblemsServiceServer interface {
 	RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error)
 	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
 	GetSubmissionsByID(context.Context, *GetSubmissionsByIDRequest) (*GetSubmissionsByIDResponse, error)
-	ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error)
 	// Leaderboard
 	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
 	ForceChangeUserEntityInSubmission(context.Context, *ForceChangeUserEntityInSubmissionRequest) (*ForceChangeUserEntityInSubmissionResponse, error)
@@ -558,6 +558,8 @@ type ProblemsServiceServer interface {
 	// 2new methods for challenge service
 	CheckProblemExistenceBulk(context.Context, *CheckProblemExistenceBulkRequest) (*CheckProblemExistenceBulkResponse, error)
 	RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
+	// todo
+	ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -618,9 +620,6 @@ func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(cont
 }
 func (UnimplementedProblemsServiceServer) GetSubmissionsByID(context.Context, *GetSubmissionsByIDRequest) (*GetSubmissionsByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByID not implemented")
-}
-func (UnimplementedProblemsServiceServer) ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ProblemIDsDoneByUserID not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatistics not implemented")
@@ -684,6 +683,9 @@ func (UnimplementedProblemsServiceServer) CheckProblemExistenceBulk(context.Cont
 }
 func (UnimplementedProblemsServiceServer) RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RandomProblemIDsGenWithDifficultyRatio not implemented")
+}
+func (UnimplementedProblemsServiceServer) ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProblemIDsDoneByUserID not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -1008,24 +1010,6 @@ func _ProblemsService_GetSubmissionsByID_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProblemsServiceServer).GetSubmissionsByID(ctx, req.(*GetSubmissionsByIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ProblemsService_ProblemIDsDoneByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProblemIDsDoneByUserIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProblemsServiceServer).ProblemIDsDoneByUserID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProblemsService_ProblemIDsDoneByUserID_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).ProblemIDsDoneByUserID(ctx, req.(*ProblemIDsDoneByUserIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1408,6 +1392,24 @@ func _ProblemsService_RandomProblemIDsGenWithDifficultyRatio_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_ProblemIDsDoneByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProblemIDsDoneByUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).ProblemIDsDoneByUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_ProblemIDsDoneByUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).ProblemIDsDoneByUserID(ctx, req.(*ProblemIDsDoneByUserIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1482,10 +1484,6 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSubmissionsByID",
 			Handler:    _ProblemsService_GetSubmissionsByID_Handler,
-		},
-		{
-			MethodName: "ProblemIDsDoneByUserID",
-			Handler:    _ProblemsService_ProblemIDsDoneByUserID_Handler,
 		},
 		{
 			MethodName: "GetProblemsDoneStatistics",
@@ -1570,6 +1568,10 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RandomProblemIDsGenWithDifficultyRatio",
 			Handler:    _ProblemsService_RandomProblemIDsGenWithDifficultyRatio_Handler,
+		},
+		{
+			MethodName: "ProblemIDsDoneByUserID",
+			Handler:    _ProblemsService_ProblemIDsDoneByUserID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
