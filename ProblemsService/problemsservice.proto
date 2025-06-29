@@ -72,8 +72,8 @@ service ProblemsService {
   rpc GetBulkProblemMetadata(GetBulkProblemMetadataRequest)
       returns (GetBulkProblemMetadataResponse);
   //2new methods for challenge service
-  rpc CheckProblemExistenceBulk(CheckProblemExistenceBulkRequest)
-      returns (CheckProblemExistenceBulkResponse);
+  rpc VerifyProblemExistenceBulk(VerifyProblemExistenceBulkRequest)
+      returns (VerifyProblemExistenceBulkResponse);
   rpc RandomProblemIDsGenWithDifficultyRatio(RandomProblemIDsGenWithDifficultyRatioRequest)
       returns (RandomProblemIDsGenWithDifficultyRatioResponse);
   //todo
@@ -101,11 +101,11 @@ message RandomProblemIDsGenWithDifficultyRatioResponse {
 }
 
 
-message CheckProblemExistenceBulkRequest{
+message VerifyProblemExistenceBulkRequest{
   repeated string problem_ids = 1;
 }
 
-message CheckProblemExistenceBulkResponse{
+message VerifyProblemExistenceBulkResponse{
   map<string, bool> problem_existence = 1; // problem_id -> exists
 }
 

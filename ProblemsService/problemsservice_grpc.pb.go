@@ -55,7 +55,7 @@ const (
 	ProblemsService_GetChallengeUserStats_FullMethodName                  = "/problems.ProblemsService/GetChallengeUserStats"
 	ProblemsService_GetChallengeHistory_FullMethodName                    = "/problems.ProblemsService/GetChallengeHistory"
 	ProblemsService_GetBulkProblemMetadata_FullMethodName                 = "/problems.ProblemsService/GetBulkProblemMetadata"
-	ProblemsService_CheckProblemExistenceBulk_FullMethodName              = "/problems.ProblemsService/CheckProblemExistenceBulk"
+	ProblemsService_VerifyProblemExistenceBulk_FullMethodName             = "/problems.ProblemsService/VerifyProblemExistenceBulk"
 	ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName = "/problems.ProblemsService/RandomProblemIDsGenWithDifficultyRatio"
 	ProblemsService_ProblemIDsDoneByUserID_FullMethodName                 = "/problems.ProblemsService/ProblemIDsDoneByUserID"
 )
@@ -106,7 +106,7 @@ type ProblemsServiceClient interface {
 	// todo:(apigateway) frontend to get bulk metadata for previews of qns in the challenge room,connect it to api gateway
 	GetBulkProblemMetadata(ctx context.Context, in *GetBulkProblemMetadataRequest, opts ...grpc.CallOption) (*GetBulkProblemMetadataResponse, error)
 	// 2new methods for challenge service
-	CheckProblemExistenceBulk(ctx context.Context, in *CheckProblemExistenceBulkRequest, opts ...grpc.CallOption) (*CheckProblemExistenceBulkResponse, error)
+	VerifyProblemExistenceBulk(ctx context.Context, in *VerifyProblemExistenceBulkRequest, opts ...grpc.CallOption) (*VerifyProblemExistenceBulkResponse, error)
 	RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
 	// todo
 	ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error)
@@ -480,10 +480,10 @@ func (c *problemsServiceClient) GetBulkProblemMetadata(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *problemsServiceClient) CheckProblemExistenceBulk(ctx context.Context, in *CheckProblemExistenceBulkRequest, opts ...grpc.CallOption) (*CheckProblemExistenceBulkResponse, error) {
+func (c *problemsServiceClient) VerifyProblemExistenceBulk(ctx context.Context, in *VerifyProblemExistenceBulkRequest, opts ...grpc.CallOption) (*VerifyProblemExistenceBulkResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CheckProblemExistenceBulkResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_CheckProblemExistenceBulk_FullMethodName, in, out, cOpts...)
+	out := new(VerifyProblemExistenceBulkResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_VerifyProblemExistenceBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -556,7 +556,7 @@ type ProblemsServiceServer interface {
 	// todo:(apigateway) frontend to get bulk metadata for previews of qns in the challenge room,connect it to api gateway
 	GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error)
 	// 2new methods for challenge service
-	CheckProblemExistenceBulk(context.Context, *CheckProblemExistenceBulkRequest) (*CheckProblemExistenceBulkResponse, error)
+	VerifyProblemExistenceBulk(context.Context, *VerifyProblemExistenceBulkRequest) (*VerifyProblemExistenceBulkResponse, error)
 	RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
 	// todo
 	ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error)
@@ -678,8 +678,8 @@ func (UnimplementedProblemsServiceServer) GetChallengeHistory(context.Context, *
 func (UnimplementedProblemsServiceServer) GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBulkProblemMetadata not implemented")
 }
-func (UnimplementedProblemsServiceServer) CheckProblemExistenceBulk(context.Context, *CheckProblemExistenceBulkRequest) (*CheckProblemExistenceBulkResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckProblemExistenceBulk not implemented")
+func (UnimplementedProblemsServiceServer) VerifyProblemExistenceBulk(context.Context, *VerifyProblemExistenceBulkRequest) (*VerifyProblemExistenceBulkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyProblemExistenceBulk not implemented")
 }
 func (UnimplementedProblemsServiceServer) RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RandomProblemIDsGenWithDifficultyRatio not implemented")
@@ -1356,20 +1356,20 @@ func _ProblemsService_GetBulkProblemMetadata_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_CheckProblemExistenceBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckProblemExistenceBulkRequest)
+func _ProblemsService_VerifyProblemExistenceBulk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyProblemExistenceBulkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).CheckProblemExistenceBulk(ctx, in)
+		return srv.(ProblemsServiceServer).VerifyProblemExistenceBulk(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_CheckProblemExistenceBulk_FullMethodName,
+		FullMethod: ProblemsService_VerifyProblemExistenceBulk_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).CheckProblemExistenceBulk(ctx, req.(*CheckProblemExistenceBulkRequest))
+		return srv.(ProblemsServiceServer).VerifyProblemExistenceBulk(ctx, req.(*VerifyProblemExistenceBulkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1562,8 +1562,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_GetBulkProblemMetadata_Handler,
 		},
 		{
-			MethodName: "CheckProblemExistenceBulk",
-			Handler:    _ProblemsService_CheckProblemExistenceBulk_Handler,
+			MethodName: "VerifyProblemExistenceBulk",
+			Handler:    _ProblemsService_VerifyProblemExistenceBulk_Handler,
 		},
 		{
 			MethodName: "RandomProblemIDsGenWithDifficultyRatio",

@@ -209,27 +209,27 @@ func (x *RandomProblemIDsGenWithDifficultyRatioResponse) GetErrorType() string {
 	return ""
 }
 
-type CheckProblemExistenceBulkRequest struct {
+type VerifyProblemExistenceBulkRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProblemIds    []string               `protobuf:"bytes,1,rep,name=problem_ids,json=problemIds,proto3" json:"problem_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CheckProblemExistenceBulkRequest) Reset() {
-	*x = CheckProblemExistenceBulkRequest{}
+func (x *VerifyProblemExistenceBulkRequest) Reset() {
+	*x = VerifyProblemExistenceBulkRequest{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CheckProblemExistenceBulkRequest) String() string {
+func (x *VerifyProblemExistenceBulkRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CheckProblemExistenceBulkRequest) ProtoMessage() {}
+func (*VerifyProblemExistenceBulkRequest) ProtoMessage() {}
 
-func (x *CheckProblemExistenceBulkRequest) ProtoReflect() protoreflect.Message {
+func (x *VerifyProblemExistenceBulkRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -241,39 +241,39 @@ func (x *CheckProblemExistenceBulkRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CheckProblemExistenceBulkRequest.ProtoReflect.Descriptor instead.
-func (*CheckProblemExistenceBulkRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use VerifyProblemExistenceBulkRequest.ProtoReflect.Descriptor instead.
+func (*VerifyProblemExistenceBulkRequest) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CheckProblemExistenceBulkRequest) GetProblemIds() []string {
+func (x *VerifyProblemExistenceBulkRequest) GetProblemIds() []string {
 	if x != nil {
 		return x.ProblemIds
 	}
 	return nil
 }
 
-type CheckProblemExistenceBulkResponse struct {
+type VerifyProblemExistenceBulkResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	ProblemExistence map[string]bool        `protobuf:"bytes,1,rep,name=problem_existence,json=problemExistence,proto3" json:"problem_existence,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"` // problem_id -> exists
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *CheckProblemExistenceBulkResponse) Reset() {
-	*x = CheckProblemExistenceBulkResponse{}
+func (x *VerifyProblemExistenceBulkResponse) Reset() {
+	*x = VerifyProblemExistenceBulkResponse{}
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CheckProblemExistenceBulkResponse) String() string {
+func (x *VerifyProblemExistenceBulkResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CheckProblemExistenceBulkResponse) ProtoMessage() {}
+func (*VerifyProblemExistenceBulkResponse) ProtoMessage() {}
 
-func (x *CheckProblemExistenceBulkResponse) ProtoReflect() protoreflect.Message {
+func (x *VerifyProblemExistenceBulkResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ProblemsService_problemsservice_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -285,12 +285,12 @@ func (x *CheckProblemExistenceBulkResponse) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CheckProblemExistenceBulkResponse.ProtoReflect.Descriptor instead.
-func (*CheckProblemExistenceBulkResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use VerifyProblemExistenceBulkResponse.ProtoReflect.Descriptor instead.
+func (*VerifyProblemExistenceBulkResponse) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CheckProblemExistenceBulkResponse) GetProblemExistence() map[string]bool {
+func (x *VerifyProblemExistenceBulkResponse) GetProblemExistence() map[string]bool {
 	if x != nil {
 		return x.ProblemExistence
 	}
@@ -6566,12 +6566,12 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\asuccess\x18\x03 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\x12\x1d\n" +
 	"\n" +
-	"error_type\x18\x05 \x01(\tR\terrorType\"C\n" +
-	" CheckProblemExistenceBulkRequest\x12\x1f\n" +
+	"error_type\x18\x05 \x01(\tR\terrorType\"D\n" +
+	"!VerifyProblemExistenceBulkRequest\x12\x1f\n" +
 	"\vproblem_ids\x18\x01 \x03(\tR\n" +
-	"problemIds\"\xd8\x01\n" +
-	"!CheckProblemExistenceBulkResponse\x12n\n" +
-	"\x11problem_existence\x18\x01 \x03(\v2A.problems.CheckProblemExistenceBulkResponse.ProblemExistenceEntryR\x10problemExistence\x1aC\n" +
+	"problemIds\"\xda\x01\n" +
+	"\"VerifyProblemExistenceBulkResponse\x12o\n" +
+	"\x11problem_existence\x18\x01 \x03(\v2B.problems.VerifyProblemExistenceBulkResponse.ProblemExistenceEntryR\x10problemExistence\x1aC\n" +
 	"\x15ProblemExistenceEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"8\n" +
@@ -7160,7 +7160,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	" \x01(\bR\avisible\x1aB\n" +
 	"\x14PlaceholderMapsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xfb\x1d\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xfe\x1d\n" +
 	"\x0fProblemsService\x12P\n" +
 	"\rCreateProblem\x12\x1e.problems.CreateProblemRequest\x1a\x1f.problems.CreateProblemResponse\x12P\n" +
 	"\rUpdateProblem\x12\x1e.problems.UpdateProblemRequest\x1a\x1f.problems.UpdateProblemResponse\x12P\n" +
@@ -7198,8 +7198,8 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\fGetUserStats\x12\x1d.problems.GetUserStatsRequest\x1a\x1e.problems.GetUserStatsResponse\x12h\n" +
 	"\x15GetChallengeUserStats\x12&.problems.GetChallengeUserStatsRequest\x1a'.problems.GetChallengeUserStatsResponse\x12b\n" +
 	"\x13GetChallengeHistory\x12$.problems.GetChallengeHistoryRequest\x1a%.problems.GetChallengeHistoryResponse\x12k\n" +
-	"\x16GetBulkProblemMetadata\x12'.problems.GetBulkProblemMetadataRequest\x1a(.problems.GetBulkProblemMetadataResponse\x12t\n" +
-	"\x19CheckProblemExistenceBulk\x12*.problems.CheckProblemExistenceBulkRequest\x1a+.problems.CheckProblemExistenceBulkResponse\x12\x9b\x01\n" +
+	"\x16GetBulkProblemMetadata\x12'.problems.GetBulkProblemMetadataRequest\x1a(.problems.GetBulkProblemMetadataResponse\x12w\n" +
+	"\x1aVerifyProblemExistenceBulk\x12+.problems.VerifyProblemExistenceBulkRequest\x1a,.problems.VerifyProblemExistenceBulkResponse\x12\x9b\x01\n" +
 	"&RandomProblemIDsGenWithDifficultyRatio\x127.problems.RandomProblemIDsGenWithDifficultyRatioRequest\x1a8.problems.RandomProblemIDsGenWithDifficultyRatioResponse\x12k\n" +
 	"\x16ProblemIDsDoneByUserID\x12'.problems.ProblemIDsDoneByUserIDRequest\x1a(.problems.ProblemIDsDoneByUserIDResponseB\tZ\a./protob\x06proto3"
 
@@ -7220,8 +7220,8 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*RandomProblemIDsGenWithDifficultyRatioRequest)(nil),  // 0: problems.RandomProblemIDsGenWithDifficultyRatioRequest
 	(*ProblemDifficultyRatio)(nil),                         // 1: problems.ProblemDifficultyRatio
 	(*RandomProblemIDsGenWithDifficultyRatioResponse)(nil), // 2: problems.RandomProblemIDsGenWithDifficultyRatioResponse
-	(*CheckProblemExistenceBulkRequest)(nil),               // 3: problems.CheckProblemExistenceBulkRequest
-	(*CheckProblemExistenceBulkResponse)(nil),              // 4: problems.CheckProblemExistenceBulkResponse
+	(*VerifyProblemExistenceBulkRequest)(nil),              // 3: problems.VerifyProblemExistenceBulkRequest
+	(*VerifyProblemExistenceBulkResponse)(nil),             // 4: problems.VerifyProblemExistenceBulkResponse
 	(*ProblemIDsDoneByUserIDRequest)(nil),                  // 5: problems.ProblemIDsDoneByUserIDRequest
 	(*ProblemIDsDoneByUserIDResponse)(nil),                 // 6: problems.ProblemIDsDoneByUserIDResponse
 	(*GetSubmissionsByIDRequest)(nil),                      // 7: problems.GetSubmissionsByIDRequest
@@ -7318,7 +7318,7 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 	(*GetProblemMetadataListRequest)(nil),                  // 98: problems.GetProblemMetadataListRequest
 	(*GetProblemMetadataListResponse)(nil),                 // 99: problems.GetProblemMetadataListResponse
 	(*ProblemMetadataLite)(nil),                            // 100: problems.ProblemMetadataLite
-	nil,                                                    // 101: problems.CheckProblemExistenceBulkResponse.ProblemExistenceEntry
+	nil,                                                    // 101: problems.VerifyProblemExistenceBulkResponse.ProblemExistenceEntry
 	nil,                                                    // 102: problems.Challenge.UserProblemMetadataEntry
 	nil,                                                    // 103: problems.UserStats.ChallengeStatsEntry
 	nil,                                                    // 104: problems.Problem.ValidateCodeEntry
@@ -7328,7 +7328,7 @@ var file_ProblemsService_problemsservice_proto_goTypes = []any{
 var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	1,   // 0: problems.RandomProblemIDsGenWithDifficultyRatioRequest.qnratio:type_name -> problems.ProblemDifficultyRatio
 	1,   // 1: problems.RandomProblemIDsGenWithDifficultyRatioResponse.qnratio:type_name -> problems.ProblemDifficultyRatio
-	101, // 2: problems.CheckProblemExistenceBulkResponse.problem_existence:type_name -> problems.CheckProblemExistenceBulkResponse.ProblemExistenceEntry
+	101, // 2: problems.VerifyProblemExistenceBulkResponse.problem_existence:type_name -> problems.VerifyProblemExistenceBulkResponse.ProblemExistenceEntry
 	93,  // 3: problems.GetSubmissionsByIDResponse.submission:type_name -> problems.Submission
 	13,  // 4: problems.GetBulkProblemMetadataResponse.BulkProblemMetadata:type_name -> problems.BulkProblemMetadata
 	16,  // 5: problems.GetChallengeHistoryResponse.challenges:type_name -> problems.Challenge
@@ -7412,7 +7412,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	41,  // 83: problems.ProblemsService.GetChallengeUserStats:input_type -> problems.GetChallengeUserStatsRequest
 	14,  // 84: problems.ProblemsService.GetChallengeHistory:input_type -> problems.GetChallengeHistoryRequest
 	11,  // 85: problems.ProblemsService.GetBulkProblemMetadata:input_type -> problems.GetBulkProblemMetadataRequest
-	3,   // 86: problems.ProblemsService.CheckProblemExistenceBulk:input_type -> problems.CheckProblemExistenceBulkRequest
+	3,   // 86: problems.ProblemsService.VerifyProblemExistenceBulk:input_type -> problems.VerifyProblemExistenceBulkRequest
 	0,   // 87: problems.ProblemsService.RandomProblemIDsGenWithDifficultyRatio:input_type -> problems.RandomProblemIDsGenWithDifficultyRatioRequest
 	5,   // 88: problems.ProblemsService.ProblemIDsDoneByUserID:input_type -> problems.ProblemIDsDoneByUserIDRequest
 	76,  // 89: problems.ProblemsService.CreateProblem:output_type -> problems.CreateProblemResponse
@@ -7451,7 +7451,7 @@ var file_ProblemsService_problemsservice_proto_depIdxs = []int32{
 	42,  // 122: problems.ProblemsService.GetChallengeUserStats:output_type -> problems.GetChallengeUserStatsResponse
 	15,  // 123: problems.ProblemsService.GetChallengeHistory:output_type -> problems.GetChallengeHistoryResponse
 	12,  // 124: problems.ProblemsService.GetBulkProblemMetadata:output_type -> problems.GetBulkProblemMetadataResponse
-	4,   // 125: problems.ProblemsService.CheckProblemExistenceBulk:output_type -> problems.CheckProblemExistenceBulkResponse
+	4,   // 125: problems.ProblemsService.VerifyProblemExistenceBulk:output_type -> problems.VerifyProblemExistenceBulkResponse
 	2,   // 126: problems.ProblemsService.RandomProblemIDsGenWithDifficultyRatio:output_type -> problems.RandomProblemIDsGenWithDifficultyRatioResponse
 	6,   // 127: problems.ProblemsService.ProblemIDsDoneByUserID:output_type -> problems.ProblemIDsDoneByUserIDResponse
 	89,  // [89:128] is the sub-list for method output_type
