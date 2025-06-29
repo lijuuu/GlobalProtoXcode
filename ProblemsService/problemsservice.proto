@@ -94,9 +94,10 @@ message ProblemDifficultyRatio {
 
 message RandomProblemIDsGenWithDifficultyRatioResponse {
   repeated string problem_ids = 1;
-  bool success = 2;
-  string message = 3;
-  string error_type = 4;
+  ProblemDifficultyRatio qnratio = 2;  //unavailable ratio
+  bool success = 3;
+  string message =4;
+  string error_type = 5;
 }
 
 
