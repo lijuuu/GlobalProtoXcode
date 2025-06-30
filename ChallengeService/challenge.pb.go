@@ -458,13 +458,11 @@ func (x *QuestionPool) GetQuestionIds() []string {
 }
 
 type ChallengeConfig struct {
-	state              protoimpl.MessageState   `protogen:"open.v1"`
-	MaxUsers           int32                    `protobuf:"varint,1,opt,name=maxUsers,proto3" json:"maxUsers,omitempty"`
-	MaxEasyQuestions   int32                    `protobuf:"varint,2,opt,name=maxEasyQuestions,proto3" json:"maxEasyQuestions,omitempty"`
-	MaxMediumQuestions int32                    `protobuf:"varint,3,opt,name=maxMediumQuestions,proto3" json:"maxMediumQuestions,omitempty"`
-	MaxHardQuestions   int32                    `protobuf:"varint,4,opt,name=maxHardQuestions,proto3" json:"maxHardQuestions,omitempty"`
-	RandomQuestionPool map[string]*QuestionPool `protobuf:"bytes,5,rep,name=randomQuestionPool,proto3" json:"randomQuestionPool,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` //for server to write generated problem ids from the above ratio
-	InitialQuestions   map[string]*QuestionPool `protobuf:"bytes,6,rep,name=initialQuestions,proto3" json:"initialQuestions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`     //ignore above ratio and pool if initial qn is assigned
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	MaxUsers           int32                  `protobuf:"varint,1,opt,name=maxUsers,proto3" json:"maxUsers,omitempty"`
+	MaxEasyQuestions   int32                  `protobuf:"varint,2,opt,name=maxEasyQuestions,proto3" json:"maxEasyQuestions,omitempty"`
+	MaxMediumQuestions int32                  `protobuf:"varint,3,opt,name=maxMediumQuestions,proto3" json:"maxMediumQuestions,omitempty"`
+	MaxHardQuestions   int32                  `protobuf:"varint,4,opt,name=maxHardQuestions,proto3" json:"maxHardQuestions,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -525,20 +523,6 @@ func (x *ChallengeConfig) GetMaxHardQuestions() int32 {
 		return x.MaxHardQuestions
 	}
 	return 0
-}
-
-func (x *ChallengeConfig) GetRandomQuestionPool() map[string]*QuestionPool {
-	if x != nil {
-		return x.RandomQuestionPool
-	}
-	return nil
-}
-
-func (x *ChallengeConfig) GetInitialQuestions() map[string]*QuestionPool {
-	if x != nil {
-		return x.InitialQuestions
-	}
-	return nil
 }
 
 type ChallengeRecord struct {
@@ -1076,20 +1060,12 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"totalScore\x12\x12\n" +
 	"\x04rank\x18\x04 \x01(\x05R\x04rank\"0\n" +
 	"\fQuestionPool\x12 \n" +
-	"\vquestionIds\x18\x01 \x03(\tR\vquestionIds\"\xb5\x04\n" +
+	"\vquestionIds\x18\x01 \x03(\tR\vquestionIds\"\xb5\x01\n" +
 	"\x0fChallengeConfig\x12\x1a\n" +
 	"\bmaxUsers\x18\x01 \x01(\x05R\bmaxUsers\x12*\n" +
 	"\x10maxEasyQuestions\x18\x02 \x01(\x05R\x10maxEasyQuestions\x12.\n" +
 	"\x12maxMediumQuestions\x18\x03 \x01(\x05R\x12maxMediumQuestions\x12*\n" +
-	"\x10maxHardQuestions\x18\x04 \x01(\x05R\x10maxHardQuestions\x12b\n" +
-	"\x12randomQuestionPool\x18\x05 \x03(\v22.challenge.ChallengeConfig.RandomQuestionPoolEntryR\x12randomQuestionPool\x12\\\n" +
-	"\x10initialQuestions\x18\x06 \x03(\v20.challenge.ChallengeConfig.InitialQuestionsEntryR\x10initialQuestions\x1a^\n" +
-	"\x17RandomQuestionPoolEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\x1a\\\n" +
-	"\x15InitialQuestionsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\"\x9f\x05\n" +
+	"\x10maxHardQuestions\x18\x04 \x01(\x05R\x10maxHardQuestions\"\x9f\x05\n" +
 	"\x0fChallengeRecord\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
 	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12\x14\n" +
@@ -1159,7 +1135,7 @@ func file_ChallengeService_challenge_proto_rawDescGZIP() []byte {
 	return file_ChallengeService_challenge_proto_rawDescData
 }
 
-var file_ChallengeService_challenge_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_ChallengeService_challenge_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_ChallengeService_challenge_proto_goTypes = []any{
 	(*ParticipantMetadata)(nil),          // 0: challenge.ParticipantMetadata
 	(*ChallengeProblemMetadata)(nil),     // 1: challenge.ChallengeProblemMetadata
@@ -1177,44 +1153,38 @@ var file_ChallengeService_challenge_proto_goTypes = []any{
 	(*PushSubmissionStatusRequest)(nil),  // 13: challenge.PushSubmissionStatusRequest
 	(*PushSubmissionStatusResponse)(nil), // 14: challenge.PushSubmissionStatusResponse
 	nil,                                  // 15: challenge.ParticipantMetadata.ProblemsDoneEntry
-	nil,                                  // 16: challenge.ChallengeConfig.RandomQuestionPoolEntry
-	nil,                                  // 17: challenge.ChallengeConfig.InitialQuestionsEntry
-	nil,                                  // 18: challenge.ChallengeRecord.ParticipantsEntry
+	nil,                                  // 16: challenge.ChallengeRecord.ParticipantsEntry
 }
 var file_ChallengeService_challenge_proto_depIdxs = []int32{
 	15, // 0: challenge.ParticipantMetadata.problemsDone:type_name -> challenge.ParticipantMetadata.ProblemsDoneEntry
 	2,  // 1: challenge.SubmissionEntry.submission:type_name -> challenge.SubmissionMetadata
 	3,  // 2: challenge.UserSubmissions.entries:type_name -> challenge.SubmissionEntry
-	16, // 3: challenge.ChallengeConfig.randomQuestionPool:type_name -> challenge.ChallengeConfig.RandomQuestionPoolEntry
-	17, // 4: challenge.ChallengeConfig.initialQuestions:type_name -> challenge.ChallengeConfig.InitialQuestionsEntry
-	18, // 5: challenge.ChallengeRecord.participants:type_name -> challenge.ChallengeRecord.ParticipantsEntry
-	4,  // 6: challenge.ChallengeRecord.submissions:type_name -> challenge.UserSubmissions
-	5,  // 7: challenge.ChallengeRecord.leaderboard:type_name -> challenge.LeaderboardEntry
-	7,  // 8: challenge.ChallengeRecord.config:type_name -> challenge.ChallengeConfig
-	8,  // 9: challenge.ChallengeListResponse.challenges:type_name -> challenge.ChallengeRecord
-	9,  // 10: challenge.PrivateChallengesRequest.pagination:type_name -> challenge.PaginationRequest
-	9,  // 11: challenge.UserChallengesRequest.pagination:type_name -> challenge.PaginationRequest
-	1,  // 12: challenge.ParticipantMetadata.ProblemsDoneEntry.value:type_name -> challenge.ChallengeProblemMetadata
-	6,  // 13: challenge.ChallengeConfig.RandomQuestionPoolEntry.value:type_name -> challenge.QuestionPool
-	6,  // 14: challenge.ChallengeConfig.InitialQuestionsEntry.value:type_name -> challenge.QuestionPool
-	0,  // 15: challenge.ChallengeRecord.ParticipantsEntry.value:type_name -> challenge.ParticipantMetadata
-	8,  // 16: challenge.ChallengeService.CreateChallenge:input_type -> challenge.ChallengeRecord
-	9,  // 17: challenge.ChallengeService.GetPublicChallenges:input_type -> challenge.PaginationRequest
-	11, // 18: challenge.ChallengeService.GetPrivateChallengesOfUser:input_type -> challenge.PrivateChallengesRequest
-	9,  // 19: challenge.ChallengeService.GetActiveChallenges:input_type -> challenge.PaginationRequest
-	12, // 20: challenge.ChallengeService.GetUserChallenges:input_type -> challenge.UserChallengesRequest
-	13, // 21: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
-	8,  // 22: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
-	10, // 23: challenge.ChallengeService.GetPublicChallenges:output_type -> challenge.ChallengeListResponse
-	10, // 24: challenge.ChallengeService.GetPrivateChallengesOfUser:output_type -> challenge.ChallengeListResponse
-	10, // 25: challenge.ChallengeService.GetActiveChallenges:output_type -> challenge.ChallengeListResponse
-	10, // 26: challenge.ChallengeService.GetUserChallenges:output_type -> challenge.ChallengeListResponse
-	14, // 27: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
-	22, // [22:28] is the sub-list for method output_type
-	16, // [16:22] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	16, // 3: challenge.ChallengeRecord.participants:type_name -> challenge.ChallengeRecord.ParticipantsEntry
+	4,  // 4: challenge.ChallengeRecord.submissions:type_name -> challenge.UserSubmissions
+	5,  // 5: challenge.ChallengeRecord.leaderboard:type_name -> challenge.LeaderboardEntry
+	7,  // 6: challenge.ChallengeRecord.config:type_name -> challenge.ChallengeConfig
+	8,  // 7: challenge.ChallengeListResponse.challenges:type_name -> challenge.ChallengeRecord
+	9,  // 8: challenge.PrivateChallengesRequest.pagination:type_name -> challenge.PaginationRequest
+	9,  // 9: challenge.UserChallengesRequest.pagination:type_name -> challenge.PaginationRequest
+	1,  // 10: challenge.ParticipantMetadata.ProblemsDoneEntry.value:type_name -> challenge.ChallengeProblemMetadata
+	0,  // 11: challenge.ChallengeRecord.ParticipantsEntry.value:type_name -> challenge.ParticipantMetadata
+	8,  // 12: challenge.ChallengeService.CreateChallenge:input_type -> challenge.ChallengeRecord
+	9,  // 13: challenge.ChallengeService.GetPublicChallenges:input_type -> challenge.PaginationRequest
+	11, // 14: challenge.ChallengeService.GetPrivateChallengesOfUser:input_type -> challenge.PrivateChallengesRequest
+	9,  // 15: challenge.ChallengeService.GetActiveChallenges:input_type -> challenge.PaginationRequest
+	12, // 16: challenge.ChallengeService.GetUserChallenges:input_type -> challenge.UserChallengesRequest
+	13, // 17: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
+	8,  // 18: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
+	10, // 19: challenge.ChallengeService.GetPublicChallenges:output_type -> challenge.ChallengeListResponse
+	10, // 20: challenge.ChallengeService.GetPrivateChallengesOfUser:output_type -> challenge.ChallengeListResponse
+	10, // 21: challenge.ChallengeService.GetActiveChallenges:output_type -> challenge.ChallengeListResponse
+	10, // 22: challenge.ChallengeService.GetUserChallenges:output_type -> challenge.ChallengeListResponse
+	14, // 23: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
+	18, // [18:24] is the sub-list for method output_type
+	12, // [12:18] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_ChallengeService_challenge_proto_init() }
@@ -1228,7 +1198,7 @@ func file_ChallengeService_challenge_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ChallengeService_challenge_proto_rawDesc), len(file_ChallengeService_challenge_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

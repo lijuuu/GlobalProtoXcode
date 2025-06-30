@@ -53,8 +53,6 @@ message ChallengeConfig {
   int32 maxEasyQuestions = 2;
   int32 maxMediumQuestions = 3;
   int32 maxHardQuestions = 4;
-  map<string, QuestionPool> randomQuestionPool = 5; //for server to write generated problem ids from the above ratio
-  map<string, QuestionPool> initialQuestions = 6; //ignore above ratio and pool if initial qn is assigned
 }
 
 message ChallengeRecord {
