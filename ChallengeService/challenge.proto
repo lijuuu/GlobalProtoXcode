@@ -20,10 +20,20 @@ message ChallengeProblemMetadata {
   int64 completedAtUnix = 4;
 }
 
-message Submission {
+message SubmissionMetadata {
   string submissionId = 1;
   int64 timeTakenMillis = 2;
   int32 points = 3;
+}
+
+message SubmissionEntry {
+  string problemId = 1;
+  SubmissionMetadata submission = 2;
+}
+
+message UserSubmissions {
+  string userId = 1;
+  repeated SubmissionEntry entries = 2;
 }
 
 message LeaderboardEntry {
@@ -57,7 +67,7 @@ message ChallengeRecord {
   int64 timeLimitMillis = 8;
   int64 startTimeUnix = 9;
   map<string, ParticipantMetadata> participants = 10;
-  map<string, Submission> submissions = 11;
+  repeated UserSubmissions submissions = 11;
   repeated LeaderboardEntry leaderboard = 12;
   ChallengeConfig config = 13;
 }
