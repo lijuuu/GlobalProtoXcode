@@ -70,7 +70,7 @@ message ChallengeRecord {
   repeated UserSubmissions submissions = 10;
   repeated LeaderboardEntry leaderboard = 11;
   ChallengeConfig config = 12;
-  string processedProblemIds = 13;
+  repeated string processedProblemIds = 13;
 }
 
 message PaginationRequest {

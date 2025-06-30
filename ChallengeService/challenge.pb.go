@@ -555,7 +555,7 @@ type ChallengeRecord struct {
 	Submissions         []*UserSubmissions              `protobuf:"bytes,10,rep,name=submissions,proto3" json:"submissions,omitempty"`
 	Leaderboard         []*LeaderboardEntry             `protobuf:"bytes,11,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
 	Config              *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
-	ProcessedProblemIds string                          `protobuf:"bytes,13,opt,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"`
+	ProcessedProblemIds []string                        `protobuf:"bytes,13,rep,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -674,11 +674,11 @@ func (x *ChallengeRecord) GetConfig() *ChallengeConfig {
 	return nil
 }
 
-func (x *ChallengeRecord) GetProcessedProblemIds() string {
+func (x *ChallengeRecord) GetProcessedProblemIds() []string {
 	if x != nil {
 		return x.ProcessedProblemIds
 	}
-	return ""
+	return nil
 }
 
 type PaginationRequest struct {
@@ -1104,7 +1104,7 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	" \x03(\v2\x1a.challenge.UserSubmissionsR\vsubmissions\x12=\n" +
 	"\vleaderboard\x18\v \x03(\v2\x1b.challenge.LeaderboardEntryR\vleaderboard\x122\n" +
 	"\x06config\x18\f \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x120\n" +
-	"\x13processedProblemIds\x18\r \x01(\tR\x13processedProblemIds\x1a_\n" +
+	"\x13processedProblemIds\x18\r \x03(\tR\x13processedProblemIds\x1a_\n" +
 	"\x11ParticipantsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
 	"\x05value\x18\x02 \x01(\v2\x1e.challenge.ParticipantMetadataR\x05value:\x028\x01\"C\n" +
