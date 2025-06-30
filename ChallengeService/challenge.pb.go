@@ -178,6 +178,7 @@ type SubmissionMetadata struct {
 	SubmissionId    string                 `protobuf:"bytes,1,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
 	TimeTakenMillis int64                  `protobuf:"varint,2,opt,name=timeTakenMillis,proto3" json:"timeTakenMillis,omitempty"`
 	Points          int32                  `protobuf:"varint,3,opt,name=points,proto3" json:"points,omitempty"`
+	UserCode        string                 `protobuf:"bytes,4,opt,name=userCode,proto3" json:"userCode,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -231,6 +232,13 @@ func (x *SubmissionMetadata) GetPoints() int32 {
 		return x.Points
 	}
 	return 0
+}
+
+func (x *SubmissionMetadata) GetUserCode() string {
+	if x != nil {
+		return x.UserCode
+	}
+	return ""
 }
 
 type SubmissionEntry struct {
@@ -455,8 +463,8 @@ type ChallengeConfig struct {
 	MaxEasyQuestions   int32                    `protobuf:"varint,2,opt,name=maxEasyQuestions,proto3" json:"maxEasyQuestions,omitempty"`
 	MaxMediumQuestions int32                    `protobuf:"varint,3,opt,name=maxMediumQuestions,proto3" json:"maxMediumQuestions,omitempty"`
 	MaxHardQuestions   int32                    `protobuf:"varint,4,opt,name=maxHardQuestions,proto3" json:"maxHardQuestions,omitempty"`
-	RandomQuestionPool map[string]*QuestionPool `protobuf:"bytes,5,rep,name=randomQuestionPool,proto3" json:"randomQuestionPool,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	InitialQuestions   map[string]*QuestionPool `protobuf:"bytes,6,rep,name=initialQuestions,proto3" json:"initialQuestions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	RandomQuestionPool map[string]*QuestionPool `protobuf:"bytes,5,rep,name=randomQuestionPool,proto3" json:"randomQuestionPool,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` //for server to write generated problem ids from the above ratio
+	InitialQuestions   map[string]*QuestionPool `protobuf:"bytes,6,rep,name=initialQuestions,proto3" json:"initialQuestions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`     //ignore above ratio and pool if initial qn is assigned
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -534,21 +542,22 @@ func (x *ChallengeConfig) GetInitialQuestions() map[string]*QuestionPool {
 }
 
 type ChallengeRecord struct {
-	state           protoimpl.MessageState          `protogen:"open.v1"`
-	ChallengeId     string                          `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	CreatorId       string                          `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
-	Title           string                          `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	IsPrivate       bool                            `protobuf:"varint,4,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
-	Password        string                          `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
-	Status          string                          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	TimeLimitMillis int64                           `protobuf:"varint,7,opt,name=timeLimitMillis,proto3" json:"timeLimitMillis,omitempty"`
-	StartTimeUnix   int64                           `protobuf:"varint,8,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
-	Participants    map[string]*ParticipantMetadata `protobuf:"bytes,9,rep,name=participants,proto3" json:"participants,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Submissions     []*UserSubmissions              `protobuf:"bytes,10,rep,name=submissions,proto3" json:"submissions,omitempty"`
-	Leaderboard     []*LeaderboardEntry             `protobuf:"bytes,11,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
-	Config          *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state               protoimpl.MessageState          `protogen:"open.v1"`
+	ChallengeId         string                          `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	CreatorId           string                          `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
+	Title               string                          `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	IsPrivate           bool                            `protobuf:"varint,4,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
+	Password            string                          `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
+	Status              string                          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	TimeLimitMillis     int64                           `protobuf:"varint,7,opt,name=timeLimitMillis,proto3" json:"timeLimitMillis,omitempty"`
+	StartTimeUnix       int64                           `protobuf:"varint,8,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
+	Participants        map[string]*ParticipantMetadata `protobuf:"bytes,9,rep,name=participants,proto3" json:"participants,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Submissions         []*UserSubmissions              `protobuf:"bytes,10,rep,name=submissions,proto3" json:"submissions,omitempty"`
+	Leaderboard         []*LeaderboardEntry             `protobuf:"bytes,11,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
+	Config              *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
+	ProcessedProblemIds string                          `protobuf:"bytes,13,opt,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ChallengeRecord) Reset() {
@@ -663,6 +672,13 @@ func (x *ChallengeRecord) GetConfig() *ChallengeConfig {
 		return x.Config
 	}
 	return nil
+}
+
+func (x *ChallengeRecord) GetProcessedProblemIds() string {
+	if x != nil {
+		return x.ProcessedProblemIds
+	}
+	return ""
 }
 
 type PaginationRequest struct {
@@ -1038,11 +1054,12 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\tproblemId\x18\x01 \x01(\tR\tproblemId\x12\x14\n" +
 	"\x05score\x18\x02 \x01(\x05R\x05score\x12\x1c\n" +
 	"\ttimeTaken\x18\x03 \x01(\x03R\ttimeTaken\x12(\n" +
-	"\x0fcompletedAtUnix\x18\x04 \x01(\x03R\x0fcompletedAtUnix\"z\n" +
+	"\x0fcompletedAtUnix\x18\x04 \x01(\x03R\x0fcompletedAtUnix\"\x96\x01\n" +
 	"\x12SubmissionMetadata\x12\"\n" +
 	"\fsubmissionId\x18\x01 \x01(\tR\fsubmissionId\x12(\n" +
 	"\x0ftimeTakenMillis\x18\x02 \x01(\x03R\x0ftimeTakenMillis\x12\x16\n" +
-	"\x06points\x18\x03 \x01(\x05R\x06points\"n\n" +
+	"\x06points\x18\x03 \x01(\x05R\x06points\x12\x1a\n" +
+	"\buserCode\x18\x04 \x01(\tR\buserCode\"n\n" +
 	"\x0fSubmissionEntry\x12\x1c\n" +
 	"\tproblemId\x18\x01 \x01(\tR\tproblemId\x12=\n" +
 	"\n" +
@@ -1072,7 +1089,7 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\x1a\\\n" +
 	"\x15InitialQuestionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\"\xed\x04\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\"\x9f\x05\n" +
 	"\x0fChallengeRecord\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
 	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12\x14\n" +
@@ -1086,7 +1103,8 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\vsubmissions\x18\n" +
 	" \x03(\v2\x1a.challenge.UserSubmissionsR\vsubmissions\x12=\n" +
 	"\vleaderboard\x18\v \x03(\v2\x1b.challenge.LeaderboardEntryR\vleaderboard\x122\n" +
-	"\x06config\x18\f \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x1a_\n" +
+	"\x06config\x18\f \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x120\n" +
+	"\x13processedProblemIds\x18\r \x01(\tR\x13processedProblemIds\x1a_\n" +
 	"\x11ParticipantsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
 	"\x05value\x18\x02 \x01(\v2\x1e.challenge.ParticipantMetadataR\x05value:\x028\x01\"C\n" +

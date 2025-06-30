@@ -24,6 +24,7 @@ message SubmissionMetadata {
   string submissionId = 1;
   int64 timeTakenMillis = 2;
   int32 points = 3;
+  string userCode = 4;
 }
 
 message SubmissionEntry {
@@ -52,8 +53,8 @@ message ChallengeConfig {
   int32 maxEasyQuestions = 2;
   int32 maxMediumQuestions = 3;
   int32 maxHardQuestions = 4;
-  map<string, QuestionPool> randomQuestionPool = 5;
-  map<string, QuestionPool> initialQuestions = 6;
+  map<string, QuestionPool> randomQuestionPool = 5; //for server to write generated problem ids from the above ratio
+  map<string, QuestionPool> initialQuestions = 6; //ignore above ratio and pool if initial qn is assigned
 }
 
 message ChallengeRecord {
@@ -69,6 +70,7 @@ message ChallengeRecord {
   repeated UserSubmissions submissions = 10;
   repeated LeaderboardEntry leaderboard = 11;
   ChallengeConfig config = 12;
+  string processedProblemIds = 13;
 }
 
 message PaginationRequest {
