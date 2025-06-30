@@ -19,13 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChallengeService_PushSubmissionStatus_FullMethodName = "/challenge.ChallengeService/PushSubmissionStatus"
+	ChallengeService_CreateChallenge_FullMethodName             = "/challenge.ChallengeService/CreateChallenge"
+	ChallengeService_GetPublicChallenges_FullMethodName         = "/challenge.ChallengeService/GetPublicChallenges"
+	ChallengeService_GetPrivateChallengesForUser_FullMethodName = "/challenge.ChallengeService/GetPrivateChallengesForUser"
+	ChallengeService_GetActiveChallenges_FullMethodName         = "/challenge.ChallengeService/GetActiveChallenges"
+	ChallengeService_GetUserChallenges_FullMethodName           = "/challenge.ChallengeService/GetUserChallenges"
+	ChallengeService_PushSubmissionStatus_FullMethodName        = "/challenge.ChallengeService/PushSubmissionStatus"
 )
 
 // ChallengeServiceClient is the client API for ChallengeService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChallengeServiceClient interface {
+	CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error)
+	GetPublicChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
+	GetPrivateChallengesForUser(ctx context.Context, in *PrivateChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
+	GetActiveChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
+	GetUserChallenges(ctx context.Context, in *UserChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	PushSubmissionStatus(ctx context.Context, in *PushSubmissionStatusRequest, opts ...grpc.CallOption) (*PushSubmissionStatusResponse, error)
 }
 
@@ -35,6 +45,56 @@ type challengeServiceClient struct {
 
 func NewChallengeServiceClient(cc grpc.ClientConnInterface) ChallengeServiceClient {
 	return &challengeServiceClient{cc}
+}
+
+func (c *challengeServiceClient) CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChallengeRecord)
+	err := c.cc.Invoke(ctx, ChallengeService_CreateChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *challengeServiceClient) GetPublicChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChallengeListResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetPublicChallenges_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *challengeServiceClient) GetPrivateChallengesForUser(ctx context.Context, in *PrivateChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChallengeListResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetPrivateChallengesForUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *challengeServiceClient) GetActiveChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChallengeListResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetActiveChallenges_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *challengeServiceClient) GetUserChallenges(ctx context.Context, in *UserChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChallengeListResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetUserChallenges_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *challengeServiceClient) PushSubmissionStatus(ctx context.Context, in *PushSubmissionStatusRequest, opts ...grpc.CallOption) (*PushSubmissionStatusResponse, error) {
@@ -51,6 +111,11 @@ func (c *challengeServiceClient) PushSubmissionStatus(ctx context.Context, in *P
 // All implementations must embed UnimplementedChallengeServiceServer
 // for forward compatibility.
 type ChallengeServiceServer interface {
+	CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error)
+	GetPublicChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
+	GetPrivateChallengesForUser(context.Context, *PrivateChallengesRequest) (*ChallengeListResponse, error)
+	GetActiveChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
+	GetUserChallenges(context.Context, *UserChallengesRequest) (*ChallengeListResponse, error)
 	PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error)
 	mustEmbedUnimplementedChallengeServiceServer()
 }
@@ -62,6 +127,21 @@ type ChallengeServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedChallengeServiceServer struct{}
 
+func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateChallenge not implemented")
+}
+func (UnimplementedChallengeServiceServer) GetPublicChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPublicChallenges not implemented")
+}
+func (UnimplementedChallengeServiceServer) GetPrivateChallengesForUser(context.Context, *PrivateChallengesRequest) (*ChallengeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPrivateChallengesForUser not implemented")
+}
+func (UnimplementedChallengeServiceServer) GetActiveChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetActiveChallenges not implemented")
+}
+func (UnimplementedChallengeServiceServer) GetUserChallenges(context.Context, *UserChallengesRequest) (*ChallengeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserChallenges not implemented")
+}
 func (UnimplementedChallengeServiceServer) PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushSubmissionStatus not implemented")
 }
@@ -84,6 +164,96 @@ func RegisterChallengeServiceServer(s grpc.ServiceRegistrar, srv ChallengeServic
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&ChallengeService_ServiceDesc, srv)
+}
+
+func _ChallengeService_CreateChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChallengeRecord)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).CreateChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_CreateChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).CreateChallenge(ctx, req.(*ChallengeRecord))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChallengeService_GetPublicChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaginationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).GetPublicChallenges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_GetPublicChallenges_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).GetPublicChallenges(ctx, req.(*PaginationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChallengeService_GetPrivateChallengesForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrivateChallengesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).GetPrivateChallengesForUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_GetPrivateChallengesForUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).GetPrivateChallengesForUser(ctx, req.(*PrivateChallengesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChallengeService_GetActiveChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaginationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).GetActiveChallenges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_GetActiveChallenges_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).GetActiveChallenges(ctx, req.(*PaginationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChallengeService_GetUserChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChallengesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).GetUserChallenges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_GetUserChallenges_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).GetUserChallenges(ctx, req.(*UserChallengesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ChallengeService_PushSubmissionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -111,6 +281,26 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "challenge.ChallengeService",
 	HandlerType: (*ChallengeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateChallenge",
+			Handler:    _ChallengeService_CreateChallenge_Handler,
+		},
+		{
+			MethodName: "GetPublicChallenges",
+			Handler:    _ChallengeService_GetPublicChallenges_Handler,
+		},
+		{
+			MethodName: "GetPrivateChallengesForUser",
+			Handler:    _ChallengeService_GetPrivateChallengesForUser_Handler,
+		},
+		{
+			MethodName: "GetActiveChallenges",
+			Handler:    _ChallengeService_GetActiveChallenges_Handler,
+		},
+		{
+			MethodName: "GetUserChallenges",
+			Handler:    _ChallengeService_GetUserChallenges_Handler,
+		},
 		{
 			MethodName: "PushSubmissionStatus",
 			Handler:    _ChallengeService_PushSubmissionStatus_Handler,

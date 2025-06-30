@@ -2,10 +2,84 @@ syntax = "proto3";
 
 package challenge;
 
-option go_package = "./proto";
+option go_package = "github.com/lijuuu/ChallengeWssManagerService/internal/proto";
 
-service ChallengeService {
-  rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse);
+import "common/duration.proto";
+import "common/timestamp.proto";
+
+
+enum ChallengeStatus {
+  UNKNOWN = 0;
+  ACTIVE = 1;
+  ENDED = 2;
+}
+
+message ParticipantMetadata {
+  string userId = 1;
+  google.protobuf.Timestamp joinTime = 2;
+}
+
+message Submission {
+  string submissionId = 1;
+  google.protobuf.Duration timeTaken = 2;
+  int32 points = 3;
+}
+
+message LeaderboardEntry {
+  string userId = 1;
+  int32 totalPoints = 2;
+}
+
+
+message QuestionPool {
+  repeated string questionIds = 1;
+}
+
+message ChallengeConfig {
+  int32 maxUsers = 1;
+  int32 maxEasyQuestions = 2;
+  int32 maxMediumQuestions = 3;
+  int32 maxHardQuestions = 4;
+  map<string, QuestionPool> randomQuestionPool = 5;
+  map<string, QuestionPool> initialQuestions = 6;
+}
+
+
+message ChallengeRecord {
+  string challengeId = 1;
+  string creatorId = 2;
+  string title = 3;
+  bool isPrivate = 4;
+  string password = 5;
+  int32 maxParticipants = 6;
+  ChallengeStatus status = 7;
+  repeated string problemIds = 8;
+  google.protobuf.Duration timeLimit = 9;
+  string startTime = 10;
+  map<string, ParticipantMetadata> participants = 11;
+  map<string, Submission> submissions = 12;
+  repeated LeaderboardEntry leaderboard = 13;
+  ChallengeConfig config = 14;
+}
+
+message PaginationRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+}
+
+message ChallengeListResponse {
+  repeated ChallengeRecord challenges = 1;
+  int64 totalCount = 2;
+}
+
+message PrivateChallengesRequest {
+  string userId = 1;
+  PaginationRequest pagination = 2;
+}
+
+message UserChallengesRequest {
+  string userId = 1;
+  PaginationRequest pagination = 2;
 }
 
 message PushSubmissionStatusRequest {
@@ -19,6 +93,15 @@ message PushSubmissionStatusRequest {
 }
 
 message PushSubmissionStatusResponse {
-  string message = 1; 
+  string message = 1;
   bool success = 2;
+}
+
+service ChallengeService {
+  rpc CreateChallenge(ChallengeRecord) returns (ChallengeRecord) {}
+  rpc GetPublicChallenges(PaginationRequest) returns (ChallengeListResponse) {}
+  rpc GetPrivateChallengesOfUser(PrivateChallengesRequest) returns (ChallengeListResponse) {}
+  rpc GetActiveChallenges(PaginationRequest) returns (ChallengeListResponse) {}
+  rpc GetUserChallenges(UserChallengesRequest) returns (ChallengeListResponse) {}
+  rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse) {}
 }
