@@ -4,21 +4,33 @@ package challenge;
 
 option go_package = "github.com/lijuuu/ChallengeWssManagerService/internal/proto";
 
-
 message ParticipantMetadata {
   string userId = 1;
-  int64 joinTimeUnix = 2; // unix timestamp in seconds
+  int64 joinTimeUnix = 2;
+  map<string, ChallengeProblemMetadata> problemsDone = 3;
+  int32 problemsAttempted = 4;
+  int32 totalScore = 5;
+  int64 lastConnectedUnix = 6;
+}
+
+message ChallengeProblemMetadata {
+  string problemId = 1;
+  int32 score = 2;
+  int64 timeTaken = 3;
+  int64 completedAtUnix = 4;
 }
 
 message Submission {
   string submissionId = 1;
-  int64 timeTakenMillis = 2; // duration in milliseconds
+  int64 timeTakenMillis = 2;
   int32 points = 3;
 }
 
 message LeaderboardEntry {
   string userId = 1;
-  int32 totalPoints = 2;
+  int32 problemsCompleted = 2;
+  int32 totalScore = 3;
+  int32 rank = 4;
 }
 
 message QuestionPool {
@@ -40,15 +52,14 @@ message ChallengeRecord {
   string title = 3;
   bool isPrivate = 4;
   string password = 5;
-  int32 maxParticipants = 6;
-  string status = 7;
-  repeated string problemIds = 8;
-  int64 timeLimitMillis = 9; // challenge time limit in milliseconds
-  int64 startTimeUnix = 10; // unix timestamp in seconds
-  map<string, ParticipantMetadata> participants = 11;
-  map<string, Submission> submissions = 12;
-  repeated LeaderboardEntry leaderboard = 13;
-  ChallengeConfig config = 14;
+  string status = 6;
+  repeated string problemIds = 7;
+  int64 timeLimitMillis = 8;
+  int64 startTimeUnix = 9;
+  map<string, ParticipantMetadata> participants = 10;
+  map<string, Submission> submissions = 11;
+  repeated LeaderboardEntry leaderboard = 12;
+  ChallengeConfig config = 13;
 }
 
 message PaginationRequest {
