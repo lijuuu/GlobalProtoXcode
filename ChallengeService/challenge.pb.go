@@ -541,13 +541,12 @@ type ChallengeRecord struct {
 	IsPrivate       bool                            `protobuf:"varint,4,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
 	Password        string                          `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
 	Status          string                          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	ProblemIds      []string                        `protobuf:"bytes,7,rep,name=problemIds,proto3" json:"problemIds,omitempty"`
-	TimeLimitMillis int64                           `protobuf:"varint,8,opt,name=timeLimitMillis,proto3" json:"timeLimitMillis,omitempty"`
-	StartTimeUnix   int64                           `protobuf:"varint,9,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
-	Participants    map[string]*ParticipantMetadata `protobuf:"bytes,10,rep,name=participants,proto3" json:"participants,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Submissions     []*UserSubmissions              `protobuf:"bytes,11,rep,name=submissions,proto3" json:"submissions,omitempty"`
-	Leaderboard     []*LeaderboardEntry             `protobuf:"bytes,12,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
-	Config          *ChallengeConfig                `protobuf:"bytes,13,opt,name=config,proto3" json:"config,omitempty"`
+	TimeLimitMillis int64                           `protobuf:"varint,7,opt,name=timeLimitMillis,proto3" json:"timeLimitMillis,omitempty"`
+	StartTimeUnix   int64                           `protobuf:"varint,8,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
+	Participants    map[string]*ParticipantMetadata `protobuf:"bytes,9,rep,name=participants,proto3" json:"participants,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Submissions     []*UserSubmissions              `protobuf:"bytes,10,rep,name=submissions,proto3" json:"submissions,omitempty"`
+	Leaderboard     []*LeaderboardEntry             `protobuf:"bytes,11,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
+	Config          *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -622,13 +621,6 @@ func (x *ChallengeRecord) GetStatus() string {
 		return x.Status
 	}
 	return ""
-}
-
-func (x *ChallengeRecord) GetProblemIds() []string {
-	if x != nil {
-		return x.ProblemIds
-	}
-	return nil
 }
 
 func (x *ChallengeRecord) GetTimeLimitMillis() int64 {
@@ -1080,24 +1072,21 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\x1a\\\n" +
 	"\x15InitialQuestionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\"\x8d\x05\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.challenge.QuestionPoolR\x05value:\x028\x01\"\xed\x04\n" +
 	"\x0fChallengeRecord\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
 	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1c\n" +
 	"\tisPrivate\x18\x04 \x01(\bR\tisPrivate\x12\x1a\n" +
 	"\bpassword\x18\x05 \x01(\tR\bpassword\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1e\n" +
-	"\n" +
-	"problemIds\x18\a \x03(\tR\n" +
-	"problemIds\x12(\n" +
-	"\x0ftimeLimitMillis\x18\b \x01(\x03R\x0ftimeLimitMillis\x12$\n" +
-	"\rstartTimeUnix\x18\t \x01(\x03R\rstartTimeUnix\x12P\n" +
-	"\fparticipants\x18\n" +
-	" \x03(\v2,.challenge.ChallengeRecord.ParticipantsEntryR\fparticipants\x12<\n" +
-	"\vsubmissions\x18\v \x03(\v2\x1a.challenge.UserSubmissionsR\vsubmissions\x12=\n" +
-	"\vleaderboard\x18\f \x03(\v2\x1b.challenge.LeaderboardEntryR\vleaderboard\x122\n" +
-	"\x06config\x18\r \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x1a_\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12(\n" +
+	"\x0ftimeLimitMillis\x18\a \x01(\x03R\x0ftimeLimitMillis\x12$\n" +
+	"\rstartTimeUnix\x18\b \x01(\x03R\rstartTimeUnix\x12P\n" +
+	"\fparticipants\x18\t \x03(\v2,.challenge.ChallengeRecord.ParticipantsEntryR\fparticipants\x12<\n" +
+	"\vsubmissions\x18\n" +
+	" \x03(\v2\x1a.challenge.UserSubmissionsR\vsubmissions\x12=\n" +
+	"\vleaderboard\x18\v \x03(\v2\x1b.challenge.LeaderboardEntryR\vleaderboard\x122\n" +
+	"\x06config\x18\f \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x1a_\n" +
 	"\x11ParticipantsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
 	"\x05value\x18\x02 \x01(\v2\x1e.challenge.ParticipantMetadataR\x05value:\x028\x01\"C\n" +

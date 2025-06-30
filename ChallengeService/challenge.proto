@@ -63,13 +63,12 @@ message ChallengeRecord {
   bool isPrivate = 4;
   string password = 5;
   string status = 6;
-  repeated string problemIds = 7;
-  int64 timeLimitMillis = 8;
-  int64 startTimeUnix = 9;
-  map<string, ParticipantMetadata> participants = 10;
-  repeated UserSubmissions submissions = 11;
-  repeated LeaderboardEntry leaderboard = 12;
-  ChallengeConfig config = 13;
+  int64 timeLimitMillis = 7;
+  int64 startTimeUnix = 8;
+  map<string, ParticipantMetadata> participants = 9;
+  repeated UserSubmissions submissions = 10;
+  repeated LeaderboardEntry leaderboard = 11;
+  ChallengeConfig config = 12;
 }
 
 message PaginationRequest {
