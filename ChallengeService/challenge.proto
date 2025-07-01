@@ -96,7 +96,7 @@ message GetChallengeHistoryRequest {
   bool isPrivate = 3;
 }
 
-message UserChallengesRequest {
+message GetOwnersActiveChallengesRequest {
   string userId = 1;
   PaginationRequest pagination = 2;
 }
@@ -124,7 +124,8 @@ service ChallengeService {
   //get the publically available challenges with isPrivate:false
   rpc GetActiveOpenChallenges(PaginationRequest) returns (ChallengeListResponse) {}
 
-  //every challenge user participated
-  rpc GetUserChallenges(UserChallengesRequest) returns (ChallengeListResponse) {}
+  //all open challenges of the user
+  rpc GetOwnersActiveChallenges(GetOwnersActiveChallengesRequest) returns (ChallengeListResponse) {}
+
   rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse) {}
 }

@@ -925,7 +925,7 @@ func (x *GetChallengeHistoryRequest) GetIsPrivate() bool {
 	return false
 }
 
-type UserChallengesRequest struct {
+type GetOwnersActiveChallengesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
 	Pagination    *PaginationRequest     `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
@@ -933,20 +933,20 @@ type UserChallengesRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserChallengesRequest) Reset() {
-	*x = UserChallengesRequest{}
+func (x *GetOwnersActiveChallengesRequest) Reset() {
+	*x = GetOwnersActiveChallengesRequest{}
 	mi := &file_ChallengeService_challenge_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserChallengesRequest) String() string {
+func (x *GetOwnersActiveChallengesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserChallengesRequest) ProtoMessage() {}
+func (*GetOwnersActiveChallengesRequest) ProtoMessage() {}
 
-func (x *UserChallengesRequest) ProtoReflect() protoreflect.Message {
+func (x *GetOwnersActiveChallengesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ChallengeService_challenge_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -958,19 +958,19 @@ func (x *UserChallengesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserChallengesRequest.ProtoReflect.Descriptor instead.
-func (*UserChallengesRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetOwnersActiveChallengesRequest.ProtoReflect.Descriptor instead.
+func (*GetOwnersActiveChallengesRequest) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *UserChallengesRequest) GetUserId() string {
+func (x *GetOwnersActiveChallengesRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *UserChallengesRequest) GetPagination() *PaginationRequest {
+func (x *GetOwnersActiveChallengesRequest) GetPagination() *PaginationRequest {
 	if x != nil {
 		return x.Pagination
 	}
@@ -1209,8 +1209,8 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x1c.challenge.PaginationRequestR\n" +
 	"pagination\x12\x1c\n" +
-	"\tisPrivate\x18\x03 \x01(\bR\tisPrivate\"m\n" +
-	"\x15UserChallengesRequest\x12\x16\n" +
+	"\tisPrivate\x18\x03 \x01(\bR\tisPrivate\"x\n" +
+	" GetOwnersActiveChallengesRequest\x12\x16\n" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\x12<\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x1c.challenge.PaginationRequestR\n" +
@@ -1225,13 +1225,13 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\atraceId\x18\a \x01(\tR\atraceId\"R\n" +
 	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x18\n" +
-	"\asuccess\x18\x02 \x01(\bR\asuccess2\xe5\x04\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess2\xf8\x04\n" +
 	"\x10ChallengeService\x12K\n" +
 	"\x0fCreateChallenge\x12\x1a.challenge.ChallengeRecord\x1a\x1a.challenge.ChallengeRecord\"\x00\x12\x7f\n" +
 	"\x1cGetChallengeRoomInfoMetadata\x12/.challenge.GetChallengeRoomInfoMetadataResponse\x1a..challenge.GetChallengeRoomInfoMetadataRequest\x12`\n" +
 	"\x13GetChallengeHistory\x12%.challenge.GetChallengeHistoryRequest\x1a .challenge.ChallengeListResponse\"\x00\x12[\n" +
-	"\x17GetActiveOpenChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\"\x00\x12Y\n" +
-	"\x11GetUserChallenges\x12 .challenge.UserChallengesRequest\x1a .challenge.ChallengeListResponse\"\x00\x12i\n" +
+	"\x17GetActiveOpenChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\"\x00\x12l\n" +
+	"\x19GetOwnersActiveChallenges\x12+.challenge.GetOwnersActiveChallengesRequest\x1a .challenge.ChallengeListResponse\"\x00\x12i\n" +
 	"\x14PushSubmissionStatus\x12&.challenge.PushSubmissionStatusRequest\x1a'.challenge.PushSubmissionStatusResponse\"\x00B=Z;github.com/lijuuu/ChallengeWssManagerService/internal/protob\x06proto3"
 
 var (
@@ -1262,7 +1262,7 @@ var file_ChallengeService_challenge_proto_goTypes = []any{
 	(*PaginationRequest)(nil),                    // 11: challenge.PaginationRequest
 	(*ChallengeListResponse)(nil),                // 12: challenge.ChallengeListResponse
 	(*GetChallengeHistoryRequest)(nil),           // 13: challenge.GetChallengeHistoryRequest
-	(*UserChallengesRequest)(nil),                // 14: challenge.UserChallengesRequest
+	(*GetOwnersActiveChallengesRequest)(nil),     // 14: challenge.GetOwnersActiveChallengesRequest
 	(*PushSubmissionStatusRequest)(nil),          // 15: challenge.PushSubmissionStatusRequest
 	(*PushSubmissionStatusResponse)(nil),         // 16: challenge.PushSubmissionStatusResponse
 	nil,                                          // 17: challenge.ParticipantMetadata.ProblemsDoneEntry
@@ -1279,20 +1279,20 @@ var file_ChallengeService_challenge_proto_depIdxs = []int32{
 	8,  // 7: challenge.GetChallengeRoomInfoMetadataResponse.challenge:type_name -> challenge.ChallengeRecord
 	8,  // 8: challenge.ChallengeListResponse.challenges:type_name -> challenge.ChallengeRecord
 	11, // 9: challenge.GetChallengeHistoryRequest.pagination:type_name -> challenge.PaginationRequest
-	11, // 10: challenge.UserChallengesRequest.pagination:type_name -> challenge.PaginationRequest
+	11, // 10: challenge.GetOwnersActiveChallengesRequest.pagination:type_name -> challenge.PaginationRequest
 	1,  // 11: challenge.ParticipantMetadata.ProblemsDoneEntry.value:type_name -> challenge.ChallengeProblemMetadata
 	0,  // 12: challenge.ChallengeRecord.ParticipantsEntry.value:type_name -> challenge.ParticipantMetadata
 	8,  // 13: challenge.ChallengeService.CreateChallenge:input_type -> challenge.ChallengeRecord
 	10, // 14: challenge.ChallengeService.GetChallengeRoomInfoMetadata:input_type -> challenge.GetChallengeRoomInfoMetadataResponse
 	13, // 15: challenge.ChallengeService.GetChallengeHistory:input_type -> challenge.GetChallengeHistoryRequest
 	11, // 16: challenge.ChallengeService.GetActiveOpenChallenges:input_type -> challenge.PaginationRequest
-	14, // 17: challenge.ChallengeService.GetUserChallenges:input_type -> challenge.UserChallengesRequest
+	14, // 17: challenge.ChallengeService.GetOwnersActiveChallenges:input_type -> challenge.GetOwnersActiveChallengesRequest
 	15, // 18: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
 	8,  // 19: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
 	9,  // 20: challenge.ChallengeService.GetChallengeRoomInfoMetadata:output_type -> challenge.GetChallengeRoomInfoMetadataRequest
 	12, // 21: challenge.ChallengeService.GetChallengeHistory:output_type -> challenge.ChallengeListResponse
 	12, // 22: challenge.ChallengeService.GetActiveOpenChallenges:output_type -> challenge.ChallengeListResponse
-	12, // 23: challenge.ChallengeService.GetUserChallenges:output_type -> challenge.ChallengeListResponse
+	12, // 23: challenge.ChallengeService.GetOwnersActiveChallenges:output_type -> challenge.ChallengeListResponse
 	16, // 24: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
 	19, // [19:25] is the sub-list for method output_type
 	13, // [13:19] is the sub-list for method input_type

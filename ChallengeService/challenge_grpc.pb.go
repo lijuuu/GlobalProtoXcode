@@ -23,7 +23,7 @@ const (
 	ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName = "/challenge.ChallengeService/GetChallengeRoomInfoMetadata"
 	ChallengeService_GetChallengeHistory_FullMethodName          = "/challenge.ChallengeService/GetChallengeHistory"
 	ChallengeService_GetActiveOpenChallenges_FullMethodName      = "/challenge.ChallengeService/GetActiveOpenChallenges"
-	ChallengeService_GetUserChallenges_FullMethodName            = "/challenge.ChallengeService/GetUserChallenges"
+	ChallengeService_GetOwnersActiveChallenges_FullMethodName    = "/challenge.ChallengeService/GetOwnersActiveChallenges"
 	ChallengeService_PushSubmissionStatus_FullMethodName         = "/challenge.ChallengeService/PushSubmissionStatus"
 )
 
@@ -36,8 +36,8 @@ type ChallengeServiceClient interface {
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	// get the publically available challenges with isPrivate:false
 	GetActiveOpenChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
-	// every challenge user participated
-	GetUserChallenges(ctx context.Context, in *UserChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
+	// all open challenges of the user
+	GetOwnersActiveChallenges(ctx context.Context, in *GetOwnersActiveChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	PushSubmissionStatus(ctx context.Context, in *PushSubmissionStatusRequest, opts ...grpc.CallOption) (*PushSubmissionStatusResponse, error)
 }
 
@@ -89,10 +89,10 @@ func (c *challengeServiceClient) GetActiveOpenChallenges(ctx context.Context, in
 	return out, nil
 }
 
-func (c *challengeServiceClient) GetUserChallenges(ctx context.Context, in *UserChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
+func (c *challengeServiceClient) GetOwnersActiveChallenges(ctx context.Context, in *GetOwnersActiveChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChallengeListResponse)
-	err := c.cc.Invoke(ctx, ChallengeService_GetUserChallenges_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ChallengeService_GetOwnersActiveChallenges_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,8 +118,8 @@ type ChallengeServiceServer interface {
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*ChallengeListResponse, error)
 	// get the publically available challenges with isPrivate:false
 	GetActiveOpenChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
-	// every challenge user participated
-	GetUserChallenges(context.Context, *UserChallengesRequest) (*ChallengeListResponse, error)
+	// all open challenges of the user
+	GetOwnersActiveChallenges(context.Context, *GetOwnersActiveChallengesRequest) (*ChallengeListResponse, error)
 	PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error)
 	mustEmbedUnimplementedChallengeServiceServer()
 }
@@ -143,8 +143,8 @@ func (UnimplementedChallengeServiceServer) GetChallengeHistory(context.Context, 
 func (UnimplementedChallengeServiceServer) GetActiveOpenChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActiveOpenChallenges not implemented")
 }
-func (UnimplementedChallengeServiceServer) GetUserChallenges(context.Context, *UserChallengesRequest) (*ChallengeListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserChallenges not implemented")
+func (UnimplementedChallengeServiceServer) GetOwnersActiveChallenges(context.Context, *GetOwnersActiveChallengesRequest) (*ChallengeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOwnersActiveChallenges not implemented")
 }
 func (UnimplementedChallengeServiceServer) PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushSubmissionStatus not implemented")
@@ -242,20 +242,20 @@ func _ChallengeService_GetActiveOpenChallenges_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChallengeService_GetUserChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserChallengesRequest)
+func _ChallengeService_GetOwnersActiveChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOwnersActiveChallengesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ChallengeServiceServer).GetUserChallenges(ctx, in)
+		return srv.(ChallengeServiceServer).GetOwnersActiveChallenges(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ChallengeService_GetUserChallenges_FullMethodName,
+		FullMethod: ChallengeService_GetOwnersActiveChallenges_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).GetUserChallenges(ctx, req.(*UserChallengesRequest))
+		return srv.(ChallengeServiceServer).GetOwnersActiveChallenges(ctx, req.(*GetOwnersActiveChallengesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -302,8 +302,8 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ChallengeService_GetActiveOpenChallenges_Handler,
 		},
 		{
-			MethodName: "GetUserChallenges",
-			Handler:    _ChallengeService_GetUserChallenges_Handler,
+			MethodName: "GetOwnersActiveChallenges",
+			Handler:    _ChallengeService_GetOwnersActiveChallenges_Handler,
 		},
 		{
 			MethodName: "PushSubmissionStatus",
