@@ -47,6 +47,7 @@ const (
 	ProblemsService_VerifyProblemExistenceBulk_FullMethodName             = "/problems.ProblemsService/VerifyProblemExistenceBulk"
 	ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName = "/problems.ProblemsService/RandomProblemIDsGenWithDifficultyRatio"
 	ProblemsService_ProblemIDsDoneByUserID_FullMethodName                 = "/problems.ProblemsService/ProblemIDsDoneByUserID"
+	ProblemsService_ProblemCountMetadata_FullMethodName                   = "/problems.ProblemsService/ProblemCountMetadata"
 )
 
 // ProblemsServiceClient is the client API for ProblemsService service.
@@ -85,6 +86,7 @@ type ProblemsServiceClient interface {
 	VerifyProblemExistenceBulk(ctx context.Context, in *VerifyProblemExistenceBulkRequest, opts ...grpc.CallOption) (*VerifyProblemExistenceBulkResponse, error)
 	RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
 	ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error)
+	ProblemCountMetadata(ctx context.Context, in *ProblemCountMetadataRequest, opts ...grpc.CallOption) (*ProblemCountMetadataResponse, error)
 }
 
 type problemsServiceClient struct {
@@ -375,6 +377,16 @@ func (c *problemsServiceClient) ProblemIDsDoneByUserID(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *problemsServiceClient) ProblemCountMetadata(ctx context.Context, in *ProblemCountMetadataRequest, opts ...grpc.CallOption) (*ProblemCountMetadataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProblemCountMetadataResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_ProblemCountMetadata_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProblemsServiceServer is the server API for ProblemsService service.
 // All implementations must embed UnimplementedProblemsServiceServer
 // for forward compatibility.
@@ -411,6 +423,7 @@ type ProblemsServiceServer interface {
 	VerifyProblemExistenceBulk(context.Context, *VerifyProblemExistenceBulkRequest) (*VerifyProblemExistenceBulkResponse, error)
 	RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
 	ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error)
+	ProblemCountMetadata(context.Context, *ProblemCountMetadataRequest) (*ProblemCountMetadataResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
 
@@ -504,6 +517,9 @@ func (UnimplementedProblemsServiceServer) RandomProblemIDsGenWithDifficultyRatio
 }
 func (UnimplementedProblemsServiceServer) ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProblemIDsDoneByUserID not implemented")
+}
+func (UnimplementedProblemsServiceServer) ProblemCountMetadata(context.Context, *ProblemCountMetadataRequest) (*ProblemCountMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProblemCountMetadata not implemented")
 }
 func (UnimplementedProblemsServiceServer) mustEmbedUnimplementedProblemsServiceServer() {}
 func (UnimplementedProblemsServiceServer) testEmbeddedByValue()                         {}
@@ -1030,6 +1046,24 @@ func _ProblemsService_ProblemIDsDoneByUserID_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProblemsService_ProblemCountMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProblemCountMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProblemsServiceServer).ProblemCountMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProblemsService_ProblemCountMetadata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProblemsServiceServer).ProblemCountMetadata(ctx, req.(*ProblemCountMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProblemsService_ServiceDesc is the grpc.ServiceDesc for ProblemsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1148,6 +1182,10 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProblemIDsDoneByUserID",
 			Handler:    _ProblemsService_ProblemIDsDoneByUserID_Handler,
+		},
+		{
+			MethodName: "ProblemCountMetadata",
+			Handler:    _ProblemsService_ProblemCountMetadata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -55,7 +55,17 @@ service ProblemsService {
   rpc RandomProblemIDsGenWithDifficultyRatio(RandomProblemIDsGenWithDifficultyRatioRequest)
       returns (RandomProblemIDsGenWithDifficultyRatioResponse);
   rpc ProblemIDsDoneByUserID(ProblemIDsDoneByUserIDRequest) returns (ProblemIDsDoneByUserIDResponse);
+
+  rpc ProblemCountMetadata(ProblemCountMetadataRequest) returns (ProblemCountMetadataResponse);
   
+}
+
+message ProblemCountMetadataRequest {}
+
+message ProblemCountMetadataResponse{
+  string easy = 1;
+  string medium = 2;
+  string hard = 3;
 }
 
 message RandomProblemIDsGenWithDifficultyRatioRequest{
