@@ -118,9 +118,12 @@ message PushSubmissionStatusResponse {
 service ChallengeService {
   rpc CreateChallenge(ChallengeRecord) returns (ChallengeRecord) {}
   rpc GetChallengeRoomInfoMetadata(GetChallengeRoomInfoMetadataResponse) returns (GetChallengeRoomInfoMetadataRequest);
-  rpc GetPublicChallenges(PaginationRequest) returns (ChallengeListResponse) {}
   rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (ChallengeListResponse) {}
-  rpc GetActiveChallenges(PaginationRequest) returns (ChallengeListResponse) {}
+
+  //get the publically available challenges with isPrivate:false
+  rpc GetActiveOpenChallenges(PaginationRequest) returns (ChallengeListResponse) {}
+
+  //every challenge user participated
   rpc GetUserChallenges(UserChallengesRequest) returns (ChallengeListResponse) {}
   rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse) {}
 }

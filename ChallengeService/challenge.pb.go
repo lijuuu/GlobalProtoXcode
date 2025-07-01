@@ -1216,13 +1216,12 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\atraceId\x18\a \x01(\tR\atraceId\"R\n" +
 	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x18\n" +
-	"\asuccess\x18\x02 \x01(\bR\asuccess2\xba\x05\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess2\xe5\x04\n" +
 	"\x10ChallengeService\x12K\n" +
 	"\x0fCreateChallenge\x12\x1a.challenge.ChallengeRecord\x1a\x1a.challenge.ChallengeRecord\"\x00\x12\x7f\n" +
-	"\x1cGetChallengeRoomInfoMetadata\x12/.challenge.GetChallengeRoomInfoMetadataResponse\x1a..challenge.GetChallengeRoomInfoMetadataRequest\x12W\n" +
-	"\x13GetPublicChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\"\x00\x12`\n" +
-	"\x13GetChallengeHistory\x12%.challenge.GetChallengeHistoryRequest\x1a .challenge.ChallengeListResponse\"\x00\x12W\n" +
-	"\x13GetActiveChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\"\x00\x12Y\n" +
+	"\x1cGetChallengeRoomInfoMetadata\x12/.challenge.GetChallengeRoomInfoMetadataResponse\x1a..challenge.GetChallengeRoomInfoMetadataRequest\x12`\n" +
+	"\x13GetChallengeHistory\x12%.challenge.GetChallengeHistoryRequest\x1a .challenge.ChallengeListResponse\"\x00\x12[\n" +
+	"\x17GetActiveOpenChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\"\x00\x12Y\n" +
 	"\x11GetUserChallenges\x12 .challenge.UserChallengesRequest\x1a .challenge.ChallengeListResponse\"\x00\x12i\n" +
 	"\x14PushSubmissionStatus\x12&.challenge.PushSubmissionStatusRequest\x1a'.challenge.PushSubmissionStatusResponse\"\x00B=Z;github.com/lijuuu/ChallengeWssManagerService/internal/protob\x06proto3"
 
@@ -1276,20 +1275,18 @@ var file_ChallengeService_challenge_proto_depIdxs = []int32{
 	0,  // 12: challenge.ChallengeRecord.ParticipantsEntry.value:type_name -> challenge.ParticipantMetadata
 	8,  // 13: challenge.ChallengeService.CreateChallenge:input_type -> challenge.ChallengeRecord
 	10, // 14: challenge.ChallengeService.GetChallengeRoomInfoMetadata:input_type -> challenge.GetChallengeRoomInfoMetadataResponse
-	11, // 15: challenge.ChallengeService.GetPublicChallenges:input_type -> challenge.PaginationRequest
-	13, // 16: challenge.ChallengeService.GetChallengeHistory:input_type -> challenge.GetChallengeHistoryRequest
-	11, // 17: challenge.ChallengeService.GetActiveChallenges:input_type -> challenge.PaginationRequest
-	14, // 18: challenge.ChallengeService.GetUserChallenges:input_type -> challenge.UserChallengesRequest
-	15, // 19: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
-	8,  // 20: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
-	9,  // 21: challenge.ChallengeService.GetChallengeRoomInfoMetadata:output_type -> challenge.GetChallengeRoomInfoMetadataRequest
-	12, // 22: challenge.ChallengeService.GetPublicChallenges:output_type -> challenge.ChallengeListResponse
-	12, // 23: challenge.ChallengeService.GetChallengeHistory:output_type -> challenge.ChallengeListResponse
-	12, // 24: challenge.ChallengeService.GetActiveChallenges:output_type -> challenge.ChallengeListResponse
-	12, // 25: challenge.ChallengeService.GetUserChallenges:output_type -> challenge.ChallengeListResponse
-	16, // 26: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
-	20, // [20:27] is the sub-list for method output_type
-	13, // [13:20] is the sub-list for method input_type
+	13, // 15: challenge.ChallengeService.GetChallengeHistory:input_type -> challenge.GetChallengeHistoryRequest
+	11, // 16: challenge.ChallengeService.GetActiveOpenChallenges:input_type -> challenge.PaginationRequest
+	14, // 17: challenge.ChallengeService.GetUserChallenges:input_type -> challenge.UserChallengesRequest
+	15, // 18: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
+	8,  // 19: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
+	9,  // 20: challenge.ChallengeService.GetChallengeRoomInfoMetadata:output_type -> challenge.GetChallengeRoomInfoMetadataRequest
+	12, // 21: challenge.ChallengeService.GetChallengeHistory:output_type -> challenge.ChallengeListResponse
+	12, // 22: challenge.ChallengeService.GetActiveOpenChallenges:output_type -> challenge.ChallengeListResponse
+	12, // 23: challenge.ChallengeService.GetUserChallenges:output_type -> challenge.ChallengeListResponse
+	16, // 24: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
+	19, // [19:25] is the sub-list for method output_type
+	13, // [13:19] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name

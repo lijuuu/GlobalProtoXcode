@@ -21,9 +21,8 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ChallengeService_CreateChallenge_FullMethodName              = "/challenge.ChallengeService/CreateChallenge"
 	ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName = "/challenge.ChallengeService/GetChallengeRoomInfoMetadata"
-	ChallengeService_GetPublicChallenges_FullMethodName          = "/challenge.ChallengeService/GetPublicChallenges"
 	ChallengeService_GetChallengeHistory_FullMethodName          = "/challenge.ChallengeService/GetChallengeHistory"
-	ChallengeService_GetActiveChallenges_FullMethodName          = "/challenge.ChallengeService/GetActiveChallenges"
+	ChallengeService_GetActiveOpenChallenges_FullMethodName      = "/challenge.ChallengeService/GetActiveOpenChallenges"
 	ChallengeService_GetUserChallenges_FullMethodName            = "/challenge.ChallengeService/GetUserChallenges"
 	ChallengeService_PushSubmissionStatus_FullMethodName         = "/challenge.ChallengeService/PushSubmissionStatus"
 )
@@ -34,9 +33,10 @@ const (
 type ChallengeServiceClient interface {
 	CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error)
 	GetChallengeRoomInfoMetadata(ctx context.Context, in *GetChallengeRoomInfoMetadataResponse, opts ...grpc.CallOption) (*GetChallengeRoomInfoMetadataRequest, error)
-	GetPublicChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
-	GetActiveChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
+	// get the publically available challenges with isPrivate:false
+	GetActiveOpenChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
+	// every challenge user participated
 	GetUserChallenges(ctx context.Context, in *UserChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	PushSubmissionStatus(ctx context.Context, in *PushSubmissionStatusRequest, opts ...grpc.CallOption) (*PushSubmissionStatusResponse, error)
 }
@@ -69,16 +69,6 @@ func (c *challengeServiceClient) GetChallengeRoomInfoMetadata(ctx context.Contex
 	return out, nil
 }
 
-func (c *challengeServiceClient) GetPublicChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ChallengeListResponse)
-	err := c.cc.Invoke(ctx, ChallengeService_GetPublicChallenges_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *challengeServiceClient) GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChallengeListResponse)
@@ -89,10 +79,10 @@ func (c *challengeServiceClient) GetChallengeHistory(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *challengeServiceClient) GetActiveChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
+func (c *challengeServiceClient) GetActiveOpenChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChallengeListResponse)
-	err := c.cc.Invoke(ctx, ChallengeService_GetActiveChallenges_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ChallengeService_GetActiveOpenChallenges_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,9 +115,10 @@ func (c *challengeServiceClient) PushSubmissionStatus(ctx context.Context, in *P
 type ChallengeServiceServer interface {
 	CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error)
 	GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataResponse) (*GetChallengeRoomInfoMetadataRequest, error)
-	GetPublicChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*ChallengeListResponse, error)
-	GetActiveChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
+	// get the publically available challenges with isPrivate:false
+	GetActiveOpenChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
+	// every challenge user participated
 	GetUserChallenges(context.Context, *UserChallengesRequest) (*ChallengeListResponse, error)
 	PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error)
 	mustEmbedUnimplementedChallengeServiceServer()
@@ -146,14 +137,11 @@ func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *Cha
 func (UnimplementedChallengeServiceServer) GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataResponse) (*GetChallengeRoomInfoMetadataRequest, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeRoomInfoMetadata not implemented")
 }
-func (UnimplementedChallengeServiceServer) GetPublicChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPublicChallenges not implemented")
-}
 func (UnimplementedChallengeServiceServer) GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*ChallengeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeHistory not implemented")
 }
-func (UnimplementedChallengeServiceServer) GetActiveChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetActiveChallenges not implemented")
+func (UnimplementedChallengeServiceServer) GetActiveOpenChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetActiveOpenChallenges not implemented")
 }
 func (UnimplementedChallengeServiceServer) GetUserChallenges(context.Context, *UserChallengesRequest) (*ChallengeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserChallenges not implemented")
@@ -218,24 +206,6 @@ func _ChallengeService_GetChallengeRoomInfoMetadata_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChallengeService_GetPublicChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PaginationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ChallengeServiceServer).GetPublicChallenges(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ChallengeService_GetPublicChallenges_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).GetPublicChallenges(ctx, req.(*PaginationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ChallengeService_GetChallengeHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetChallengeHistoryRequest)
 	if err := dec(in); err != nil {
@@ -254,20 +224,20 @@ func _ChallengeService_GetChallengeHistory_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChallengeService_GetActiveChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ChallengeService_GetActiveOpenChallenges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PaginationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ChallengeServiceServer).GetActiveChallenges(ctx, in)
+		return srv.(ChallengeServiceServer).GetActiveOpenChallenges(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ChallengeService_GetActiveChallenges_FullMethodName,
+		FullMethod: ChallengeService_GetActiveOpenChallenges_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).GetActiveChallenges(ctx, req.(*PaginationRequest))
+		return srv.(ChallengeServiceServer).GetActiveOpenChallenges(ctx, req.(*PaginationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -324,16 +294,12 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ChallengeService_GetChallengeRoomInfoMetadata_Handler,
 		},
 		{
-			MethodName: "GetPublicChallenges",
-			Handler:    _ChallengeService_GetPublicChallenges_Handler,
-		},
-		{
 			MethodName: "GetChallengeHistory",
 			Handler:    _ChallengeService_GetChallengeHistory_Handler,
 		},
 		{
-			MethodName: "GetActiveChallenges",
-			Handler:    _ChallengeService_GetActiveChallenges_Handler,
+			MethodName: "GetActiveOpenChallenges",
+			Handler:    _ChallengeService_GetActiveOpenChallenges_Handler,
 		},
 		{
 			MethodName: "GetUserChallenges",
