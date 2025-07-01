@@ -59,9 +59,9 @@ func (*ProblemCountMetadataRequest) Descriptor() ([]byte, []int) {
 
 type ProblemCountMetadataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Easy          string                 `protobuf:"bytes,1,opt,name=easy,proto3" json:"easy,omitempty"`
-	Medium        string                 `protobuf:"bytes,2,opt,name=medium,proto3" json:"medium,omitempty"`
-	Hard          string                 `protobuf:"bytes,3,opt,name=hard,proto3" json:"hard,omitempty"`
+	Easy          int32                  `protobuf:"varint,1,opt,name=easy,proto3" json:"easy,omitempty"`
+	Medium        int32                  `protobuf:"varint,2,opt,name=medium,proto3" json:"medium,omitempty"`
+	Hard          int32                  `protobuf:"varint,3,opt,name=hard,proto3" json:"hard,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -96,25 +96,25 @@ func (*ProblemCountMetadataResponse) Descriptor() ([]byte, []int) {
 	return file_ProblemsService_problemsservice_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ProblemCountMetadataResponse) GetEasy() string {
+func (x *ProblemCountMetadataResponse) GetEasy() int32 {
 	if x != nil {
 		return x.Easy
 	}
-	return ""
+	return 0
 }
 
-func (x *ProblemCountMetadataResponse) GetMedium() string {
+func (x *ProblemCountMetadataResponse) GetMedium() int32 {
 	if x != nil {
 		return x.Medium
 	}
-	return ""
+	return 0
 }
 
-func (x *ProblemCountMetadataResponse) GetHard() string {
+func (x *ProblemCountMetadataResponse) GetHard() int32 {
 	if x != nil {
 		return x.Hard
 	}
-	return ""
+	return 0
 }
 
 type RandomProblemIDsGenWithDifficultyRatioRequest struct {
@@ -4840,9 +4840,9 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"%ProblemsService/problemsservice.proto\x12\bproblems\"\x1d\n" +
 	"\x1bProblemCountMetadataRequest\"^\n" +
 	"\x1cProblemCountMetadataResponse\x12\x12\n" +
-	"\x04easy\x18\x01 \x01(\tR\x04easy\x12\x16\n" +
-	"\x06medium\x18\x02 \x01(\tR\x06medium\x12\x12\n" +
-	"\x04hard\x18\x03 \x01(\tR\x04hard\"\x85\x01\n" +
+	"\x04easy\x18\x01 \x01(\x05R\x04easy\x12\x16\n" +
+	"\x06medium\x18\x02 \x01(\x05R\x06medium\x12\x12\n" +
+	"\x04hard\x18\x03 \x01(\x05R\x04hard\"\x85\x01\n" +
 	"-RandomProblemIDsGenWithDifficultyRatioRequest\x12:\n" +
 	"\aqnratio\x18\x01 \x01(\v2 .problems.ProblemDifficultyRatioR\aqnratio\x12\x18\n" +
 	"\atraceID\x18\x02 \x01(\tR\atraceID\"X\n" +

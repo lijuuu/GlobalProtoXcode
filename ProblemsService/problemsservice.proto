@@ -63,9 +63,9 @@ service ProblemsService {
 message ProblemCountMetadataRequest {}
 
 message ProblemCountMetadataResponse{
-  string easy = 1;
-  string medium = 2;
-  string hard = 3;
+  int32 easy = 1;
+  int32 medium = 2;
+  int32 hard = 3;
 }
 
 message RandomProblemIDsGenWithDifficultyRatioRequest{
