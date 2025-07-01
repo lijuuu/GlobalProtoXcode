@@ -69,6 +69,7 @@ message ChallengeRecord {
   ChallengeConfig config = 12;
   repeated string processedProblemIds = 13; //user can pass predefined qns in this, if len() > 1, ignore auto gen via ratio.
   int64 createdAt = 14;
+  int64 problemCount = 15;
 }
 
 message GetChallengeRoomInfoMetadataRequest{

@@ -533,6 +533,7 @@ type ChallengeRecord struct {
 	Config              *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
 	ProcessedProblemIds []string                        `protobuf:"bytes,13,rep,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"` //user can pass predefined qns in this, if len() > 1, ignore auto gen via ratio.
 	CreatedAt           int64                           `protobuf:"varint,14,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	ProblemCount        int64                           `protobuf:"varint,15,opt,name=problemCount,proto3" json:"problemCount,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -661,6 +662,13 @@ func (x *ChallengeRecord) GetProcessedProblemIds() []string {
 func (x *ChallengeRecord) GetCreatedAt() int64 {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *ChallengeRecord) GetProblemCount() int64 {
+	if x != nil {
+		return x.ProblemCount
 	}
 	return 0
 }
@@ -1168,7 +1176,7 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\bmaxUsers\x18\x01 \x01(\x05R\bmaxUsers\x12*\n" +
 	"\x10maxEasyQuestions\x18\x02 \x01(\x05R\x10maxEasyQuestions\x12.\n" +
 	"\x12maxMediumQuestions\x18\x03 \x01(\x05R\x12maxMediumQuestions\x12*\n" +
-	"\x10maxHardQuestions\x18\x04 \x01(\x05R\x10maxHardQuestions\"\xbd\x05\n" +
+	"\x10maxHardQuestions\x18\x04 \x01(\x05R\x10maxHardQuestions\"\xe1\x05\n" +
 	"\x0fChallengeRecord\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
 	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12\x14\n" +
@@ -1184,7 +1192,8 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\vleaderboard\x18\v \x03(\v2\x1b.challenge.LeaderboardEntryR\vleaderboard\x122\n" +
 	"\x06config\x18\f \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x120\n" +
 	"\x13processedProblemIds\x18\r \x03(\tR\x13processedProblemIds\x12\x1c\n" +
-	"\tcreatedAt\x18\x0e \x01(\x03R\tcreatedAt\x1a_\n" +
+	"\tcreatedAt\x18\x0e \x01(\x03R\tcreatedAt\x12\"\n" +
+	"\fproblemCount\x18\x0f \x01(\x03R\fproblemCount\x1a_\n" +
 	"\x11ParticipantsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
 	"\x05value\x18\x02 \x01(\v2\x1e.challenge.ParticipantMetadataR\x05value:\x028\x01\"u\n" +
