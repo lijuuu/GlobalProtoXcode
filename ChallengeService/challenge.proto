@@ -70,6 +70,15 @@ message ChallengeRecord {
   repeated string processedProblemIds = 13; //user can pass predefined qns in this, if len() > 1, ignore auto gen via ratio.
 }
 
+message GetChallengeRoomInfoMetadataRequest{
+  string challengeId  = 1;
+  optional string password = 2;
+}
+
+message GetChallengeRoomInfoMetadataResponse{
+  ChallengeRecord challenge = 1;
+}
+
 message PaginationRequest {
   int32 page = 1;
   int32 pageSize = 2;
@@ -80,9 +89,10 @@ message ChallengeListResponse {
   int64 totalCount = 2;
 }
 
-message PrivateChallengesRequest {
+message GetChallengeHistoryRequest {
   string userId = 1;
   PaginationRequest pagination = 2;
+  bool isPrivate = 3;
 }
 
 message UserChallengesRequest {
@@ -107,8 +117,9 @@ message PushSubmissionStatusResponse {
 
 service ChallengeService {
   rpc CreateChallenge(ChallengeRecord) returns (ChallengeRecord) {}
+  rpc GetChallengeRoomInfoMetadata(GetChallengeRoomInfoMetadataResponse) returns (GetChallengeRoomInfoMetadataRequest);
   rpc GetPublicChallenges(PaginationRequest) returns (ChallengeListResponse) {}
-  rpc GetPrivateChallengesOfUser(PrivateChallengesRequest) returns (ChallengeListResponse) {}
+  rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (ChallengeListResponse) {}
   rpc GetActiveChallenges(PaginationRequest) returns (ChallengeListResponse) {}
   rpc GetUserChallenges(UserChallengesRequest) returns (ChallengeListResponse) {}
   rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse) {}
