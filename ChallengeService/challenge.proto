@@ -68,6 +68,7 @@ message ChallengeRecord {
   repeated LeaderboardEntry leaderboard = 11;
   ChallengeConfig config = 12;
   repeated string processedProblemIds = 13; //user can pass predefined qns in this, if len() > 1, ignore auto gen via ratio.
+  int64 createdAt = 14;
 }
 
 message GetChallengeRoomInfoMetadataRequest{
