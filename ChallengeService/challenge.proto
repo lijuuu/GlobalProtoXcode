@@ -5,12 +5,11 @@ package challenge;
 option go_package = "github.com/lijuuu/ChallengeWssManagerService/internal/proto";
 
 message ParticipantMetadata {
-  string userId = 1;
-  int64 joinTimeUnix = 2;
-  map<string, ChallengeProblemMetadata> problemsDone = 3;
-  int32 problemsAttempted = 4;
-  int32 totalScore = 5;
-  int64 lastConnectedUnix = 6;
+  int64 joinTimeUnix = 1;
+  map<string, ChallengeProblemMetadata> problemsDone = 2;
+  int32 problemsAttempted = 3;
+  int32 totalScore = 4;
+  int64 lastConnectedUnix = 5;
 }
 
 message ChallengeProblemMetadata {
@@ -68,7 +67,7 @@ message ChallengeRecord {
   repeated UserSubmissions submissions = 10;
   repeated LeaderboardEntry leaderboard = 11;
   ChallengeConfig config = 12;
-  repeated string processedProblemIds = 13;
+  repeated string processedProblemIds = 13; //user can pass predefined qns in this, if len() > 1, ignore auto gen via ratio.
 }
 
 message PaginationRequest {

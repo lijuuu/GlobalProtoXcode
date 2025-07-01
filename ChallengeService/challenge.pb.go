@@ -23,12 +23,11 @@ const (
 
 type ParticipantMetadata struct {
 	state             protoimpl.MessageState               `protogen:"open.v1"`
-	UserId            string                               `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	JoinTimeUnix      int64                                `protobuf:"varint,2,opt,name=joinTimeUnix,proto3" json:"joinTimeUnix,omitempty"`
-	ProblemsDone      map[string]*ChallengeProblemMetadata `protobuf:"bytes,3,rep,name=problemsDone,proto3" json:"problemsDone,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	ProblemsAttempted int32                                `protobuf:"varint,4,opt,name=problemsAttempted,proto3" json:"problemsAttempted,omitempty"`
-	TotalScore        int32                                `protobuf:"varint,5,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
-	LastConnectedUnix int64                                `protobuf:"varint,6,opt,name=lastConnectedUnix,proto3" json:"lastConnectedUnix,omitempty"`
+	JoinTimeUnix      int64                                `protobuf:"varint,1,opt,name=joinTimeUnix,proto3" json:"joinTimeUnix,omitempty"`
+	ProblemsDone      map[string]*ChallengeProblemMetadata `protobuf:"bytes,2,rep,name=problemsDone,proto3" json:"problemsDone,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	ProblemsAttempted int32                                `protobuf:"varint,3,opt,name=problemsAttempted,proto3" json:"problemsAttempted,omitempty"`
+	TotalScore        int32                                `protobuf:"varint,4,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
+	LastConnectedUnix int64                                `protobuf:"varint,5,opt,name=lastConnectedUnix,proto3" json:"lastConnectedUnix,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -61,13 +60,6 @@ func (x *ParticipantMetadata) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ParticipantMetadata.ProtoReflect.Descriptor instead.
 func (*ParticipantMetadata) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *ParticipantMetadata) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
 }
 
 func (x *ParticipantMetadata) GetJoinTimeUnix() int64 {
@@ -539,7 +531,7 @@ type ChallengeRecord struct {
 	Submissions         []*UserSubmissions              `protobuf:"bytes,10,rep,name=submissions,proto3" json:"submissions,omitempty"`
 	Leaderboard         []*LeaderboardEntry             `protobuf:"bytes,11,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
 	Config              *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
-	ProcessedProblemIds []string                        `protobuf:"bytes,13,rep,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"`
+	ProcessedProblemIds []string                        `protobuf:"bytes,13,rep,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"` //user can pass predefined qns in this, if len() > 1, ignore auto gen via ratio.
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -1021,16 +1013,15 @@ var File_ChallengeService_challenge_proto protoreflect.FileDescriptor
 
 const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\n" +
-	" ChallengeService/challenge.proto\x12\tchallenge\"\x89\x03\n" +
-	"\x13ParticipantMetadata\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\"\n" +
-	"\fjoinTimeUnix\x18\x02 \x01(\x03R\fjoinTimeUnix\x12T\n" +
-	"\fproblemsDone\x18\x03 \x03(\v20.challenge.ParticipantMetadata.ProblemsDoneEntryR\fproblemsDone\x12,\n" +
-	"\x11problemsAttempted\x18\x04 \x01(\x05R\x11problemsAttempted\x12\x1e\n" +
+	" ChallengeService/challenge.proto\x12\tchallenge\"\xf1\x02\n" +
+	"\x13ParticipantMetadata\x12\"\n" +
+	"\fjoinTimeUnix\x18\x01 \x01(\x03R\fjoinTimeUnix\x12T\n" +
+	"\fproblemsDone\x18\x02 \x03(\v20.challenge.ParticipantMetadata.ProblemsDoneEntryR\fproblemsDone\x12,\n" +
+	"\x11problemsAttempted\x18\x03 \x01(\x05R\x11problemsAttempted\x12\x1e\n" +
 	"\n" +
-	"totalScore\x18\x05 \x01(\x05R\n" +
+	"totalScore\x18\x04 \x01(\x05R\n" +
 	"totalScore\x12,\n" +
-	"\x11lastConnectedUnix\x18\x06 \x01(\x03R\x11lastConnectedUnix\x1ad\n" +
+	"\x11lastConnectedUnix\x18\x05 \x01(\x03R\x11lastConnectedUnix\x1ad\n" +
 	"\x11ProblemsDoneEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x129\n" +
 	"\x05value\x18\x02 \x01(\v2#.challenge.ChallengeProblemMetadataR\x05value:\x028\x01\"\x96\x01\n" +
