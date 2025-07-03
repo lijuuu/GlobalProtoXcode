@@ -1129,6 +1129,118 @@ func (x *PushSubmissionStatusResponse) GetSuccess() bool {
 	return false
 }
 
+type AbandonChallengeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	CreatorId     string                 `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AbandonChallengeRequest) Reset() {
+	*x = AbandonChallengeRequest{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AbandonChallengeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AbandonChallengeRequest) ProtoMessage() {}
+
+func (x *AbandonChallengeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AbandonChallengeRequest.ProtoReflect.Descriptor instead.
+func (*AbandonChallengeRequest) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *AbandonChallengeRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *AbandonChallengeRequest) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
+}
+
+type AbandonChallengeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,3,opt,name=error_type,json=errorType,proto3" json:"error_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AbandonChallengeResponse) Reset() {
+	*x = AbandonChallengeResponse{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AbandonChallengeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AbandonChallengeResponse) ProtoMessage() {}
+
+func (x *AbandonChallengeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AbandonChallengeResponse.ProtoReflect.Descriptor instead.
+func (*AbandonChallengeResponse) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *AbandonChallengeResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AbandonChallengeResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AbandonChallengeResponse) GetErrorType() string {
+	if x != nil {
+		return x.ErrorType
+	}
+	return ""
+}
+
 var File_ChallengeService_challenge_proto protoreflect.FileDescriptor
 
 const file_ChallengeService_challenge_proto_rawDesc = "" +
@@ -1234,9 +1346,18 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\atraceId\x18\a \x01(\tR\atraceId\"R\n" +
 	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x18\n" +
-	"\asuccess\x18\x02 \x01(\bR\asuccess2\xf8\x04\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess\"Y\n" +
+	"\x17AbandonChallengeRequest\x12 \n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
+	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\"m\n" +
+	"\x18AbandonChallengeResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1d\n" +
+	"\n" +
+	"error_type\x18\x03 \x01(\tR\terrorType2\xd7\x05\n" +
 	"\x10ChallengeService\x12K\n" +
-	"\x0fCreateChallenge\x12\x1a.challenge.ChallengeRecord\x1a\x1a.challenge.ChallengeRecord\"\x00\x12\x7f\n" +
+	"\x0fCreateChallenge\x12\x1a.challenge.ChallengeRecord\x1a\x1a.challenge.ChallengeRecord\"\x00\x12]\n" +
+	"\x10AbandonChallenge\x12\".challenge.AbandonChallengeRequest\x1a#.challenge.AbandonChallengeResponse\"\x00\x12\x7f\n" +
 	"\x1cGetChallengeRoomInfoMetadata\x12/.challenge.GetChallengeRoomInfoMetadataResponse\x1a..challenge.GetChallengeRoomInfoMetadataRequest\x12`\n" +
 	"\x13GetChallengeHistory\x12%.challenge.GetChallengeHistoryRequest\x1a .challenge.ChallengeListResponse\"\x00\x12[\n" +
 	"\x17GetActiveOpenChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\"\x00\x12l\n" +
@@ -1255,7 +1376,7 @@ func file_ChallengeService_challenge_proto_rawDescGZIP() []byte {
 	return file_ChallengeService_challenge_proto_rawDescData
 }
 
-var file_ChallengeService_challenge_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_ChallengeService_challenge_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_ChallengeService_challenge_proto_goTypes = []any{
 	(*ParticipantMetadata)(nil),                  // 0: challenge.ParticipantMetadata
 	(*ChallengeProblemMetadata)(nil),             // 1: challenge.ChallengeProblemMetadata
@@ -1274,14 +1395,16 @@ var file_ChallengeService_challenge_proto_goTypes = []any{
 	(*GetOwnersActiveChallengesRequest)(nil),     // 14: challenge.GetOwnersActiveChallengesRequest
 	(*PushSubmissionStatusRequest)(nil),          // 15: challenge.PushSubmissionStatusRequest
 	(*PushSubmissionStatusResponse)(nil),         // 16: challenge.PushSubmissionStatusResponse
-	nil,                                          // 17: challenge.ParticipantMetadata.ProblemsDoneEntry
-	nil,                                          // 18: challenge.ChallengeRecord.ParticipantsEntry
+	(*AbandonChallengeRequest)(nil),              // 17: challenge.AbandonChallengeRequest
+	(*AbandonChallengeResponse)(nil),             // 18: challenge.AbandonChallengeResponse
+	nil,                                          // 19: challenge.ParticipantMetadata.ProblemsDoneEntry
+	nil,                                          // 20: challenge.ChallengeRecord.ParticipantsEntry
 }
 var file_ChallengeService_challenge_proto_depIdxs = []int32{
-	17, // 0: challenge.ParticipantMetadata.problemsDone:type_name -> challenge.ParticipantMetadata.ProblemsDoneEntry
+	19, // 0: challenge.ParticipantMetadata.problemsDone:type_name -> challenge.ParticipantMetadata.ProblemsDoneEntry
 	2,  // 1: challenge.SubmissionEntry.submission:type_name -> challenge.SubmissionMetadata
 	3,  // 2: challenge.UserSubmissions.entries:type_name -> challenge.SubmissionEntry
-	18, // 3: challenge.ChallengeRecord.participants:type_name -> challenge.ChallengeRecord.ParticipantsEntry
+	20, // 3: challenge.ChallengeRecord.participants:type_name -> challenge.ChallengeRecord.ParticipantsEntry
 	4,  // 4: challenge.ChallengeRecord.submissions:type_name -> challenge.UserSubmissions
 	5,  // 5: challenge.ChallengeRecord.leaderboard:type_name -> challenge.LeaderboardEntry
 	7,  // 6: challenge.ChallengeRecord.config:type_name -> challenge.ChallengeConfig
@@ -1292,19 +1415,21 @@ var file_ChallengeService_challenge_proto_depIdxs = []int32{
 	1,  // 11: challenge.ParticipantMetadata.ProblemsDoneEntry.value:type_name -> challenge.ChallengeProblemMetadata
 	0,  // 12: challenge.ChallengeRecord.ParticipantsEntry.value:type_name -> challenge.ParticipantMetadata
 	8,  // 13: challenge.ChallengeService.CreateChallenge:input_type -> challenge.ChallengeRecord
-	10, // 14: challenge.ChallengeService.GetChallengeRoomInfoMetadata:input_type -> challenge.GetChallengeRoomInfoMetadataResponse
-	13, // 15: challenge.ChallengeService.GetChallengeHistory:input_type -> challenge.GetChallengeHistoryRequest
-	11, // 16: challenge.ChallengeService.GetActiveOpenChallenges:input_type -> challenge.PaginationRequest
-	14, // 17: challenge.ChallengeService.GetOwnersActiveChallenges:input_type -> challenge.GetOwnersActiveChallengesRequest
-	15, // 18: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
-	8,  // 19: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
-	9,  // 20: challenge.ChallengeService.GetChallengeRoomInfoMetadata:output_type -> challenge.GetChallengeRoomInfoMetadataRequest
-	12, // 21: challenge.ChallengeService.GetChallengeHistory:output_type -> challenge.ChallengeListResponse
-	12, // 22: challenge.ChallengeService.GetActiveOpenChallenges:output_type -> challenge.ChallengeListResponse
-	12, // 23: challenge.ChallengeService.GetOwnersActiveChallenges:output_type -> challenge.ChallengeListResponse
-	16, // 24: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
-	19, // [19:25] is the sub-list for method output_type
-	13, // [13:19] is the sub-list for method input_type
+	17, // 14: challenge.ChallengeService.AbandonChallenge:input_type -> challenge.AbandonChallengeRequest
+	10, // 15: challenge.ChallengeService.GetChallengeRoomInfoMetadata:input_type -> challenge.GetChallengeRoomInfoMetadataResponse
+	13, // 16: challenge.ChallengeService.GetChallengeHistory:input_type -> challenge.GetChallengeHistoryRequest
+	11, // 17: challenge.ChallengeService.GetActiveOpenChallenges:input_type -> challenge.PaginationRequest
+	14, // 18: challenge.ChallengeService.GetOwnersActiveChallenges:input_type -> challenge.GetOwnersActiveChallengesRequest
+	15, // 19: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
+	8,  // 20: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
+	18, // 21: challenge.ChallengeService.AbandonChallenge:output_type -> challenge.AbandonChallengeResponse
+	9,  // 22: challenge.ChallengeService.GetChallengeRoomInfoMetadata:output_type -> challenge.GetChallengeRoomInfoMetadataRequest
+	12, // 23: challenge.ChallengeService.GetChallengeHistory:output_type -> challenge.ChallengeListResponse
+	12, // 24: challenge.ChallengeService.GetActiveOpenChallenges:output_type -> challenge.ChallengeListResponse
+	12, // 25: challenge.ChallengeService.GetOwnersActiveChallenges:output_type -> challenge.ChallengeListResponse
+	16, // 26: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
+	20, // [20:27] is the sub-list for method output_type
+	13, // [13:20] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name
@@ -1322,7 +1447,7 @@ func file_ChallengeService_challenge_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ChallengeService_challenge_proto_rawDesc), len(file_ChallengeService_challenge_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

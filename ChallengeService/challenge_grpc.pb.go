@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ChallengeService_CreateChallenge_FullMethodName              = "/challenge.ChallengeService/CreateChallenge"
+	ChallengeService_AbandonChallenge_FullMethodName             = "/challenge.ChallengeService/AbandonChallenge"
 	ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName = "/challenge.ChallengeService/GetChallengeRoomInfoMetadata"
 	ChallengeService_GetChallengeHistory_FullMethodName          = "/challenge.ChallengeService/GetChallengeHistory"
 	ChallengeService_GetActiveOpenChallenges_FullMethodName      = "/challenge.ChallengeService/GetActiveOpenChallenges"
@@ -32,6 +33,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChallengeServiceClient interface {
 	CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error)
+	AbandonChallenge(ctx context.Context, in *AbandonChallengeRequest, opts ...grpc.CallOption) (*AbandonChallengeResponse, error)
 	GetChallengeRoomInfoMetadata(ctx context.Context, in *GetChallengeRoomInfoMetadataResponse, opts ...grpc.CallOption) (*GetChallengeRoomInfoMetadataRequest, error)
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	// get the publically available challenges with isPrivate:false
@@ -53,6 +55,16 @@ func (c *challengeServiceClient) CreateChallenge(ctx context.Context, in *Challe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChallengeRecord)
 	err := c.cc.Invoke(ctx, ChallengeService_CreateChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *challengeServiceClient) AbandonChallenge(ctx context.Context, in *AbandonChallengeRequest, opts ...grpc.CallOption) (*AbandonChallengeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AbandonChallengeResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_AbandonChallenge_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,6 +126,7 @@ func (c *challengeServiceClient) PushSubmissionStatus(ctx context.Context, in *P
 // for forward compatibility.
 type ChallengeServiceServer interface {
 	CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error)
+	AbandonChallenge(context.Context, *AbandonChallengeRequest) (*AbandonChallengeResponse, error)
 	GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataResponse) (*GetChallengeRoomInfoMetadataRequest, error)
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*ChallengeListResponse, error)
 	// get the publically available challenges with isPrivate:false
@@ -133,6 +146,9 @@ type UnimplementedChallengeServiceServer struct{}
 
 func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChallenge not implemented")
+}
+func (UnimplementedChallengeServiceServer) AbandonChallenge(context.Context, *AbandonChallengeRequest) (*AbandonChallengeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AbandonChallenge not implemented")
 }
 func (UnimplementedChallengeServiceServer) GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataResponse) (*GetChallengeRoomInfoMetadataRequest, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeRoomInfoMetadata not implemented")
@@ -184,6 +200,24 @@ func _ChallengeService_CreateChallenge_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ChallengeServiceServer).CreateChallenge(ctx, req.(*ChallengeRecord))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChallengeService_AbandonChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AbandonChallengeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).AbandonChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_AbandonChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).AbandonChallenge(ctx, req.(*AbandonChallengeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -288,6 +322,10 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateChallenge",
 			Handler:    _ChallengeService_CreateChallenge_Handler,
+		},
+		{
+			MethodName: "AbandonChallenge",
+			Handler:    _ChallengeService_AbandonChallenge_Handler,
 		},
 		{
 			MethodName: "GetChallengeRoomInfoMetadata",

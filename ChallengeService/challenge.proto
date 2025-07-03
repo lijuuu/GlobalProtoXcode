@@ -116,9 +116,21 @@ message PushSubmissionStatusResponse {
   string message = 1;
   bool success = 2;
 }
+message AbandonChallengeRequest{
+  string challengeId = 1;
+  string creatorId = 2;
+}
+message AbandonChallengeResponse{
+  bool success = 1;
+  string message = 2;
+  string error_type = 3;
+
+}
 
 service ChallengeService {
   rpc CreateChallenge(ChallengeRecord) returns (ChallengeRecord) {}
+  rpc AbandonChallenge(AbandonChallengeRequest) returns (AbandonChallengeResponse){}
+
   rpc GetChallengeRoomInfoMetadata(GetChallengeRoomInfoMetadataResponse) returns (GetChallengeRoomInfoMetadataRequest);
   rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (ChallengeListResponse) {}
 
