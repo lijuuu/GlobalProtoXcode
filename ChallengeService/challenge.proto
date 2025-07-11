@@ -123,15 +123,26 @@ message AbandonChallengeRequest{
 message AbandonChallengeResponse{
   bool success = 1;
   string message = 2;
-  string error_type = 3;
+  string errorType = 3;
+}
 
+message GetFullChallengeDataRequest{
+  string challengeId = 1;
+  optional string password = 2;
+}
+
+message GetFullChallengeDataResponse{
+  ChallengeRecord challenge = 1;
 }
 
 service ChallengeService {
   rpc CreateChallenge(ChallengeRecord) returns (ChallengeRecord) {}
   rpc AbandonChallenge(AbandonChallengeRequest) returns (AbandonChallengeResponse){}
 
-  rpc GetChallengeRoomInfoMetadata(GetChallengeRoomInfoMetadataResponse) returns (GetChallengeRoomInfoMetadataRequest);
+  rpc GetChallengeRoomInfoMetadata(GetChallengeRoomInfoMetadataRequest) returns (GetChallengeRoomInfoMetadataResponse);
+  rpc GetFullChallengeData(GetFullChallengeDataRequest) returns (GetFullChallengeDataResponse);
+
+
   rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (ChallengeListResponse) {}
 
   //get the publically available challenges with isPrivate:false
