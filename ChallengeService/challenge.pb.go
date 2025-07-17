@@ -986,17 +986,18 @@ func (x *GetOwnersActiveChallengesRequest) GetPagination() *PaginationRequest {
 }
 
 type PushSubmissionStatusRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserCode      string                 `protobuf:"bytes,1,opt,name=userCode,proto3" json:"userCode,omitempty"`
-	ChallengeId   string                 `protobuf:"bytes,2,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	UserId        string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
-	ProblemId     string                 `protobuf:"bytes,4,opt,name=problemId,proto3" json:"problemId,omitempty"`
-	SubmissionId  string                 `protobuf:"bytes,6,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
-	Score         int32                  `protobuf:"varint,7,opt,name=score,proto3" json:"score,omitempty"`
-	IsSuccessful  bool                   `protobuf:"varint,8,opt,name=isSuccessful,proto3" json:"isSuccessful,omitempty"`
-	TraceId       string                 `protobuf:"bytes,9,opt,name=traceId,proto3" json:"traceId,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UserCode        string                 `protobuf:"bytes,1,opt,name=userCode,proto3" json:"userCode,omitempty"`
+	ChallengeId     string                 `protobuf:"bytes,2,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	UserId          string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	ProblemId       string                 `protobuf:"bytes,4,opt,name=problemId,proto3" json:"problemId,omitempty"`
+	SubmissionId    string                 `protobuf:"bytes,6,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
+	Score           int32                  `protobuf:"varint,7,opt,name=score,proto3" json:"score,omitempty"`
+	IsSuccessful    bool                   `protobuf:"varint,8,opt,name=isSuccessful,proto3" json:"isSuccessful,omitempty"`
+	TimeTakenMillis int64                  `protobuf:"varint,9,opt,name=TimeTakenMillis,proto3" json:"TimeTakenMillis,omitempty"`
+	TraceId         string                 `protobuf:"bytes,10,opt,name=traceId,proto3" json:"traceId,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *PushSubmissionStatusRequest) Reset() {
@@ -1076,6 +1077,13 @@ func (x *PushSubmissionStatusRequest) GetIsSuccessful() bool {
 		return x.IsSuccessful
 	}
 	return false
+}
+
+func (x *PushSubmissionStatusRequest) GetTimeTakenMillis() int64 {
+	if x != nil {
+		return x.TimeTakenMillis
+	}
+	return 0
 }
 
 func (x *PushSubmissionStatusRequest) GetTraceId() string {
@@ -1439,7 +1447,7 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\x12<\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x1c.challenge.PaginationRequestR\n" +
-	"pagination\"\x89\x02\n" +
+	"pagination\"\xb3\x02\n" +
 	"\x1bPushSubmissionStatusRequest\x12\x1a\n" +
 	"\buserCode\x18\x01 \x01(\tR\buserCode\x12 \n" +
 	"\vchallengeId\x18\x02 \x01(\tR\vchallengeId\x12\x16\n" +
@@ -1447,8 +1455,10 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\tproblemId\x18\x04 \x01(\tR\tproblemId\x12\"\n" +
 	"\fsubmissionId\x18\x06 \x01(\tR\fsubmissionId\x12\x14\n" +
 	"\x05score\x18\a \x01(\x05R\x05score\x12\"\n" +
-	"\fisSuccessful\x18\b \x01(\bR\fisSuccessful\x12\x18\n" +
-	"\atraceId\x18\t \x01(\tR\atraceId\"R\n" +
+	"\fisSuccessful\x18\b \x01(\bR\fisSuccessful\x12(\n" +
+	"\x0fTimeTakenMillis\x18\t \x01(\x03R\x0fTimeTakenMillis\x12\x18\n" +
+	"\atraceId\x18\n" +
+	" \x01(\tR\atraceId\"R\n" +
 	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\"Y\n" +
