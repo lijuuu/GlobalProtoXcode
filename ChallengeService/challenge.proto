@@ -107,10 +107,12 @@ message PushSubmissionStatusRequest {
   string challengeId = 2;
   string userId = 3;
   string problemId = 4;
-  string status = 5;
   string submissionId = 6;
-  string traceId = 7;
+  int32 score = 7;
+  bool isSuccessful = 8; 
+  string traceId = 9;
 }
+
 
 message PushSubmissionStatusResponse {
   string message = 1;

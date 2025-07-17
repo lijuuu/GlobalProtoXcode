@@ -991,9 +991,10 @@ type PushSubmissionStatusRequest struct {
 	ChallengeId   string                 `protobuf:"bytes,2,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
 	UserId        string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
 	ProblemId     string                 `protobuf:"bytes,4,opt,name=problemId,proto3" json:"problemId,omitempty"`
-	Status        string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 	SubmissionId  string                 `protobuf:"bytes,6,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
-	TraceId       string                 `protobuf:"bytes,7,opt,name=traceId,proto3" json:"traceId,omitempty"`
+	Score         int32                  `protobuf:"varint,7,opt,name=score,proto3" json:"score,omitempty"`
+	IsSuccessful  bool                   `protobuf:"varint,8,opt,name=isSuccessful,proto3" json:"isSuccessful,omitempty"`
+	TraceId       string                 `protobuf:"bytes,9,opt,name=traceId,proto3" json:"traceId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1056,18 +1057,25 @@ func (x *PushSubmissionStatusRequest) GetProblemId() string {
 	return ""
 }
 
-func (x *PushSubmissionStatusRequest) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
 func (x *PushSubmissionStatusRequest) GetSubmissionId() string {
 	if x != nil {
 		return x.SubmissionId
 	}
 	return ""
+}
+
+func (x *PushSubmissionStatusRequest) GetScore() int32 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
+func (x *PushSubmissionStatusRequest) GetIsSuccessful() bool {
+	if x != nil {
+		return x.IsSuccessful
+	}
+	return false
 }
 
 func (x *PushSubmissionStatusRequest) GetTraceId() string {
@@ -1431,15 +1439,16 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\x12<\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x1c.challenge.PaginationRequestR\n" +
-	"pagination\"\xe7\x01\n" +
+	"pagination\"\x89\x02\n" +
 	"\x1bPushSubmissionStatusRequest\x12\x1a\n" +
 	"\buserCode\x18\x01 \x01(\tR\buserCode\x12 \n" +
 	"\vchallengeId\x18\x02 \x01(\tR\vchallengeId\x12\x16\n" +
 	"\x06userId\x18\x03 \x01(\tR\x06userId\x12\x1c\n" +
-	"\tproblemId\x18\x04 \x01(\tR\tproblemId\x12\x16\n" +
-	"\x06status\x18\x05 \x01(\tR\x06status\x12\"\n" +
-	"\fsubmissionId\x18\x06 \x01(\tR\fsubmissionId\x12\x18\n" +
-	"\atraceId\x18\a \x01(\tR\atraceId\"R\n" +
+	"\tproblemId\x18\x04 \x01(\tR\tproblemId\x12\"\n" +
+	"\fsubmissionId\x18\x06 \x01(\tR\fsubmissionId\x12\x14\n" +
+	"\x05score\x18\a \x01(\x05R\x05score\x12\"\n" +
+	"\fisSuccessful\x18\b \x01(\bR\fisSuccessful\x12\x18\n" +
+	"\atraceId\x18\t \x01(\tR\atraceId\"R\n" +
 	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\"Y\n" +
