@@ -24,7 +24,7 @@ const (
 	ProblemsService_DeleteProblem_FullMethodName                          = "/problems.ProblemsService/DeleteProblem"
 	ProblemsService_GetProblem_FullMethodName                             = "/problems.ProblemsService/GetProblem"
 	ProblemsService_ListProblems_FullMethodName                           = "/problems.ProblemsService/ListProblems"
-	ProblemsService_GetProblemByIDSlug_FullMethodName                     = "/problems.ProblemsService/GetProblemByIDSlug"
+	ProblemsService_GetProblemByIdSlug_FullMethodName                     = "/problems.ProblemsService/GetProblemByIdSlug"
 	ProblemsService_GetProblemMetadataList_FullMethodName                 = "/problems.ProblemsService/GetProblemMetadataList"
 	ProblemsService_AddTestCases_FullMethodName                           = "/problems.ProblemsService/AddTestCases"
 	ProblemsService_DeleteTestCase_FullMethodName                         = "/problems.ProblemsService/DeleteTestCase"
@@ -32,10 +32,10 @@ const (
 	ProblemsService_AddLanguageSupport_FullMethodName                     = "/problems.ProblemsService/AddLanguageSupport"
 	ProblemsService_UpdateLanguageSupport_FullMethodName                  = "/problems.ProblemsService/UpdateLanguageSupport"
 	ProblemsService_RemoveLanguageSupport_FullMethodName                  = "/problems.ProblemsService/RemoveLanguageSupport"
-	ProblemsService_FullValidationByProblemID_FullMethodName              = "/problems.ProblemsService/FullValidationByProblemID"
+	ProblemsService_FullValidationByProblemId_FullMethodName              = "/problems.ProblemsService/FullValidationByProblemId"
 	ProblemsService_RunUserCodeProblem_FullMethodName                     = "/problems.ProblemsService/RunUserCodeProblem"
-	ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName      = "/problems.ProblemsService/GetSubmissionsByOptionalProblemID"
-	ProblemsService_GetSubmissionsByID_FullMethodName                     = "/problems.ProblemsService/GetSubmissionsByID"
+	ProblemsService_GetSubmissionsByOptionalProblemId_FullMethodName      = "/problems.ProblemsService/GetSubmissionsByOptionalProblemId"
+	ProblemsService_GetSubmissionsById_FullMethodName                     = "/problems.ProblemsService/GetSubmissionsById"
 	ProblemsService_GetProblemsDoneStatistics_FullMethodName              = "/problems.ProblemsService/GetProblemsDoneStatistics"
 	ProblemsService_ForceChangeUserEntityInSubmission_FullMethodName      = "/problems.ProblemsService/ForceChangeUserEntityInSubmission"
 	ProblemsService_GetMonthlyActivityHeatmap_FullMethodName              = "/problems.ProblemsService/GetMonthlyActivityHeatmap"
@@ -45,8 +45,8 @@ const (
 	ProblemsService_GetLeaderboardData_FullMethodName                     = "/problems.ProblemsService/GetLeaderboardData"
 	ProblemsService_GetBulkProblemMetadata_FullMethodName                 = "/problems.ProblemsService/GetBulkProblemMetadata"
 	ProblemsService_VerifyProblemExistenceBulk_FullMethodName             = "/problems.ProblemsService/VerifyProblemExistenceBulk"
-	ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName = "/problems.ProblemsService/RandomProblemIDsGenWithDifficultyRatio"
-	ProblemsService_ProblemIDsDoneByUserID_FullMethodName                 = "/problems.ProblemsService/ProblemIDsDoneByUserID"
+	ProblemsService_RandomProblemIdsGenWithDifficultyRatio_FullMethodName = "/problems.ProblemsService/RandomProblemIdsGenWithDifficultyRatio"
+	ProblemsService_ProblemIdsDoneByUserId_FullMethodName                 = "/problems.ProblemsService/ProblemIdsDoneByUserId"
 	ProblemsService_ProblemCountMetadata_FullMethodName                   = "/problems.ProblemsService/ProblemCountMetadata"
 )
 
@@ -59,19 +59,19 @@ type ProblemsServiceClient interface {
 	DeleteProblem(ctx context.Context, in *DeleteProblemRequest, opts ...grpc.CallOption) (*DeleteProblemResponse, error)
 	GetProblem(ctx context.Context, in *GetProblemRequest, opts ...grpc.CallOption) (*GetProblemResponse, error)
 	ListProblems(ctx context.Context, in *ListProblemsRequest, opts ...grpc.CallOption) (*ListProblemsResponse, error)
-	GetProblemByIDSlug(ctx context.Context, in *GetProblemByIdSlugRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error)
+	GetProblemByIdSlug(ctx context.Context, in *GetProblemByIdSlugRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error)
 	GetProblemMetadataList(ctx context.Context, in *GetProblemMetadataListRequest, opts ...grpc.CallOption) (*GetProblemMetadataListResponse, error)
 	AddTestCases(ctx context.Context, in *AddTestCasesRequest, opts ...grpc.CallOption) (*AddTestCasesResponse, error)
-	// rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseid for updates :priority low
+	// rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseId for updates :priority low
 	DeleteTestCase(ctx context.Context, in *DeleteTestCaseRequest, opts ...grpc.CallOption) (*DeleteTestCaseResponse, error)
 	GetLanguageSupports(ctx context.Context, in *GetLanguageSupportsRequest, opts ...grpc.CallOption) (*GetLanguageSupportsResponse, error)
 	AddLanguageSupport(ctx context.Context, in *AddLanguageSupportRequest, opts ...grpc.CallOption) (*AddLanguageSupportResponse, error)
 	UpdateLanguageSupport(ctx context.Context, in *UpdateLanguageSupportRequest, opts ...grpc.CallOption) (*UpdateLanguageSupportResponse, error)
 	RemoveLanguageSupport(ctx context.Context, in *RemoveLanguageSupportRequest, opts ...grpc.CallOption) (*RemoveLanguageSupportResponse, error)
-	FullValidationByProblemID(ctx context.Context, in *FullValidationByProblemIDRequest, opts ...grpc.CallOption) (*FullValidationByProblemIDResponse, error)
+	FullValidationByProblemId(ctx context.Context, in *FullValidationByProblemIdRequest, opts ...grpc.CallOption) (*FullValidationByProblemIdResponse, error)
 	RunUserCodeProblem(ctx context.Context, in *RunProblemRequest, opts ...grpc.CallOption) (*RunProblemResponse, error)
-	GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
-	GetSubmissionsByID(ctx context.Context, in *GetSubmissionsByIDRequest, opts ...grpc.CallOption) (*GetSubmissionsByIDResponse, error)
+	GetSubmissionsByOptionalProblemId(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error)
+	GetSubmissionsById(ctx context.Context, in *GetSubmissionsByIdRequest, opts ...grpc.CallOption) (*GetSubmissionsByIdResponse, error)
 	// Leaderboard
 	GetProblemsDoneStatistics(ctx context.Context, in *GetProblemsDoneStatisticsRequest, opts ...grpc.CallOption) (*GetProblemsDoneStatisticsResponse, error)
 	ForceChangeUserEntityInSubmission(ctx context.Context, in *ForceChangeUserEntityInSubmissionRequest, opts ...grpc.CallOption) (*ForceChangeUserEntityInSubmissionResponse, error)
@@ -84,8 +84,8 @@ type ProblemsServiceClient interface {
 	GetLeaderboardData(ctx context.Context, in *GetLeaderboardDataRequest, opts ...grpc.CallOption) (*GetLeaderboardDataResponse, error)
 	GetBulkProblemMetadata(ctx context.Context, in *GetBulkProblemMetadataRequest, opts ...grpc.CallOption) (*GetBulkProblemMetadataResponse, error)
 	VerifyProblemExistenceBulk(ctx context.Context, in *VerifyProblemExistenceBulkRequest, opts ...grpc.CallOption) (*VerifyProblemExistenceBulkResponse, error)
-	RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
-	ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error)
+	RandomProblemIdsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIdsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIdsGenWithDifficultyRatioResponse, error)
+	ProblemIdsDoneByUserId(ctx context.Context, in *ProblemIdsDoneByUserIdRequest, opts ...grpc.CallOption) (*ProblemIdsDoneByUserIdResponse, error)
 	ProblemCountMetadata(ctx context.Context, in *ProblemCountMetadataRequest, opts ...grpc.CallOption) (*ProblemCountMetadataResponse, error)
 }
 
@@ -147,10 +147,10 @@ func (c *problemsServiceClient) ListProblems(ctx context.Context, in *ListProble
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetProblemByIDSlug(ctx context.Context, in *GetProblemByIdSlugRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error) {
+func (c *problemsServiceClient) GetProblemByIdSlug(ctx context.Context, in *GetProblemByIdSlugRequest, opts ...grpc.CallOption) (*GetProblemByIdSlugResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetProblemByIdSlugResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetProblemByIDSlug_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ProblemsService_GetProblemByIdSlug_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -227,10 +227,10 @@ func (c *problemsServiceClient) RemoveLanguageSupport(ctx context.Context, in *R
 	return out, nil
 }
 
-func (c *problemsServiceClient) FullValidationByProblemID(ctx context.Context, in *FullValidationByProblemIDRequest, opts ...grpc.CallOption) (*FullValidationByProblemIDResponse, error) {
+func (c *problemsServiceClient) FullValidationByProblemId(ctx context.Context, in *FullValidationByProblemIdRequest, opts ...grpc.CallOption) (*FullValidationByProblemIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FullValidationByProblemIDResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_FullValidationByProblemID_FullMethodName, in, out, cOpts...)
+	out := new(FullValidationByProblemIdResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_FullValidationByProblemId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -247,20 +247,20 @@ func (c *problemsServiceClient) RunUserCodeProblem(ctx context.Context, in *RunP
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetSubmissionsByOptionalProblemID(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error) {
+func (c *problemsServiceClient) GetSubmissionsByOptionalProblemId(ctx context.Context, in *GetSubmissionsRequest, opts ...grpc.CallOption) (*GetSubmissionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSubmissionsResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionsByOptionalProblemId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *problemsServiceClient) GetSubmissionsByID(ctx context.Context, in *GetSubmissionsByIDRequest, opts ...grpc.CallOption) (*GetSubmissionsByIDResponse, error) {
+func (c *problemsServiceClient) GetSubmissionsById(ctx context.Context, in *GetSubmissionsByIdRequest, opts ...grpc.CallOption) (*GetSubmissionsByIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSubmissionsByIDResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionsByID_FullMethodName, in, out, cOpts...)
+	out := new(GetSubmissionsByIdResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_GetSubmissionsById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -357,20 +357,20 @@ func (c *problemsServiceClient) VerifyProblemExistenceBulk(ctx context.Context, 
 	return out, nil
 }
 
-func (c *problemsServiceClient) RandomProblemIDsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIDsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIDsGenWithDifficultyRatioResponse, error) {
+func (c *problemsServiceClient) RandomProblemIdsGenWithDifficultyRatio(ctx context.Context, in *RandomProblemIdsGenWithDifficultyRatioRequest, opts ...grpc.CallOption) (*RandomProblemIdsGenWithDifficultyRatioResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RandomProblemIDsGenWithDifficultyRatioResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName, in, out, cOpts...)
+	out := new(RandomProblemIdsGenWithDifficultyRatioResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_RandomProblemIdsGenWithDifficultyRatio_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *problemsServiceClient) ProblemIDsDoneByUserID(ctx context.Context, in *ProblemIDsDoneByUserIDRequest, opts ...grpc.CallOption) (*ProblemIDsDoneByUserIDResponse, error) {
+func (c *problemsServiceClient) ProblemIdsDoneByUserId(ctx context.Context, in *ProblemIdsDoneByUserIdRequest, opts ...grpc.CallOption) (*ProblemIdsDoneByUserIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProblemIDsDoneByUserIDResponse)
-	err := c.cc.Invoke(ctx, ProblemsService_ProblemIDsDoneByUserID_FullMethodName, in, out, cOpts...)
+	out := new(ProblemIdsDoneByUserIdResponse)
+	err := c.cc.Invoke(ctx, ProblemsService_ProblemIdsDoneByUserId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -396,19 +396,19 @@ type ProblemsServiceServer interface {
 	DeleteProblem(context.Context, *DeleteProblemRequest) (*DeleteProblemResponse, error)
 	GetProblem(context.Context, *GetProblemRequest) (*GetProblemResponse, error)
 	ListProblems(context.Context, *ListProblemsRequest) (*ListProblemsResponse, error)
-	GetProblemByIDSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error)
+	GetProblemByIdSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error)
 	GetProblemMetadataList(context.Context, *GetProblemMetadataListRequest) (*GetProblemMetadataListResponse, error)
 	AddTestCases(context.Context, *AddTestCasesRequest) (*AddTestCasesResponse, error)
-	// rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseid for updates :priority low
+	// rpc EditTestcases(EditTestcasesRequest) returns (EditTestCasesResponse); TODO : use testcaseId for updates :priority low
 	DeleteTestCase(context.Context, *DeleteTestCaseRequest) (*DeleteTestCaseResponse, error)
 	GetLanguageSupports(context.Context, *GetLanguageSupportsRequest) (*GetLanguageSupportsResponse, error)
 	AddLanguageSupport(context.Context, *AddLanguageSupportRequest) (*AddLanguageSupportResponse, error)
 	UpdateLanguageSupport(context.Context, *UpdateLanguageSupportRequest) (*UpdateLanguageSupportResponse, error)
 	RemoveLanguageSupport(context.Context, *RemoveLanguageSupportRequest) (*RemoveLanguageSupportResponse, error)
-	FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error)
+	FullValidationByProblemId(context.Context, *FullValidationByProblemIdRequest) (*FullValidationByProblemIdResponse, error)
 	RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error)
-	GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
-	GetSubmissionsByID(context.Context, *GetSubmissionsByIDRequest) (*GetSubmissionsByIDResponse, error)
+	GetSubmissionsByOptionalProblemId(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error)
+	GetSubmissionsById(context.Context, *GetSubmissionsByIdRequest) (*GetSubmissionsByIdResponse, error)
 	// Leaderboard
 	GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error)
 	ForceChangeUserEntityInSubmission(context.Context, *ForceChangeUserEntityInSubmissionRequest) (*ForceChangeUserEntityInSubmissionResponse, error)
@@ -421,8 +421,8 @@ type ProblemsServiceServer interface {
 	GetLeaderboardData(context.Context, *GetLeaderboardDataRequest) (*GetLeaderboardDataResponse, error)
 	GetBulkProblemMetadata(context.Context, *GetBulkProblemMetadataRequest) (*GetBulkProblemMetadataResponse, error)
 	VerifyProblemExistenceBulk(context.Context, *VerifyProblemExistenceBulkRequest) (*VerifyProblemExistenceBulkResponse, error)
-	RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error)
-	ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error)
+	RandomProblemIdsGenWithDifficultyRatio(context.Context, *RandomProblemIdsGenWithDifficultyRatioRequest) (*RandomProblemIdsGenWithDifficultyRatioResponse, error)
+	ProblemIdsDoneByUserId(context.Context, *ProblemIdsDoneByUserIdRequest) (*ProblemIdsDoneByUserIdResponse, error)
 	ProblemCountMetadata(context.Context, *ProblemCountMetadataRequest) (*ProblemCountMetadataResponse, error)
 	mustEmbedUnimplementedProblemsServiceServer()
 }
@@ -449,8 +449,8 @@ func (UnimplementedProblemsServiceServer) GetProblem(context.Context, *GetProble
 func (UnimplementedProblemsServiceServer) ListProblems(context.Context, *ListProblemsRequest) (*ListProblemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProblems not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetProblemByIDSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIDSlug not implemented")
+func (UnimplementedProblemsServiceServer) GetProblemByIdSlug(context.Context, *GetProblemByIdSlugRequest) (*GetProblemByIdSlugResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProblemByIdSlug not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetProblemMetadataList(context.Context, *GetProblemMetadataListRequest) (*GetProblemMetadataListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProblemMetadataList not implemented")
@@ -473,17 +473,17 @@ func (UnimplementedProblemsServiceServer) UpdateLanguageSupport(context.Context,
 func (UnimplementedProblemsServiceServer) RemoveLanguageSupport(context.Context, *RemoveLanguageSupportRequest) (*RemoveLanguageSupportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveLanguageSupport not implemented")
 }
-func (UnimplementedProblemsServiceServer) FullValidationByProblemID(context.Context, *FullValidationByProblemIDRequest) (*FullValidationByProblemIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FullValidationByProblemID not implemented")
+func (UnimplementedProblemsServiceServer) FullValidationByProblemId(context.Context, *FullValidationByProblemIdRequest) (*FullValidationByProblemIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FullValidationByProblemId not implemented")
 }
 func (UnimplementedProblemsServiceServer) RunUserCodeProblem(context.Context, *RunProblemRequest) (*RunProblemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunUserCodeProblem not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemID(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByOptionalProblemID not implemented")
+func (UnimplementedProblemsServiceServer) GetSubmissionsByOptionalProblemId(context.Context, *GetSubmissionsRequest) (*GetSubmissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByOptionalProblemId not implemented")
 }
-func (UnimplementedProblemsServiceServer) GetSubmissionsByID(context.Context, *GetSubmissionsByIDRequest) (*GetSubmissionsByIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsByID not implemented")
+func (UnimplementedProblemsServiceServer) GetSubmissionsById(context.Context, *GetSubmissionsByIdRequest) (*GetSubmissionsByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubmissionsById not implemented")
 }
 func (UnimplementedProblemsServiceServer) GetProblemsDoneStatistics(context.Context, *GetProblemsDoneStatisticsRequest) (*GetProblemsDoneStatisticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProblemsDoneStatistics not implemented")
@@ -512,11 +512,11 @@ func (UnimplementedProblemsServiceServer) GetBulkProblemMetadata(context.Context
 func (UnimplementedProblemsServiceServer) VerifyProblemExistenceBulk(context.Context, *VerifyProblemExistenceBulkRequest) (*VerifyProblemExistenceBulkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyProblemExistenceBulk not implemented")
 }
-func (UnimplementedProblemsServiceServer) RandomProblemIDsGenWithDifficultyRatio(context.Context, *RandomProblemIDsGenWithDifficultyRatioRequest) (*RandomProblemIDsGenWithDifficultyRatioResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RandomProblemIDsGenWithDifficultyRatio not implemented")
+func (UnimplementedProblemsServiceServer) RandomProblemIdsGenWithDifficultyRatio(context.Context, *RandomProblemIdsGenWithDifficultyRatioRequest) (*RandomProblemIdsGenWithDifficultyRatioResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RandomProblemIdsGenWithDifficultyRatio not implemented")
 }
-func (UnimplementedProblemsServiceServer) ProblemIDsDoneByUserID(context.Context, *ProblemIDsDoneByUserIDRequest) (*ProblemIDsDoneByUserIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ProblemIDsDoneByUserID not implemented")
+func (UnimplementedProblemsServiceServer) ProblemIdsDoneByUserId(context.Context, *ProblemIdsDoneByUserIdRequest) (*ProblemIdsDoneByUserIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProblemIdsDoneByUserId not implemented")
 }
 func (UnimplementedProblemsServiceServer) ProblemCountMetadata(context.Context, *ProblemCountMetadataRequest) (*ProblemCountMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProblemCountMetadata not implemented")
@@ -632,20 +632,20 @@ func _ProblemsService_ListProblems_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetProblemByIDSlug_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProblemsService_GetProblemByIdSlug_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetProblemByIdSlugRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetProblemByIDSlug(ctx, in)
+		return srv.(ProblemsServiceServer).GetProblemByIdSlug(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetProblemByIDSlug_FullMethodName,
+		FullMethod: ProblemsService_GetProblemByIdSlug_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetProblemByIDSlug(ctx, req.(*GetProblemByIdSlugRequest))
+		return srv.(ProblemsServiceServer).GetProblemByIdSlug(ctx, req.(*GetProblemByIdSlugRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -776,20 +776,20 @@ func _ProblemsService_RemoveLanguageSupport_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_FullValidationByProblemID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FullValidationByProblemIDRequest)
+func _ProblemsService_FullValidationByProblemId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FullValidationByProblemIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).FullValidationByProblemID(ctx, in)
+		return srv.(ProblemsServiceServer).FullValidationByProblemId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_FullValidationByProblemID_FullMethodName,
+		FullMethod: ProblemsService_FullValidationByProblemId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).FullValidationByProblemID(ctx, req.(*FullValidationByProblemIDRequest))
+		return srv.(ProblemsServiceServer).FullValidationByProblemId(ctx, req.(*FullValidationByProblemIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -812,38 +812,38 @@ func _ProblemsService_RunUserCodeProblem_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetSubmissionsByOptionalProblemID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProblemsService_GetSubmissionsByOptionalProblemId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSubmissionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetSubmissionsByOptionalProblemID(ctx, in)
+		return srv.(ProblemsServiceServer).GetSubmissionsByOptionalProblemId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetSubmissionsByOptionalProblemID_FullMethodName,
+		FullMethod: ProblemsService_GetSubmissionsByOptionalProblemId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetSubmissionsByOptionalProblemID(ctx, req.(*GetSubmissionsRequest))
+		return srv.(ProblemsServiceServer).GetSubmissionsByOptionalProblemId(ctx, req.(*GetSubmissionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_GetSubmissionsByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSubmissionsByIDRequest)
+func _ProblemsService_GetSubmissionsById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubmissionsByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).GetSubmissionsByID(ctx, in)
+		return srv.(ProblemsServiceServer).GetSubmissionsById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_GetSubmissionsByID_FullMethodName,
+		FullMethod: ProblemsService_GetSubmissionsById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).GetSubmissionsByID(ctx, req.(*GetSubmissionsByIDRequest))
+		return srv.(ProblemsServiceServer).GetSubmissionsById(ctx, req.(*GetSubmissionsByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1010,38 +1010,38 @@ func _ProblemsService_VerifyProblemExistenceBulk_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_RandomProblemIDsGenWithDifficultyRatio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RandomProblemIDsGenWithDifficultyRatioRequest)
+func _ProblemsService_RandomProblemIdsGenWithDifficultyRatio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RandomProblemIdsGenWithDifficultyRatioRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).RandomProblemIDsGenWithDifficultyRatio(ctx, in)
+		return srv.(ProblemsServiceServer).RandomProblemIdsGenWithDifficultyRatio(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_RandomProblemIDsGenWithDifficultyRatio_FullMethodName,
+		FullMethod: ProblemsService_RandomProblemIdsGenWithDifficultyRatio_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).RandomProblemIDsGenWithDifficultyRatio(ctx, req.(*RandomProblemIDsGenWithDifficultyRatioRequest))
+		return srv.(ProblemsServiceServer).RandomProblemIdsGenWithDifficultyRatio(ctx, req.(*RandomProblemIdsGenWithDifficultyRatioRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProblemsService_ProblemIDsDoneByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProblemIDsDoneByUserIDRequest)
+func _ProblemsService_ProblemIdsDoneByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProblemIdsDoneByUserIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProblemsServiceServer).ProblemIDsDoneByUserID(ctx, in)
+		return srv.(ProblemsServiceServer).ProblemIdsDoneByUserId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProblemsService_ProblemIDsDoneByUserID_FullMethodName,
+		FullMethod: ProblemsService_ProblemIdsDoneByUserId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProblemsServiceServer).ProblemIDsDoneByUserID(ctx, req.(*ProblemIDsDoneByUserIDRequest))
+		return srv.(ProblemsServiceServer).ProblemIdsDoneByUserId(ctx, req.(*ProblemIdsDoneByUserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1092,8 +1092,8 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_ListProblems_Handler,
 		},
 		{
-			MethodName: "GetProblemByIDSlug",
-			Handler:    _ProblemsService_GetProblemByIDSlug_Handler,
+			MethodName: "GetProblemByIdSlug",
+			Handler:    _ProblemsService_GetProblemByIdSlug_Handler,
 		},
 		{
 			MethodName: "GetProblemMetadataList",
@@ -1124,20 +1124,20 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_RemoveLanguageSupport_Handler,
 		},
 		{
-			MethodName: "FullValidationByProblemID",
-			Handler:    _ProblemsService_FullValidationByProblemID_Handler,
+			MethodName: "FullValidationByProblemId",
+			Handler:    _ProblemsService_FullValidationByProblemId_Handler,
 		},
 		{
 			MethodName: "RunUserCodeProblem",
 			Handler:    _ProblemsService_RunUserCodeProblem_Handler,
 		},
 		{
-			MethodName: "GetSubmissionsByOptionalProblemID",
-			Handler:    _ProblemsService_GetSubmissionsByOptionalProblemID_Handler,
+			MethodName: "GetSubmissionsByOptionalProblemId",
+			Handler:    _ProblemsService_GetSubmissionsByOptionalProblemId_Handler,
 		},
 		{
-			MethodName: "GetSubmissionsByID",
-			Handler:    _ProblemsService_GetSubmissionsByID_Handler,
+			MethodName: "GetSubmissionsById",
+			Handler:    _ProblemsService_GetSubmissionsById_Handler,
 		},
 		{
 			MethodName: "GetProblemsDoneStatistics",
@@ -1176,12 +1176,12 @@ var ProblemsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProblemsService_VerifyProblemExistenceBulk_Handler,
 		},
 		{
-			MethodName: "RandomProblemIDsGenWithDifficultyRatio",
-			Handler:    _ProblemsService_RandomProblemIDsGenWithDifficultyRatio_Handler,
+			MethodName: "RandomProblemIdsGenWithDifficultyRatio",
+			Handler:    _ProblemsService_RandomProblemIdsGenWithDifficultyRatio_Handler,
 		},
 		{
-			MethodName: "ProblemIDsDoneByUserID",
-			Handler:    _ProblemsService_ProblemIDsDoneByUserID_Handler,
+			MethodName: "ProblemIdsDoneByUserId",
+			Handler:    _ProblemsService_ProblemIdsDoneByUserId_Handler,
 		},
 		{
 			MethodName: "ProblemCountMetadata",
