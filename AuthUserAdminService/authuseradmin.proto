@@ -85,7 +85,7 @@ message UserProfileMetadata {
   string country = 6;
   string role = 7;
   string primaryLanguageId = 8;
-  string avatarData = 9;
+  string avatarURL = 9;
   Socials socials = 10;
   string bio = 11;
 }
@@ -553,7 +553,7 @@ message UserProfile {
   string primaryLanguageId = 7;
   string email = 8;
   string authType = 9;
-  string avatarData = 10;
+  string avatarURL = 10;
   bool muteNotifications = 11;
   bool isBanned = 12;
   string banReason = 13;
