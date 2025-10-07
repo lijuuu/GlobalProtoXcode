@@ -727,7 +727,10 @@ func (x *GetChallengeRoomInfoMetadataRequest) GetPassword() string {
 
 type GetChallengeRoomInfoMetadataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Challenge     *ChallengeRecord       `protobuf:"bytes,1,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,3,opt,name=errorType,proto3" json:"errorType,omitempty"`
+	Challenge     *ChallengeRecord       `protobuf:"bytes,4,opt,name=challenge,proto3" json:"challenge,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -760,6 +763,27 @@ func (x *GetChallengeRoomInfoMetadataResponse) ProtoReflect() protoreflect.Messa
 // Deprecated: Use GetChallengeRoomInfoMetadataResponse.ProtoReflect.Descriptor instead.
 func (*GetChallengeRoomInfoMetadataResponse) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetChallengeRoomInfoMetadataResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetChallengeRoomInfoMetadataResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetChallengeRoomInfoMetadataResponse) GetErrorType() string {
+	if x != nil {
+		return x.ErrorType
+	}
+	return ""
 }
 
 func (x *GetChallengeRoomInfoMetadataResponse) GetChallenge() *ChallengeRecord {
@@ -1311,7 +1335,10 @@ func (x *GetFullChallengeDataRequest) GetPassword() string {
 
 type GetFullChallengeDataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Challenge     *ChallengeRecord       `protobuf:"bytes,1,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,3,opt,name=errorType,proto3" json:"errorType,omitempty"`
+	Challenge     *ChallengeRecord       `protobuf:"bytes,4,opt,name=challenge,proto3" json:"challenge,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1344,6 +1371,27 @@ func (x *GetFullChallengeDataResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetFullChallengeDataResponse.ProtoReflect.Descriptor instead.
 func (*GetFullChallengeDataResponse) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetFullChallengeDataResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetFullChallengeDataResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetFullChallengeDataResponse) GetErrorType() string {
+	if x != nil {
+		return x.ErrorType
+	}
+	return ""
 }
 
 func (x *GetFullChallengeDataResponse) GetChallenge() *ChallengeRecord {
@@ -1644,8 +1692,9 @@ func (x *GetPostChallengeDataRequest) GetChallengeId() string {
 type GetPostChallengeDataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	ErrorMessage  string                 `protobuf:"bytes,2,opt,name=errorMessage,proto3" json:"errorMessage,omitempty"`
-	Challenge     *PostChallengeDocument `protobuf:"bytes,3,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,3,opt,name=errorType,proto3" json:"errorType,omitempty"`
+	Challenge     *PostChallengeDocument `protobuf:"bytes,4,opt,name=challenge,proto3" json:"challenge,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1687,9 +1736,16 @@ func (x *GetPostChallengeDataResponse) GetSuccess() bool {
 	return false
 }
 
-func (x *GetPostChallengeDataResponse) GetErrorMessage() string {
+func (x *GetPostChallengeDataResponse) GetMessage() string {
 	if x != nil {
-		return x.ErrorMessage
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetPostChallengeDataResponse) GetErrorType() string {
+	if x != nil {
+		return x.ErrorType
 	}
 	return ""
 }
@@ -1772,9 +1828,12 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"#GetChallengeRoomInfoMetadataRequest\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1f\n" +
 	"\bpassword\x18\x02 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
-	"\t_password\"`\n" +
-	"$GetChallengeRoomInfoMetadataResponse\x128\n" +
-	"\tchallenge\x18\x01 \x01(\v2\x1a.challenge.ChallengeRecordR\tchallenge\"C\n" +
+	"\t_password\"\xb2\x01\n" +
+	"$GetChallengeRoomInfoMetadataResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
+	"\terrorType\x18\x03 \x01(\tR\terrorType\x128\n" +
+	"\tchallenge\x18\x04 \x01(\v2\x1a.challenge.ChallengeRecordR\tchallenge\"C\n" +
 	"\x11PaginationRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1a\n" +
 	"\bpageSize\x18\x02 \x01(\x05R\bpageSize\"s\n" +
@@ -1820,9 +1879,12 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x1bGetFullChallengeDataRequest\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1f\n" +
 	"\bpassword\x18\x02 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
-	"\t_password\"X\n" +
-	"\x1cGetFullChallengeDataResponse\x128\n" +
-	"\tchallenge\x18\x01 \x01(\v2\x1a.challenge.ChallengeRecordR\tchallenge\"]\n" +
+	"\t_password\"\xaa\x01\n" +
+	"\x1cGetFullChallengeDataResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
+	"\terrorType\x18\x03 \x01(\tR\terrorType\x128\n" +
+	"\tchallenge\x18\x04 \x01(\v2\x1a.challenge.ChallengeRecordR\tchallenge\"]\n" +
 	"\x19PostChallengeNotification\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x12\n" +
@@ -1847,11 +1909,12 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x04chat\x18\n" +
 	" \x03(\v2#.challenge.PostChallengeChatMessageR\x04chat\"?\n" +
 	"\x1bGetPostChallengeDataRequest\x12 \n" +
-	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\"\x9c\x01\n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\"\xb0\x01\n" +
 	"\x1cGetPostChallengeDataResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\"\n" +
-	"\ferrorMessage\x18\x02 \x01(\tR\ferrorMessage\x12>\n" +
-	"\tchallenge\x18\x03 \x01(\v2 .challenge.PostChallengeDocumentR\tchallenge2\x9d\a\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
+	"\terrorType\x18\x03 \x01(\tR\terrorType\x12>\n" +
+	"\tchallenge\x18\x04 \x01(\v2 .challenge.PostChallengeDocumentR\tchallenge2\x9d\a\n" +
 	"\x10ChallengeService\x12I\n" +
 	"\x0fCreateChallenge\x12\x1a.challenge.ChallengeRecord\x1a\x1a.challenge.ChallengeRecord\x12[\n" +
 	"\x10AbandonChallenge\x12\".challenge.AbandonChallengeRequest\x1a#.challenge.AbandonChallengeResponse\x12\x7f\n" +

@@ -78,7 +78,10 @@ message GetChallengeRoomInfoMetadataRequest {
 }
 
 message GetChallengeRoomInfoMetadataResponse {
-  ChallengeRecord challenge = 1;
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
+  ChallengeRecord challenge = 4;
 }
 
 message PaginationRequest {
@@ -136,7 +139,10 @@ message GetFullChallengeDataRequest {
 }
 
 message GetFullChallengeDataResponse {
-  ChallengeRecord challenge = 1;
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
+  ChallengeRecord challenge = 4;
 }
 
 message PostChallengeNotification {
@@ -171,8 +177,9 @@ message GetPostChallengeDataRequest {
 
 message GetPostChallengeDataResponse {
   bool success = 1;
-  string errorMessage = 2;
-  PostChallengeDocument challenge = 3;
+  string message = 2;
+  string errorType = 3;
+  PostChallengeDocument challenge = 4;
 }
 
 service ChallengeService {
