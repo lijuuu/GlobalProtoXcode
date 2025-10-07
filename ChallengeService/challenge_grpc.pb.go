@@ -4,7 +4,7 @@
 // - protoc             v3.19.6
 // source: ChallengeService/challenge.proto
 
-package proto
+package ChallengeService
 
 import (
 	context "context"
@@ -19,28 +19,26 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChallengeService_CreateChallenge_FullMethodName              = "/challenge.ChallengeService/CreateChallenge"
-	ChallengeService_AbandonChallenge_FullMethodName             = "/challenge.ChallengeService/AbandonChallenge"
-	ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName = "/challenge.ChallengeService/GetChallengeRoomInfoMetadata"
-	ChallengeService_GetFullChallengeData_FullMethodName         = "/challenge.ChallengeService/GetFullChallengeData"
-	ChallengeService_GetChallengeHistory_FullMethodName          = "/challenge.ChallengeService/GetChallengeHistory"
-	ChallengeService_GetActiveOpenChallenges_FullMethodName      = "/challenge.ChallengeService/GetActiveOpenChallenges"
-	ChallengeService_GetOwnersActiveChallenges_FullMethodName    = "/challenge.ChallengeService/GetOwnersActiveChallenges"
-	ChallengeService_PushSubmissionStatus_FullMethodName         = "/challenge.ChallengeService/PushSubmissionStatus"
+	ChallengeService_CreateChallenge_FullMethodName           = "/ChallengeService.ChallengeService/CreateChallenge"
+	ChallengeService_AbandonChallenge_FullMethodName          = "/ChallengeService.ChallengeService/AbandonChallenge"
+	ChallengeService_GetChallengeByIdFromMongo_FullMethodName = "/ChallengeService.ChallengeService/GetChallengeByIdFromMongo"
+	ChallengeService_GetFullChallengeData_FullMethodName      = "/ChallengeService.ChallengeService/GetFullChallengeData"
+	ChallengeService_GetChallengeHistory_FullMethodName       = "/ChallengeService.ChallengeService/GetChallengeHistory"
+	ChallengeService_GetActiveOpenChallenges_FullMethodName   = "/ChallengeService.ChallengeService/GetActiveOpenChallenges"
+	ChallengeService_GetOwnersActiveChallenges_FullMethodName = "/ChallengeService.ChallengeService/GetOwnersActiveChallenges"
+	ChallengeService_PushSubmissionStatus_FullMethodName      = "/ChallengeService.ChallengeService/PushSubmissionStatus"
 )
 
 // ChallengeServiceClient is the client API for ChallengeService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChallengeServiceClient interface {
-	CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error)
+	CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error)
 	AbandonChallenge(ctx context.Context, in *AbandonChallengeRequest, opts ...grpc.CallOption) (*AbandonChallengeResponse, error)
-	GetChallengeRoomInfoMetadata(ctx context.Context, in *GetChallengeRoomInfoMetadataRequest, opts ...grpc.CallOption) (*GetChallengeRoomInfoMetadataResponse, error)
+	GetChallengeByIdFromMongo(ctx context.Context, in *GetChallengeByIdRequest, opts ...grpc.CallOption) (*GetChallengeByIdResponse, error)
 	GetFullChallengeData(ctx context.Context, in *GetFullChallengeDataRequest, opts ...grpc.CallOption) (*GetFullChallengeDataResponse, error)
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
-	// get the publically available challenges with isPrivate:false
 	GetActiveOpenChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
-	// all open challenges of the user
 	GetOwnersActiveChallenges(ctx context.Context, in *GetOwnersActiveChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	PushSubmissionStatus(ctx context.Context, in *PushSubmissionStatusRequest, opts ...grpc.CallOption) (*PushSubmissionStatusResponse, error)
 }
@@ -53,9 +51,9 @@ func NewChallengeServiceClient(cc grpc.ClientConnInterface) ChallengeServiceClie
 	return &challengeServiceClient{cc}
 }
 
-func (c *challengeServiceClient) CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error) {
+func (c *challengeServiceClient) CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ChallengeRecord)
+	out := new(CreateChallengeResponse)
 	err := c.cc.Invoke(ctx, ChallengeService_CreateChallenge_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -73,10 +71,10 @@ func (c *challengeServiceClient) AbandonChallenge(ctx context.Context, in *Aband
 	return out, nil
 }
 
-func (c *challengeServiceClient) GetChallengeRoomInfoMetadata(ctx context.Context, in *GetChallengeRoomInfoMetadataRequest, opts ...grpc.CallOption) (*GetChallengeRoomInfoMetadataResponse, error) {
+func (c *challengeServiceClient) GetChallengeByIdFromMongo(ctx context.Context, in *GetChallengeByIdRequest, opts ...grpc.CallOption) (*GetChallengeByIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetChallengeRoomInfoMetadataResponse)
-	err := c.cc.Invoke(ctx, ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName, in, out, cOpts...)
+	out := new(GetChallengeByIdResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetChallengeByIdFromMongo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -137,14 +135,12 @@ func (c *challengeServiceClient) PushSubmissionStatus(ctx context.Context, in *P
 // All implementations must embed UnimplementedChallengeServiceServer
 // for forward compatibility.
 type ChallengeServiceServer interface {
-	CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error)
+	CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error)
 	AbandonChallenge(context.Context, *AbandonChallengeRequest) (*AbandonChallengeResponse, error)
-	GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataRequest) (*GetChallengeRoomInfoMetadataResponse, error)
+	GetChallengeByIdFromMongo(context.Context, *GetChallengeByIdRequest) (*GetChallengeByIdResponse, error)
 	GetFullChallengeData(context.Context, *GetFullChallengeDataRequest) (*GetFullChallengeDataResponse, error)
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*ChallengeListResponse, error)
-	// get the publically available challenges with isPrivate:false
 	GetActiveOpenChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
-	// all open challenges of the user
 	GetOwnersActiveChallenges(context.Context, *GetOwnersActiveChallengesRequest) (*ChallengeListResponse, error)
 	PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error)
 	mustEmbedUnimplementedChallengeServiceServer()
@@ -157,14 +153,14 @@ type ChallengeServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedChallengeServiceServer struct{}
 
-func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error) {
+func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChallenge not implemented")
 }
 func (UnimplementedChallengeServiceServer) AbandonChallenge(context.Context, *AbandonChallengeRequest) (*AbandonChallengeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AbandonChallenge not implemented")
 }
-func (UnimplementedChallengeServiceServer) GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataRequest) (*GetChallengeRoomInfoMetadataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeRoomInfoMetadata not implemented")
+func (UnimplementedChallengeServiceServer) GetChallengeByIdFromMongo(context.Context, *GetChallengeByIdRequest) (*GetChallengeByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeByIdFromMongo not implemented")
 }
 func (UnimplementedChallengeServiceServer) GetFullChallengeData(context.Context, *GetFullChallengeDataRequest) (*GetFullChallengeDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFullChallengeData not implemented")
@@ -203,7 +199,7 @@ func RegisterChallengeServiceServer(s grpc.ServiceRegistrar, srv ChallengeServic
 }
 
 func _ChallengeService_CreateChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChallengeRecord)
+	in := new(CreateChallengeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -215,7 +211,7 @@ func _ChallengeService_CreateChallenge_Handler(srv interface{}, ctx context.Cont
 		FullMethod: ChallengeService_CreateChallenge_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).CreateChallenge(ctx, req.(*ChallengeRecord))
+		return srv.(ChallengeServiceServer).CreateChallenge(ctx, req.(*CreateChallengeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -238,20 +234,20 @@ func _ChallengeService_AbandonChallenge_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChallengeService_GetChallengeRoomInfoMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetChallengeRoomInfoMetadataRequest)
+func _ChallengeService_GetChallengeByIdFromMongo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChallengeByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ChallengeServiceServer).GetChallengeRoomInfoMetadata(ctx, in)
+		return srv.(ChallengeServiceServer).GetChallengeByIdFromMongo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName,
+		FullMethod: ChallengeService_GetChallengeByIdFromMongo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).GetChallengeRoomInfoMetadata(ctx, req.(*GetChallengeRoomInfoMetadataRequest))
+		return srv.(ChallengeServiceServer).GetChallengeByIdFromMongo(ctx, req.(*GetChallengeByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -350,7 +346,7 @@ func _ChallengeService_PushSubmissionStatus_Handler(srv interface{}, ctx context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ChallengeService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "challenge.ChallengeService",
+	ServiceName: "ChallengeService.ChallengeService",
 	HandlerType: (*ChallengeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -362,8 +358,8 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ChallengeService_AbandonChallenge_Handler,
 		},
 		{
-			MethodName: "GetChallengeRoomInfoMetadata",
-			Handler:    _ChallengeService_GetChallengeRoomInfoMetadata_Handler,
+			MethodName: "GetChallengeByIdFromMongo",
+			Handler:    _ChallengeService_GetChallengeByIdFromMongo_Handler,
 		},
 		{
 			MethodName: "GetFullChallengeData",
