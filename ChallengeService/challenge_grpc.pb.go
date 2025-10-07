@@ -4,7 +4,7 @@
 // - protoc             v3.19.6
 // source: ChallengeService/challenge.proto
 
-package ChallengeService
+package proto
 
 import (
 	context "context"
@@ -19,28 +19,30 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChallengeService_CreateChallenge_FullMethodName           = "/ChallengeService.ChallengeService/CreateChallenge"
-	ChallengeService_AbandonChallenge_FullMethodName          = "/ChallengeService.ChallengeService/AbandonChallenge"
-	ChallengeService_GetChallengeByIdFromMongo_FullMethodName = "/ChallengeService.ChallengeService/GetChallengeByIdFromMongo"
-	ChallengeService_GetFullChallengeData_FullMethodName      = "/ChallengeService.ChallengeService/GetFullChallengeData"
-	ChallengeService_GetChallengeHistory_FullMethodName       = "/ChallengeService.ChallengeService/GetChallengeHistory"
-	ChallengeService_GetActiveOpenChallenges_FullMethodName   = "/ChallengeService.ChallengeService/GetActiveOpenChallenges"
-	ChallengeService_GetOwnersActiveChallenges_FullMethodName = "/ChallengeService.ChallengeService/GetOwnersActiveChallenges"
-	ChallengeService_PushSubmissionStatus_FullMethodName      = "/ChallengeService.ChallengeService/PushSubmissionStatus"
+	ChallengeService_CreateChallenge_FullMethodName              = "/challenge.ChallengeService/CreateChallenge"
+	ChallengeService_AbandonChallenge_FullMethodName             = "/challenge.ChallengeService/AbandonChallenge"
+	ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName = "/challenge.ChallengeService/GetChallengeRoomInfoMetadata"
+	ChallengeService_GetFullChallengeData_FullMethodName         = "/challenge.ChallengeService/GetFullChallengeData"
+	ChallengeService_GetChallengeHistory_FullMethodName          = "/challenge.ChallengeService/GetChallengeHistory"
+	ChallengeService_GetActiveOpenChallenges_FullMethodName      = "/challenge.ChallengeService/GetActiveOpenChallenges"
+	ChallengeService_GetOwnersActiveChallenges_FullMethodName    = "/challenge.ChallengeService/GetOwnersActiveChallenges"
+	ChallengeService_PushSubmissionStatus_FullMethodName         = "/challenge.ChallengeService/PushSubmissionStatus"
+	ChallengeService_GetPostChallengeData_FullMethodName         = "/challenge.ChallengeService/GetPostChallengeData"
 )
 
 // ChallengeServiceClient is the client API for ChallengeService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChallengeServiceClient interface {
-	CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error)
+	CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error)
 	AbandonChallenge(ctx context.Context, in *AbandonChallengeRequest, opts ...grpc.CallOption) (*AbandonChallengeResponse, error)
-	GetChallengeByIdFromMongo(ctx context.Context, in *GetChallengeByIdRequest, opts ...grpc.CallOption) (*GetChallengeByIdResponse, error)
+	GetChallengeRoomInfoMetadata(ctx context.Context, in *GetChallengeRoomInfoMetadataRequest, opts ...grpc.CallOption) (*GetChallengeRoomInfoMetadataResponse, error)
 	GetFullChallengeData(ctx context.Context, in *GetFullChallengeDataRequest, opts ...grpc.CallOption) (*GetFullChallengeDataResponse, error)
 	GetChallengeHistory(ctx context.Context, in *GetChallengeHistoryRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	GetActiveOpenChallenges(ctx context.Context, in *PaginationRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	GetOwnersActiveChallenges(ctx context.Context, in *GetOwnersActiveChallengesRequest, opts ...grpc.CallOption) (*ChallengeListResponse, error)
 	PushSubmissionStatus(ctx context.Context, in *PushSubmissionStatusRequest, opts ...grpc.CallOption) (*PushSubmissionStatusResponse, error)
+	GetPostChallengeData(ctx context.Context, in *GetPostChallengeDataRequest, opts ...grpc.CallOption) (*GetPostChallengeDataResponse, error)
 }
 
 type challengeServiceClient struct {
@@ -51,9 +53,9 @@ func NewChallengeServiceClient(cc grpc.ClientConnInterface) ChallengeServiceClie
 	return &challengeServiceClient{cc}
 }
 
-func (c *challengeServiceClient) CreateChallenge(ctx context.Context, in *CreateChallengeRequest, opts ...grpc.CallOption) (*CreateChallengeResponse, error) {
+func (c *challengeServiceClient) CreateChallenge(ctx context.Context, in *ChallengeRecord, opts ...grpc.CallOption) (*ChallengeRecord, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateChallengeResponse)
+	out := new(ChallengeRecord)
 	err := c.cc.Invoke(ctx, ChallengeService_CreateChallenge_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -71,10 +73,10 @@ func (c *challengeServiceClient) AbandonChallenge(ctx context.Context, in *Aband
 	return out, nil
 }
 
-func (c *challengeServiceClient) GetChallengeByIdFromMongo(ctx context.Context, in *GetChallengeByIdRequest, opts ...grpc.CallOption) (*GetChallengeByIdResponse, error) {
+func (c *challengeServiceClient) GetChallengeRoomInfoMetadata(ctx context.Context, in *GetChallengeRoomInfoMetadataRequest, opts ...grpc.CallOption) (*GetChallengeRoomInfoMetadataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetChallengeByIdResponse)
-	err := c.cc.Invoke(ctx, ChallengeService_GetChallengeByIdFromMongo_FullMethodName, in, out, cOpts...)
+	out := new(GetChallengeRoomInfoMetadataResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,18 +133,29 @@ func (c *challengeServiceClient) PushSubmissionStatus(ctx context.Context, in *P
 	return out, nil
 }
 
+func (c *challengeServiceClient) GetPostChallengeData(ctx context.Context, in *GetPostChallengeDataRequest, opts ...grpc.CallOption) (*GetPostChallengeDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPostChallengeDataResponse)
+	err := c.cc.Invoke(ctx, ChallengeService_GetPostChallengeData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ChallengeServiceServer is the server API for ChallengeService service.
 // All implementations must embed UnimplementedChallengeServiceServer
 // for forward compatibility.
 type ChallengeServiceServer interface {
-	CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error)
+	CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error)
 	AbandonChallenge(context.Context, *AbandonChallengeRequest) (*AbandonChallengeResponse, error)
-	GetChallengeByIdFromMongo(context.Context, *GetChallengeByIdRequest) (*GetChallengeByIdResponse, error)
+	GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataRequest) (*GetChallengeRoomInfoMetadataResponse, error)
 	GetFullChallengeData(context.Context, *GetFullChallengeDataRequest) (*GetFullChallengeDataResponse, error)
 	GetChallengeHistory(context.Context, *GetChallengeHistoryRequest) (*ChallengeListResponse, error)
 	GetActiveOpenChallenges(context.Context, *PaginationRequest) (*ChallengeListResponse, error)
 	GetOwnersActiveChallenges(context.Context, *GetOwnersActiveChallengesRequest) (*ChallengeListResponse, error)
 	PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error)
+	GetPostChallengeData(context.Context, *GetPostChallengeDataRequest) (*GetPostChallengeDataResponse, error)
 	mustEmbedUnimplementedChallengeServiceServer()
 }
 
@@ -153,14 +166,14 @@ type ChallengeServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedChallengeServiceServer struct{}
 
-func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *CreateChallengeRequest) (*CreateChallengeResponse, error) {
+func (UnimplementedChallengeServiceServer) CreateChallenge(context.Context, *ChallengeRecord) (*ChallengeRecord, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChallenge not implemented")
 }
 func (UnimplementedChallengeServiceServer) AbandonChallenge(context.Context, *AbandonChallengeRequest) (*AbandonChallengeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AbandonChallenge not implemented")
 }
-func (UnimplementedChallengeServiceServer) GetChallengeByIdFromMongo(context.Context, *GetChallengeByIdRequest) (*GetChallengeByIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeByIdFromMongo not implemented")
+func (UnimplementedChallengeServiceServer) GetChallengeRoomInfoMetadata(context.Context, *GetChallengeRoomInfoMetadataRequest) (*GetChallengeRoomInfoMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChallengeRoomInfoMetadata not implemented")
 }
 func (UnimplementedChallengeServiceServer) GetFullChallengeData(context.Context, *GetFullChallengeDataRequest) (*GetFullChallengeDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFullChallengeData not implemented")
@@ -176,6 +189,9 @@ func (UnimplementedChallengeServiceServer) GetOwnersActiveChallenges(context.Con
 }
 func (UnimplementedChallengeServiceServer) PushSubmissionStatus(context.Context, *PushSubmissionStatusRequest) (*PushSubmissionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushSubmissionStatus not implemented")
+}
+func (UnimplementedChallengeServiceServer) GetPostChallengeData(context.Context, *GetPostChallengeDataRequest) (*GetPostChallengeDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPostChallengeData not implemented")
 }
 func (UnimplementedChallengeServiceServer) mustEmbedUnimplementedChallengeServiceServer() {}
 func (UnimplementedChallengeServiceServer) testEmbeddedByValue()                          {}
@@ -199,7 +215,7 @@ func RegisterChallengeServiceServer(s grpc.ServiceRegistrar, srv ChallengeServic
 }
 
 func _ChallengeService_CreateChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateChallengeRequest)
+	in := new(ChallengeRecord)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -211,7 +227,7 @@ func _ChallengeService_CreateChallenge_Handler(srv interface{}, ctx context.Cont
 		FullMethod: ChallengeService_CreateChallenge_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).CreateChallenge(ctx, req.(*CreateChallengeRequest))
+		return srv.(ChallengeServiceServer).CreateChallenge(ctx, req.(*ChallengeRecord))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -234,20 +250,20 @@ func _ChallengeService_AbandonChallenge_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChallengeService_GetChallengeByIdFromMongo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetChallengeByIdRequest)
+func _ChallengeService_GetChallengeRoomInfoMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChallengeRoomInfoMetadataRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ChallengeServiceServer).GetChallengeByIdFromMongo(ctx, in)
+		return srv.(ChallengeServiceServer).GetChallengeRoomInfoMetadata(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ChallengeService_GetChallengeByIdFromMongo_FullMethodName,
+		FullMethod: ChallengeService_GetChallengeRoomInfoMetadata_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChallengeServiceServer).GetChallengeByIdFromMongo(ctx, req.(*GetChallengeByIdRequest))
+		return srv.(ChallengeServiceServer).GetChallengeRoomInfoMetadata(ctx, req.(*GetChallengeRoomInfoMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -342,11 +358,29 @@ func _ChallengeService_PushSubmissionStatus_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ChallengeService_GetPostChallengeData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPostChallengeDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChallengeServiceServer).GetPostChallengeData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChallengeService_GetPostChallengeData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChallengeServiceServer).GetPostChallengeData(ctx, req.(*GetPostChallengeDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ChallengeService_ServiceDesc is the grpc.ServiceDesc for ChallengeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ChallengeService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ChallengeService.ChallengeService",
+	ServiceName: "challenge.ChallengeService",
 	HandlerType: (*ChallengeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -358,8 +392,8 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ChallengeService_AbandonChallenge_Handler,
 		},
 		{
-			MethodName: "GetChallengeByIdFromMongo",
-			Handler:    _ChallengeService_GetChallengeByIdFromMongo_Handler,
+			MethodName: "GetChallengeRoomInfoMetadata",
+			Handler:    _ChallengeService_GetChallengeRoomInfoMetadata_Handler,
 		},
 		{
 			MethodName: "GetFullChallengeData",
@@ -380,6 +414,10 @@ var ChallengeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PushSubmissionStatus",
 			Handler:    _ChallengeService_PushSubmissionStatus_Handler,
+		},
+		{
+			MethodName: "GetPostChallengeData",
+			Handler:    _ChallengeService_GetPostChallengeData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

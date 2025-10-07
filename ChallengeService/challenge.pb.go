@@ -4,7 +4,7 @@
 // 	protoc        v3.19.6
 // source: ChallengeService/challenge.proto
 
-package ChallengeService
+package proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -21,30 +21,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ChallengeConfig struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	MaxUsers           int32                  `protobuf:"varint,1,opt,name=maxUsers,proto3" json:"maxUsers,omitempty"`
-	MaxEasyQuestions   int32                  `protobuf:"varint,2,opt,name=maxEasyQuestions,proto3" json:"maxEasyQuestions,omitempty"`
-	MaxMediumQuestions int32                  `protobuf:"varint,3,opt,name=maxMediumQuestions,proto3" json:"maxMediumQuestions,omitempty"`
-	MaxHardQuestions   int32                  `protobuf:"varint,4,opt,name=maxHardQuestions,proto3" json:"maxHardQuestions,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+type ParticipantMetadata struct {
+	state             protoimpl.MessageState               `protogen:"open.v1"`
+	JoinTimeUnix      int64                                `protobuf:"varint,1,opt,name=joinTimeUnix,proto3" json:"joinTimeUnix,omitempty"`
+	ProblemsDone      map[string]*ChallengeProblemMetadata `protobuf:"bytes,2,rep,name=problemsDone,proto3" json:"problemsDone,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	ProblemsAttempted int32                                `protobuf:"varint,3,opt,name=problemsAttempted,proto3" json:"problemsAttempted,omitempty"`
+	TotalScore        int32                                `protobuf:"varint,4,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
+	LastConnectedUnix int64                                `protobuf:"varint,5,opt,name=lastConnectedUnix,proto3" json:"lastConnectedUnix,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
-func (x *ChallengeConfig) Reset() {
-	*x = ChallengeConfig{}
+func (x *ParticipantMetadata) Reset() {
+	*x = ParticipantMetadata{}
 	mi := &file_ChallengeService_challenge_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ChallengeConfig) String() string {
+func (x *ParticipantMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChallengeConfig) ProtoMessage() {}
+func (*ParticipantMetadata) ProtoMessage() {}
 
-func (x *ChallengeConfig) ProtoReflect() protoreflect.Message {
+func (x *ParticipantMetadata) ProtoReflect() protoreflect.Message {
 	mi := &file_ChallengeService_challenge_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,47 +57,54 @@ func (x *ChallengeConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChallengeConfig.ProtoReflect.Descriptor instead.
-func (*ChallengeConfig) Descriptor() ([]byte, []int) {
+// Deprecated: Use ParticipantMetadata.ProtoReflect.Descriptor instead.
+func (*ParticipantMetadata) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ChallengeConfig) GetMaxUsers() int32 {
+func (x *ParticipantMetadata) GetJoinTimeUnix() int64 {
 	if x != nil {
-		return x.MaxUsers
+		return x.JoinTimeUnix
 	}
 	return 0
 }
 
-func (x *ChallengeConfig) GetMaxEasyQuestions() int32 {
+func (x *ParticipantMetadata) GetProblemsDone() map[string]*ChallengeProblemMetadata {
 	if x != nil {
-		return x.MaxEasyQuestions
+		return x.ProblemsDone
+	}
+	return nil
+}
+
+func (x *ParticipantMetadata) GetProblemsAttempted() int32 {
+	if x != nil {
+		return x.ProblemsAttempted
 	}
 	return 0
 }
 
-func (x *ChallengeConfig) GetMaxMediumQuestions() int32 {
+func (x *ParticipantMetadata) GetTotalScore() int32 {
 	if x != nil {
-		return x.MaxMediumQuestions
+		return x.TotalScore
 	}
 	return 0
 }
 
-func (x *ChallengeConfig) GetMaxHardQuestions() int32 {
+func (x *ParticipantMetadata) GetLastConnectedUnix() int64 {
 	if x != nil {
-		return x.MaxHardQuestions
+		return x.LastConnectedUnix
 	}
 	return 0
 }
 
 type ChallengeProblemMetadata struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProblemId     string                 `protobuf:"bytes,1,opt,name=problemId,proto3" json:"problemId,omitempty"`
-	Score         int32                  `protobuf:"varint,2,opt,name=score,proto3" json:"score,omitempty"`
-	TimeTaken     int64                  `protobuf:"varint,3,opt,name=timeTaken,proto3" json:"timeTaken,omitempty"`
-	CompletedAt   int64                  `protobuf:"varint,4,opt,name=completedAt,proto3" json:"completedAt,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ProblemId       string                 `protobuf:"bytes,1,opt,name=problemId,proto3" json:"problemId,omitempty"`
+	Score           int32                  `protobuf:"varint,2,opt,name=score,proto3" json:"score,omitempty"`
+	TimeTaken       int64                  `protobuf:"varint,3,opt,name=timeTaken,proto3" json:"timeTaken,omitempty"`
+	CompletedAtUnix int64                  `protobuf:"varint,4,opt,name=completedAtUnix,proto3" json:"completedAtUnix,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ChallengeProblemMetadata) Reset() {
@@ -150,40 +158,37 @@ func (x *ChallengeProblemMetadata) GetTimeTaken() int64 {
 	return 0
 }
 
-func (x *ChallengeProblemMetadata) GetCompletedAt() int64 {
+func (x *ChallengeProblemMetadata) GetCompletedAtUnix() int64 {
 	if x != nil {
-		return x.CompletedAt
+		return x.CompletedAtUnix
 	}
 	return 0
 }
 
-type ParticipantMetadata struct {
-	state             protoimpl.MessageState               `protogen:"open.v1"`
-	ProblemsDone      map[string]*ChallengeProblemMetadata `protobuf:"bytes,1,rep,name=problemsDone,proto3" json:"problemsDone,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	ProblemsAttempted int32                                `protobuf:"varint,2,opt,name=problemsAttempted,proto3" json:"problemsAttempted,omitempty"`
-	TotalScore        int32                                `protobuf:"varint,3,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
-	JoinTime          int64                                `protobuf:"varint,4,opt,name=joinTime,proto3" json:"joinTime,omitempty"`
-	LastConnected     int64                                `protobuf:"varint,5,opt,name=lastConnected,proto3" json:"lastConnected,omitempty"`
-	InitialJoinIp     string                               `protobuf:"bytes,6,opt,name=initialJoinIp,proto3" json:"initialJoinIp,omitempty"`
-	Status            string                               `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+type SubmissionMetadata struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	SubmissionId    string                 `protobuf:"bytes,1,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
+	TimeTakenMillis int64                  `protobuf:"varint,2,opt,name=timeTakenMillis,proto3" json:"timeTakenMillis,omitempty"`
+	Points          int32                  `protobuf:"varint,3,opt,name=points,proto3" json:"points,omitempty"`
+	UserCode        string                 `protobuf:"bytes,4,opt,name=userCode,proto3" json:"userCode,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
-func (x *ParticipantMetadata) Reset() {
-	*x = ParticipantMetadata{}
+func (x *SubmissionMetadata) Reset() {
+	*x = SubmissionMetadata{}
 	mi := &file_ChallengeService_challenge_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ParticipantMetadata) String() string {
+func (x *SubmissionMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ParticipantMetadata) ProtoMessage() {}
+func (*SubmissionMetadata) ProtoMessage() {}
 
-func (x *ParticipantMetadata) ProtoReflect() protoreflect.Message {
+func (x *SubmissionMetadata) ProtoReflect() protoreflect.Message {
 	mi := &file_ChallengeService_challenge_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -195,132 +200,95 @@ func (x *ParticipantMetadata) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ParticipantMetadata.ProtoReflect.Descriptor instead.
-func (*ParticipantMetadata) Descriptor() ([]byte, []int) {
+// Deprecated: Use SubmissionMetadata.ProtoReflect.Descriptor instead.
+func (*SubmissionMetadata) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ParticipantMetadata) GetProblemsDone() map[string]*ChallengeProblemMetadata {
-	if x != nil {
-		return x.ProblemsDone
-	}
-	return nil
-}
-
-func (x *ParticipantMetadata) GetProblemsAttempted() int32 {
-	if x != nil {
-		return x.ProblemsAttempted
-	}
-	return 0
-}
-
-func (x *ParticipantMetadata) GetTotalScore() int32 {
-	if x != nil {
-		return x.TotalScore
-	}
-	return 0
-}
-
-func (x *ParticipantMetadata) GetJoinTime() int64 {
-	if x != nil {
-		return x.JoinTime
-	}
-	return 0
-}
-
-func (x *ParticipantMetadata) GetLastConnected() int64 {
-	if x != nil {
-		return x.LastConnected
-	}
-	return 0
-}
-
-func (x *ParticipantMetadata) GetInitialJoinIp() string {
-	if x != nil {
-		return x.InitialJoinIp
-	}
-	return ""
-}
-
-func (x *ParticipantMetadata) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-type Submission struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SubmissionId  string                 `protobuf:"bytes,1,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
-	TimeTaken     int64                  `protobuf:"varint,2,opt,name=timeTaken,proto3" json:"timeTaken,omitempty"`
-	Points        int32                  `protobuf:"varint,3,opt,name=points,proto3" json:"points,omitempty"`
-	UserCode      string                 `protobuf:"bytes,4,opt,name=userCode,proto3" json:"userCode,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Submission) Reset() {
-	*x = Submission{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Submission) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Submission) ProtoMessage() {}
-
-func (x *Submission) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Submission.ProtoReflect.Descriptor instead.
-func (*Submission) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *Submission) GetSubmissionId() string {
+func (x *SubmissionMetadata) GetSubmissionId() string {
 	if x != nil {
 		return x.SubmissionId
 	}
 	return ""
 }
 
-func (x *Submission) GetTimeTaken() int64 {
+func (x *SubmissionMetadata) GetTimeTakenMillis() int64 {
 	if x != nil {
-		return x.TimeTaken
+		return x.TimeTakenMillis
 	}
 	return 0
 }
 
-func (x *Submission) GetPoints() int32 {
+func (x *SubmissionMetadata) GetPoints() int32 {
 	if x != nil {
 		return x.Points
 	}
 	return 0
 }
 
-func (x *Submission) GetUserCode() string {
+func (x *SubmissionMetadata) GetUserCode() string {
 	if x != nil {
 		return x.UserCode
 	}
 	return ""
 }
 
+type SubmissionEntry struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProblemId     string                 `protobuf:"bytes,1,opt,name=problemId,proto3" json:"problemId,omitempty"`
+	Submission    *SubmissionMetadata    `protobuf:"bytes,2,opt,name=submission,proto3" json:"submission,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SubmissionEntry) Reset() {
+	*x = SubmissionEntry{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SubmissionEntry) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubmissionEntry) ProtoMessage() {}
+
+func (x *SubmissionEntry) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubmissionEntry.ProtoReflect.Descriptor instead.
+func (*SubmissionEntry) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SubmissionEntry) GetProblemId() string {
+	if x != nil {
+		return x.ProblemId
+	}
+	return ""
+}
+
+func (x *SubmissionEntry) GetSubmission() *SubmissionMetadata {
+	if x != nil {
+		return x.Submission
+	}
+	return nil
+}
+
 type UserSubmissions struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	Submissions   map[string]*Submission `protobuf:"bytes,2,rep,name=submissions,proto3" json:"submissions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Entries       []*SubmissionEntry     `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -362,9 +330,9 @@ func (x *UserSubmissions) GetUserId() string {
 	return ""
 }
 
-func (x *UserSubmissions) GetSubmissions() map[string]*Submission {
+func (x *UserSubmissions) GetEntries() []*SubmissionEntry {
 	if x != nil {
-		return x.Submissions
+		return x.Entries
 	}
 	return nil
 }
@@ -437,29 +405,27 @@ func (x *LeaderboardEntry) GetRank() int32 {
 	return 0
 }
 
-type Notification struct {
+type QuestionPool struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Time          int64                  `protobuf:"varint,3,opt,name=time,proto3" json:"time,omitempty"`
+	QuestionIds   []string               `protobuf:"bytes,1,rep,name=questionIds,proto3" json:"questionIds,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Notification) Reset() {
-	*x = Notification{}
+func (x *QuestionPool) Reset() {
+	*x = QuestionPool{}
 	mi := &file_ChallengeService_challenge_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Notification) String() string {
+func (x *QuestionPool) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Notification) ProtoMessage() {}
+func (*QuestionPool) ProtoMessage() {}
 
-func (x *Notification) ProtoReflect() protoreflect.Message {
+func (x *QuestionPool) ProtoReflect() protoreflect.Message {
 	mi := &file_ChallengeService_challenge_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -471,56 +437,42 @@ func (x *Notification) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Notification.ProtoReflect.Descriptor instead.
-func (*Notification) Descriptor() ([]byte, []int) {
+// Deprecated: Use QuestionPool.ProtoReflect.Descriptor instead.
+func (*QuestionPool) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *Notification) GetType() string {
+func (x *QuestionPool) GetQuestionIds() []string {
 	if x != nil {
-		return x.Type
+		return x.QuestionIds
 	}
-	return ""
+	return nil
 }
 
-func (x *Notification) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
+type ChallengeConfig struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	MaxUsers           int32                  `protobuf:"varint,1,opt,name=maxUsers,proto3" json:"maxUsers,omitempty"`
+	MaxEasyQuestions   int32                  `protobuf:"varint,2,opt,name=maxEasyQuestions,proto3" json:"maxEasyQuestions,omitempty"`
+	MaxMediumQuestions int32                  `protobuf:"varint,3,opt,name=maxMediumQuestions,proto3" json:"maxMediumQuestions,omitempty"`
+	MaxHardQuestions   int32                  `protobuf:"varint,4,opt,name=maxHardQuestions,proto3" json:"maxHardQuestions,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
-func (x *Notification) GetTime() int64 {
-	if x != nil {
-		return x.Time
-	}
-	return 0
-}
-
-type ChatMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	ProfilePic    string                 `protobuf:"bytes,2,opt,name=profilePic,proto3" json:"profilePic,omitempty"`
-	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	Time          int64                  `protobuf:"varint,4,opt,name=time,proto3" json:"time,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChatMessage) Reset() {
-	*x = ChatMessage{}
+func (x *ChallengeConfig) Reset() {
+	*x = ChallengeConfig{}
 	mi := &file_ChallengeService_challenge_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ChatMessage) String() string {
+func (x *ChallengeConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChatMessage) ProtoMessage() {}
+func (*ChallengeConfig) ProtoMessage() {}
 
-func (x *ChatMessage) ProtoReflect() protoreflect.Message {
+func (x *ChallengeConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_ChallengeService_challenge_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -532,221 +484,63 @@ func (x *ChatMessage) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChatMessage.ProtoReflect.Descriptor instead.
-func (*ChatMessage) Descriptor() ([]byte, []int) {
+// Deprecated: Use ChallengeConfig.ProtoReflect.Descriptor instead.
+func (*ChallengeConfig) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ChatMessage) GetUserId() string {
+func (x *ChallengeConfig) GetMaxUsers() int32 {
 	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *ChatMessage) GetProfilePic() string {
-	if x != nil {
-		return x.ProfilePic
-	}
-	return ""
-}
-
-func (x *ChatMessage) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *ChatMessage) GetTime() int64 {
-	if x != nil {
-		return x.Time
+		return x.MaxUsers
 	}
 	return 0
 }
 
-type ChallengeDocument struct {
+func (x *ChallengeConfig) GetMaxEasyQuestions() int32 {
+	if x != nil {
+		return x.MaxEasyQuestions
+	}
+	return 0
+}
+
+func (x *ChallengeConfig) GetMaxMediumQuestions() int32 {
+	if x != nil {
+		return x.MaxMediumQuestions
+	}
+	return 0
+}
+
+func (x *ChallengeConfig) GetMaxHardQuestions() int32 {
+	if x != nil {
+		return x.MaxHardQuestions
+	}
+	return 0
+}
+
+type ChallengeRecord struct {
 	state               protoimpl.MessageState          `protogen:"open.v1"`
 	ChallengeId         string                          `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
 	CreatorId           string                          `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
-	CreatedAt           int64                           `protobuf:"varint,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	Title               string                          `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	IsPrivate           bool                            `protobuf:"varint,5,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
+	Title               string                          `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	IsPrivate           bool                            `protobuf:"varint,4,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
+	Password            string                          `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
 	Status              string                          `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	TimeLimit           int64                           `protobuf:"varint,7,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
-	StartTime           int64                           `protobuf:"varint,8,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	TimeLimitMillis     int64                           `protobuf:"varint,7,opt,name=timeLimitMillis,proto3" json:"timeLimitMillis,omitempty"`
+	StartTimeUnix       int64                           `protobuf:"varint,8,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
 	Participants        map[string]*ParticipantMetadata `protobuf:"bytes,9,rep,name=participants,proto3" json:"participants,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	Submissions         []*UserSubmissions              `protobuf:"bytes,10,rep,name=submissions,proto3" json:"submissions,omitempty"`
 	Leaderboard         []*LeaderboardEntry             `protobuf:"bytes,11,rep,name=leaderboard,proto3" json:"leaderboard,omitempty"`
 	Config              *ChallengeConfig                `protobuf:"bytes,12,opt,name=config,proto3" json:"config,omitempty"`
 	ProcessedProblemIds []string                        `protobuf:"bytes,13,rep,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"`
-	ProblemCount        int64                           `protobuf:"varint,14,opt,name=problemCount,proto3" json:"problemCount,omitempty"`
-	Notifications       []*Notification                 `protobuf:"bytes,15,rep,name=notifications,proto3" json:"notifications,omitempty"`
-	Chat                []*ChatMessage                  `protobuf:"bytes,16,rep,name=chat,proto3" json:"chat,omitempty"`
+	CreatedAt           int64                           `protobuf:"varint,14,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	ProblemCount        int64                           `protobuf:"varint,15,opt,name=problemCount,proto3" json:"problemCount,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
 
-func (x *ChallengeDocument) Reset() {
-	*x = ChallengeDocument{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChallengeDocument) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChallengeDocument) ProtoMessage() {}
-
-func (x *ChallengeDocument) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChallengeDocument.ProtoReflect.Descriptor instead.
-func (*ChallengeDocument) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *ChallengeDocument) GetChallengeId() string {
-	if x != nil {
-		return x.ChallengeId
-	}
-	return ""
-}
-
-func (x *ChallengeDocument) GetCreatorId() string {
-	if x != nil {
-		return x.CreatorId
-	}
-	return ""
-}
-
-func (x *ChallengeDocument) GetCreatedAt() int64 {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return 0
-}
-
-func (x *ChallengeDocument) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *ChallengeDocument) GetIsPrivate() bool {
-	if x != nil {
-		return x.IsPrivate
-	}
-	return false
-}
-
-func (x *ChallengeDocument) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *ChallengeDocument) GetTimeLimit() int64 {
-	if x != nil {
-		return x.TimeLimit
-	}
-	return 0
-}
-
-func (x *ChallengeDocument) GetStartTime() int64 {
-	if x != nil {
-		return x.StartTime
-	}
-	return 0
-}
-
-func (x *ChallengeDocument) GetParticipants() map[string]*ParticipantMetadata {
-	if x != nil {
-		return x.Participants
-	}
-	return nil
-}
-
-func (x *ChallengeDocument) GetSubmissions() []*UserSubmissions {
-	if x != nil {
-		return x.Submissions
-	}
-	return nil
-}
-
-func (x *ChallengeDocument) GetLeaderboard() []*LeaderboardEntry {
-	if x != nil {
-		return x.Leaderboard
-	}
-	return nil
-}
-
-func (x *ChallengeDocument) GetConfig() *ChallengeConfig {
-	if x != nil {
-		return x.Config
-	}
-	return nil
-}
-
-func (x *ChallengeDocument) GetProcessedProblemIds() []string {
-	if x != nil {
-		return x.ProcessedProblemIds
-	}
-	return nil
-}
-
-func (x *ChallengeDocument) GetProblemCount() int64 {
-	if x != nil {
-		return x.ProblemCount
-	}
-	return 0
-}
-
-func (x *ChallengeDocument) GetNotifications() []*Notification {
-	if x != nil {
-		return x.Notifications
-	}
-	return nil
-}
-
-func (x *ChallengeDocument) GetChat() []*ChatMessage {
-	if x != nil {
-		return x.Chat
-	}
-	return nil
-}
-
-type ChallengeRecord struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	ChallengeId     string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	CreatorId       string                 `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
-	CreatedAtUnix   int64                  `protobuf:"varint,3,opt,name=createdAtUnix,proto3" json:"createdAtUnix,omitempty"`
-	Title           string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	IsPrivate       bool                   `protobuf:"varint,5,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
-	Config          *ChallengeConfig       `protobuf:"bytes,6,opt,name=config,proto3" json:"config,omitempty"`
-	StartTimeUnix   int64                  `protobuf:"varint,7,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
-	TimeLimitMillis int64                  `protobuf:"varint,8,opt,name=timeLimitMillis,proto3" json:"timeLimitMillis,omitempty"`
-	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
 func (x *ChallengeRecord) Reset() {
 	*x = ChallengeRecord{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[9]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -758,7 +552,7 @@ func (x *ChallengeRecord) String() string {
 func (*ChallengeRecord) ProtoMessage() {}
 
 func (x *ChallengeRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[9]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -771,7 +565,7 @@ func (x *ChallengeRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChallengeRecord.ProtoReflect.Descriptor instead.
 func (*ChallengeRecord) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{9}
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ChallengeRecord) GetChallengeId() string {
@@ -788,13 +582,6 @@ func (x *ChallengeRecord) GetCreatorId() string {
 	return ""
 }
 
-func (x *ChallengeRecord) GetCreatedAtUnix() int64 {
-	if x != nil {
-		return x.CreatedAtUnix
-	}
-	return 0
-}
-
 func (x *ChallengeRecord) GetTitle() string {
 	if x != nil {
 		return x.Title
@@ -809,25 +596,11 @@ func (x *ChallengeRecord) GetIsPrivate() bool {
 	return false
 }
 
-func (x *ChallengeRecord) GetConfig() *ChallengeConfig {
+func (x *ChallengeRecord) GetPassword() string {
 	if x != nil {
-		return x.Config
+		return x.Password
 	}
-	return nil
-}
-
-func (x *ChallengeRecord) GetStartTimeUnix() int64 {
-	if x != nil {
-		return x.StartTimeUnix
-	}
-	return 0
-}
-
-func (x *ChallengeRecord) GetTimeLimitMillis() int64 {
-	if x != nil {
-		return x.TimeLimitMillis
-	}
-	return 0
+	return ""
 }
 
 func (x *ChallengeRecord) GetStatus() string {
@@ -837,27 +610,142 @@ func (x *ChallengeRecord) GetStatus() string {
 	return ""
 }
 
-type CreateChallengeRequest struct {
+func (x *ChallengeRecord) GetTimeLimitMillis() int64 {
+	if x != nil {
+		return x.TimeLimitMillis
+	}
+	return 0
+}
+
+func (x *ChallengeRecord) GetStartTimeUnix() int64 {
+	if x != nil {
+		return x.StartTimeUnix
+	}
+	return 0
+}
+
+func (x *ChallengeRecord) GetParticipants() map[string]*ParticipantMetadata {
+	if x != nil {
+		return x.Participants
+	}
+	return nil
+}
+
+func (x *ChallengeRecord) GetSubmissions() []*UserSubmissions {
+	if x != nil {
+		return x.Submissions
+	}
+	return nil
+}
+
+func (x *ChallengeRecord) GetLeaderboard() []*LeaderboardEntry {
+	if x != nil {
+		return x.Leaderboard
+	}
+	return nil
+}
+
+func (x *ChallengeRecord) GetConfig() *ChallengeConfig {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+func (x *ChallengeRecord) GetProcessedProblemIds() []string {
+	if x != nil {
+		return x.ProcessedProblemIds
+	}
+	return nil
+}
+
+func (x *ChallengeRecord) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *ChallengeRecord) GetProblemCount() int64 {
+	if x != nil {
+		return x.ProblemCount
+	}
+	return 0
+}
+
+type GetChallengeRoomInfoMetadataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Record        *ChallengeRecord       `protobuf:"bytes,1,opt,name=record,proto3" json:"record,omitempty"`
+	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	Password      *string                `protobuf:"bytes,2,opt,name=password,proto3,oneof" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateChallengeRequest) Reset() {
-	*x = CreateChallengeRequest{}
+func (x *GetChallengeRoomInfoMetadataRequest) Reset() {
+	*x = GetChallengeRoomInfoMetadataRequest{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetChallengeRoomInfoMetadataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChallengeRoomInfoMetadataRequest) ProtoMessage() {}
+
+func (x *GetChallengeRoomInfoMetadataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChallengeRoomInfoMetadataRequest.ProtoReflect.Descriptor instead.
+func (*GetChallengeRoomInfoMetadataRequest) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetChallengeRoomInfoMetadataRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *GetChallengeRoomInfoMetadataRequest) GetPassword() string {
+	if x != nil && x.Password != nil {
+		return *x.Password
+	}
+	return ""
+}
+
+type GetChallengeRoomInfoMetadataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Challenge     *ChallengeRecord       `protobuf:"bytes,1,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetChallengeRoomInfoMetadataResponse) Reset() {
+	*x = GetChallengeRoomInfoMetadataResponse{}
 	mi := &file_ChallengeService_challenge_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateChallengeRequest) String() string {
+func (x *GetChallengeRoomInfoMetadataResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateChallengeRequest) ProtoMessage() {}
+func (*GetChallengeRoomInfoMetadataResponse) ProtoMessage() {}
 
-func (x *CreateChallengeRequest) ProtoReflect() protoreflect.Message {
+func (x *GetChallengeRoomInfoMetadataResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ChallengeService_challenge_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -869,530 +757,14 @@ func (x *CreateChallengeRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateChallengeRequest.ProtoReflect.Descriptor instead.
-func (*CreateChallengeRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetChallengeRoomInfoMetadataResponse.ProtoReflect.Descriptor instead.
+func (*GetChallengeRoomInfoMetadataResponse) Descriptor() ([]byte, []int) {
 	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *CreateChallengeRequest) GetRecord() *ChallengeRecord {
-	if x != nil {
-		return x.Record
-	}
-	return nil
-}
-
-type CreateChallengeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Record        *ChallengeRecord       `protobuf:"bytes,3,opt,name=record,proto3" json:"record,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateChallengeResponse) Reset() {
-	*x = CreateChallengeResponse{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateChallengeResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateChallengeResponse) ProtoMessage() {}
-
-func (x *CreateChallengeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateChallengeResponse.ProtoReflect.Descriptor instead.
-func (*CreateChallengeResponse) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *CreateChallengeResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *CreateChallengeResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *CreateChallengeResponse) GetRecord() *ChallengeRecord {
-	if x != nil {
-		return x.Record
-	}
-	return nil
-}
-
-type AbandonChallengeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CreatorId     string                 `protobuf:"bytes,1,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
-	ChallengeId   string                 `protobuf:"bytes,2,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AbandonChallengeRequest) Reset() {
-	*x = AbandonChallengeRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AbandonChallengeRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AbandonChallengeRequest) ProtoMessage() {}
-
-func (x *AbandonChallengeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AbandonChallengeRequest.ProtoReflect.Descriptor instead.
-func (*AbandonChallengeRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *AbandonChallengeRequest) GetCreatorId() string {
-	if x != nil {
-		return x.CreatorId
-	}
-	return ""
-}
-
-func (x *AbandonChallengeRequest) GetChallengeId() string {
-	if x != nil {
-		return x.ChallengeId
-	}
-	return ""
-}
-
-type AbandonChallengeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	ErrorType     string                 `protobuf:"bytes,3,opt,name=errorType,proto3" json:"errorType,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AbandonChallengeResponse) Reset() {
-	*x = AbandonChallengeResponse{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AbandonChallengeResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AbandonChallengeResponse) ProtoMessage() {}
-
-func (x *AbandonChallengeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AbandonChallengeResponse.ProtoReflect.Descriptor instead.
-func (*AbandonChallengeResponse) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *AbandonChallengeResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *AbandonChallengeResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *AbandonChallengeResponse) GetErrorType() string {
-	if x != nil {
-		return x.ErrorType
-	}
-	return ""
-}
-
-type GetChallengeByIdRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetChallengeByIdRequest) Reset() {
-	*x = GetChallengeByIdRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetChallengeByIdRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetChallengeByIdRequest) ProtoMessage() {}
-
-func (x *GetChallengeByIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetChallengeByIdRequest.ProtoReflect.Descriptor instead.
-func (*GetChallengeByIdRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *GetChallengeByIdRequest) GetChallengeId() string {
-	if x != nil {
-		return x.ChallengeId
-	}
-	return ""
-}
-
-type GetChallengeByIdResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	ErrorMessage  string                 `protobuf:"bytes,2,opt,name=errorMessage,proto3" json:"errorMessage,omitempty"`
-	Challenge     *ChallengeDocument     `protobuf:"bytes,3,opt,name=challenge,proto3" json:"challenge,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetChallengeByIdResponse) Reset() {
-	*x = GetChallengeByIdResponse{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetChallengeByIdResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetChallengeByIdResponse) ProtoMessage() {}
-
-func (x *GetChallengeByIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetChallengeByIdResponse.ProtoReflect.Descriptor instead.
-func (*GetChallengeByIdResponse) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *GetChallengeByIdResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *GetChallengeByIdResponse) GetErrorMessage() string {
-	if x != nil {
-		return x.ErrorMessage
-	}
-	return ""
-}
-
-func (x *GetChallengeByIdResponse) GetChallenge() *ChallengeDocument {
+func (x *GetChallengeRoomInfoMetadataResponse) GetChallenge() *ChallengeRecord {
 	if x != nil {
 		return x.Challenge
-	}
-	return nil
-}
-
-type GetFullChallengeDataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFullChallengeDataRequest) Reset() {
-	*x = GetFullChallengeDataRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFullChallengeDataRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFullChallengeDataRequest) ProtoMessage() {}
-
-func (x *GetFullChallengeDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFullChallengeDataRequest.ProtoReflect.Descriptor instead.
-func (*GetFullChallengeDataRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *GetFullChallengeDataRequest) GetChallengeId() string {
-	if x != nil {
-		return x.ChallengeId
-	}
-	return ""
-}
-
-func (x *GetFullChallengeDataRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-type GetFullChallengeDataResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Challenge     *ChallengeDocument     `protobuf:"bytes,3,opt,name=challenge,proto3" json:"challenge,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFullChallengeDataResponse) Reset() {
-	*x = GetFullChallengeDataResponse{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFullChallengeDataResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFullChallengeDataResponse) ProtoMessage() {}
-
-func (x *GetFullChallengeDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFullChallengeDataResponse.ProtoReflect.Descriptor instead.
-func (*GetFullChallengeDataResponse) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *GetFullChallengeDataResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *GetFullChallengeDataResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *GetFullChallengeDataResponse) GetChallenge() *ChallengeDocument {
-	if x != nil {
-		return x.Challenge
-	}
-	return nil
-}
-
-type GetChallengeHistoryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	IsPrivate     bool                   `protobuf:"varint,4,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetChallengeHistoryRequest) Reset() {
-	*x = GetChallengeHistoryRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetChallengeHistoryRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetChallengeHistoryRequest) ProtoMessage() {}
-
-func (x *GetChallengeHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetChallengeHistoryRequest.ProtoReflect.Descriptor instead.
-func (*GetChallengeHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *GetChallengeHistoryRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *GetChallengeHistoryRequest) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-func (x *GetChallengeHistoryRequest) GetPageSize() int32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *GetChallengeHistoryRequest) GetIsPrivate() bool {
-	if x != nil {
-		return x.IsPrivate
-	}
-	return false
-}
-
-type ChallengeListResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Challenges    []*ChallengeDocument   `protobuf:"bytes,3,rep,name=challenges,proto3" json:"challenges,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChallengeListResponse) Reset() {
-	*x = ChallengeListResponse{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChallengeListResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChallengeListResponse) ProtoMessage() {}
-
-func (x *ChallengeListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChallengeListResponse.ProtoReflect.Descriptor instead.
-func (*ChallengeListResponse) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *ChallengeListResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *ChallengeListResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *ChallengeListResponse) GetChallenges() []*ChallengeDocument {
-	if x != nil {
-		return x.Challenges
 	}
 	return nil
 }
@@ -1407,7 +779,7 @@ type PaginationRequest struct {
 
 func (x *PaginationRequest) Reset() {
 	*x = PaginationRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[20]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1419,7 +791,7 @@ func (x *PaginationRequest) String() string {
 func (*PaginationRequest) ProtoMessage() {}
 
 func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[20]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1432,7 +804,7 @@ func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationRequest.ProtoReflect.Descriptor instead.
 func (*PaginationRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{20}
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PaginationRequest) GetPage() int32 {
@@ -1449,18 +821,129 @@ func (x *PaginationRequest) GetPageSize() int32 {
 	return 0
 }
 
+type ChallengeListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Challenges    []*ChallengeRecord     `protobuf:"bytes,1,rep,name=challenges,proto3" json:"challenges,omitempty"`
+	TotalCount    int64                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChallengeListResponse) Reset() {
+	*x = ChallengeListResponse{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChallengeListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChallengeListResponse) ProtoMessage() {}
+
+func (x *ChallengeListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChallengeListResponse.ProtoReflect.Descriptor instead.
+func (*ChallengeListResponse) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ChallengeListResponse) GetChallenges() []*ChallengeRecord {
+	if x != nil {
+		return x.Challenges
+	}
+	return nil
+}
+
+func (x *ChallengeListResponse) GetTotalCount() int64 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
+type GetChallengeHistoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	Pagination    *PaginationRequest     `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	IsPrivate     bool                   `protobuf:"varint,3,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetChallengeHistoryRequest) Reset() {
+	*x = GetChallengeHistoryRequest{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetChallengeHistoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChallengeHistoryRequest) ProtoMessage() {}
+
+func (x *GetChallengeHistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChallengeHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetChallengeHistoryRequest) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetChallengeHistoryRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetChallengeHistoryRequest) GetPagination() *PaginationRequest {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+func (x *GetChallengeHistoryRequest) GetIsPrivate() bool {
+	if x != nil {
+		return x.IsPrivate
+	}
+	return false
+}
+
 type GetOwnersActiveChallengesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	Pagination    *PaginationRequest     `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetOwnersActiveChallengesRequest) Reset() {
 	*x = GetOwnersActiveChallengesRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[21]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1472,7 +955,7 @@ func (x *GetOwnersActiveChallengesRequest) String() string {
 func (*GetOwnersActiveChallengesRequest) ProtoMessage() {}
 
 func (x *GetOwnersActiveChallengesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[21]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1485,7 +968,7 @@ func (x *GetOwnersActiveChallengesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOwnersActiveChallengesRequest.ProtoReflect.Descriptor instead.
 func (*GetOwnersActiveChallengesRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{21}
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetOwnersActiveChallengesRequest) GetUserId() string {
@@ -1495,35 +978,31 @@ func (x *GetOwnersActiveChallengesRequest) GetUserId() string {
 	return ""
 }
 
-func (x *GetOwnersActiveChallengesRequest) GetPage() int32 {
+func (x *GetOwnersActiveChallengesRequest) GetPagination() *PaginationRequest {
 	if x != nil {
-		return x.Page
+		return x.Pagination
 	}
-	return 0
-}
-
-func (x *GetOwnersActiveChallengesRequest) GetPageSize() int32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
+	return nil
 }
 
 type PushSubmissionStatusRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	ProblemId     string                 `protobuf:"bytes,3,opt,name=problemId,proto3" json:"problemId,omitempty"`
-	Score         int32                  `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
-	SubmissionId  string                 `protobuf:"bytes,5,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
-	TimeTakenMs   int64                  `protobuf:"varint,6,opt,name=timeTakenMs,proto3" json:"timeTakenMs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UserCode        string                 `protobuf:"bytes,1,opt,name=userCode,proto3" json:"userCode,omitempty"`
+	ChallengeId     string                 `protobuf:"bytes,2,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	UserId          string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	ProblemId       string                 `protobuf:"bytes,4,opt,name=problemId,proto3" json:"problemId,omitempty"`
+	SubmissionId    string                 `protobuf:"bytes,6,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
+	Score           int32                  `protobuf:"varint,7,opt,name=score,proto3" json:"score,omitempty"`
+	IsSuccessful    bool                   `protobuf:"varint,8,opt,name=isSuccessful,proto3" json:"isSuccessful,omitempty"`
+	TimeTakenMillis int64                  `protobuf:"varint,9,opt,name=TimeTakenMillis,proto3" json:"TimeTakenMillis,omitempty"`
+	TraceId         string                 `protobuf:"bytes,10,opt,name=traceId,proto3" json:"traceId,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *PushSubmissionStatusRequest) Reset() {
 	*x = PushSubmissionStatusRequest{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[22]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1535,7 +1014,7 @@ func (x *PushSubmissionStatusRequest) String() string {
 func (*PushSubmissionStatusRequest) ProtoMessage() {}
 
 func (x *PushSubmissionStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[22]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1548,7 +1027,14 @@ func (x *PushSubmissionStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PushSubmissionStatusRequest.ProtoReflect.Descriptor instead.
 func (*PushSubmissionStatusRequest) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{22}
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *PushSubmissionStatusRequest) GetUserCode() string {
+	if x != nil {
+		return x.UserCode
+	}
+	return ""
 }
 
 func (x *PushSubmissionStatusRequest) GetChallengeId() string {
@@ -1572,13 +1058,6 @@ func (x *PushSubmissionStatusRequest) GetProblemId() string {
 	return ""
 }
 
-func (x *PushSubmissionStatusRequest) GetScore() int32 {
-	if x != nil {
-		return x.Score
-	}
-	return 0
-}
-
 func (x *PushSubmissionStatusRequest) GetSubmissionId() string {
 	if x != nil {
 		return x.SubmissionId
@@ -1586,24 +1065,45 @@ func (x *PushSubmissionStatusRequest) GetSubmissionId() string {
 	return ""
 }
 
-func (x *PushSubmissionStatusRequest) GetTimeTakenMs() int64 {
+func (x *PushSubmissionStatusRequest) GetScore() int32 {
 	if x != nil {
-		return x.TimeTakenMs
+		return x.Score
 	}
 	return 0
 }
 
+func (x *PushSubmissionStatusRequest) GetIsSuccessful() bool {
+	if x != nil {
+		return x.IsSuccessful
+	}
+	return false
+}
+
+func (x *PushSubmissionStatusRequest) GetTimeTakenMillis() int64 {
+	if x != nil {
+		return x.TimeTakenMillis
+	}
+	return 0
+}
+
+func (x *PushSubmissionStatusRequest) GetTraceId() string {
+	if x != nil {
+		return x.TraceId
+	}
+	return ""
+}
+
 type PushSubmissionStatusResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Success       bool                   `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PushSubmissionStatusResponse) Reset() {
 	*x = PushSubmissionStatusResponse{}
-	mi := &file_ChallengeService_challenge_proto_msgTypes[23]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1615,7 +1115,7 @@ func (x *PushSubmissionStatusResponse) String() string {
 func (*PushSubmissionStatusResponse) ProtoMessage() {}
 
 func (x *PushSubmissionStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ChallengeService_challenge_proto_msgTypes[23]
+	mi := &file_ChallengeService_challenge_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1628,14 +1128,7 @@ func (x *PushSubmissionStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PushSubmissionStatusResponse.ProtoReflect.Descriptor instead.
 func (*PushSubmissionStatusResponse) Descriptor() ([]byte, []int) {
-	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *PushSubmissionStatusResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *PushSubmissionStatusResponse) GetMessage() string {
@@ -1645,65 +1138,703 @@ func (x *PushSubmissionStatusResponse) GetMessage() string {
 	return ""
 }
 
+func (x *PushSubmissionStatusResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type AbandonChallengeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	CreatorId     string                 `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AbandonChallengeRequest) Reset() {
+	*x = AbandonChallengeRequest{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AbandonChallengeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AbandonChallengeRequest) ProtoMessage() {}
+
+func (x *AbandonChallengeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AbandonChallengeRequest.ProtoReflect.Descriptor instead.
+func (*AbandonChallengeRequest) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *AbandonChallengeRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *AbandonChallengeRequest) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
+}
+
+type AbandonChallengeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	ErrorType     string                 `protobuf:"bytes,3,opt,name=errorType,proto3" json:"errorType,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AbandonChallengeResponse) Reset() {
+	*x = AbandonChallengeResponse{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AbandonChallengeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AbandonChallengeResponse) ProtoMessage() {}
+
+func (x *AbandonChallengeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AbandonChallengeResponse.ProtoReflect.Descriptor instead.
+func (*AbandonChallengeResponse) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *AbandonChallengeResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *AbandonChallengeResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *AbandonChallengeResponse) GetErrorType() string {
+	if x != nil {
+		return x.ErrorType
+	}
+	return ""
+}
+
+type GetFullChallengeDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	Password      *string                `protobuf:"bytes,2,opt,name=password,proto3,oneof" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFullChallengeDataRequest) Reset() {
+	*x = GetFullChallengeDataRequest{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFullChallengeDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFullChallengeDataRequest) ProtoMessage() {}
+
+func (x *GetFullChallengeDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFullChallengeDataRequest.ProtoReflect.Descriptor instead.
+func (*GetFullChallengeDataRequest) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetFullChallengeDataRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *GetFullChallengeDataRequest) GetPassword() string {
+	if x != nil && x.Password != nil {
+		return *x.Password
+	}
+	return ""
+}
+
+type GetFullChallengeDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Challenge     *ChallengeRecord       `protobuf:"bytes,1,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFullChallengeDataResponse) Reset() {
+	*x = GetFullChallengeDataResponse{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFullChallengeDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFullChallengeDataResponse) ProtoMessage() {}
+
+func (x *GetFullChallengeDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFullChallengeDataResponse.ProtoReflect.Descriptor instead.
+func (*GetFullChallengeDataResponse) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetFullChallengeDataResponse) GetChallenge() *ChallengeRecord {
+	if x != nil {
+		return x.Challenge
+	}
+	return nil
+}
+
+type PostChallengeNotification struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Time          int64                  `protobuf:"varint,3,opt,name=time,proto3" json:"time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostChallengeNotification) Reset() {
+	*x = PostChallengeNotification{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostChallengeNotification) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostChallengeNotification) ProtoMessage() {}
+
+func (x *PostChallengeNotification) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostChallengeNotification.ProtoReflect.Descriptor instead.
+func (*PostChallengeNotification) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *PostChallengeNotification) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *PostChallengeNotification) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *PostChallengeNotification) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+type PostChallengeChatMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	ProfilePic    string                 `protobuf:"bytes,2,opt,name=profilePic,proto3" json:"profilePic,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	Time          int64                  `protobuf:"varint,4,opt,name=time,proto3" json:"time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostChallengeChatMessage) Reset() {
+	*x = PostChallengeChatMessage{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostChallengeChatMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostChallengeChatMessage) ProtoMessage() {}
+
+func (x *PostChallengeChatMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostChallengeChatMessage.ProtoReflect.Descriptor instead.
+func (*PostChallengeChatMessage) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *PostChallengeChatMessage) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *PostChallengeChatMessage) GetProfilePic() string {
+	if x != nil {
+		return x.ProfilePic
+	}
+	return ""
+}
+
+func (x *PostChallengeChatMessage) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *PostChallengeChatMessage) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+type PostChallengeDocument struct {
+	state         protoimpl.MessageState       `protogen:"open.v1"`
+	ChallengeId   string                       `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	CreatorId     string                       `protobuf:"bytes,2,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
+	CreatedAt     int64                        `protobuf:"varint,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	Title         string                       `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	IsPrivate     bool                         `protobuf:"varint,5,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
+	Status        string                       `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	TimeLimit     int64                        `protobuf:"varint,7,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
+	StartTime     int64                        `protobuf:"varint,8,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	Notifications []*PostChallengeNotification `protobuf:"bytes,9,rep,name=notifications,proto3" json:"notifications,omitempty"`
+	Chat          []*PostChallengeChatMessage  `protobuf:"bytes,10,rep,name=chat,proto3" json:"chat,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostChallengeDocument) Reset() {
+	*x = PostChallengeDocument{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostChallengeDocument) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostChallengeDocument) ProtoMessage() {}
+
+func (x *PostChallengeDocument) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostChallengeDocument.ProtoReflect.Descriptor instead.
+func (*PostChallengeDocument) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *PostChallengeDocument) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *PostChallengeDocument) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
+}
+
+func (x *PostChallengeDocument) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *PostChallengeDocument) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *PostChallengeDocument) GetIsPrivate() bool {
+	if x != nil {
+		return x.IsPrivate
+	}
+	return false
+}
+
+func (x *PostChallengeDocument) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *PostChallengeDocument) GetTimeLimit() int64 {
+	if x != nil {
+		return x.TimeLimit
+	}
+	return 0
+}
+
+func (x *PostChallengeDocument) GetStartTime() int64 {
+	if x != nil {
+		return x.StartTime
+	}
+	return 0
+}
+
+func (x *PostChallengeDocument) GetNotifications() []*PostChallengeNotification {
+	if x != nil {
+		return x.Notifications
+	}
+	return nil
+}
+
+func (x *PostChallengeDocument) GetChat() []*PostChallengeChatMessage {
+	if x != nil {
+		return x.Chat
+	}
+	return nil
+}
+
+type GetPostChallengeDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPostChallengeDataRequest) Reset() {
+	*x = GetPostChallengeDataRequest{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPostChallengeDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPostChallengeDataRequest) ProtoMessage() {}
+
+func (x *GetPostChallengeDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPostChallengeDataRequest.ProtoReflect.Descriptor instead.
+func (*GetPostChallengeDataRequest) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetPostChallengeDataRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+type GetPostChallengeDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	ErrorMessage  string                 `protobuf:"bytes,2,opt,name=errorMessage,proto3" json:"errorMessage,omitempty"`
+	Challenge     *PostChallengeDocument `protobuf:"bytes,3,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPostChallengeDataResponse) Reset() {
+	*x = GetPostChallengeDataResponse{}
+	mi := &file_ChallengeService_challenge_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPostChallengeDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPostChallengeDataResponse) ProtoMessage() {}
+
+func (x *GetPostChallengeDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ChallengeService_challenge_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPostChallengeDataResponse.ProtoReflect.Descriptor instead.
+func (*GetPostChallengeDataResponse) Descriptor() ([]byte, []int) {
+	return file_ChallengeService_challenge_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetPostChallengeDataResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetPostChallengeDataResponse) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+func (x *GetPostChallengeDataResponse) GetChallenge() *PostChallengeDocument {
+	if x != nil {
+		return x.Challenge
+	}
+	return nil
+}
+
 var File_ChallengeService_challenge_proto protoreflect.FileDescriptor
 
 const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\n" +
-	" ChallengeService/challenge.proto\x12\x10ChallengeService\"\xb5\x01\n" +
-	"\x0fChallengeConfig\x12\x1a\n" +
-	"\bmaxUsers\x18\x01 \x01(\x05R\bmaxUsers\x12*\n" +
-	"\x10maxEasyQuestions\x18\x02 \x01(\x05R\x10maxEasyQuestions\x12.\n" +
-	"\x12maxMediumQuestions\x18\x03 \x01(\x05R\x12maxMediumQuestions\x12*\n" +
-	"\x10maxHardQuestions\x18\x04 \x01(\x05R\x10maxHardQuestions\"\x8e\x01\n" +
+	" ChallengeService/challenge.proto\x12\tchallenge\"\xf1\x02\n" +
+	"\x13ParticipantMetadata\x12\"\n" +
+	"\fjoinTimeUnix\x18\x01 \x01(\x03R\fjoinTimeUnix\x12T\n" +
+	"\fproblemsDone\x18\x02 \x03(\v20.challenge.ParticipantMetadata.ProblemsDoneEntryR\fproblemsDone\x12,\n" +
+	"\x11problemsAttempted\x18\x03 \x01(\x05R\x11problemsAttempted\x12\x1e\n" +
+	"\n" +
+	"totalScore\x18\x04 \x01(\x05R\n" +
+	"totalScore\x12,\n" +
+	"\x11lastConnectedUnix\x18\x05 \x01(\x03R\x11lastConnectedUnix\x1ad\n" +
+	"\x11ProblemsDoneEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x129\n" +
+	"\x05value\x18\x02 \x01(\v2#.challenge.ChallengeProblemMetadataR\x05value:\x028\x01\"\x96\x01\n" +
 	"\x18ChallengeProblemMetadata\x12\x1c\n" +
 	"\tproblemId\x18\x01 \x01(\tR\tproblemId\x12\x14\n" +
 	"\x05score\x18\x02 \x01(\x05R\x05score\x12\x1c\n" +
-	"\ttimeTaken\x18\x03 \x01(\x03R\ttimeTaken\x12 \n" +
-	"\vcompletedAt\x18\x04 \x01(\x03R\vcompletedAt\"\xad\x03\n" +
-	"\x13ParticipantMetadata\x12[\n" +
-	"\fproblemsDone\x18\x01 \x03(\v27.ChallengeService.ParticipantMetadata.ProblemsDoneEntryR\fproblemsDone\x12,\n" +
-	"\x11problemsAttempted\x18\x02 \x01(\x05R\x11problemsAttempted\x12\x1e\n" +
-	"\n" +
-	"totalScore\x18\x03 \x01(\x05R\n" +
-	"totalScore\x12\x1a\n" +
-	"\bjoinTime\x18\x04 \x01(\x03R\bjoinTime\x12$\n" +
-	"\rlastConnected\x18\x05 \x01(\x03R\rlastConnected\x12$\n" +
-	"\rinitialJoinIp\x18\x06 \x01(\tR\rinitialJoinIp\x12\x16\n" +
-	"\x06status\x18\a \x01(\tR\x06status\x1ak\n" +
-	"\x11ProblemsDoneEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12@\n" +
-	"\x05value\x18\x02 \x01(\v2*.ChallengeService.ChallengeProblemMetadataR\x05value:\x028\x01\"\x82\x01\n" +
-	"\n" +
-	"Submission\x12\"\n" +
-	"\fsubmissionId\x18\x01 \x01(\tR\fsubmissionId\x12\x1c\n" +
-	"\ttimeTaken\x18\x02 \x01(\x03R\ttimeTaken\x12\x16\n" +
+	"\ttimeTaken\x18\x03 \x01(\x03R\ttimeTaken\x12(\n" +
+	"\x0fcompletedAtUnix\x18\x04 \x01(\x03R\x0fcompletedAtUnix\"\x96\x01\n" +
+	"\x12SubmissionMetadata\x12\"\n" +
+	"\fsubmissionId\x18\x01 \x01(\tR\fsubmissionId\x12(\n" +
+	"\x0ftimeTakenMillis\x18\x02 \x01(\x03R\x0ftimeTakenMillis\x12\x16\n" +
 	"\x06points\x18\x03 \x01(\x05R\x06points\x12\x1a\n" +
-	"\buserCode\x18\x04 \x01(\tR\buserCode\"\xdd\x01\n" +
+	"\buserCode\x18\x04 \x01(\tR\buserCode\"n\n" +
+	"\x0fSubmissionEntry\x12\x1c\n" +
+	"\tproblemId\x18\x01 \x01(\tR\tproblemId\x12=\n" +
+	"\n" +
+	"submission\x18\x02 \x01(\v2\x1d.challenge.SubmissionMetadataR\n" +
+	"submission\"_\n" +
 	"\x0fUserSubmissions\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12T\n" +
-	"\vsubmissions\x18\x02 \x03(\v22.ChallengeService.UserSubmissions.SubmissionsEntryR\vsubmissions\x1a\\\n" +
-	"\x10SubmissionsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x122\n" +
-	"\x05value\x18\x02 \x01(\v2\x1c.ChallengeService.SubmissionR\x05value:\x028\x01\"\x8c\x01\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x124\n" +
+	"\aentries\x18\x02 \x03(\v2\x1a.challenge.SubmissionEntryR\aentries\"\x8c\x01\n" +
 	"\x10LeaderboardEntry\x12\x16\n" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\x12,\n" +
 	"\x11problemsCompleted\x18\x02 \x01(\x05R\x11problemsCompleted\x12\x1e\n" +
 	"\n" +
 	"totalScore\x18\x03 \x01(\x05R\n" +
 	"totalScore\x12\x12\n" +
-	"\x04rank\x18\x04 \x01(\x05R\x04rank\"P\n" +
-	"\fNotification\x12\x12\n" +
+	"\x04rank\x18\x04 \x01(\x05R\x04rank\"0\n" +
+	"\fQuestionPool\x12 \n" +
+	"\vquestionIds\x18\x01 \x03(\tR\vquestionIds\"\xb5\x01\n" +
+	"\x0fChallengeConfig\x12\x1a\n" +
+	"\bmaxUsers\x18\x01 \x01(\x05R\bmaxUsers\x12*\n" +
+	"\x10maxEasyQuestions\x18\x02 \x01(\x05R\x10maxEasyQuestions\x12.\n" +
+	"\x12maxMediumQuestions\x18\x03 \x01(\x05R\x12maxMediumQuestions\x12*\n" +
+	"\x10maxHardQuestions\x18\x04 \x01(\x05R\x10maxHardQuestions\"\xe1\x05\n" +
+	"\x0fChallengeRecord\x12 \n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
+	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1c\n" +
+	"\tisPrivate\x18\x04 \x01(\bR\tisPrivate\x12\x1a\n" +
+	"\bpassword\x18\x05 \x01(\tR\bpassword\x12\x16\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12(\n" +
+	"\x0ftimeLimitMillis\x18\a \x01(\x03R\x0ftimeLimitMillis\x12$\n" +
+	"\rstartTimeUnix\x18\b \x01(\x03R\rstartTimeUnix\x12P\n" +
+	"\fparticipants\x18\t \x03(\v2,.challenge.ChallengeRecord.ParticipantsEntryR\fparticipants\x12<\n" +
+	"\vsubmissions\x18\n" +
+	" \x03(\v2\x1a.challenge.UserSubmissionsR\vsubmissions\x12=\n" +
+	"\vleaderboard\x18\v \x03(\v2\x1b.challenge.LeaderboardEntryR\vleaderboard\x122\n" +
+	"\x06config\x18\f \x01(\v2\x1a.challenge.ChallengeConfigR\x06config\x120\n" +
+	"\x13processedProblemIds\x18\r \x03(\tR\x13processedProblemIds\x12\x1c\n" +
+	"\tcreatedAt\x18\x0e \x01(\x03R\tcreatedAt\x12\"\n" +
+	"\fproblemCount\x18\x0f \x01(\x03R\fproblemCount\x1a_\n" +
+	"\x11ParticipantsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
+	"\x05value\x18\x02 \x01(\v2\x1e.challenge.ParticipantMetadataR\x05value:\x028\x01\"u\n" +
+	"#GetChallengeRoomInfoMetadataRequest\x12 \n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1f\n" +
+	"\bpassword\x18\x02 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
+	"\t_password\"`\n" +
+	"$GetChallengeRoomInfoMetadataResponse\x128\n" +
+	"\tchallenge\x18\x01 \x01(\v2\x1a.challenge.ChallengeRecordR\tchallenge\"C\n" +
+	"\x11PaginationRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1a\n" +
+	"\bpageSize\x18\x02 \x01(\x05R\bpageSize\"s\n" +
+	"\x15ChallengeListResponse\x12:\n" +
+	"\n" +
+	"challenges\x18\x01 \x03(\v2\x1a.challenge.ChallengeRecordR\n" +
+	"challenges\x12\x1e\n" +
+	"\n" +
+	"totalCount\x18\x02 \x01(\x03R\n" +
+	"totalCount\"\x90\x01\n" +
+	"\x1aGetChallengeHistoryRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x12<\n" +
+	"\n" +
+	"pagination\x18\x02 \x01(\v2\x1c.challenge.PaginationRequestR\n" +
+	"pagination\x12\x1c\n" +
+	"\tisPrivate\x18\x03 \x01(\bR\tisPrivate\"x\n" +
+	" GetOwnersActiveChallengesRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x12<\n" +
+	"\n" +
+	"pagination\x18\x02 \x01(\v2\x1c.challenge.PaginationRequestR\n" +
+	"pagination\"\xb3\x02\n" +
+	"\x1bPushSubmissionStatusRequest\x12\x1a\n" +
+	"\buserCode\x18\x01 \x01(\tR\buserCode\x12 \n" +
+	"\vchallengeId\x18\x02 \x01(\tR\vchallengeId\x12\x16\n" +
+	"\x06userId\x18\x03 \x01(\tR\x06userId\x12\x1c\n" +
+	"\tproblemId\x18\x04 \x01(\tR\tproblemId\x12\"\n" +
+	"\fsubmissionId\x18\x06 \x01(\tR\fsubmissionId\x12\x14\n" +
+	"\x05score\x18\a \x01(\x05R\x05score\x12\"\n" +
+	"\fisSuccessful\x18\b \x01(\bR\fisSuccessful\x12(\n" +
+	"\x0fTimeTakenMillis\x18\t \x01(\x03R\x0fTimeTakenMillis\x12\x18\n" +
+	"\atraceId\x18\n" +
+	" \x01(\tR\atraceId\"R\n" +
+	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12\x18\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess\"Y\n" +
+	"\x17AbandonChallengeRequest\x12 \n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
+	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\"l\n" +
+	"\x18AbandonChallengeResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
+	"\terrorType\x18\x03 \x01(\tR\terrorType\"m\n" +
+	"\x1bGetFullChallengeDataRequest\x12 \n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1f\n" +
+	"\bpassword\x18\x02 \x01(\tH\x00R\bpassword\x88\x01\x01B\v\n" +
+	"\t_password\"X\n" +
+	"\x1cGetFullChallengeDataResponse\x128\n" +
+	"\tchallenge\x18\x01 \x01(\v2\x1a.challenge.ChallengeRecordR\tchallenge\"]\n" +
+	"\x19PostChallengeNotification\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x12\n" +
-	"\x04time\x18\x03 \x01(\x03R\x04time\"s\n" +
-	"\vChatMessage\x12\x16\n" +
+	"\x04time\x18\x03 \x01(\x03R\x04time\"\x80\x01\n" +
+	"\x18PostChallengeChatMessage\x12\x16\n" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"profilePic\x18\x02 \x01(\tR\n" +
 	"profilePic\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x12\n" +
-	"\x04time\x18\x04 \x01(\x03R\x04time\"\xd1\x06\n" +
-	"\x11ChallengeDocument\x12 \n" +
+	"\x04time\x18\x04 \x01(\x03R\x04time\"\x82\x03\n" +
+	"\x15PostChallengeDocument\x12 \n" +
 	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
 	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12\x1c\n" +
 	"\tcreatedAt\x18\x03 \x01(\x03R\tcreatedAt\x12\x14\n" +
@@ -1711,92 +1842,26 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\tisPrivate\x18\x05 \x01(\bR\tisPrivate\x12\x16\n" +
 	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1c\n" +
 	"\ttimeLimit\x18\a \x01(\x03R\ttimeLimit\x12\x1c\n" +
-	"\tstartTime\x18\b \x01(\x03R\tstartTime\x12Y\n" +
-	"\fparticipants\x18\t \x03(\v25.ChallengeService.ChallengeDocument.ParticipantsEntryR\fparticipants\x12C\n" +
-	"\vsubmissions\x18\n" +
-	" \x03(\v2!.ChallengeService.UserSubmissionsR\vsubmissions\x12D\n" +
-	"\vleaderboard\x18\v \x03(\v2\".ChallengeService.LeaderboardEntryR\vleaderboard\x129\n" +
-	"\x06config\x18\f \x01(\v2!.ChallengeService.ChallengeConfigR\x06config\x120\n" +
-	"\x13processedProblemIds\x18\r \x03(\tR\x13processedProblemIds\x12\"\n" +
-	"\fproblemCount\x18\x0e \x01(\x03R\fproblemCount\x12D\n" +
-	"\rnotifications\x18\x0f \x03(\v2\x1e.ChallengeService.NotificationR\rnotifications\x121\n" +
-	"\x04chat\x18\x10 \x03(\v2\x1d.ChallengeService.ChatMessageR\x04chat\x1af\n" +
-	"\x11ParticipantsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12;\n" +
-	"\x05value\x18\x02 \x01(\v2%.ChallengeService.ParticipantMetadataR\x05value:\x028\x01\"\xce\x02\n" +
-	"\x0fChallengeRecord\x12 \n" +
-	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x1c\n" +
-	"\tcreatorId\x18\x02 \x01(\tR\tcreatorId\x12$\n" +
-	"\rcreatedAtUnix\x18\x03 \x01(\x03R\rcreatedAtUnix\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12\x1c\n" +
-	"\tisPrivate\x18\x05 \x01(\bR\tisPrivate\x129\n" +
-	"\x06config\x18\x06 \x01(\v2!.ChallengeService.ChallengeConfigR\x06config\x12$\n" +
-	"\rstartTimeUnix\x18\a \x01(\x03R\rstartTimeUnix\x12(\n" +
-	"\x0ftimeLimitMillis\x18\b \x01(\x03R\x0ftimeLimitMillis\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"S\n" +
-	"\x16CreateChallengeRequest\x129\n" +
-	"\x06record\x18\x01 \x01(\v2!.ChallengeService.ChallengeRecordR\x06record\"\x88\x01\n" +
-	"\x17CreateChallengeResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x129\n" +
-	"\x06record\x18\x03 \x01(\v2!.ChallengeService.ChallengeRecordR\x06record\"Y\n" +
-	"\x17AbandonChallengeRequest\x12\x1c\n" +
-	"\tcreatorId\x18\x01 \x01(\tR\tcreatorId\x12 \n" +
-	"\vchallengeId\x18\x02 \x01(\tR\vchallengeId\"l\n" +
-	"\x18AbandonChallengeResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
-	"\terrorType\x18\x03 \x01(\tR\terrorType\";\n" +
-	"\x17GetChallengeByIdRequest\x12 \n" +
-	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\"\x9b\x01\n" +
-	"\x18GetChallengeByIdResponse\x12\x18\n" +
+	"\tstartTime\x18\b \x01(\x03R\tstartTime\x12J\n" +
+	"\rnotifications\x18\t \x03(\v2$.challenge.PostChallengeNotificationR\rnotifications\x127\n" +
+	"\x04chat\x18\n" +
+	" \x03(\v2#.challenge.PostChallengeChatMessageR\x04chat\"?\n" +
+	"\x1bGetPostChallengeDataRequest\x12 \n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\"\x9c\x01\n" +
+	"\x1cGetPostChallengeDataResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\"\n" +
-	"\ferrorMessage\x18\x02 \x01(\tR\ferrorMessage\x12A\n" +
-	"\tchallenge\x18\x03 \x01(\v2#.ChallengeService.ChallengeDocumentR\tchallenge\"W\n" +
-	"\x1bGetFullChallengeDataRequest\x12 \n" +
-	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x16\n" +
-	"\x06userId\x18\x02 \x01(\tR\x06userId\"\x95\x01\n" +
-	"\x1cGetFullChallengeDataResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12A\n" +
-	"\tchallenge\x18\x03 \x01(\v2#.ChallengeService.ChallengeDocumentR\tchallenge\"\x82\x01\n" +
-	"\x1aGetChallengeHistoryRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1a\n" +
-	"\bpageSize\x18\x03 \x01(\x05R\bpageSize\x12\x1c\n" +
-	"\tisPrivate\x18\x04 \x01(\bR\tisPrivate\"\x90\x01\n" +
-	"\x15ChallengeListResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12C\n" +
-	"\n" +
-	"challenges\x18\x03 \x03(\v2#.ChallengeService.ChallengeDocumentR\n" +
-	"challenges\"C\n" +
-	"\x11PaginationRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1a\n" +
-	"\bpageSize\x18\x02 \x01(\x05R\bpageSize\"j\n" +
-	" GetOwnersActiveChallengesRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1a\n" +
-	"\bpageSize\x18\x03 \x01(\x05R\bpageSize\"\xd1\x01\n" +
-	"\x1bPushSubmissionStatusRequest\x12 \n" +
-	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x16\n" +
-	"\x06userId\x18\x02 \x01(\tR\x06userId\x12\x1c\n" +
-	"\tproblemId\x18\x03 \x01(\tR\tproblemId\x12\x14\n" +
-	"\x05score\x18\x04 \x01(\x05R\x05score\x12\"\n" +
-	"\fsubmissionId\x18\x05 \x01(\tR\fsubmissionId\x12 \n" +
-	"\vtimeTakenMs\x18\x06 \x01(\x03R\vtimeTakenMs\"R\n" +
-	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\x98\a\n" +
-	"\x10ChallengeService\x12f\n" +
-	"\x0fCreateChallenge\x12(.ChallengeService.CreateChallengeRequest\x1a).ChallengeService.CreateChallengeResponse\x12i\n" +
-	"\x10AbandonChallenge\x12).ChallengeService.AbandonChallengeRequest\x1a*.ChallengeService.AbandonChallengeResponse\x12r\n" +
-	"\x19GetChallengeByIdFromMongo\x12).ChallengeService.GetChallengeByIdRequest\x1a*.ChallengeService.GetChallengeByIdResponse\x12u\n" +
-	"\x14GetFullChallengeData\x12-.ChallengeService.GetFullChallengeDataRequest\x1a..ChallengeService.GetFullChallengeDataResponse\x12l\n" +
-	"\x13GetChallengeHistory\x12,.ChallengeService.GetChallengeHistoryRequest\x1a'.ChallengeService.ChallengeListResponse\x12g\n" +
-	"\x17GetActiveOpenChallenges\x12#.ChallengeService.PaginationRequest\x1a'.ChallengeService.ChallengeListResponse\x12x\n" +
-	"\x19GetOwnersActiveChallenges\x122.ChallengeService.GetOwnersActiveChallengesRequest\x1a'.ChallengeService.ChallengeListResponse\x12u\n" +
-	"\x14PushSubmissionStatus\x12-.ChallengeService.PushSubmissionStatusRequest\x1a..ChallengeService.PushSubmissionStatusResponseBFZDgithub.com/lijuuu/GlobalProtoXcode/ChallengeService;ChallengeServiceb\x06proto3"
+	"\ferrorMessage\x18\x02 \x01(\tR\ferrorMessage\x12>\n" +
+	"\tchallenge\x18\x03 \x01(\v2 .challenge.PostChallengeDocumentR\tchallenge2\x9d\a\n" +
+	"\x10ChallengeService\x12I\n" +
+	"\x0fCreateChallenge\x12\x1a.challenge.ChallengeRecord\x1a\x1a.challenge.ChallengeRecord\x12[\n" +
+	"\x10AbandonChallenge\x12\".challenge.AbandonChallengeRequest\x1a#.challenge.AbandonChallengeResponse\x12\x7f\n" +
+	"\x1cGetChallengeRoomInfoMetadata\x12..challenge.GetChallengeRoomInfoMetadataRequest\x1a/.challenge.GetChallengeRoomInfoMetadataResponse\x12g\n" +
+	"\x14GetFullChallengeData\x12&.challenge.GetFullChallengeDataRequest\x1a'.challenge.GetFullChallengeDataResponse\x12^\n" +
+	"\x13GetChallengeHistory\x12%.challenge.GetChallengeHistoryRequest\x1a .challenge.ChallengeListResponse\x12Y\n" +
+	"\x17GetActiveOpenChallenges\x12\x1c.challenge.PaginationRequest\x1a .challenge.ChallengeListResponse\x12j\n" +
+	"\x19GetOwnersActiveChallenges\x12+.challenge.GetOwnersActiveChallengesRequest\x1a .challenge.ChallengeListResponse\x12g\n" +
+	"\x14PushSubmissionStatus\x12&.challenge.PushSubmissionStatusRequest\x1a'.challenge.PushSubmissionStatusResponse\x12g\n" +
+	"\x14GetPostChallengeData\x12&.challenge.GetPostChallengeDataRequest\x1a'.challenge.GetPostChallengeDataResponseB=Z;github.com/lijuuu/ChallengeWssManagerService/internal/protob\x06proto3"
 
 var (
 	file_ChallengeService_challenge_proto_rawDescOnce sync.Once
@@ -1810,72 +1875,75 @@ func file_ChallengeService_challenge_proto_rawDescGZIP() []byte {
 	return file_ChallengeService_challenge_proto_rawDescData
 }
 
-var file_ChallengeService_challenge_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
+var file_ChallengeService_challenge_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_ChallengeService_challenge_proto_goTypes = []any{
-	(*ChallengeConfig)(nil),                  // 0: ChallengeService.ChallengeConfig
-	(*ChallengeProblemMetadata)(nil),         // 1: ChallengeService.ChallengeProblemMetadata
-	(*ParticipantMetadata)(nil),              // 2: ChallengeService.ParticipantMetadata
-	(*Submission)(nil),                       // 3: ChallengeService.Submission
-	(*UserSubmissions)(nil),                  // 4: ChallengeService.UserSubmissions
-	(*LeaderboardEntry)(nil),                 // 5: ChallengeService.LeaderboardEntry
-	(*Notification)(nil),                     // 6: ChallengeService.Notification
-	(*ChatMessage)(nil),                      // 7: ChallengeService.ChatMessage
-	(*ChallengeDocument)(nil),                // 8: ChallengeService.ChallengeDocument
-	(*ChallengeRecord)(nil),                  // 9: ChallengeService.ChallengeRecord
-	(*CreateChallengeRequest)(nil),           // 10: ChallengeService.CreateChallengeRequest
-	(*CreateChallengeResponse)(nil),          // 11: ChallengeService.CreateChallengeResponse
-	(*AbandonChallengeRequest)(nil),          // 12: ChallengeService.AbandonChallengeRequest
-	(*AbandonChallengeResponse)(nil),         // 13: ChallengeService.AbandonChallengeResponse
-	(*GetChallengeByIdRequest)(nil),          // 14: ChallengeService.GetChallengeByIdRequest
-	(*GetChallengeByIdResponse)(nil),         // 15: ChallengeService.GetChallengeByIdResponse
-	(*GetFullChallengeDataRequest)(nil),      // 16: ChallengeService.GetFullChallengeDataRequest
-	(*GetFullChallengeDataResponse)(nil),     // 17: ChallengeService.GetFullChallengeDataResponse
-	(*GetChallengeHistoryRequest)(nil),       // 18: ChallengeService.GetChallengeHistoryRequest
-	(*ChallengeListResponse)(nil),            // 19: ChallengeService.ChallengeListResponse
-	(*PaginationRequest)(nil),                // 20: ChallengeService.PaginationRequest
-	(*GetOwnersActiveChallengesRequest)(nil), // 21: ChallengeService.GetOwnersActiveChallengesRequest
-	(*PushSubmissionStatusRequest)(nil),      // 22: ChallengeService.PushSubmissionStatusRequest
-	(*PushSubmissionStatusResponse)(nil),     // 23: ChallengeService.PushSubmissionStatusResponse
-	nil,                                      // 24: ChallengeService.ParticipantMetadata.ProblemsDoneEntry
-	nil,                                      // 25: ChallengeService.UserSubmissions.SubmissionsEntry
-	nil,                                      // 26: ChallengeService.ChallengeDocument.ParticipantsEntry
+	(*ParticipantMetadata)(nil),                  // 0: challenge.ParticipantMetadata
+	(*ChallengeProblemMetadata)(nil),             // 1: challenge.ChallengeProblemMetadata
+	(*SubmissionMetadata)(nil),                   // 2: challenge.SubmissionMetadata
+	(*SubmissionEntry)(nil),                      // 3: challenge.SubmissionEntry
+	(*UserSubmissions)(nil),                      // 4: challenge.UserSubmissions
+	(*LeaderboardEntry)(nil),                     // 5: challenge.LeaderboardEntry
+	(*QuestionPool)(nil),                         // 6: challenge.QuestionPool
+	(*ChallengeConfig)(nil),                      // 7: challenge.ChallengeConfig
+	(*ChallengeRecord)(nil),                      // 8: challenge.ChallengeRecord
+	(*GetChallengeRoomInfoMetadataRequest)(nil),  // 9: challenge.GetChallengeRoomInfoMetadataRequest
+	(*GetChallengeRoomInfoMetadataResponse)(nil), // 10: challenge.GetChallengeRoomInfoMetadataResponse
+	(*PaginationRequest)(nil),                    // 11: challenge.PaginationRequest
+	(*ChallengeListResponse)(nil),                // 12: challenge.ChallengeListResponse
+	(*GetChallengeHistoryRequest)(nil),           // 13: challenge.GetChallengeHistoryRequest
+	(*GetOwnersActiveChallengesRequest)(nil),     // 14: challenge.GetOwnersActiveChallengesRequest
+	(*PushSubmissionStatusRequest)(nil),          // 15: challenge.PushSubmissionStatusRequest
+	(*PushSubmissionStatusResponse)(nil),         // 16: challenge.PushSubmissionStatusResponse
+	(*AbandonChallengeRequest)(nil),              // 17: challenge.AbandonChallengeRequest
+	(*AbandonChallengeResponse)(nil),             // 18: challenge.AbandonChallengeResponse
+	(*GetFullChallengeDataRequest)(nil),          // 19: challenge.GetFullChallengeDataRequest
+	(*GetFullChallengeDataResponse)(nil),         // 20: challenge.GetFullChallengeDataResponse
+	(*PostChallengeNotification)(nil),            // 21: challenge.PostChallengeNotification
+	(*PostChallengeChatMessage)(nil),             // 22: challenge.PostChallengeChatMessage
+	(*PostChallengeDocument)(nil),                // 23: challenge.PostChallengeDocument
+	(*GetPostChallengeDataRequest)(nil),          // 24: challenge.GetPostChallengeDataRequest
+	(*GetPostChallengeDataResponse)(nil),         // 25: challenge.GetPostChallengeDataResponse
+	nil,                                          // 26: challenge.ParticipantMetadata.ProblemsDoneEntry
+	nil,                                          // 27: challenge.ChallengeRecord.ParticipantsEntry
 }
 var file_ChallengeService_challenge_proto_depIdxs = []int32{
-	24, // 0: ChallengeService.ParticipantMetadata.problemsDone:type_name -> ChallengeService.ParticipantMetadata.ProblemsDoneEntry
-	25, // 1: ChallengeService.UserSubmissions.submissions:type_name -> ChallengeService.UserSubmissions.SubmissionsEntry
-	26, // 2: ChallengeService.ChallengeDocument.participants:type_name -> ChallengeService.ChallengeDocument.ParticipantsEntry
-	4,  // 3: ChallengeService.ChallengeDocument.submissions:type_name -> ChallengeService.UserSubmissions
-	5,  // 4: ChallengeService.ChallengeDocument.leaderboard:type_name -> ChallengeService.LeaderboardEntry
-	0,  // 5: ChallengeService.ChallengeDocument.config:type_name -> ChallengeService.ChallengeConfig
-	6,  // 6: ChallengeService.ChallengeDocument.notifications:type_name -> ChallengeService.Notification
-	7,  // 7: ChallengeService.ChallengeDocument.chat:type_name -> ChallengeService.ChatMessage
-	0,  // 8: ChallengeService.ChallengeRecord.config:type_name -> ChallengeService.ChallengeConfig
-	9,  // 9: ChallengeService.CreateChallengeRequest.record:type_name -> ChallengeService.ChallengeRecord
-	9,  // 10: ChallengeService.CreateChallengeResponse.record:type_name -> ChallengeService.ChallengeRecord
-	8,  // 11: ChallengeService.GetChallengeByIdResponse.challenge:type_name -> ChallengeService.ChallengeDocument
-	8,  // 12: ChallengeService.GetFullChallengeDataResponse.challenge:type_name -> ChallengeService.ChallengeDocument
-	8,  // 13: ChallengeService.ChallengeListResponse.challenges:type_name -> ChallengeService.ChallengeDocument
-	1,  // 14: ChallengeService.ParticipantMetadata.ProblemsDoneEntry.value:type_name -> ChallengeService.ChallengeProblemMetadata
-	3,  // 15: ChallengeService.UserSubmissions.SubmissionsEntry.value:type_name -> ChallengeService.Submission
-	2,  // 16: ChallengeService.ChallengeDocument.ParticipantsEntry.value:type_name -> ChallengeService.ParticipantMetadata
-	10, // 17: ChallengeService.ChallengeService.CreateChallenge:input_type -> ChallengeService.CreateChallengeRequest
-	12, // 18: ChallengeService.ChallengeService.AbandonChallenge:input_type -> ChallengeService.AbandonChallengeRequest
-	14, // 19: ChallengeService.ChallengeService.GetChallengeByIdFromMongo:input_type -> ChallengeService.GetChallengeByIdRequest
-	16, // 20: ChallengeService.ChallengeService.GetFullChallengeData:input_type -> ChallengeService.GetFullChallengeDataRequest
-	18, // 21: ChallengeService.ChallengeService.GetChallengeHistory:input_type -> ChallengeService.GetChallengeHistoryRequest
-	20, // 22: ChallengeService.ChallengeService.GetActiveOpenChallenges:input_type -> ChallengeService.PaginationRequest
-	21, // 23: ChallengeService.ChallengeService.GetOwnersActiveChallenges:input_type -> ChallengeService.GetOwnersActiveChallengesRequest
-	22, // 24: ChallengeService.ChallengeService.PushSubmissionStatus:input_type -> ChallengeService.PushSubmissionStatusRequest
-	11, // 25: ChallengeService.ChallengeService.CreateChallenge:output_type -> ChallengeService.CreateChallengeResponse
-	13, // 26: ChallengeService.ChallengeService.AbandonChallenge:output_type -> ChallengeService.AbandonChallengeResponse
-	15, // 27: ChallengeService.ChallengeService.GetChallengeByIdFromMongo:output_type -> ChallengeService.GetChallengeByIdResponse
-	17, // 28: ChallengeService.ChallengeService.GetFullChallengeData:output_type -> ChallengeService.GetFullChallengeDataResponse
-	19, // 29: ChallengeService.ChallengeService.GetChallengeHistory:output_type -> ChallengeService.ChallengeListResponse
-	19, // 30: ChallengeService.ChallengeService.GetActiveOpenChallenges:output_type -> ChallengeService.ChallengeListResponse
-	19, // 31: ChallengeService.ChallengeService.GetOwnersActiveChallenges:output_type -> ChallengeService.ChallengeListResponse
-	23, // 32: ChallengeService.ChallengeService.PushSubmissionStatus:output_type -> ChallengeService.PushSubmissionStatusResponse
-	25, // [25:33] is the sub-list for method output_type
-	17, // [17:25] is the sub-list for method input_type
+	26, // 0: challenge.ParticipantMetadata.problemsDone:type_name -> challenge.ParticipantMetadata.ProblemsDoneEntry
+	2,  // 1: challenge.SubmissionEntry.submission:type_name -> challenge.SubmissionMetadata
+	3,  // 2: challenge.UserSubmissions.entries:type_name -> challenge.SubmissionEntry
+	27, // 3: challenge.ChallengeRecord.participants:type_name -> challenge.ChallengeRecord.ParticipantsEntry
+	4,  // 4: challenge.ChallengeRecord.submissions:type_name -> challenge.UserSubmissions
+	5,  // 5: challenge.ChallengeRecord.leaderboard:type_name -> challenge.LeaderboardEntry
+	7,  // 6: challenge.ChallengeRecord.config:type_name -> challenge.ChallengeConfig
+	8,  // 7: challenge.GetChallengeRoomInfoMetadataResponse.challenge:type_name -> challenge.ChallengeRecord
+	8,  // 8: challenge.ChallengeListResponse.challenges:type_name -> challenge.ChallengeRecord
+	11, // 9: challenge.GetChallengeHistoryRequest.pagination:type_name -> challenge.PaginationRequest
+	11, // 10: challenge.GetOwnersActiveChallengesRequest.pagination:type_name -> challenge.PaginationRequest
+	8,  // 11: challenge.GetFullChallengeDataResponse.challenge:type_name -> challenge.ChallengeRecord
+	21, // 12: challenge.PostChallengeDocument.notifications:type_name -> challenge.PostChallengeNotification
+	22, // 13: challenge.PostChallengeDocument.chat:type_name -> challenge.PostChallengeChatMessage
+	23, // 14: challenge.GetPostChallengeDataResponse.challenge:type_name -> challenge.PostChallengeDocument
+	1,  // 15: challenge.ParticipantMetadata.ProblemsDoneEntry.value:type_name -> challenge.ChallengeProblemMetadata
+	0,  // 16: challenge.ChallengeRecord.ParticipantsEntry.value:type_name -> challenge.ParticipantMetadata
+	8,  // 17: challenge.ChallengeService.CreateChallenge:input_type -> challenge.ChallengeRecord
+	17, // 18: challenge.ChallengeService.AbandonChallenge:input_type -> challenge.AbandonChallengeRequest
+	9,  // 19: challenge.ChallengeService.GetChallengeRoomInfoMetadata:input_type -> challenge.GetChallengeRoomInfoMetadataRequest
+	19, // 20: challenge.ChallengeService.GetFullChallengeData:input_type -> challenge.GetFullChallengeDataRequest
+	13, // 21: challenge.ChallengeService.GetChallengeHistory:input_type -> challenge.GetChallengeHistoryRequest
+	11, // 22: challenge.ChallengeService.GetActiveOpenChallenges:input_type -> challenge.PaginationRequest
+	14, // 23: challenge.ChallengeService.GetOwnersActiveChallenges:input_type -> challenge.GetOwnersActiveChallengesRequest
+	15, // 24: challenge.ChallengeService.PushSubmissionStatus:input_type -> challenge.PushSubmissionStatusRequest
+	24, // 25: challenge.ChallengeService.GetPostChallengeData:input_type -> challenge.GetPostChallengeDataRequest
+	8,  // 26: challenge.ChallengeService.CreateChallenge:output_type -> challenge.ChallengeRecord
+	18, // 27: challenge.ChallengeService.AbandonChallenge:output_type -> challenge.AbandonChallengeResponse
+	10, // 28: challenge.ChallengeService.GetChallengeRoomInfoMetadata:output_type -> challenge.GetChallengeRoomInfoMetadataResponse
+	20, // 29: challenge.ChallengeService.GetFullChallengeData:output_type -> challenge.GetFullChallengeDataResponse
+	12, // 30: challenge.ChallengeService.GetChallengeHistory:output_type -> challenge.ChallengeListResponse
+	12, // 31: challenge.ChallengeService.GetActiveOpenChallenges:output_type -> challenge.ChallengeListResponse
+	12, // 32: challenge.ChallengeService.GetOwnersActiveChallenges:output_type -> challenge.ChallengeListResponse
+	16, // 33: challenge.ChallengeService.PushSubmissionStatus:output_type -> challenge.PushSubmissionStatusResponse
+	25, // 34: challenge.ChallengeService.GetPostChallengeData:output_type -> challenge.GetPostChallengeDataResponse
+	26, // [26:35] is the sub-list for method output_type
+	17, // [17:26] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name
 	17, // [17:17] is the sub-list for extension extendee
 	0,  // [0:17] is the sub-list for field type_name
@@ -1886,13 +1954,15 @@ func file_ChallengeService_challenge_proto_init() {
 	if File_ChallengeService_challenge_proto != nil {
 		return
 	}
+	file_ChallengeService_challenge_proto_msgTypes[9].OneofWrappers = []any{}
+	file_ChallengeService_challenge_proto_msgTypes[19].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ChallengeService_challenge_proto_rawDesc), len(file_ChallengeService_challenge_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   27,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
