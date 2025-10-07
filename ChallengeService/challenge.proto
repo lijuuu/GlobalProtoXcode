@@ -118,8 +118,9 @@ message PushSubmissionStatusRequest {
 }
 
 message PushSubmissionStatusResponse {
-  string message = 1;
-  bool success = 2;
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
 }
 
 message AbandonChallengeRequest {
@@ -169,6 +170,7 @@ message PostChallengeDocument {
   int64 startTime = 8;
   repeated PostChallengeNotification notifications = 9;
   repeated PostChallengeChatMessage chat = 10;
+  repeated UserSubmissions submissions = 11;
 }
 
 message GetPostChallengeDataRequest {
@@ -183,14 +185,42 @@ message GetPostChallengeDataResponse {
   PostChallengeDocument challenge = 4;
 }
 
+message CreateChallengeResponse {
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
+  ChallengeRecord challenge = 4;
+}
+
+message GetChallengeHistoryResponse {
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
+  ChallengeListResponse list = 4;
+}
+
+message GetActiveOpenChallengesResponse {
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
+  ChallengeListResponse list = 4;
+}
+
+message GetOwnersActiveChallengesResponse {
+  bool success = 1;
+  string message = 2;
+  string errorType = 3;
+  ChallengeListResponse list = 4;
+}
+
 service ChallengeService {
-  rpc CreateChallenge(ChallengeRecord) returns (ChallengeRecord);
+  rpc CreateChallenge(ChallengeRecord) returns (CreateChallengeResponse);
   rpc AbandonChallenge(AbandonChallengeRequest) returns (AbandonChallengeResponse);
   rpc GetChallengeRoomInfoMetadata(GetChallengeRoomInfoMetadataRequest) returns (GetChallengeRoomInfoMetadataResponse);
   rpc GetFullChallengeData(GetFullChallengeDataRequest) returns (GetFullChallengeDataResponse);
-  rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (ChallengeListResponse);
-  rpc GetActiveOpenChallenges(PaginationRequest) returns (ChallengeListResponse);
-  rpc GetOwnersActiveChallenges(GetOwnersActiveChallengesRequest) returns (ChallengeListResponse);
+  rpc GetChallengeHistory(GetChallengeHistoryRequest) returns (GetChallengeHistoryResponse);
+  rpc GetActiveOpenChallenges(PaginationRequest) returns (GetActiveOpenChallengesResponse);
+  rpc GetOwnersActiveChallenges(GetOwnersActiveChallengesRequest) returns (GetOwnersActiveChallengesResponse);
   rpc PushSubmissionStatus(PushSubmissionStatusRequest) returns (PushSubmissionStatusResponse);
   rpc GetPostChallengeData(GetPostChallengeDataRequest) returns (GetPostChallengeDataResponse);
 }
