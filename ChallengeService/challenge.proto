@@ -173,6 +173,7 @@ message PostChallengeDocument {
 
 message GetPostChallengeDataRequest {
   string challengeId = 1;
+  string userId = 2;
 }
 
 message GetPostChallengeDataResponse {

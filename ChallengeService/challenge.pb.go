@@ -1648,6 +1648,7 @@ func (x *PostChallengeDocument) GetChat() []*PostChallengeChatMessage {
 type GetPostChallengeDataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChallengeId   string                 `protobuf:"bytes,1,opt,name=challengeId,proto3" json:"challengeId,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1685,6 +1686,13 @@ func (*GetPostChallengeDataRequest) Descriptor() ([]byte, []int) {
 func (x *GetPostChallengeDataRequest) GetChallengeId() string {
 	if x != nil {
 		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *GetPostChallengeDataRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -1907,9 +1915,10 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\tstartTime\x18\b \x01(\x03R\tstartTime\x12J\n" +
 	"\rnotifications\x18\t \x03(\v2$.challenge.PostChallengeNotificationR\rnotifications\x127\n" +
 	"\x04chat\x18\n" +
-	" \x03(\v2#.challenge.PostChallengeChatMessageR\x04chat\"?\n" +
+	" \x03(\v2#.challenge.PostChallengeChatMessageR\x04chat\"W\n" +
 	"\x1bGetPostChallengeDataRequest\x12 \n" +
-	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\"\xb0\x01\n" +
+	"\vchallengeId\x18\x01 \x01(\tR\vchallengeId\x12\x16\n" +
+	"\x06userId\x18\x02 \x01(\tR\x06userId\"\xb0\x01\n" +
 	"\x1cGetPostChallengeDataResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
