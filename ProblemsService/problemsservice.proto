@@ -463,9 +463,10 @@ message RunProblemRequest {
   bool isRunTestcase = 4;
   string userId = 5;
   optional string country = 6;
-  optional string isChallenge = 7;
-  optional string challengeToken = 8;
-  string traceId = 9;
+  bool isChallenge = 7;
+  optional string challengeId = 8;
+  optional string challengeToken = 9;
+  string traceId = 10;
 }
 
 message RunProblemResponse {

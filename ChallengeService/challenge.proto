@@ -113,7 +113,7 @@ message PushSubmissionStatusRequest {
   string submissionId = 6;
   int32 score = 7;
   bool isSuccessful = 8;
-  int64 TimeTakenMillis = 9;
+  int64 timeTakenMillis = 9;
   string traceId = 10;
 }
 
