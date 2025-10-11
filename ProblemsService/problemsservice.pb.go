@@ -4001,9 +4001,10 @@ type RunProblemRequest struct {
 	IsRunTestcase  bool                   `protobuf:"varint,4,opt,name=isRunTestcase,proto3" json:"isRunTestcase,omitempty"`
 	UserId         string                 `protobuf:"bytes,5,opt,name=userId,proto3" json:"userId,omitempty"`
 	Country        *string                `protobuf:"bytes,6,opt,name=country,proto3,oneof" json:"country,omitempty"`
-	IsChallenge    *string                `protobuf:"bytes,7,opt,name=isChallenge,proto3,oneof" json:"isChallenge,omitempty"`
-	ChallengeToken *string                `protobuf:"bytes,8,opt,name=challengeToken,proto3,oneof" json:"challengeToken,omitempty"`
-	TraceId        string                 `protobuf:"bytes,9,opt,name=traceId,proto3" json:"traceId,omitempty"`
+	IsChallenge    bool                   `protobuf:"varint,7,opt,name=isChallenge,proto3" json:"isChallenge,omitempty"`
+	ChallengeId    *string                `protobuf:"bytes,8,opt,name=challengeId,proto3,oneof" json:"challengeId,omitempty"`
+	ChallengeToken *string                `protobuf:"bytes,9,opt,name=challengeToken,proto3,oneof" json:"challengeToken,omitempty"`
+	TraceId        string                 `protobuf:"bytes,10,opt,name=traceId,proto3" json:"traceId,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -4080,9 +4081,16 @@ func (x *RunProblemRequest) GetCountry() string {
 	return ""
 }
 
-func (x *RunProblemRequest) GetIsChallenge() string {
-	if x != nil && x.IsChallenge != nil {
-		return *x.IsChallenge
+func (x *RunProblemRequest) GetIsChallenge() bool {
+	if x != nil {
+		return x.IsChallenge
+	}
+	return false
+}
+
+func (x *RunProblemRequest) GetChallengeId() string {
+	if x != nil && x.ChallengeId != nil {
+		return *x.ChallengeId
 	}
 	return ""
 }
@@ -5189,20 +5197,22 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"!FullValidationByProblemIdResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1c\n" +
-	"\terrorType\x18\x03 \x01(\tR\terrorType\"\xe3\x02\n" +
+	"\terrorType\x18\x03 \x01(\tR\terrorType\"\x85\x03\n" +
 	"\x11RunProblemRequest\x12\x1c\n" +
 	"\tproblemId\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +
 	"\buserCode\x18\x02 \x01(\tR\buserCode\x12\x1a\n" +
 	"\blanguage\x18\x03 \x01(\tR\blanguage\x12$\n" +
 	"\risRunTestcase\x18\x04 \x01(\bR\risRunTestcase\x12\x16\n" +
 	"\x06userId\x18\x05 \x01(\tR\x06userId\x12\x1d\n" +
-	"\acountry\x18\x06 \x01(\tH\x00R\acountry\x88\x01\x01\x12%\n" +
-	"\visChallenge\x18\a \x01(\tH\x01R\visChallenge\x88\x01\x01\x12+\n" +
-	"\x0echallengeToken\x18\b \x01(\tH\x02R\x0echallengeToken\x88\x01\x01\x12\x18\n" +
-	"\atraceId\x18\t \x01(\tR\atraceIdB\n" +
+	"\acountry\x18\x06 \x01(\tH\x00R\acountry\x88\x01\x01\x12 \n" +
+	"\visChallenge\x18\a \x01(\bR\visChallenge\x12%\n" +
+	"\vchallengeId\x18\b \x01(\tH\x01R\vchallengeId\x88\x01\x01\x12+\n" +
+	"\x0echallengeToken\x18\t \x01(\tH\x02R\x0echallengeToken\x88\x01\x01\x12\x18\n" +
+	"\atraceId\x18\n" +
+	" \x01(\tR\atraceIdB\n" +
 	"\n" +
 	"\b_countryB\x0e\n" +
-	"\f_isChallengeB\x11\n" +
+	"\f_challengeIdB\x11\n" +
 	"\x0f_challengeToken\"\xc6\x01\n" +
 	"\x12RunProblemResponse\x12\x1c\n" +
 	"\tproblemId\x18\x01 \x01(\tR\tproblemId\x12\x1a\n" +

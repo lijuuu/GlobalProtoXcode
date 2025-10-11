@@ -1018,7 +1018,7 @@ type PushSubmissionStatusRequest struct {
 	SubmissionId    string                 `protobuf:"bytes,6,opt,name=submissionId,proto3" json:"submissionId,omitempty"`
 	Score           int32                  `protobuf:"varint,7,opt,name=score,proto3" json:"score,omitempty"`
 	IsSuccessful    bool                   `protobuf:"varint,8,opt,name=isSuccessful,proto3" json:"isSuccessful,omitempty"`
-	TimeTakenMillis int64                  `protobuf:"varint,9,opt,name=TimeTakenMillis,proto3" json:"TimeTakenMillis,omitempty"`
+	TimeTakenMillis int64                  `protobuf:"varint,9,opt,name=timeTakenMillis,proto3" json:"timeTakenMillis,omitempty"`
 	TraceId         string                 `protobuf:"bytes,10,opt,name=traceId,proto3" json:"traceId,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -2159,7 +2159,7 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\fsubmissionId\x18\x06 \x01(\tR\fsubmissionId\x12\x14\n" +
 	"\x05score\x18\a \x01(\x05R\x05score\x12\"\n" +
 	"\fisSuccessful\x18\b \x01(\bR\fisSuccessful\x12(\n" +
-	"\x0fTimeTakenMillis\x18\t \x01(\x03R\x0fTimeTakenMillis\x12\x18\n" +
+	"\x0ftimeTakenMillis\x18\t \x01(\x03R\x0ftimeTakenMillis\x12\x18\n" +
 	"\atraceId\x18\n" +
 	" \x01(\tR\atraceId\"p\n" +
 	"\x1cPushSubmissionStatusResponse\x12\x18\n" +
