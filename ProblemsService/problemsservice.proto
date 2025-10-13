@@ -467,6 +467,17 @@ message RunProblemRequest {
   optional string challengeId = 8;
   optional string challengeToken = 9;
   string traceId = 10;
+  optional bool requireComplexity = 11;
+}
+
+enum ComplexityStatus {
+  COMPLEXITY_UNSPECIFIED = 0;
+  LINEAR = 1;
+  CONSTANT = 2;
+  QUADRATIC = 3;
+  LOGARITHMIC = 4;
+  EXPONENTIAL = 5;
+  OTHER = 6;
 }
 
 message RunProblemResponse {
@@ -476,6 +487,8 @@ message RunProblemResponse {
   bool success = 4;
   string message = 5;
   string errorType = 6;
+  optional ComplexityStatus memoryComplexity = 7;
+  optional ComplexityStatus spaceComplexity = 8;
 }
 
 message Submission {
@@ -533,7 +546,8 @@ message GetProblemMetadataListRequest {
 
 message GetProblemMetadataListResponse {
   repeated ProblemMetadataLite problemMetadata = 1;
-  string message = 2;
+  int64 totalSize =2;
+  string message = 3;
 }
 
 message ProblemMetadataLite {

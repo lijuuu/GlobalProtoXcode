@@ -64,12 +64,13 @@ message ChallengeRecord {
   int64 timeLimitMillis = 7;
   int64 startTimeUnix = 8;
   map<string, ParticipantMetadata> participants = 9;
-  repeated UserSubmissions submissions = 10;
-  repeated LeaderboardEntry leaderboard = 11;
-  ChallengeConfig config = 12;
-  repeated string processedProblemIds = 13;
-  int64 createdAt = 14;
-  int64 problemCount = 15;
+  int64 maxParticipants = 10;
+  repeated UserSubmissions submissions = 11;
+  repeated LeaderboardEntry leaderboard = 12;
+  ChallengeConfig config = 13;
+  repeated string processedProblemIds = 14;
+  int64 createdAt = 15;
+  int64 problemCount = 16;
 }
 
 message GetChallengeRoomInfoMetadataRequest {
@@ -105,6 +106,17 @@ message GetOwnersActiveChallengesRequest {
   PaginationRequest pagination = 2;
 }
 
+
+enum ComplexityStatus {
+  COMPLEXITY_UNSPECIFIED = 0;
+  LINEAR = 1;
+  CONSTANT = 2;
+  QUADRATIC = 3;
+  LOGARITHMIC = 4;
+  EXPONENTIAL = 5;
+  OTHER = 6;
+}
+
 message PushSubmissionStatusRequest {
   string userCode = 1;
   string challengeId = 2;
@@ -115,6 +127,8 @@ message PushSubmissionStatusRequest {
   bool isSuccessful = 8;
   int64 timeTakenMillis = 9;
   string traceId = 10;
+  optional ComplexityStatus timeComplexityStatus = 11;
+  optional ComplexityStatus memoryComplexityStatus = 12;
 }
 
 message PushSubmissionStatusResponse {
