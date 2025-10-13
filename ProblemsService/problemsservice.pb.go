@@ -4688,9 +4688,10 @@ type GetProblemMetadataListRequest struct {
 	PageSize      int32                  `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
 	Tags          []string               `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	Difficulty    string                 `protobuf:"bytes,4,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
-	SearchQuery   string                 `protobuf:"bytes,5,opt,name=searchQuery,proto3" json:"searchQuery,omitempty"`
-	TraceId       string                 `protobuf:"bytes,6,opt,name=traceId,proto3" json:"traceId,omitempty"`
-	IsAdmin       bool                   `protobuf:"varint,7,opt,name=isAdmin,proto3" json:"isAdmin,omitempty"`
+	SearchTitle   string                 `protobuf:"bytes,5,opt,name=searchTitle,proto3" json:"searchTitle,omitempty"`
+	SearchTags    []string               `protobuf:"bytes,6,rep,name=searchTags,proto3" json:"searchTags,omitempty"`
+	TraceId       string                 `protobuf:"bytes,7,opt,name=traceId,proto3" json:"traceId,omitempty"`
+	IsAdmin       bool                   `protobuf:"varint,8,opt,name=isAdmin,proto3" json:"isAdmin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4753,11 +4754,18 @@ func (x *GetProblemMetadataListRequest) GetDifficulty() string {
 	return ""
 }
 
-func (x *GetProblemMetadataListRequest) GetSearchQuery() string {
+func (x *GetProblemMetadataListRequest) GetSearchTitle() string {
 	if x != nil {
-		return x.SearchQuery
+		return x.SearchTitle
 	}
 	return ""
+}
+
+func (x *GetProblemMetadataListRequest) GetSearchTags() []string {
+	if x != nil {
+		return x.SearchTags
+	}
+	return nil
 }
 
 func (x *GetProblemMetadataListRequest) GetTraceId() string {
@@ -5359,7 +5367,7 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\x05_slug\"\x7f\n" +
 	"\x1aGetProblemByIdSlugResponse\x12G\n" +
 	"\x0fproblemMetadata\x18\x01 \x01(\v2\x1d.problems.ProblemMetadataLiteR\x0fproblemMetadata\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xd9\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xf9\x01\n" +
 	"\x1dGetProblemMetadataListRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1a\n" +
 	"\bpageSize\x18\x02 \x01(\x05R\bpageSize\x12\x12\n" +
@@ -5367,9 +5375,12 @@ const file_ProblemsService_problemsservice_proto_rawDesc = "" +
 	"\n" +
 	"difficulty\x18\x04 \x01(\tR\n" +
 	"difficulty\x12 \n" +
-	"\vsearchQuery\x18\x05 \x01(\tR\vsearchQuery\x12\x18\n" +
-	"\atraceId\x18\x06 \x01(\tR\atraceId\x12\x18\n" +
-	"\aisAdmin\x18\a \x01(\bR\aisAdmin\"\xa1\x01\n" +
+	"\vsearchTitle\x18\x05 \x01(\tR\vsearchTitle\x12\x1e\n" +
+	"\n" +
+	"searchTags\x18\x06 \x03(\tR\n" +
+	"searchTags\x12\x18\n" +
+	"\atraceId\x18\a \x01(\tR\atraceId\x12\x18\n" +
+	"\aisAdmin\x18\b \x01(\bR\aisAdmin\"\xa1\x01\n" +
 	"\x1eGetProblemMetadataListResponse\x12G\n" +
 	"\x0fproblemMetadata\x18\x01 \x03(\v2\x1d.problems.ProblemMetadataLiteR\x0fproblemMetadata\x12\x1c\n" +
 	"\ttotalSize\x18\x02 \x01(\x03R\ttotalSize\x12\x18\n" +

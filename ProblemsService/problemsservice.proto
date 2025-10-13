@@ -539,9 +539,10 @@ message GetProblemMetadataListRequest {
   int32 pageSize = 2;
   repeated string tags = 3;
   string difficulty = 4;
-  string searchQuery = 5;
-  string traceId = 6;
-  bool isAdmin = 7;
+  string searchTitle = 5;
+  repeated string searchTags = 6;
+  string traceId = 7;
+  bool isAdmin = 8;
 }
 
 message GetProblemMetadataListResponse {
