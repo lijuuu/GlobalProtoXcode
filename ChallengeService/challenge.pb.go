@@ -596,7 +596,7 @@ type ChallengeRecord struct {
 	ProcessedProblemIds []string                        `protobuf:"bytes,14,rep,name=processedProblemIds,proto3" json:"processedProblemIds,omitempty"`
 	CreatedAt           int64                           `protobuf:"varint,15,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	ProblemCount        int64                           `protobuf:"varint,16,opt,name=problemCount,proto3" json:"problemCount,omitempty"`
-	OwnerReserveSlot    int64                           `protobuf:"varint,17,opt,name=ownerReserveSlot,proto3" json:"ownerReserveSlot,omitempty"`
+	OwnerReserveSlot    bool                            `protobuf:"varint,17,opt,name=ownerReserveSlot,proto3" json:"ownerReserveSlot,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -743,11 +743,11 @@ func (x *ChallengeRecord) GetProblemCount() int64 {
 	return 0
 }
 
-func (x *ChallengeRecord) GetOwnerReserveSlot() int64 {
+func (x *ChallengeRecord) GetOwnerReserveSlot() bool {
 	if x != nil {
 		return x.OwnerReserveSlot
 	}
-	return 0
+	return false
 }
 
 type GetChallengeRoomInfoMetadataRequest struct {
@@ -2212,7 +2212,7 @@ const file_ChallengeService_challenge_proto_rawDesc = "" +
 	"\x13processedProblemIds\x18\x0e \x03(\tR\x13processedProblemIds\x12\x1c\n" +
 	"\tcreatedAt\x18\x0f \x01(\x03R\tcreatedAt\x12\"\n" +
 	"\fproblemCount\x18\x10 \x01(\x03R\fproblemCount\x12*\n" +
-	"\x10ownerReserveSlot\x18\x11 \x01(\x03R\x10ownerReserveSlot\x1a_\n" +
+	"\x10ownerReserveSlot\x18\x11 \x01(\bR\x10ownerReserveSlot\x1a_\n" +
 	"\x11ParticipantsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
 	"\x05value\x18\x02 \x01(\v2\x1e.challenge.ParticipantMetadataR\x05value:\x028\x01\"u\n" +
