@@ -71,6 +71,7 @@ message ChallengeRecord {
   repeated string processedProblemIds = 14;
   int64 createdAt = 15;
   int64 problemCount = 16;
+  int64 ownerReserveSlot = 17;
 }
 
 message GetChallengeRoomInfoMetadataRequest {
